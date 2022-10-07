@@ -1,0 +1,5 @@
+commit df202ce3147c8d031dde73cfb815aef785702ab2
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Fri Oct 7 11:33:58 2022 +0200
+
+    feat: Add first lecture contents
