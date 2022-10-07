@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="author" content="Felicitas Pojtinger" />
+  <meta name="dcterms.date" content="2022-10-07" />
+  <meta name="keywords" content="distributed-systems, hdm-stuttgart" />
+  <title>Uni Distributed Systems Notes</title>
+  <style>
+    html {
+      line-height: 1.5;
+      font-family: Georgia, serif;
+      font-size: 20px;
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      word-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 1em;
+      }
+    }
+    @media print {
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+      font-size: 85%;
+      margin: 0;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    span.underline{text-decoration: underline;}
+    div.column{display: inline-block; vertical-align: top; width: 50%;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+  </style>
+  <!--[if lt IE 9]>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv-printshiv.min.js"></script>
+  <![endif]-->
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">Uni Distributed Systems Notes</h1>
+<p class="subtitle">Notes for the distributed systems course at HdM Stuttgart</p>
+<p class="author">Felicitas Pojtinger</p>
+<p class="date">2022-10-07</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#introduction"><span class="toc-section-number">1.1</span> Introduction</a>
+<ul>
+<li><a href="#contributing"><span class="toc-section-number">1.1.1</span> Contributing</a></li>
+<li><a href="#license"><span class="toc-section-number">1.1.2</span> License</a></li>
+</ul></li>
+<li><a href="#overview"><span class="toc-section-number">1.2</span> Overview</a>
+<ul>
+<li><a href="#goals"><span class="toc-section-number">1.2.1</span> Goals</a></li>
+<li><a href="#definition-of-distributed-systems"><span class="toc-section-number">1.2.2</span> Definition of Distributed Systems</a></li>
+<li><a href="#emergence"><span class="toc-section-number">1.2.3</span> Emergence</a></li>
+<li><a href="#emergent-failure-modes"><span class="toc-section-number">1.2.4</span> Emergent Failure Modes</a></li>
+<li><a href="#why-are-distributed-systems-difficult-to-understand"><span class="toc-section-number">1.2.5</span> Why are Distributed Systems difficult to understand?</a></li>
+<li><a href="#why-distribute"><span class="toc-section-number">1.2.6</span> Why Distribute?</a></li>
+<li><a href="#scale-and-distributions-power-laws"><span class="toc-section-number">1.2.7</span> Scale and Distributions: Power Laws</a></li>
+<li><a href="#characteristics-of-distributed-systems"><span class="toc-section-number">1.2.8</span> Characteristics of Distributed Systems</a></li>
+<li><a href="#the-eight-fallacies-of-distributes-computing"><span class="toc-section-number">1.2.9</span> The Eight Fallacies of Distributes Computing</a></li>
+<li><a href="#programming-languages-and-distributes-systems"><span class="toc-section-number">1.2.10</span> Programming Languages and Distributes Systems</a></li>
+<li><a href="#history-of-distributed-systems"><span class="toc-section-number">1.2.11</span> History of Distributed Systems</a></li>
+<li><a href="#metcalfes-law-network-effects"><span class="toc-section-number">1.2.12</span> Metcalfe’s Law (Network Effects)</a></li>
+<li><a href="#security-in-distributed-systems"><span class="toc-section-number">1.2.13</span> Security in Distributed Systems</a></li>
+<li><a href="#theoretial-foundations-of-distributed-systems"><span class="toc-section-number">1.2.14</span> Theoretial Foundations of Distributed Systems</a></li>
+<li><a href="#distributed-system-design"><span class="toc-section-number">1.2.15</span> Distributed System Design</a></li>
+<li><a href="#compnents-of-distributed-operating-systems"><span class="toc-section-number">1.2.16</span> Compnents of Distributed Operating Systems</a></li>
+<li><a href="#the-transparency-dogma"><span class="toc-section-number">1.2.17</span> The Transparency Dogma</a></li>
+<li><a href="#distribution-transparencies"><span class="toc-section-number">1.2.18</span> Distribution Transparencies</a></li>
+<li><a href="#classification"><span class="toc-section-number">1.2.19</span> Classification</a></li>
+<li><a href="#rpc-type-middleware"><span class="toc-section-number">1.2.20</span> RPC type Middleware</a></li>
+<li><a href="#distributed-objects"><span class="toc-section-number">1.2.21</span> Distributed Objects</a></li>
+<li><a href="#distributed-computing-frameworks"><span class="toc-section-number">1.2.22</span> Distributed Computing Frameworks</a></li>
+</ul></li>
+</ul>
+</nav>
+<section id="introduction" data-number="0.1">
+<h2 data-number="1.1"><span class="header-section-number">1.1</span> Introduction</h2>
+<section id="contributing" data-number="0.1.1">
+<h3 data-number="1.1.1"><span class="header-section-number">1.1.1</span> Contributing</h3>
+<p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212233">professor Kriha’s “Verteilte Systeme” lecture at HdM Stuttgart</a> and prior work of fellow students.</p>
+<p><strong>Found an error or have a suggestion?</strong> Please open an issue on GitHub (<a href="https://github.com/pojntfx/uni-distributedsystems-notes">github.com/pojntfx/uni-distributedsystems-notes</a>):</p>
+<figure>
+<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAZoAAAGaAQAAAAAefbjOAAADDUlEQVR4nO2bzW3rMBCEZx8F+EgBKcClSB2kpNSUDsRSUkAA8WiAwrzDLhk5OQU2LMVaHgxZ0geTMDH7SyF+PdK/3zOAQw455JBDDjn0nJDY6ABkERkByJhFRPpF9J6IPfgja3LoJmggSc4AUg8AWIRTJDHMgQACSZLX0OOm59DjoaYMbzMA5BNlzCJI0ukLpiAbTc+hh0Hd9xupDwVAAdO5dBjeX+70Sw79DejHjkD8lNXD1EN+pCx2viaH7gFFkhMADB8n9Rk4IRBD9R5Ilu2m59CjoSQiIr3dlDF3zaPoICMWDTW2mp5Dj7YaK7uQejSrsQjSuQCI14Zj52ty6BYIGlUOMwANMudATpHkFIvaCg1LWwjKaedrcugWCPYvswCI9lFTEbCvnAHzMnxHPDu00ghSs1F1DM29RGyv+I44BsQJgIyqB4GmFgBWV5bM3GJ6Dm1lNRA0BDXHIVpmW42ICoVrxKGgWCBjJJHOBZywiIyxAMgdyA+PPo8AVdegGYxhBqpTyRp6ADAf0zXi2aF1Fju9ms9AoHREFgDxosrANJ689nkAqGlEq3xfO5Wre+5HHAJqnqVtC2uD0H+/picsHxF8RxwAqhoBqB5YAkKHNctUtfB8xBGgtdVYK0O70tz115XviCeHrqxGlQf7Plsek1NLb/uOOAhkpe54kZrKXqzJTs4X0Z6JKZ8o4ybTc2ibusZVrFFbbYfqaJpkuEY8O1R3xJf3MAPf27Cn9rbHGk8P4UsKtKShQWb1Htb1UPcjDgGtPctVKmJuNS8WVQaVDNeIp4c0i11LWKEQWUDtwI5zfZBfCoCldmXvfE0O3QEaaripxU6tdOVW9IjF+yOOBuV2qBOBMiJQ3liD0aSxaYG98kfW5NBdoNQvgnS+CCfViEXMt/jwU35HgH6e6con6ikNREKG91CALOCqh3/na3LoFqjuiEgAGSByL0C0/gimPgDplRAg1Dr5ztfk0C2Q5SNs1GN96x4qoKYiPB9xBOj7mS7aR7tjx7lqXfzB03PIIYcccsghh3YM/QdVzHpgpuskuwAAAABJRU5ErkJggg==" width="150" alt="QR code to source repository" /><figcaption aria-hidden="true">QR code to source repository</figcaption>
+</figure>
+<p>If you like the study materials, a GitHub star is always appreciated :)</p>
+</section>
+<section id="license" data-number="0.1.2">
+<h3 data-number="1.1.2"><span class="header-section-number">1.1.2</span> License</h3>
+<figure>
+<img src="data:image/png;base64,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" width="128" alt="AGPL-3.0 license badge" /><figcaption aria-hidden="true">AGPL-3.0 license badge</figcaption>
+</figure>
+<p>Uni Distributed Systems Notes (c) 2022 Felicitas Pojtinger and contributors</p>
+<p>SPDX-License-Identifier: AGPL-3.0 </p>
+</section>
+</section>
+<section id="overview" data-number="0.2">
+<h2 data-number="1.2"><span class="header-section-number">1.2</span> Overview</h2>
+<section id="goals" data-number="0.2.1">
+<h3 data-number="1.2.1"><span class="header-section-number">1.2.1</span> Goals</h3>
+<ul>
+<li>Basic concepts</li>
+<li>Different programming models</li>
+<li>Theoretical foundation of computability</li>
+<li>Design of distributed systems</li>
+<li>Hardware and failure constraints</li>
+<li>How to build middleware in distributed systems</li>
+</ul>
+</section>
+<section id="definition-of-distributed-systems" data-number="0.2.2">
+<h3 data-number="1.2.2"><span class="header-section-number">1.2.2</span> Definition of Distributed Systems</h3>
+<blockquote>
+<p>Independent agents repeatedly interacting in a way that a coherent behavior (“system”) <strong>emerges</strong>. Events happen concurrently and parallel.</p>
+</blockquote>
+<p>Why emerges? You haven’t watched the movie if you looked at every frame!</p>
+</section>
+<section id="emergence" data-number="0.2.3">
+<h3 data-number="1.2.3"><span class="header-section-number">1.2.3</span> Emergence</h3>
+<ul>
+<li><strong>Strong</strong>: We cannot predict what will emerge (game of life)</li>
+<li><strong>Weak</strong>: Things are combined by simple principles but the result suprises (flock of birds)</li>
+<li><strong>Evolutionary</strong>: Complex but robust (egg to human)</li>
+<li><strong>Constructed</strong>: Complex but often not robust (distributed systems; emergent Failure Modes: Cascading failures in constructed emergence)</li>
+</ul>
+</section>
+<section id="emergent-failure-modes" data-number="0.2.4">
+<h3 data-number="1.2.4"><span class="header-section-number">1.2.4</span> Emergent Failure Modes</h3>
+<p>See Laura Nolan (black swans) on YouTube!</p>
+</section>
+<section id="why-are-distributed-systems-difficult-to-understand" data-number="0.2.5">
+<h3 data-number="1.2.5"><span class="header-section-number">1.2.5</span> Why are Distributed Systems difficult to understand?</h3>
+<blockquote>
+<p>See the slides for details on these first principles.</p>
+</blockquote>
+<ul>
+<li>Emergence</li>
+<li>We have a single machine view</li>
+<li>Errors are the fabric</li>
+<li>There is no free lunch</li>
+<li>Is total end-to-end system engineering</li>
+</ul>
+</section>
+<section id="why-distribute" data-number="0.2.6">
+<h3 data-number="1.2.6"><span class="header-section-number">1.2.6</span> Why Distribute?</h3>
+<ul>
+<li><strong>Robustness/Resilience</strong>: Avoid single points of failures with replication</li>
+<li><strong>Performance</strong>: Split processing into independent parts</li>
+<li><strong>Scalability/Throughput</strong>: Allow millions of requests/sec</li>
+<li><strong>Security</strong>: Create different security domains</li>
+<li><strong>Price per Request</strong>: Use cheaper horizontal scaling or free resources</li>
+</ul>
+</section>
+<section id="scale-and-distributions-power-laws" data-number="0.2.7">
+<h3 data-number="1.2.7"><span class="header-section-number">1.2.7</span> Scale and Distributions: Power Laws</h3>
+<p>There is a tendency that the big ones (e.g. Google) will become even bigger!</p>
+</section>
+<section id="characteristics-of-distributed-systems" data-number="0.2.8">
+<h3 data-number="1.2.8"><span class="header-section-number">1.2.8</span> Characteristics of Distributed Systems</h3>
+<ul>
+<li>Influence of distribution topology and remoteness</li>
+<li>Emergent behaviors, concurrent events</li>
+<li>Few analytics solutions, few model-based approaches</li>
+<li>Heterogeneous components</li>
+<li>No global time</li>
+<li>A strong need for security</li>
+<li>Concurrency, parallelism and replication</li>
+<li>Failure models define everything!</li>
+</ul>
+</section>
+<section id="the-eight-fallacies-of-distributes-computing" data-number="0.2.9">
+<h3 data-number="1.2.9"><span class="header-section-number">1.2.9</span> The Eight Fallacies of Distributes Computing</h3>
+<ol type="1">
+<li>The network is reliable</li>
+<li>Latency is zero</li>
+<li>Bandwidth is infinite</li>
+<li>The network is secure</li>
+<li>Topology doesn’t change</li>
+<li>There is one administrator</li>
+<li>Transport cost is zero</li>
+<li>The network is homogeneous</li>
+</ol>
+</section>
+<section id="programming-languages-and-distributes-systems" data-number="0.2.10">
+<h3 data-number="1.2.10"><span class="header-section-number">1.2.10</span> Programming Languages and Distributes Systems</h3>
+<p><strong>Message Camp</strong></p>
+<ul>
+<li>Simple CRUD interface. Message content is interface.</li>
+<li>Coarse grained messages (documents)</li>
+<li>Programmers deal with remoteness directly</li>
+<li>Events based or REST architectures</li>
+</ul>
+<p><strong>Transparency Camp</strong></p>
+<ul>
+<li>Hide remoteness from programmer</li>
+<li>Create type-safe interfaces and calls</li>
+<li>Hide security, storage and transactions behind frameworks (.NET, EJB etc.)</li>
+<li>Think distributed systems as a programming model</li>
+</ul>
+</section>
+<section id="history-of-distributed-systems" data-number="0.2.11">
+<h3 data-number="1.2.11"><span class="header-section-number">1.2.11</span> History of Distributed Systems</h3>
+<ul>
+<li>50s-80s: Basic papers on time, consensus, computability etc.</li>
+<li>90s: Connecting intranet applications (CORBA, COM), programming models dominate</li>
+<li>2000s: P2P, large social sites emerge, message passing, batch processing, eventual consistency &amp; RAM replaces disk</li>
+<li>2010s: Warehouse scale, fan out architecutres, realtime stream processing, flash memory, network performance, microservices &amp; serverless, applications that run on the network adapter etc.</li>
+</ul>
+</section>
+<section id="metcalfes-law-network-effects" data-number="0.2.12">
+<h3 data-number="1.2.12"><span class="header-section-number">1.2.12</span> Metcalfe’s Law (Network Effects)</h3>
+<ul>
+<li>The usefulness of a network grows by the square of the number of users (one single fax machine is useless - if there are two fax machines it becomes important!)</li>
+<li>There can be only one!</li>
+</ul>
+</section>
+<section id="security-in-distributed-systems" data-number="0.2.13">
+<h3 data-number="1.2.13"><span class="header-section-number">1.2.13</span> Security in Distributed Systems</h3>
+<blockquote>
+<p>“The company end where I don’t have control over the cryptography”</p>
+</blockquote>
+</section>
+<section id="theoretial-foundations-of-distributed-systems" data-number="0.2.14">
+<h3 data-number="1.2.14"><span class="header-section-number">1.2.14</span> Theoretial Foundations of Distributed Systems</h3>
+<ul>
+<li>No global time (logical clocks, vector clocks)</li>
+<li>FLP theorem of asynchronous systems</li>
+<li>The problem of failure detection and timeout</li>
+<li>Concurrency and deadlocks</li>
+<li>CAP theorem: Consistency, availability and partitioning: Choose only two!</li>
+<li>End-to-end argument: Where in the application do we put the logic?</li>
+<li>Consensus, leader selection etc.</li>
+</ul>
+</section>
+<section id="distributed-system-design" data-number="0.2.15">
+<h3 data-number="1.2.15"><span class="header-section-number">1.2.15</span> Distributed System Design</h3>
+<ul>
+<li>Common Problems (performance, fail-over, maintenance, policies, security integration)</li>
+<li>Information Architecture (define and qualify the information fragments and flows)</li>
+<li>Distribution Architecture (create a map of all participating systems and their quality of service)</li>
+</ul>
+</section>
+<section id="compnents-of-distributed-operating-systems" data-number="0.2.16">
+<h3 data-number="1.2.16"><span class="header-section-number">1.2.16</span> Compnents of Distributed Operating Systems</h3>
+<p>From top to bottom:</p>
+<p><strong>First layer</strong></p>
+<ul>
+<li>Data Analysis and Request Processing Applications</li>
+</ul>
+<p><strong>Second layer</strong></p>
+<ul>
+<li>APIs</li>
+</ul>
+<p><strong>Third layer</strong></p>
+<ul>
+<li><p>Scheduler</p></li>
+<li><p>Queue</p></li>
+<li><p>Log service</p></li>
+<li><p>Notification services</p></li>
+<li><p>Locking services</p></li>
+<li><p>Fragment handler</p></li>
+<li><p>Memory cache</p></li>
+<li><p>Key/value store</p></li>
+<li><p>Distributed file system</p></li>
+<li><p>Load balancer</p></li>
+<li><p>IP service realocator</p></li>
+<li><p>Membership service</p></li>
+<li><p>Failure detector</p></li>
+</ul>
+<p><strong>Fourth layer</strong></p>
+<ul>
+<li>Map reduce</li>
+<li>Consistent hashing</li>
+<li>Consensus algorithms</li>
+<li>Optimistic replies</li>
+</ul>
+<p><strong>Fifth layer</strong></p>
+<ul>
+<li>Failure models</li>
+</ul>
+</section>
+<section id="the-transparency-dogma" data-number="0.2.17">
+<h3 data-number="1.2.17"><span class="header-section-number">1.2.17</span> The Transparency Dogma</h3>
+<p>Middleware is supposed to hide remoteness and concurency by hiding distribution behind local programming language constructs.</p>
+</section>
+<section id="distribution-transparencies" data-number="0.2.18">
+<h3 data-number="1.2.18"><span class="header-section-number">1.2.18</span> Distribution Transparencies</h3>
+<ul>
+<li><strong>Access</strong>: Mask differences in languages and data representtation</li>
+<li><strong>Failure</strong>: Mask failures to enable fault tolerance</li>
+<li><strong>Scalability</strong>: Intelligent load-balancing of requests</li>
+<li><strong>Redundancy</strong>: Transparent replication of data</li>
+<li><strong>Location</strong>: Use logical, not physical names to access services</li>
+<li><strong>Migration</strong>: Hide the true liocation of a service</li>
+<li><strong>Persistence</strong></li>
+<li><strong>Sharding</strong></li>
+<li><strong>Transactions</strong></li>
+<li><strong>Security</strong></li>
+<li><strong>Monitoring</strong></li>
+</ul>
+</section>
+<section id="classification" data-number="0.2.19">
+<h3 data-number="1.2.19"><span class="header-section-number">1.2.19</span> Classification</h3>
+<ul>
+<li>Sockets</li>
+<li>RPC</li>
+<li>Object Request Brokers (CORBA, RMI)</li>
+<li>Message Oriented Middleware</li>
+<li>Web-Services</li>
+<li>Frameworks</li>
+<li>P2P</li>
+<li>Agent based (Jini)</li>
+<li>Tuple-Spaces</li>
+<li>Warehouse-Computing Architectures</li>
+</ul>
+</section>
+<section id="rpc-type-middleware" data-number="0.2.20">
+<h3 data-number="1.2.20"><span class="header-section-number">1.2.20</span> RPC type Middleware</h3>
+<ul>
+<li>E.g. Sun-RPC, Apache Thrift, gRPC</li>
+<li>Main idea: Allow function calls across languages with concurrent and parallel processing of requests</li>
+<li>Has generators to create specific glue code</li>
+<li>Directories, file systems etc. can be built on it</li>
+</ul>
+</section>
+<section id="distributed-objects" data-number="0.2.21">
+<h3 data-number="1.2.21"><span class="header-section-number">1.2.21</span> Distributed Objects</h3>
+<p><strong>CORBA</strong></p>
+<ul>
+<li>Object request broker</li>
+<li>Multi-language support</li>
+<li>Has an IDL</li>
+<li>Wire protocol: IIOP, GIOP</li>
+</ul>
+<p><strong>RMI</strong></p>
+<ul>
+<li>Java only</li>
+<li>Lightweight method call semantics</li>
+<li>Java implementations</li>
+<li>Wire protocol: IIOP, GIOP</li>
+</ul>
+</section>
+<section id="distributed-computing-frameworks" data-number="0.2.22">
+<h3 data-number="1.2.22"><span class="header-section-number">1.2.22</span> Distributed Computing Frameworks</h3>
+<ul>
+<li>Objects are to granular</li>
+<li>Seperation of concerns and contet</li>
+<li>EJB, COM+ etc.</li>
+</ul>
+</section>
+</section>
+</body>
+</html>
