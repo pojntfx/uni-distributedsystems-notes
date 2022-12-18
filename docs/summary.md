@@ -38,16 +38,17 @@ This course on distributed systems covers a range of topics related to the desig
 2. **Theoretical models of distributed systems**: This section covers the use of theoretical models, such as queuing theory and process and I/O models, to understand and analyze distributed systems.
 3. **Message protocols**: This section covers the use of message protocols, including delivery guarantees, causality, and reliable broadcast, to facilitate communication between components in a distributed system.
 4. **Remote procedure calls**: This section covers the use of remote procedure calls (RPCs) to invoke functions on a remote machine, as well as different RPC mechanisms such as marshaling, thrift, and gRPC.
-5. **Remote objects and frameworks**: This section covers the use of remote objects and frameworks, such as RMI and EJB, to enable communication between objects in a distributed system.
-6. **Theoretical foundations of distributed systems**: This section covers key concepts and theories that are relevant to the design of distributed systems, including the FLP theorem, time, causality, consensus, eventual consistency, and optimistic replication.
-7. **Distributed services and algorithms I**: This section covers the design and implementation of various distributed services and algorithms, including load balancing, message queues, caching, and consistent hashing.
-8. **Distributed services II**: This section covers more advanced topics in distributed services, including persistence, transactions, eventual consistency, and coordination.
-9. **Distributed security**: This section covers the key considerations for securing distributed systems, including authentication, authorization, and access control (AAA), secure delegation, and backend security.
-10. **Design of distributed systems**: This section covers the methodology and principles for designing distributed systems, as well as examples of different architectures and design patterns.
-11. **System management in distributed systems**: This section covers the key considerations for managing and maintaining distributed systems, including monitoring, chaos monkeys, and patterns of resilience.
-12. **Service architectures**: This section covers different service architectures, including service-oriented architecture (SOA) and microservices.
-13. **Peer-to-peer systems and the distributed web**: This section covers the use of peer-to-peer systems and technologies, such as distributed hashtables, blockchain, onion routing, and distributed consensus, in the context of the distributed web.
-14. **Ultra-large-scale systems**: This section covers the design and implementation of ultra-large-scale systems, including considerations related to scalability, performance, network design, and datacenter design.
+5. **Distributed objects**: This section covers distributed objects such as CORBA, RMI and DCOM.
+6. **Distributed Business Components**: This sections covers general component technology as well as Enterprise Java Beans (EJBs).
+7. **Theoretical foundations of distributed systems**: This section covers key concepts and theories that are relevant to the design of distributed systems, including the FLP theorem, time, causality, consensus, eventual consistency, and optimistic replication.
+8. **Distributed services and algorithms I**: This section covers the design and implementation of various distributed services and algorithms, including load balancing, message queues, caching, and consistent hashing.
+9. **Distributed services II**: This section covers more advanced topics in distributed services, including persistence, transactions, eventual consistency, and coordination.
+10. **Distributed security**: This section covers the key considerations for securing distributed systems, including authentication, authorization, and access control (AAA), secure delegation, and backend security.
+11. **Design of distributed systems**: This section covers the methodology and principles for designing distributed systems, as well as examples of different architectures and design patterns.
+12. **System management in distributed systems**: This section covers the key considerations for managing and maintaining distributed systems, including monitoring, chaos monkeys, and patterns of resilience.
+13. **Service architectures**: This section covers different service architectures, including service-oriented architecture (SOA) and microservices.
+14. **Peer-to-peer systems and the distributed web**: This section covers the use of peer-to-peer systems and technologies, such as distributed hashtables, blockchain, onion routing, and distributed consensus, in the context of the distributed web.
+15. **Ultra-large-scale systems**: This section covers the design and implementation of ultra-large-scale systems, including considerations related to scalability, performance, network design, and datacenter design.
 
 ## Introduction to Distributed Systems
 
@@ -887,3 +888,185 @@ This process is known as "binding," and there are several ways to handle it, inc
 - **Microsoft CLR (Common Language Runtime)**: The CLR is a runtime environment for executing .NET programs. It includes a cross-language call infrastructure that allows programs written in different .NET languages to communicate with each other.
 - **Thrift**: Thrift is a cross-platform RPC framework that allows different programming languages to communicate with each other. It includes an IDL for defining the interfaces and data structures that are used for communication, as well as code generators for generating the stubs and skeletons that are used to initiate and process the RPCs.
 - **gRPC**: gRPC is a high-performance RPC framework that uses HTTP/2 as the underlying transport. It includes an IDL for defining the interfaces and data structures that are used for communication, as well as code generators for generating the stubs and skeletons that are used to initiate and process the RPCs.
+
+## Distributed Objects
+
+### Overview
+
+1. Fundamental Properties of Objects
+2. Local and remote object references
+3. Parameter passing
+4. Object invocation types
+5. Distributed Object Services
+6. Object Request Broker Architectures
+7. Interface Design
+8. Java RMI
+
+### Objects vs. Abstract Data Types
+
+- Objects are data structures that combine state (data) and behavior (methods or functions) in a single entity. They are a key concept in object-oriented programming (OOP).
+- Abstract data types (ADTs) are data structures that are defined by the operations that can be performed on them, rather than by their implementation. ADTs are often used to model real-world concepts or objects.
+
+There are some differences between the two:
+
+- **Objects have an identity**, which is a unique identifier that distinguishes the object from other objects in the system. ADTs do not have an identity in the same way that objects do.
+- **Objects may store state** (data) within themselves, while ADTs do not store state. Instead, they define the operations that can be performed on data stored elsewhere.
+- **Objects may be implemented** in different ways depending on the programming language or system in which they are used. ADTs, on the other hand, are defined more abstractly and can be implemented in many ways.
+
+### Properties of Objects
+
+- Local objects are created with the new() operator and are **only accessible within the scope of their creator**.
+- An **\*object reference** is a unique identifier that is used to locate and access an object. It is returned when the object is created and can be used to call the object's methods.
+- Objects have a **lifecycle** that is tied to their creator. They exist as long as the virtual machine (VM) is alive and the objects are in use, and they are typically destroyed when their creator is destroyed.
+- Objects have **fine-granular interfaces and methods**, which means that they expose a large number of individual functions or operations that can be performed on them.
+- Objects can be **small and numerous**, which means that there may be many objects in a system, each with its own state and behavior.
+
+Objects in an object-oriented (OO) programming language do have many properties that can make them challenging to implement in a concurrent or distributed system.
+
+### Challenges for Remote Objects
+
+Remote objects (ROs) are objects that are accessed and managed remotely, typically over a network. They are a key concept in distributed object systems, which are systems that enable objects on different machines to communicate and interact with each other.
+
+- Object **identity is usually only valid locally**, meaning that it is only meaningful within the scope of the machine on which the object is stored. This can make it difficult to identify and access ROs from a remote machine.
+- ROs **must be created and managed by a server**, rather than by a client. This is because the client does not have direct access to the objects and cannot create them using the new() operator.
+- Clients **must have a way to find and access ROs**, which may involve using a registry or other lookup service.
+- **Concurrent access to ROs must be controlled** to prevent conflicts and ensure the consistency of the objects' state. This may involve using locks, mutexes, or other synchronization mechanisms.
+- ROs **may have a longer or shorter lifespan than local objects**, depending on how they are managed by the server.
+- If a **server dies**, the ROs it was managing may also be destroyed, depending on how the system is configured. This could potentially cause clients to lose access to their objects.
+- The **state of an RO may be maintained by the server or by the client**, depending on the implementation of the system.
+- If a **client dies, the ROs it was using may continue to exist on the server**, depending on how the system is configured.
+- The **cost of using ROs may be higher** than using local objects due to the overhead of communication and synchronization across the network.
+- ROs may have the same interface as local objects, or they may have a different interface that is tailored to the needs of remote clients.
+
+### What is a Remote Object?
+
+- A remote object is an object that is accessed and managed remotely, typically over a network.
+- It is a combination of a **unique identity**, an **interface**, and an **implementation**.
+- The unique identity is used to locate and access the object from a remote machine.
+- The interface defines the operations that can be performed on the object.
+- The implementation is the code that defines how the object behaves and carries out these operations.
+- **Clients** know the interface and use the identity of the remote object, but **do not know about the implementation**.
+- To clients, the interface of the remote object represents the entire object.
+- Achieving complete transparency of remote calls behind object interfaces can be **challenging in practice**, especially in distributed systems.
+
+### Object Models and Type Systems
+
+**CORBA:**
+
+- Defines its **own basic types**, including sequence, string, array, record, enumerated, and union.
+- Uses **value objects (data)** to represent data that is passed between objects.
+- Uses **remote object references** (reference semantics) to locate and access objects on remote machines.
+
+CORBA is designed to provide language independence, so it defines its own types and **does not allow user-defined classes** to be used in the interfaces of remote objects.
+
+**Java RMI:**
+
+- Uses the **basic types of the Java language**, such as int, byte, etc.
+- Allows **serializable non-remote objects** (value semantics) to be used as value objects.
+- Uses **remote object references** (reference semantics) to locate and access objects on remote machines.
+
+Java RMI **allows user-defined classes** to be used as value objects if they are serializable, but is specific to the Java programming language.
+
+### Accessing Remote Objects
+
+- A **naming service** is a service that acts like a directory and allows clients to look up the location of a remote object based on its name or other identifier. The client can then use the location information to access the object.
+- A **web server** can be used to host serialized versions of remote objects. The client can request the object from the server over the web and deserialize it to access its methods and state.
+- Remote objects can be accessed through other means, such as via mail or a piece of paper. For example, a client might send a request for a remote object to another machine via mail or other physical means, and the server could return the object or a reference to the object in the same way.
+- Another **remote object can serve as a "factory"** that creates and manages other remote objects. The client can access the factory object and use its methods to create and access other remote objects as needed.
+
+### The Broker Pattern
+
+- Is a design pattern that involves using a separate component (the broker) to mediate communication between two other components (the client and the service).
+- Serves as an **intermediary** between the client and the service and is responsible for routing requests and responses between them.
+- **Decouples the client and the service**, allowing them to evolve independently and communicate through the broker.
+
+### Remote Object Reference
+
+- **Object implementation (servant)**: The object implementation is the code that defines how the object behaves and carries out its operations. This is also known as the object's "servant," as it serves the object and carries out its requests.
+- **Object adapter**: The object adapter is a component that manages the communication between the object implementation and the object request handler (ORB). It is responsible for routing requests from the ORB to the object implementation and returning responses to the ORB.
+- **Active object map (remote object table)**: The active object map is a data structure that maps object identifiers to object implementations. It is used to locate the object implementation for a given object identifier.
+- **Object request handler (ORB)**: The ORB is the component that handles requests to and from remote objects. It is responsible for marshalling and demarshalling requests and responses, as well as routing requests to the appropriate object adapter.
+- **Host, port, protcocol, object adapter, object ID**: The system-wide object reference
+
+### Static vs Dynamic Invocation
+
+**Static Remote Method Invocation**
+
+- Involves using **pre-generated stubs** that are linked to the client program in advance.
+- The client program uses the stubs to invoke the remote method in the same way that it would invoke a local method.
+- The **stubs handle the details of marshalling and demarshalling** the request and response, as well as routing the request to the appropriate object on the remote machine.
+
+**Dynamic Invocation:**
+
+- Involves **building a request object at runtime**, based on the meta-information of the remote object.
+- The request object is sent to a dispatcher on the servant host, which handles the request as if it were a normal method invocation.
+- The dynamic invocation approach is **similar to the reflection pattern**, which involves using meta-information about an object to manipulate it at runtime.
+
+### Asynchronous Invocations
+
+- **One-way calls**: One-way calls are calls that do not expect a response from the server. They are called "one-way" because they involve only a single message being sent from the client to the server. One-way calls cannot have return values or out parameters, and their delivery is best-effort (meaning that there is no guarantee that the message will be delivered).
+- **Deferred synchronous**: Deferred synchronous invocations involve making a call to a remote method and continuing to execute while the method is being executed. The client can later check for the results of the method (blocking), but the delivery is at-most-once (meaning that the message will be delivered at most one time).
+- **True asynchronous with server callbacks**: True asynchronous invocations involve making a call to a remote method and continuing to execute while the method is being executed. The server can differentiate between synchronous and asynchronous calls and can send a callback message to the client when the results of the method are available. True asynchronous invocations require messaging middleware to achieve at-most-once delivery guarantees.
+
+### Main Distributed Object Services
+
+- **Finding objects**:
+  - **Naming service**: Maps names to object references
+  - **Trading service**: Allows objects to offer their services and allows clients to search for objects by constraint
+- **Preserving object state**
+  - **Persistence service**: Stores object state transparently and allows it to be loaded on demand
+  - **Transaction service**: Preserves object consistency across changes to multiple objects in a distributed, nested, or flat context
+  - **Concurrency service**: Provides locks for shared objects
+  - **Security service**: Checks the roles of principals
+- **Grouping of objects**: Collections
+
+### Portable Interceptors
+
+Interceptors can be used to **transparently add additional (context) information** to calls and transport it between object request brokers (ORBs).
+
+### Remote Interface Design
+
+- Respect the **possibility of concurrent calls** in your interface design: Avoid keeping inconsistent state across method calls.
+- Avoid the **"half-baked object" anti-pattern**: Do not perform staged initialization of an object.
+- Avoid using complicated or **unclear orders of calls**: Design the interface in a clear and straightforward manner.
+
+### Problems with Remote Objects
+
+- **Interfaces**: Remote object interfaces can be too granular, with many small methods that perform simple tasks. This can lead to slow performance, as each call to a remote object involves a significant amount of overhead.
+- **No direct support for state handling on servers**: Distributed object systems do not generally provide direct support for managing the state of remote objects on the server side. This can make it difficult to maintain consistent state across multiple remote objects or to persist the state of an object across different contexts.
+- **Bad for "data schlepping" applications**: Remote objects are often too expensive to use in applications that involve "data schlepping," or the transfer of large amounts of data between the client and server. This is because each call to a remote object involves significant overhead, which can make it inefficient to transfer large amounts of data.
+- **Cross-language calls expensive to build**: Making calls between objects implemented in different programming languages can be expensive, as it often requires the use of complex marshalling and unmarshalling mechanisms to convert data between the different languages.
+- **No security in calls**: Distributed object systems do not generally provide built-in security for remote method calls, which can make it difficult to enforce security policies or protect sensitive data.
+- **No transaction support**: Distributed object systems do not generally provide built-in support for transactions, which can make it difficult to ensure the consistency of data across multiple objects in a distributed system
+
+### Java RMI Request/Reply Protocols
+
+**JRMP (Java Remote Method Protocol)** is the first protocol for RMI. It has the following characteristics:
+
+- **Bandwidth problems** due to distributed garbage collection with short term leases and permanent reference counting.
+- Allows for the **dynamic download of code**.
+
+**RMI-IIOP (RMI over CORBA's Internet Inter-Orb Protocol)** has the following characteristics:
+
+- Uses **Java Naming and Directory Interfaces (JNDI)** to lookup object references and is persistent.
+- Requires code changes and the use of PortableRemoteObject.
+- **Requires the generation/definition of code** and IDL files for CORBA systems.
+- Allows for the movement of IDL files for Java Remote Object Interfaces to CORBA systems, and the generation of CORBA stubs with IDL compilers. This **allows CORBA systems to call Java remote objects**, or for Java systems to call into CORBA systems.
+
+### Java RMI Classes & Tools
+
+- **Remote**: Tag interface that Remote Object Interfaces extend.
+- **RemoteException**: Class that is thrown by all Remote Object methods.
+- **Naming**: Class that is used by clients to find remote object references, and by servers to register their objects.
+- **UnicastRemoteObject**: Class that Remote Object Implementations extend.
+- **rmic**: Tool that generates stub/skeleton/IDL files.
+- **registry**: Simple name server for Java objects.
+
+### Activation in Java RMI
+
+Activation is an important feature in Java RMI (Remote Method Invocation) because it allows servers to transparently store servant state on persistent storage and recreate servants on demand. This helps the server **control its resources** against memory exhaustion and performance degradation.
+
+### Security in Java RMI
+
+- Specify the quality of service (QOS) of sockets used by RMI, such as **using an SSL channel**.
+- Use an **RMISecurityManager** to prevent or control local access from downloaded implementations.
