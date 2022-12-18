@@ -38,7 +38,7 @@ This course on distributed systems covers a range of topics related to the desig
 2. **Theoretical models of distributed systems**: This section covers the use of theoretical models, such as queuing theory and process and I/O models, to understand and analyze distributed systems.
 3. **Message protocols**: This section covers the use of message protocols, including delivery guarantees, causality, and reliable broadcast, to facilitate communication between components in a distributed system.
 4. **Remote procedure calls**: This section covers the use of remote procedure calls (RPCs) to invoke functions on a remote machine, as well as different RPC mechanisms such as marshaling, thrift, and gRPC.
-5. Remote objects and frameworks: This section covers the use of remote objects and frameworks, such as RMI and EJB, to enable communication between objects in a distributed system.
+5. **Remote objects and frameworks**: This section covers the use of remote objects and frameworks, such as RMI and EJB, to enable communication between objects in a distributed system.
 6. **Theoretical foundations of distributed systems**: This section covers key concepts and theories that are relevant to the design of distributed systems, including the FLP theorem, time, causality, consensus, eventual consistency, and optimistic replication.
 7. **Distributed services and algorithms I**: This section covers the design and implementation of various distributed services and algorithms, including load balancing, message queues, caching, and consistent hashing.
 8. **Distributed services II**: This section covers more advanced topics in distributed services, including persistence, transactions, eventual consistency, and coordination.
@@ -187,16 +187,16 @@ The design of a distributed system involves addressing a number of common proble
 Middleware is software that sits between the operating system and the application layer of a distributed system, providing a layer of abstraction that enables communication and resource sharing among the various components of the system. Some key characteristics of middleware include:
 
 - It is used to facilitate the creation of distributed applications.
-- It provides glue code and generators that allow different programming languages and systems to interoperate.
-- It controls messages and enforces delivery guarantees, such as at-least-once delivery.
-- It reorders requests from participants to create a causal or total ordering.
-- It takes over responsibility for messages and may store them temporarily.
-- It creates groups of nodes that process events together and controls fail-over.
-- It hides differences in hardware, location of services, and offers load balancing.
-- It allows filtering of requests or provides means to add additional security information to calls.
-- It provides powerful services such as locking, scheduling, and messaging to applications.
-- It offers frameworks that provide automatic storage, security checks, and transactional control.
-- It supports message bus architectures that provide loose coupling through publish/subscribe functions.
+- Provides glue code and generators that allow different programming languages and systems to interoperate.
+- Controls messages and enforces delivery guarantees, such as at-least-once delivery.
+- Reorders requests from participants to create a causal or total ordering.
+- Takes over responsibility for messages and may store them temporarily.
+- Creates groups of nodes that process events together and controls fail-over.
+- Hides differences in hardware, location of services, and offers load balancing.
+- Allows filtering of requests or provides means to add additional security information to calls.
+- Provides powerful services such as locking, scheduling, and messaging to applications.
+- Offers frameworks that provide automatic storage, security checks, and transactional control.
+- Supports message bus architectures that provide loose coupling through publish/subscribe functions.
 
 The importance of middleware in distributed systems cannot be overstated. It is essential for enabling communication and resource sharing among the various components of the system, and for abstracting away the complexities of working with distributed systems. Without middleware, it would be much more difficult to develop distributed applications that are scalable, reliable, and secure.
 
@@ -230,3 +230,233 @@ Middleware can be classified into several categories based on the type of servic
 - **Agent-based systems**: These are middleware systems that use software agents to communicate with other components in a distributed system. Agents are autonomous programs that are designed to perform a specific task or function. Examples include Jini and Aglets.
 - **Tuple-spaces and distributed blackboards**: These are middleware systems that use a shared memory space to enable communication and resource sharing among different components in a distributed system.
 - **Warehouse-computing architectures**: These are middleware systems that are designed to support the storage and processing of large volumes of data in a distributed environment, such as a data center.
+
+## 2. Theoretical Models of Distributed Systems
+
+### Synchronous vs. Asynchronous Systems
+
+Synchronous and asynchronous systems are two types of distributed systems that differ in the way that they handle communication and the passage of time.
+
+In a **synchronous system**, events are assumed to be delivered in a lockstep manner, with a fixed delay between the occurrence of an event and its delivery. This means that events are delivered at predetermined intervals, and the system can be designed to operate on the assumption that events will be delivered at these intervals.
+
+**Asynchronous systems** do not have a fixed delay between the occurrence of an event and its delivery. Events may be delivered at any time, and the system must be able to handle this uncertainty. Asynchronous systems typically require more complex distributed algorithms to ensure correct operation, but they are generally easier to build and maintain than synchronous systems.
+
+In practice, most distributed systems are asynchronous, with additional mechanisms such as failure detectors and randomization used to help ensure correct operation.
+
+### Properties of Message Protocols
+
+Message protocol properties are characteristics that describe the desired behavior of a message passing protocol in a distributed system. These properties are used to ensure that the protocol operates correctly and achieves its intended goals.
+
+Some common message protocol properties include:
+
+- **Correctness**: This property refers to the invariant properties of the protocol, which are properties that are expected to hold throughout all possible executions of the protocol. Ensuring the correctness of a protocol is important for ensuring that the protocol achieves its intended goals.
+- **Liveness/termination**: This property refers to the ability of the protocol to make progress in the context of certain failures and within a bounded number of rounds. A protocol that satisfies this property is said to be "lively" or "live", while a protocol that does not satisfy this property is said to be "deadlock".
+- **Fairness**: This property refers to the inability of any participant in the protocol to be "starved" or denied access to resources. A protocol that satisfies this property is said to be "fair", while a protocol that does not satisfy this property is said to be "unfair".
+- **Agreement**: This property refers to the ability of all participants in the protocol to agree on a specific decision or output value. Ensuring agreement is important for ensuring that the protocol achieves a consistent result.
+- **Validity**: This property refers to the ability of the protocol to output a result that is consistent with the input value. A protocol that satisfies this property is said to be "valid", while a protocol that does not satisfy this property is said to be "invalid".
+
+### Complexity of Distributed Algorithms
+
+- **Time complexity** refers to the amount of time it takes for an algorithm to complete. This is often measured in terms of the time of the last event before all processes finish.
+- **Message complexity** refers to the number of messages that need to be sent in order for the algorithm to complete. This includes both the number of messages sent and the size of the messages. The number of rounds needed for termination is also an important factor in the message complexity of an algorithm, as it can have a significant impact on the overall scalability of the protocol.
+
+### Failure Types
+
+In distributed systems, there are several types of failures that can occur. These failures can have different impacts on the system and can require different approaches to handling them.
+
+Some common types of failures in distributed systems include:
+
+- **Crash failure**: This type of failure occurs when a process stops working and remains down. This can be caused by a variety of issues, such as hardware or software problems.
+- **Connectivity failures**: This type of failure occurs when there is a problem with the network that connects the nodes in the system. This can cause "split brain" situations, where the system becomes divided into two separate networks, or node isolation, where a node becomes disconnected from the rest of the system.
+- **Message loss**: This type of failure occurs when individual messages are lost during transmission. This can be caused by a variety of issues, such as network problems or hardware failures.
+- **Byzantine failures**: This type of failure occurs when nodes in the system violate protocol assumptions and promises. This can include breaking promises due to disk or configuration failures, or intentionally behaving in a way that goes against the protocol. Byzantine failures are often considered to be the most difficult type of failure to handle in a distributed system, as they can be difficult to detect and can have significant impacts on the system.
+
+### Distributed Computing Topologies
+
+There are several types of distributed computing topologies that can be used to design distributed systems. These topologies can have different characteristics and can be used to achieve different goals, depending on the needs of the system.
+
+Some common types of distributed computing topologies include:
+
+- **Client/server systems**: In this type of topology, clients initiate communication with servers, which process the requests and send a response back to the client. This is the most common type of distributed system and is often used for applications where clients need to request specific information or services from servers.
+- **Hierarchical systems**: In this type of topology, every node can act as both a client and a server, but some nodes may play a special role, such as a domain name system (DNS) server. This type of topology can reduce communication overhead and provide options for central control, making it useful in certain types of systems.
+- **Totally distributed systems**: In this type of topology, every node is both a client and a server. This type of topology can be useful for systems where nodes need to communicate with each other directly, rather than relying on a central server.
+- **Bus systems/pub-sub**: In this type of topology, every node listens for data and posts data in response. This can be useful for event-driven systems where nodes need to communicate with each other asynchronously.
+
+### Queuing Theory: Kendall Notation M/M/m/ß/N/Q
+
+The Kendall notation, also known as the Kendall notation for Markov chains, is a way of describing the behavior of a queuing system. It is often used in the field of operations research to analyze the performance of systems that have a finite number of servers and a finite queue size.
+
+- `ß`: Population Size (limited or infinite)
+- `M,D,G`: Probability distribution for arrivals
+- `N`: Wait queue size (can be unlimited)
+- `Q`: Service policy type (Fifo, shortest remaining time first etc)
+- `M,D,G`: Probability distribution for service time
+- `m`: Number of service channels
+
+### Generalized Queuing Theory Terms (Henry Liu)
+
+- **Server/Node**: A combination of a wait queue and a processing element
+- **Initiator**: The entity that initiates a service request
+- **Wait time**: The time a request or initiator spends waiting in line for service
+- **Service time**: The time it takes for the processing element to complete a request
+- **Arrival rate**: The rate at which requests arrive for service
+- **Utilization**: The percentage of time the processing element spends servicing requests, as opposed to being idle
+- **Queue length**: The total number of requests waiting and being serviced
+- **Response time**: The sum of the wait time and service time for a single visit to the processing element
+- **Residence time**: The total time spent by the processing element on a single transaction, if it is visited multiple times
+- **Throughput**: The rate at which requests are serviced, or how fast requests can be processed without long wait times.
+
+### Little's Law
+
+- Little's Law states that in a stable system, the long-term average number of customers (L) is equal to the long-term average effective arrival rate (λ) multiplied by the average time a customer spends in the system (W).
+- This can be expressed algebraically as L = λW.
+- Little's Law is used to analyze and understand the behavior of systems that involve waiting, such as queues or lines. It can help to predict the average number of customers in a system, as well as the average time they will spend waiting, given a certain arrival rate.
+
+### Hejunka
+
+Hejunka is a Japanese term that refers to the practice of leveling the production process by smoothing out fluctuations in demand and task sizes. It is often used in lean manufacturing and just-in-time (JIT) production systems to improve the efficiency and flow of work through a system.
+
+The goal of Hejunka is to create a steady, predictable flow of work through the system by reducing variability in task sizes and demand. This can be achieved through a variety of methods, such as:
+
+- **Setting limits** on the number of tasks or requests that can be processed at any given time
+- **Balancing the workload** across different servers or processing elements
+- **Prioritizing tasks** based on their importance or impact on the overall system
+- Using techniques such as **batching or grouping** similar tasks together to reduce variability
+
+By leveling the production process and reducing variability in task sizes, Hejunka can help to improve the efficiency and flow of work through a system, and reduce the risk of bottlenecks or delays caused by large differences in task size.
+
+### Lessons Learned from Queuing Theory
+
+- **Request numbers**: Caching can be used to reduce the number of requests that need to be processed by storing frequently accessed data in memory, so that it can be quickly retrieved without the need to fetch it from a slower storage medium.
+- **Batching**: The use of a multi-get API can help to reduce the number of requests that need to be processed by allowing multiple requests to be bundled together and processed as a single unit.
+- **Task sizes and variability**: Service level agreements (SLAs) can be used to define the acceptable level of variability in task sizes and completion times, and Hejunka is a technique that involves leveling the production process by smoothing out fluctuations in demand and task sizes. This can help to reduce variability and improve the efficiency of the system.
+
+### Request Problem in Multi-Tier Networks
+
+In a multi-tier network, the request problem refers to the fact that **requests must travel through multiple layers or tiers of servers** in order to be processed, and each layer adds its own processing time and potential delays to the overall response time.
+
+The average response time in a multi-tier network is therefore the sum of the trip average (the time it takes for a request to travel from one server to the next) multiplied by the wait time (the time a request spends waiting for a server to become available) at each layer, plus the sum of the service demand (the time it takes for a server to process a request) at each layer.
+
+It is important to note that in a multi-tier network, all requests are synchronous and may be in contention with each other, which means that wait times can occur due to contention for server resources. This can impact the overall efficiency of the system and may require the use of techniques such as caching or batching to reduce the number of requests that need to be processed.
+
+### Task Size Problem in Multi-Tier Networks
+
+In a multi-tier network, the task size problem refers to the fact that differences in task size can cause delays and inefficiencies in the processing of requests.
+
+In the case of pipeline stalls between nodes, large differences in task size can cause requests to be held up at one node while waiting for the next node to become available, leading to delays in the overall response time.
+
+### Theories & Model vs. Reality
+
+When applying queuing theory models to real-world systems, there are several factors that can impact the accuracy and usefulness of the model. These include:
+
+- **Latency**: Latency refers to the time it takes for a request to travel from one server to another or for a task to be completed. Latency can vary based on a variety of factors, such as network speed, server load, and the distance between servers, and it can impact the accuracy of queuing theory models.
+- **Blocking/locking/serialization in service units**: In real-world systems, servers may block or lock requests while they are being processed, or may process requests serially rather than in parallel. This can impact the accuracy of queuing theory models that assume parallel processing.
+- **Non-random distributions and feedback effects**: In real-world systems, request and task arrival rates may not always follow a random distribution, and there may be feedback effects that impact the flow of work through the system. This can make it difficult to accurately model the behavior of the system using queuing theory.
+- **Dead requests**: In some cases, requests may be lost or dropped due to errors or other issues, which can impact the accuracy of queuing theory models.
+- **Backpressure**: In systems where the capacity of servers or processing elements is limited, it is possible for requests to build up and create a backlog of work. This is known as backpressure, and it can impact the accuracy of queuing theory models.
+- **Missing variables and coherence losses**: Queuing theory models may not always include all the relevant variables or may not accurately account for coherence losses, which can impact their accuracy in predicting the behavior of real-world systems.
+
+### Critical Points in Client/Server Systems
+
+On the **client side**:
+
+- **Locating the server**: The client must be able to locate the server in order to establish a connection. This process can be impacted by factors such as network speed and latency.
+- **Authentication**: The client may need to authenticate itself in order to access the server and its resources.
+- **Sync/async**: The client may be able to send requests synchronously or asynchronously, which can impact the overall performance of the system.
+- **Speed up/down**: The client may be able to adjust the speed at which it sends requests in order to optimize the performance of the system.
+- **Load balancing**: The client may need to use load balancing techniques to distribute requests evenly across multiple servers or processing elements.
+- **Queues**: The client may need to use queues to manage requests and ensure that they are processed in an orderly manner.
+
+On the **server side**:
+
+- **Many clients**: The server may need to handle requests from many clients simultaneously, which can impact its performance and efficiency.
+- **Session state**: The server may need to maintain session state information in order to track the progress of individual requests.
+- **Authentication**: The server may need to authenticate clients
+- **Authorization**: The server may need to authorize clients to access specific resources or perform certain actions.
+- **Privacy**: The server may need to ensure that client data is kept private and secure.
+- **Sync/async**: The server may be able to process requests synchronously or asynchronously, which can impact the overall performance of the system.
+- **Blocking**: The server may block requests while they are being processed, which can impact the performance of the system.
+- **Single/multicore CPU intensive**: The server may be able to use multiple cores or processors to process requests in parallel, or it may be limited to processing requests serially on a single core.
+- **Queues**: The server may need to use queues to manage requests and ensure that they are processed in an orderly manner.
+
+Between both: **Bandwidth/latency**; The bandwidth and latency of the network connection between the client and the server can impact the performance and efficiency of the system.
+
+### Stateful vs Stateless Systems (The Stateful Server Problem)
+
+The stateful server problem refers to the trade-offs that must be considered when designing and implementing a server-based system that maintains state information.
+
+On the one hand, stateful servers have several **advantages**:
+
+- **Data locality**: Stateful servers can store data locally, which can improve the performance of the system by reducing the need to fetch data from external storage.
+- **Consistency**: Stateful servers can ensure that data is consistent and up-to-date, which can be important in certain applications.
+
+However, stateful servers also have some **disadvantages**:
+
+- **Availability**: Stateful servers may be less available than stateless servers, as they may be more vulnerable to failures or downtime.
+- **Load balancing**: Stateful servers may be more difficult to load balance than stateless servers, as they must maintain state information for individual clients.
+
+Stateless design, on the other hand, stores all data in external storage such as databases or caches, which can make it easier to design and implement the system. However, in the event of failures, programming stateless systems can be more difficult, as all data must be retrieved from external storage.
+
+### Terminology for Client/Server Systems
+
+- **Host**: A physical machine with n CPUs.
+- **Server**: A process running on a host that receives messages, performs computations, and sends messages (not necessarily responses).
+- **Thread**: An independent computation context within a process, which can be pre-empted by the kernel (kernel-thread) or yield voluntarily (application-level scheduling).
+- **Multi-threading**: The use of multiple threads within a single process context. This can be achieved using kernel-level threading (where the kernel switches between threads) or using multiple kernel threads running in parallel on a multi-core system.
+- **Multi-channel**: A thread that is able to watch multiple channels using a single system call, such as a `select()` call.
+- **Synchronous processing**: A caller calls a function and waits for its results, doing nothing while waiting.
+- **Asynchronous processing**: A caller calls a function and immediately continues executing its own code. The called function is eventually executed, and a callback function is called to inform the caller about the completion.
+- **Parallel processing**: The deterministic execution of independent code paths.
+- **Blocking**: A thread calls a function that needs time to complete, such as fetching a resource from disk. The thread cannot continue and blocks an execution core while waiting for the result. The thread is "context switched" and a new code path is loaded and executed by the core.
+- **Non-blocking calls**: A caller calls the non-blocking version of a function. If the function can perform immediately without delaying the caller, it will do so. If the function needed time to perform its job, it will allow the caller to return immediately and inform it that it would be blocked. The caller can then decide to do something else and try again later (poll again).
+- **Synchronization**: The control of access to shared data by multiple threads in order to prevent data inconsistencies.
+
+### Overarching Client/Server Architectures
+
+- **Multi-Tier System**: This type of architecture involves splitting up the system into multiple layers or tiers, each of which performs a specific set of functions. The tiers may include a presentation layer, a business logic layer, and a data storage layer, among others.
+- **Large fan-out Architectures**: This type of architecture involves a central component that receives requests from many clients and distributes them to multiple servers or other resources. This can allow the system to scale more easily and handle a large volume of requests.
+- **Pipeline (SEDA)**: This type of architecture involves breaking up the processing of a request into multiple stages, each of which is handled by a separate component. The stages are connected in a pipeline, with each stage processing the request and passing it on to the next stage.
+- **Offline Processing**: This type of architecture involves processing requests and tasks in an offline or deferred manner, rather than in real-time. This can be useful in situations where the workload is too large to handle in real-time, or where real-time processing is not required.
+
+### Different Process Models
+
+- **Single Thread/Single Core**: This type of process model involves a single thread of execution running on a single core. This can be efficient for certain types of workloads, but may not be able to take full advantage of multiple cores or processors.
+- **Multi-Thread/Single Core**: This type of process model involves multiple threads of execution running on a single core. This can allow the system to perform multiple tasks concurrently, but may not be able to fully utilize the processing power of multiple cores or processors.
+- **Multi-Thread/Multi-Core**: This type of process model involves multiple threads of execution running on multiple cores or processors. This can allow the system to fully utilize the processing power of multiple cores or processors, and can be more efficient for certain types of workloads.
+- **Single Thread/Multi-Process**: This type of process model involves a single thread of execution running within each of multiple processes. This can allow the system to take advantage of multiple cores or processors, but may be less efficient than other models for certain types of workloads.
+
+### Questions for Process Models
+
+- Can it use available cores/CPUs?
+- What is the ideal number of threads?
+- How does it deal with delays/(b)locking?
+- How does it deal with slow requests/uploads?
+- Is there observable non-determinism aka race conditions?
+- Is locking/synchronization needed?
+- What is the overhead of context switches and memory?
+
+### Amdahl's Law
+
+According to Amdahl's Law, the maximum improvement in overall system performance that can be achieved by improving a particular part of the system is limited by the fraction of time that the improved part of the system is used. In other words, if only a small portion of the system's workload is affected by the improvement, the overall improvement in performance will also be small.
+
+$speedup = \frac{1}{(1-parallelfraction+\frac{parallelfraction}{numberofprocessors}}$
+
+For example, if a particular part of a system is improved so that it runs twice as fast, but that part of the system is only used 10% of the time, the overall improvement in system performance will be limited to a 10% increase. On the other hand, if the improved part of the system is used 50% of the time, the overall improvement in performance will be much larger, at 50%.
+
+Amdahl's Law is often used to understand the potential benefits and limitations of optimizing or improving specific parts of a system. It can be a useful tool for determining how much resources should be invested in improving a particular part of the system, and for understanding the potential impact of those improvements on overall system performance.
+
+### Different I/O Models
+
+- **Java before NIO/AIO**: Prior to the introduction of the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a different model for handling input/output (I/O) operations. This model involved using threads to block and wait for I/O operations to complete, which could be inefficient and consume a lot of system resources.
+- **Polling pattern**: The polling pattern is a way of handling I/O operations in which a central component periodically checks for the completion of I/O operations. This can be done by repeatedly calling a function that checks the status of the operation, or by using a timer to trigger the check at regular intervals.
+- **Reactor pattern**: The Reactor pattern is a way of handling I/O operations in which a central component is notified when an I/O operation is completed, rather than periodically checking for its completion. This can be more efficient than the polling pattern, as it allows the system to respond to I/O operations as soon as they are completed, rather than waiting for a periodic check.
+- **Proactor pattern**: The Proactor pattern is similar to the Reactor pattern, but it is designed to handle high-concurrency environments where many I/O operations are occurring simultaneously. It uses a combination of asynchronous I/O and event-driven design to allow for efficient handling of multiple I/O operations at once.
+
+### Questions for I/O Models
+
+- Can it deal with all kinds of input/output?
+- How are synchronous channels integrated?
+- How hard is programming?
+- Can it be combined with multi-cores?
+- Scalability through multi-processes?
+- Race conditions possible?
