@@ -51,6 +51,17 @@ This course on distributed systems covers a range of topics related to the desig
 
 ## Introduction to Distributed Systems
 
+### Overview
+
+1. Definition of a distributed system (DS)
+2. Challenges for developers working with DS
+3. Reasons for using a DS
+4. Examples of DS
+5. Characteristics of DS
+6. Middleware for DS
+7. Concepts and architectures in DS, including scale, parallelism, and latency
+8. Resources related to DS
+
 ### Definition of a Distributed System
 
 A system that is made up of independent agents that interact with each other and produce a cohesive behavior. The interactions and events in this system happen concurrently and in parallel, meaning that they occur simultaneously and independently of one another. This type of system is often used to perform tasks that are too complex or large for a single agent to handle, and the concurrent and parallel nature of the interactions allows for efficient and effective processing of the tasks.
@@ -232,6 +243,12 @@ Middleware can be classified into several categories based on the type of servic
 - **Warehouse-computing architectures**: These are middleware systems that are designed to support the storage and processing of large volumes of data in a distributed environment, such as a data center.
 
 ## Theoretical Models of Distributed Systems
+
+### Overview
+
+1. Message passing theoretical model
+2. Distributed computing topologies
+3. Client-server systems, including critical points, architectures, processing and I/O models
 
 ### Synchronous vs. Asynchronous Systems
 
@@ -463,6 +480,14 @@ Amdahl's Law is often used to understand the potential benefits and limitations 
 
 ## Message Protocols
 
+### Overview
+
+1. Message protocols
+   1. Delivery guarantees in point-to-point communication
+   2. Reliable broadcast
+   3. Request ordering and causality
+2. Programming client-server systems using sockets
+
 ### The Role of Delivery Guarantees
 
 **Shop order**: The scenario described involves an online shop in which orders are placed and processed. The goal is to ensure that orders are delivered correctly and efficiently, regardless of any potential issues that may arise.
@@ -519,6 +544,16 @@ Idempotency is an important property to consider when designing operations or re
 - **"At least once"** implementation for idempotent requests: For idempotent requests, the "at least once" delivery guarantee can be implemented by simply sending an acknowledgement (ack) to the client after the request has been received. This approach does not require any updates to the server state, and is suitable for requests that do not have any critical side effects.
 - **"At most once"** implementation for nonidempotent requests: For nonidempotent requests, the "at most once" delivery guarantee can be implemented by storing a response on the server until the client confirms that it has been received. This approach requires the server to maintain state for each response, and may involve adding a request number to each request to help the server detect and discard duplicate requests.
 - **"Exactly once"** implementation: The "exactly once" delivery guarantee is not possible to achieve in asynchronous systems with network failures. However, it can be approximated using techniques such as two-phase commit and epoch numbers, which allow the client and server to coordinate their actions and ensure that they do not forget their decisions. This approach may involve maintaining an atomic log on both the client and server, and storing responses on the server until they are confirmed by the client
+
+### Repeating Non-Idempotent Operations
+
+If an operation is not idempotent, it means that it cannot be safely repeated multiple times and is likely to have unintended side effects. In this case, there are several measures that can be taken to ensure reliable communication:
+
+- **Use a message ID** to filter for duplicate sends: By including a unique message ID in each request, the server can filter out duplicates and only execute the request once.
+- **Keep a history list of request execution results** on the server: If the reply to a request is lost, the server can retransmit the result from its history list. This helps to ensure that the client receives the correct result even if the initial reply was lost.
+- **Lease resources on the server**: In some cases, it may be necessary to keep state on the server in order to facilitate communication. For example, a client may "lease" resources on the server for a specific period of time. This can help to ensure that resources are used efficiently and released when they are no longer needed.
+
+It is important to carefully manage state on the server in order to avoid overloading the system with old replies. It may be necessary to set limits on how long to store old replies and when to discard them.
 
 ### Request Order in Multi-Point-Protocols
 
@@ -679,3 +714,176 @@ For the server:
 4. **Reverse proxy**: Caches results, ends SSL sessions, and authenticates clients
 5. **Authentication server**: Stores client data and authorizes clients
 6. **Load balancer**: Distributes requests across servers
+
+## Remote Procedure Calls
+
+### Overview
+
+1. Call versions: local, inter-process, and remote
+2. Mechanics of remote calls:
+   1. Marshaling/serialization
+   2. Data representation
+   3. Message structure and schema evolution
+   4. Interface definition language
+   5. Tooling: generators
+3. Cross-language call infrastructures: Thrift and gRPC
+
+### Call Versions
+
+1. **Local calls**: made within a single process and do not require network communication
+2. **Inter-process calls**: Made between processes on the same machine and can be implemented using a variety of mechanisms, such as shared memory or pipes
+3. **Remote calls**: Made between processes on different machines and typically require network communication
+
+### Remote Calls vs. Remote Messages
+
+- **Remote calls**: Hide the remote service calls behind a programming language call and are tightly coupled with synchronous processing
+- **Remote messages**: Use a message-based middleware and create a new concept of a message and its delivery semantics; a message system can simulate a call-based system, but not vice versa
+
+### In-Process (Local) Calls
+
+- **No special middleware is required** for calls made within the same programming language
+- Calls into the OS are not inter-process calls
+- Special attention is required for cross-language calls made within a single process, such as calls to native code in Java
+- In-process calls **are fast** because they do not require network communication or context switches between processes.
+- Have **"exactly once"** semantics, meaning that they will be executed only once and will not be retried if they fail.
+- Are **type-safe and link-safe**, meaning that they are checked for type compatibility at compile time and will not result in linker errors. However, they may have issues with dynamic loading if the called code is not available at runtime.
+- Can be **either sequential or concurrent**, depending on the design of the application. Concurrent in-process calls can be implemented using threads or other concurrency mechanisms.
+- Operate **within a single name and address space**, which means that they can access all variables and functions within the process without requiring additional addressing or mapping.
+- Are **independent of byte ordering**, which means that they can be used on any machine with any endianness without requiring additional conversions.
+- Can be **controlled in their memory usage**, such as through garbage collection, which can help prevent memory leaks and improve the performance and stability of the application.
+- Can use **value or reference parameters**, depending on the needs of the application. Value parameters are copied when passed to a function, while reference parameters are passed by address and can be modified within the called function.
+- Are **transparent programming language calls** and not explicit messages, which means that they appear to the programmer as regular function calls and do not require the creation and handling of explicit messages.
+
+### Inter-Process Calls (IPC)
+
+- Local inter-process calls are faster than remote calls, but **not as fast as in-process calls**
+- Do **not have "exactly once"** semantics
+- Are **type-safe and link-safe** if both processes use the same static libraries, but may have issues with dynamic loading
+- Can be **either sequential or concurrent**, but the caller no longer controls the execution; the receiver must protect itself from concurrent access
+- **Cannot assume a single name and address space** and require additional addressing or mapping
+- Are still **independent of byte ordering**
+- **Require cross-process garbage collection** to manage memory usage
+- **Can only use value parameters**, as the target process cannot access memory in the calling process
+- Are **not real programming language "calls"** and require the creation of messages to simulate the missing features
+- Inter-process communication is not local and introduces **latency, memory barriers, and the possibility of process failures**
+
+The good news is that inter-process communication occurs on the same hardware and uses the same language at the sender and receiver, which **can reduce security issues** and ensure that a system crash affects both sender and receiver (fail-stop semantics)
+
+### Remote Procedure Calls (RPC)
+
+- Remote procedure calls (RPCs) are **much slower than local calls** and **do not have delivery guarantees** without a protocol
+- May have **version mismatches** that show up at runtime
+- Are **concurrent** and the caller no longer controls the execution; the callee must protect itself from concurrent access
+- **Cannot assume a single name and address space** and require additional addressing or mapping
+- Are **affected by byte ordering**
+- May **require network garbage collection** if they are stateful
+- May **involve cross-language calls**
+- **Can only use value parameters**, as the target process cannot access memory in the calling process
+- **Are not real programming language "calls"** and require the creation of messages to simulate the missing features
+- Often stateless
+
+### Mechanics of Remote Calls
+
+- **Marshaling/Serialization**: Process of converting program data into a format that can be transmitted over a network
+- **External Data-Representation**: Standardized format for representing binary data
+- **Interface Definition**: Defines a service, a set of related functions that can be accessed remotely
+- **Message Structure and Evolution**: Way in which data is organized and transmitted between systems
+- **Compilers**: Generate code (stub/skeleton or proxy) to facilitate communication between systems
+- **Request/Reply Protocol**: Handles errors that may occur during the remote call process
+- **Process/I/O Layer**: Responsible for managing threads and input/output operations
+
+### Marshaling/Serialization
+
+Marshaling/serialization is the process of converting parameters (basic types or objects) into a common transfer format (message) that can be transmitted over a network. At the target site, the message is transformed back into the original types or objects. There are several different approaches to marshaling/serialization, each with its own trade-offs:
+
+- **Language-dependent output format**: This approach uses a proprietary format that is specific to a particular programming language. It may be slower and have limitations in expressiveness, but it can be more efficient in terms of the size of the message.
+- **Language-independent output format**: This approach uses a standardized format that is not tied to any particular programming language. It may be more verbose and result in larger messages, but it is more flexible and can be used with a wider range of languages.
+- **Binary schema-based**: In this approach, the sender and receiver both have a shared understanding of the structure of the message, including the types and variables contained within it. Function names are replaced with numbers and variable data is encoded to save space. This approach is efficient in terms of message size, but it can be inflexible.
+- **Binary self-describing**: In this approach, the message contains information about its own structure, including the types and variables contained within it. This allows for more flexibility, but it requires the involved languages to have some level of flexibility in their capabilities.
+- **Textual, self-describing**: This approach uses an XML representation of the types or objects contained in the message. It is flexible, but it can be verbose and result in larger messages.
+- **Textual with schema for reader/writer**: This approach uses a schema to define the structure of the message, which allows for advanced schema evolution and dynamic serializations. It can be flexible, but it may result in larger messages.
+
+**Serialization to text** is a method of converting data into a human-readable format, typically using a markup language such as XML. This approach can be less efficient in terms of the size of the resulting message, as it is generally less compact than binary serialization. It is important to be aware of language limits, such as the range of integers and floating-point numbers that can be represented in JavaScript, when using this approach. XML is a popular choice for language-independent encoding because it is widely supported and can represent a wide range of data types.
+
+**Serialization to binary** is a method of converting data into a compact, machine-readable format. It requires a schema, which defines the structure of the message and the types of data it contains. This approach is generally more efficient in terms of the size of the resulting message, but it is not as flexible as text-based serialization because it requires a shared understanding of the schema between the sender and receiver. Binary serialization can also be used for language-independent encoding.
+
+### Schema Evolution
+
+When data or functions change, it is important to consider how different versions of a system will coexist and communicate with each other.
+
+**Forward compatibility** means that older receivers should be able to understand messages from newer senders. This allows newer versions of a system to be deployed without causing problems for existing clients.
+
+**Backward compatibility** means that newer receivers should be able to understand messages from older senders. This allows older versions of a system to continue functioning even after newer versions have been introduced.
+
+### Keeping Compatibility when Evolving a Schema
+
+> For JSON
+
+**Forward compatibility** means that older versions of a system should be able to understand messages from newer versions. Examples of changes that can be made to a system in a way that maintains forward compatibility:
+
+- **Adding a new required field**: Older readers will simply ignore the new field, so they will be compatible with newer versions.
+- **Narrowing a numerical type (e.g. float to int)**: Older readers will assume ints, which are a subset of floats, so they will be compatible with the newer int type.
+
+**Backward compatibility** means that newer versions of a system should be able to understand messages from older versions. Examples of changes that can be made to a system in a way that maintains backward compatibility:
+
+- **Adding a field with a default value**: Older writers will be unaware of the new field, so they will use the default value instead.
+- **Adding an optional field**: Older writers will be unaware of the new field, so they will use the default value (usually null) instead.
+- **Widening a numerical type** (e.g. int to float): Older writers will always use ints, which are a subset of floats, so they will be compatible with the newer float type.
+- **Removing a field**: Newer readers will ignore whatever was previously written in the field that was removed, so they will be compatible with older versions.
+
+**Full compatibility** means that a change can be made to a system without breaking compatibility with either older or newer versions. Examples of changes that can be made to a system in a way that maintains full compatibility include:
+
+- **Adding a field** with a default value
+- **Adding an optional field**
+
+**Incompatibility** means that a change to a system will break compatibility with either older or newer versions. Examples of changes that can break compatibility include:
+
+- **Renaming** a field
+- **Changing the type** of a field (other than the numeric conversions mentioned above)
+
+### Stubs and Skeletons
+
+Stubs and skeletons are code that is used to facilitate communication between different systems, typically in the context of remote procedure calls (RPCs). Stubs are used by clients to initiate a remote call, while skeletons are used by servers to receive and process the remote call.
+
+There are several ways to generate stubs and skeletons, including:
+
+- - **Generating them in advance from an interface definition language (IDL) file**: In this approach, the stubs and skeletons are generated from an IDL file, which defines the interfaces and data structures that are used for communication. The IDL file is used as a blueprint for generating the code.
+- **Generating them on demand from a class file**: In this approach, the stubs and skeletons are generated from a class file, which defines the classes and methods that are used for communication. The class file is used as a blueprint for generating the code.
+- **Distributing them in advance** to all clients and servers: In this approach, the stubs and skeletons are generated in advance and distributed to all the clients and servers that will be using them. This allows the systems to be set up and configured in advance, rather than on demand.
+- **Downloading them on demand**: In this approach, the stubs and skeletons are downloaded by the clients and servers as needed, rather than being distributed in advance. This allows for more flexibility and can be more efficient in terms of bandwidth usage.
+
+### Finding an RPC Server
+
+In a remote procedure call (RPC) system, a client needs to be able to locate the server in order to initiate a remote call.
+
+**Service:**
+
+1. **Start listening at port X**: The server starts listening for incoming requests on a specific port.
+2. **Tell portmapper about program, version, and port**: The server registers itself with the portmapper, which is a service that keeps track of the programs and ports that are available on the system. The portmapper is typically a separate daemon that runs on the system.
+
+**Client:**
+
+1. **Ask portmapper for program, version**: The client sends a request to the portmapper asking for the port number of the desired program and version.
+2. The **portmapper responds** with the port number where the desired program and version can be found.
+3. **Send procedure call** to service: The client sends the procedure call to the server on the specified port.
+
+This process is known as "binding," and there are several ways to handle it, including using inetd, DCE, or a Unix portmapper.
+
+### Factors to Consider when Choosing an IDL
+
+- **Are data types easily expressed using the IDL?** It is important to choose an IDL that can easily represent the types of data that will be used in the RPC system.
+- **Is hard or soft versioning used?** Hard versioning means that the IDL is strictly enforced, and any changes to the IDL will break compatibility. Soft versioning means that the IDL is more flexible and can be changed without breaking compatibility.
+- **Are structures self-describing?** Self-describing structures contain enough information to be understood by any system, even if it is not familiar with the specific structure. This can be useful for maintaining compatibility between different versions of a system.
+- **Is it possible to change the structures later and keep backward compatibility?** It is important to choose an IDL that allows for changes to be made to the structures in a way that maintains backward compatibility with older versions of the system.
+- **Is it possible to change processing of structures later and keep forward compatibility?** It is important to choose an IDL that allows for changes to be made to the processing of structures in a way that maintains forward compatibility with newer versions of the system.
+- **Are there bindings for all languages in use at my company?** It is important to choose an IDL that has bindings for all the languages that will be used in the RPC system.
+- **Do I need different encodings (binary/textual)?** It is important to consider whether binary or textual encoding will be needed for the RPC system, and choose an IDL that supports the desired encoding.
+- **Does changing serialization require a recompile?** It is important to consider whether changes to the serialization will require a recompile, as this can affect the flexibility and ease of maintenance of the system.
+- **Can I extend/change the runtime system (e.g. add trace statements)?** It is important to choose an IDL that allows for changes and extensions to the runtime system, such as the ability to add trace statements.
+
+### Popular IDLs for RPCs
+
+- **CORBA (Common Object Request Broker Architecture)**: CORBA is a standard for interoperating between different programming languages and platforms. It defines an interface definition language (IDL) that can be used to describe the interfaces and data structures that are used for communication, as well as a runtime system for executing the RPCs.
+- **Microsoft CLR (Common Language Runtime)**: The CLR is a runtime environment for executing .NET programs. It includes a cross-language call infrastructure that allows programs written in different .NET languages to communicate with each other.
+- **Thrift**: Thrift is a cross-platform RPC framework that allows different programming languages to communicate with each other. It includes an IDL for defining the interfaces and data structures that are used for communication, as well as code generators for generating the stubs and skeletons that are used to initiate and process the RPCs.
+- **gRPC**: gRPC is a high-performance RPC framework that uses HTTP/2 as the underlying transport. It includes an IDL for defining the interfaces and data structures that are used for communication, as well as code generators for generating the stubs and skeletons that are used to initiate and process the RPCs.
