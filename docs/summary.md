@@ -9,7 +9,7 @@ lang: "en"
 
 # Uni Distributed Systems Summary
 
-## Summary Introduction
+## Meta
 
 ### Contributing
 
@@ -49,7 +49,7 @@ This course on distributed systems covers a range of topics related to the desig
 13. **Peer-to-peer systems and the distributed web**: This section covers the use of peer-to-peer systems and technologies, such as distributed hashtables, blockchain, onion routing, and distributed consensus, in the context of the distributed web.
 14. **Ultra-large-scale systems**: This section covers the design and implementation of ultra-large-scale systems, including considerations related to scalability, performance, network design, and datacenter design.
 
-## 1. Introduction to Distributed Systems
+## Introduction to Distributed Systems
 
 ### Definition of a Distributed System
 
@@ -231,7 +231,7 @@ Middleware can be classified into several categories based on the type of servic
 - **Tuple-spaces and distributed blackboards**: These are middleware systems that use a shared memory space to enable communication and resource sharing among different components in a distributed system.
 - **Warehouse-computing architectures**: These are middleware systems that are designed to support the storage and processing of large volumes of data in a distributed environment, such as a data center.
 
-## 2. Theoretical Models of Distributed Systems
+## Theoretical Models of Distributed Systems
 
 ### Synchronous vs. Asynchronous Systems
 
@@ -460,3 +460,222 @@ Amdahl's Law is often used to understand the potential benefits and limitations 
 - Can it be combined with multi-cores?
 - Scalability through multi-processes?
 - Race conditions possible?
+
+## Message Protocols
+
+### The Role of Delivery Guarantees
+
+**Shop order**: The scenario described involves an online shop in which orders are placed and processed. The goal is to ensure that orders are delivered correctly and efficiently, regardless of any potential issues that may arise.
+
+- **TCP Communication properties**: TCP (Transmission Control Protocol) is a networking protocol that is used to establish and maintain communication between devices over a network. It has several key properties that are relevant to the scenario described, including reliability, flow control, and congestion control.
+- **At-least-once**: The "at-least-once" delivery guarantee means that a message may be delivered more than once, but it will always be delivered at least once. This can be useful in situations where it is more important to ensure that a message is delivered, even if it may be duplicated, than it is to prevent duplicates from occurring.
+- **At-most-once**: The "at-most-once" delivery guarantee means that a message will be delivered at most once. This can be useful in situations where it is more important to prevent duplicates from occurring than it is to ensure that a message is always delivered.
+- **Exactly once**: The "exactly once" delivery guarantee means that a message will be delivered exactly once, with no duplicates. This can be more difficult to achieve than the other delivery guarantees, as it requires additional complexity and overhead to ensure that duplicates are prevented.
+- **Message complexity**: The number of messages sent refers to the total number of messages that are transmitted as part of the communication process. In the scenario described, the number of messages sent may affect the efficiency and reliability of the communication process, and may need to be taken into account when determining the appropriate delivery guarantee to use.
+
+### Why is TCP not Enough?
+
+While TCP (Transmission Control Protocol) is a widely used networking protocol that provides a reliable communication channel between devices, it is not always sufficient on its own to ensure proper behavior in all situations. Here are some reasons why TCP may not be enough:
+
+- **Lost messages retransmitted**: TCP includes mechanisms for retransmitting lost messages, which can help to improve the reliability of communication. However, if messages are frequently lost or the network is particularly unreliable, the overhead of retransmitting lost messages may become a burden on the system.
+- **Re-sequencing of out of order messages**: TCP includes mechanisms for reordering out-of-order messages, which can help to ensure that messages are delivered in the correct order. However, if messages are frequently delivered out of order, this can be inefficient and may cause issues with the overall communication process.
+- **Sender choke back (flow control)**: TCP includes flow control mechanisms that allow the sender to adjust its rate of transmission based on the capacity of the receiver. However, if the sender is sending messages too quickly, this can lead to congestion on the network and reduced performance.
+- **No message boundary protection**: TCP does not provide any protection for message boundaries, which means that messages may be broken up or combined during transmission. This can make it difficult to ensure that messages are delivered in their entirety and can cause issues with the overall communication process.
+- **Timeout problem**: TCP includes mechanisms for detecting and handling connection failures, but these mechanisms may not be sufficient in all situations. For example, if a connection is lost due to a timeout, it may take some time to detect and recover from the failure, which can lead to delays and disruptions in the communication process.
+
+To address these and other issues, it may be necessary to use additional protocols or techniques, such as message-oriented middleware or application-level protocols, to ensure proper behavior in case of connection failures and to provide additional features and guarantees for message delivery.
+
+### Different Levels of Timeouts
+
+- **Business-Process-Timeout**: This timeout is set at the business process level and is used to ensure that a business process does not get stuck or take too long to complete. This timeout may be triggered if a particular task or operation within the process takes longer than expected to complete, or if the process as a whole takes too long to finish.
+- **RPC-Timeout (order progress)**: This timeout is set at the level of remote procedure calls (RPCs) and is used to ensure that RPCs do not get stuck or take too long to complete. This timeout may be triggered if an RPC takes longer than expected to complete, or if the progress of an RPC is not being monitored properly.
+- **TCP-Timeout (reliable channel)**: This timeout is set at the TCP (Transmission Control Protocol) level and is used to ensure that the reliable communication channel provided by TCP is functioning properly. This timeout may be triggered if a connection is lost or if the channel becomes congested or otherwise unstable.
+
+### Delivery Guarantees for RPCs
+
+- **Best effort**: The "best effort" delivery guarantee means that no specific guarantees are made about the delivery of requests or responses. This means that requests may be lost or responses may not be received, and there is no mechanism in place to ensure that this does not happen.
+- **At least once**: The "at least once" delivery guarantee means that a request may be delivered more than once, but it will always be delivered at least once. This can be useful in situations where it is more important to ensure that a request is delivered, even if it may be duplicated, than it is to prevent duplicates from occurring.
+- **At most once**: The "at most once" delivery guarantee means that a request will be delivered at most once. This can be useful in situations where it is more important to prevent duplicates from occurring than it is to ensure that a request is always delivered.
+- **Once and only once/exactly once**: The "once and only once" or "exactly once" delivery guarantee means that a request will be delivered exactly once, with no duplicates. This can be more difficult to achieve than the other delivery guarantees, as it requires additional complexity and overhead to ensure that duplicates are prevented.
+
+### Idempotency
+
+Idempotency is a property of operations or requests that ensures that they can be safely repeated without changing the result of the operation. In other words, if an operation is idempotent, it will have the same result whether it is performed once or multiple times.
+
+- The first request needs to be idempotent: In a sequence of requests, it is important that the first request is idempotent. This ensures that the first request can be safely repeated if it fails or is lost, without affecting the overall result of the operation.
+- The last request can be only best effort
+- Messages may be reordered
+
+### Server State and Idempotency
+
+Idempotency is an important property to consider when designing operations or requests that may be repeated or delivered multiple times, as it can help to ensure that the operation or request is able to be safely repeated without affecting the overall result. Here are some additional considerations related to idempotency and server state:
+
+- **No need to remember a request and its result**: If an operation or request is idempotent, the server does not need to remember the request or its result. This can be useful in situations where the server's storage is limited or unreliable, as it means that the server does not need to maintain a record of all previous requests and their results.
+- **Server can lose its storage**: If the server's storage is lost or becomes unavailable, it should not affect the overall result of the operation or request, as long as the operation or request is idempotent. This can help to ensure that the operation or request is able to be safely repeated even if the server's storage is lost.
+- **Concurrent updates might be consistent without concurrency control**: If an operation or request is idempotent, it is possible that concurrent updates to the same data may be consistent without the need for concurrency control mechanisms such as locks or transactions. This can help to improve the efficiency and performance of the system.
+
+### Implementing Delivery Guarantees for Idempotent Requests
+
+- **"At least once"** implementation for idempotent requests: For idempotent requests, the "at least once" delivery guarantee can be implemented by simply sending an acknowledgement (ack) to the client after the request has been received. This approach does not require any updates to the server state, and is suitable for requests that do not have any critical side effects.
+- **"At most once"** implementation for nonidempotent requests: For nonidempotent requests, the "at most once" delivery guarantee can be implemented by storing a response on the server until the client confirms that it has been received. This approach requires the server to maintain state for each response, and may involve adding a request number to each request to help the server detect and discard duplicate requests.
+- **"Exactly once"** implementation: The "exactly once" delivery guarantee is not possible to achieve in asynchronous systems with network failures. However, it can be approximated using techniques such as two-phase commit and epoch numbers, which allow the client and server to coordinate their actions and ensure that they do not forget their decisions. This approach may involve maintaining an atomic log on both the client and server, and storing responses on the server until they are confirmed by the client
+
+### Request Order in Multi-Point-Protocols
+
+- **No request order from one sender**: In a multi-point protocol, there is no guaranteed order for requests sent by a single sender. This means that requests may be received and processed in a different order than they were sent, and the sender should be prepared to handle this possibility.
+- **No request order between different senders**: In a multi-point protocol, there is no guaranteed order for requests sent by different senders. This means that requests from different senders may be received and processed in a different order than they were sent, and the senders should be prepared to handle this possibility.
+- **No request order between independent requests of different senders**: In a multi-point protocol, there is no guaranteed order for independent requests sent by different senders. This means that independent requests from different senders may be received and processed in a different order than they were sent, and the senders should be prepared to handle this possibility.
+
+### Request Ordering with Multiple Nodes
+
+In a multi-node system, it may be necessary to use a reliable broadcast protocol to ensure that requests are processed in the desired order. Here are some examples of protocols that can be used for request ordering with multiple nodes:
+
+- **Reliable Broadcast**: Reliable broadcast is a protocol that ensures that a message is delivered to all nodes in the system, and that it is delivered in the same order to all nodes. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network.
+- **FIFO Cast**: FIFO cast is a protocol that ensures that messages are delivered in the order in which they were sent, with the first message sent being the first one to be delivered. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network. This can still lead to causal inconsistencies!
+- **Causal Cast**: Causal cast is a protocol that ensures that messages are delivered in a causally consistent order, based on the dependencies between the messages. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network.
+- **Absolutely Ordered Casts**: Absolutely ordered casts is a protocol that ensures that messages are delivered in a totally ordered sequence, with no uncertainty about the order in which the messages were sent. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network.
+
+### Implementing Causal Ordered Broadcasts
+
+- **Piggybacking previous messages**: One solution for implementing causal ordered broadcasts is to piggyback every message sent with the previous messages. This means that when a message is sent, it is accompanied by the previous messages that it depends on. This can help to ensure that processes that may have missed a message can learn about it with the next incoming message and then deliver it correctly.
+- **Sending event history with every message**: Another solution for implementing causal ordered broadcasts is to send the event history with every message. This can be done using techniques such as vector clocks, which are used to track the dependencies between events in a distributed system. With this approach, messages are not delivered until the order is correct. This can help to ensure that messages are delivered in the correct order, even if there are delays or other issues with the network.
+
+### Implementing Absolutely Ordered Casts
+
+- **All nodes send messages to every other node**: One solution for implementing atomic broadcasts is for all nodes to send their messages to every other node in the system. This ensures that all nodes have a complete set of messages, which can be used to determine the total order of the messages.
+- **All nodes receive messages, but wait with delivery**: After receiving all of the messages, all nodes can wait with delivery until the total order of the messages has been determined.
+- **One node is selected to organize the total order**: To determine the total order of the messages, one node can be selected to organize the messages into a total order. This node can use a variety of techniques, such as vector clocks or Lamport timestamps, to determine the order of the messages.
+- **The node sends the total order to all nodes**: Once the total order has been determined, the node can send the total order to all other nodes in the system.
+- **All nodes receive the total order and deliver their messages**: Finally, all nodes can receive the total order and deliver their messages according to the determined order.
+
+There are however disadvantages with these implementations:
+
+- **May have high overhead**: This solution may have high overhead, as it requires all nodes to send and receive messages from every other node in the system. This can be particularly problematic in large systems with many nodes, as it may result in many messages being transmitted and processed.
+- **May have high latency**: This solution may also have high latency, as it requires all nodes to wait for the total order to be determined before delivering their messages. This can be particularly problematic in systems where low latency is critical.
+
+### Properties of Sockets
+
+Sockets are a programming interface that enables communication between networked computers. They are used to send and receive data over a network connection using either TCP (Transmission Control Protocol) or UDP (User Datagram Protocol) connections.
+
+Socket properties include:
+
+- **Using either TCP or UDP connections**: Sockets can use either TCP or UDP connections to communicate with other computers over a network. TCP provides a reliable, connection-oriented communication channel, while UDP provides a connectionless, unreliable communication channel.
+- **Serving as a programming interface**: Sockets provide a programming interface that enables applications to send and receive data over a network connection. They are typically used in conjunction with other programming constructs, such as threads or event loops, to enable concurrent communication and data processing.
+- **A specification of "Host", "Port", "Connection type"**: Sockets are identified by a combination of a host, port, and connection type. The host specifies the address of the computer on which the socket is running, the port specifies a specific communication endpoint on the host, and the connection type specifies whether the socket is using TCP or UDP.
+- **A unique address of a channel endpoint**: Each socket is assigned a unique address that identifies it as a communication endpoint. This address is used to identify the socket when sending or receiving data over the network.
+
+### Berkeley Sockets
+
+Berkeley sockets provide a set of primitives or functions that can be used to create, manage, and manipulate network connections and communication channels.
+
+Here is a brief description of the meaning of each of the Berkeley Sockets primitives:
+
+- **Socket**: The socket primitive creates a new communication endpoint, or socket, that can be used to send and receive data over a network connection.
+- **Bind**: The bind primitive attaches a local address to a socket, specifying the address and port on which the socket will listen for incoming connections or data.
+- **Listen**: The listen primitive announces the willingness of a socket to accept incoming connections from other hosts.
+- **Accept**: The accept primitive blocks the caller until a connection request arrives at the socket. When a connection request is received, it creates a new socket for the connection and returns a reference to the new socket.
+- **Connect**: The connect primitive actively attempts to establish a connection to a remote host by sending a connection request to the remote host.
+- **Send**: The send primitive sends some data over the connection associated with a socket.
+- **Receive**: The receive primitive receives some data over the connection associated with a socket.
+- **Close**: The close primitive releases the connection associated with a socket, allowing it to be used for other purposes.
+
+### Server Side Processing using Processes
+
+Server-side processing using processes is a model for handling incoming requests in a networked system. It involves the following steps:
+
+1. Server: The server listens on a specified port, waiting for incoming connection requests.
+2. Client: A client connects to the server on an arbitrary port and establishes a connection between the client and the server.
+3. Server: The server accepts the connection request and spawns a new process to handle the request. The process is assigned to the same port as the original connection, and the server goes back to listening for new connection requests.
+
+This model allows the server to scale to some degree, as it can handle multiple requests concurrently by spawning new processes to handle each request. However, process creation can be expensive, and there may be limits on the number of processes that can be created on a given system. An example of this model is traditional CGI processing in a web server, where a new process is spawned to handle each incoming request.
+
+### Server Side Processing using Threads
+
+Server-side processing using threads is a model for handling incoming requests in a networked system that is similar to the process-based model, but uses threads instead of processes to handle requests. It involves the following steps:
+
+1. Server: The server listens on a specified port, waiting for incoming connection requests.
+2. Client: A client connects to the server on an arbitrary port and establishes a connection between the client and the server.
+3. Server: The server accepts the connection request and spawns a new thread to handle the request. The thread is assigned to the same port as the original connection, and the server goes back to listening for new connection requests.
+
+This model allows the server to scale well, as it can handle multiple requests concurrently by spawning new threads to handle each request. Thread creation is less expensive than process creation, and it is possible to create a larger number of threads on a given system. An example of this model is servlet request processing in a servlet engine, also known as a "web container".
+
+In a threaded server, it is important to ensure that the functions that are used to handle incoming requests are re-entrant, or able to be safely called concurrently by multiple threads. This is because multiple threads may be executing the same function simultaneously, and the function must be able to handle this without causing problems.
+
+To ensure that functions are re-entrant, it is important to avoid using unprotected global variables, as these can be modified concurrently by multiple threads, leading to potential race conditions and other problems. Instead, state should be kept on the stack, with each thread having its own copy of the state. This ensures that each thread has its own private version of the state, and can operate independently of other threads.
+
+### Design Considerations for Socket-Based Services
+
+- **Message formats**: The message formats that will be exchanged between clients and servers should be carefully designed to ensure that data can be transmitted and received correctly. This includes ensuring that data is represented consistently on different hardware platforms and avoiding problems caused by different data representations.
+- **Protocol design**: The protocol that will be used by clients and servers to communicate should also be carefully designed. This includes deciding whether clients will wait for answers from the server (synchronous communication) or whether communication will be asynchronous, whether the server can call back to the client, whether the connection will be permanent or closed after each request, whether the server will hold client-related state (e.g. a session), and whether the server will allow concurrent requests.
+
+### Stateless vs. Stateful Socket-Based Services
+
+A stateless service is one in which the server does not store any information about previous requests or maintain any state between requests. This can have several advantages, including:
+
+- **Scaling extremely well**: Because the server does not maintain any state between requests, it can handle a large number of requests concurrently without running out of resources or becoming overloaded.
+- **Making denial of service attacks harder**: Because the server does not maintain any state between requests, it is more resistant to denial of service attacks, as attackers cannot exhaust resources by sending a large number of requests that require the server to store state.
+- **Forcing new authentication and authorization per request**: A stateless service can require clients to authenticate and authorize each request separately, improving security by requiring clients to prove their identity and permissions for each request; this can however also be a disadvantage, as it requires a significant overhead to transfer the authn credentials each time.
+
+On the other hand, a stateful service is one in which the server stores information about previous requests and maintains state between requests. This can have several advantages, including:
+
+- **Allowing transactions and delivery guarantees**: Because the server maintains state between requests, it is possible to use transactions and guarantee delivery of requests.
+- **Enabling more complex interactions**: A stateful service can support more complex interactions between clients and servers, as it allows the server to track the state of the interaction and respond appropriately.
+
+However, stateful services can also have some drawbacks, including:
+
+- **Risk of resource exhaustion**: Because the server maintains state between requests, it is possible for the server to run out of resources, such as sockets, if it receives many requests that require it to store state.
+- **Need for reliable hardware and networks**: In order to function correctly, stateful services typically require reliable hardware and networks, as they rely on the server being able to maintain state between requests. If the server or network experiences failures, this can disrupt the stateful interaction.
+
+### TCP SYN Flooding
+
+TCP SYN flooding is a type of denial of service (DoS) attack that exploits a weakness in the TCP connection establishment process. In a normal TCP connection, the client sends a SYN (synchronize) packet to the server to initiate the connection, and the server responds with a SYN-ACK (synchronize-acknowledge) packet to confirm that the connection can be established. The client then **sends an ACK** (acknowledge) packet to complete the three-way handshake and establish the connection.
+
+In a TCP SYN flooding attack, the attacker sends a large number of SYN packets to the server, either from a single machine or from a network of compromised machines. The server responds to each SYN packet with a SYN-ACK packet, **but the client never completes the three-way handshake** by sending an ACK packet. As a result, the server is left waiting for the ACK packet, and the resources used to track the half-open connections can be exhausted, preventing the server from accepting any new connections.
+
+TCP SYN flooding attacks can be **mitigated by implementing SYN cookies**, which use cryptographic techniques to allow the server to track half-open connections without using any resources. Other measures, such as rate limiting and filtering of incoming SYN packets, can also help to prevent or mitigate the effects of TCP SYN flooding attacks.
+
+### Writing a Socket Client & Server
+
+For the server:
+
+1. **Define the port number of the service**: The server should specify the port number on which it will listen for incoming connections. For example, the HTTP server typically listens on port 80.
+2. **Allocate a server socket**: The server creates a server socket and binds it to the specified port number. The server socket then listens for new connections.
+3. **Accept an incoming connection**: When a client attempts to connect to the server, the server socket accepts the connection and creates a new socket for the client connection.
+4. **Get the input channel**: The server reads the input channel from the socket to receive messages from the client.
+5. **Parse the client message**: The server parses the client message to understand the request being made.
+6. **Get the output channel**: The server gets the output channel from the socket, which is where it will send responses to the client.
+7. **Do request processing**: The server processes the client request, either by handling it directly or by creating a new thread to handle it.
+8. **Create a response message**: The server creates a response message, such as an HTTP response, to send back to the client.
+9. **Write the message to the output channel**: The server writes the response message to the output channel, which sends it back to the client.
+10. **Read new messages or close the connection**: The server can either read new messages from the client's input channel or close the connection if it is no longer needed.
+
+**For the client**:
+
+1. **Define the hostname and port number** of the server host
+2. **Allocate a socket** with the host and port parameters
+3. **Obtain the input channel** (for messages from the server) and output channel (for messages to the server) from the socket
+4. **Create a message** to send to the server, such as "GET /somefile.html HTTP/1.0"
+5. **Write the message** to the output channel to send it to the server
+6. **Read the response** from the input channel and display it
+
+**For a multithreaded client:**
+
+- One thread reads from the console and writes to the output channel
+- The other thread reads from the input channel and displays or writes the server messages
+
+### Distribution Transparency with Sockets
+
+- **Invocation**: Server-side functions cannot be called directly from the client side, and messages must be defined and sent using socket operations
+- **Location/relocation/migration**: If the service moves, the client connection will be broken
+- **Replication/concurrency**: Not supported
+- **Failure**: Not supported
+- **Persistence**: Not supported
+
+### Infrastructure of Client-Server Systems
+
+1. **Directory**: Helps locate the server
+2. **Proxy**: Checks client authorization and routes requests through the firewall
+3. **Firewall**: Allows outgoing calls only
+4. **Reverse proxy**: Caches results, ends SSL sessions, and authenticates clients
+5. **Authentication server**: Stores client data and authorizes clients
+6. **Load balancer**: Distributes requests across servers
