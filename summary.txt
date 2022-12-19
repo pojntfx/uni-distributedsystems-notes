@@ -107,6 +107,37 @@ Felicitas Pojtinger
     -   6.17 Java RMI Classes & Tools
     -   6.18 Activation in Java RMI
     -   6.19 Security in Java RMI
+-   7 Distributed Business Components
+    -   7.1 Overview
+    -   7.2 Problems With Object Interfaces
+    -   7.3 Component Based Processing
+    -   7.4 From Objects to Components
+    -   7.5 Business Components
+    -   7.6 Alternatives to Isomorphic Mapping
+    -   7.7 Generative Computing
+    -   7.8 Monolithic Software vs Components
+    -   7.9 Objects vs. Components
+    -   7.10 Separation of Concerns and Context
+    -   7.11 Enterprise Java Beans
+    -   7.12 EJB Component Model
+    -   7.13 Session Beans (Stateful and Stateless)
+    -   7.14 Entity Beans (Deprecated Since 3.0)
+    -   7.15 Message-Driven Beans
+    -   7.16 Client View of EJBs
+    -   7.17 Local vs. Remote Interfaces
+    -   7.18 Separation of Concerns and Context in EJB
+    -   7.19 The EJB Container
+    -   7.20 Containers and Threads
+    -   7.21 Entity Bean Container Contract
+    -   7.22 Bean Managed vs. Container Managed Persistence
+    -   7.23 JNDI Naming Context
+    -   7.24 Deployment Descriptor
+    -   7.25 Security Support
+    -   7.26 Transaction Modes
+    -   7.27 Best Practices for EJBs
+    -   7.28 Shortcomings of EJBs
+    -   7.29 New Ways for Object-Relational Mapping
+    -   7.30 Lessons Learned from EJBs
 
 Meta
 
@@ -151,37 +182,39 @@ course is divided into several sections, including:
     gRPC.
 5.  Distributed objects: This section covers distributed objects such as
     CORBA, RMI and DCOM.
-6.  Distributed Business Components: This sections covers general
+6.  Distributed business components: This sections covers general
     component technology as well as Enterprise Java Beans (EJBs).
-7.  Theoretical foundations of distributed systems: This section covers
+7.  Services: This sections covers a distribution paradigm between hype
+    and revolution.
+8.  Theoretical foundations of distributed systems: This section covers
     key concepts and theories that are relevant to the design of
     distributed systems, including the FLP theorem, time, causality,
     consensus, eventual consistency, and optimistic replication.
-8.  Distributed services and algorithms I: This section covers the
+9.  Distributed services and algorithms I: This section covers the
     design and implementation of various distributed services and
     algorithms, including load balancing, message queues, caching, and
     consistent hashing.
-9.  Distributed services II: This section covers more advanced topics in
+10. Distributed services II: This section covers more advanced topics in
     distributed services, including persistence, transactions, eventual
     consistency, and coordination.
-10. Distributed security: This section covers the key considerations for
+11. Distributed security: This section covers the key considerations for
     securing distributed systems, including authentication,
     authorization, and access control (AAA), secure delegation, and
     backend security.
-11. Design of distributed systems: This section covers the methodology
+12. Design of distributed systems: This section covers the methodology
     and principles for designing distributed systems, as well as
     examples of different architectures and design patterns.
-12. System management in distributed systems: This section covers the
+13. System management in distributed systems: This section covers the
     key considerations for managing and maintaining distributed systems,
     including monitoring, chaos monkeys, and patterns of resilience.
-13. Service architectures: This section covers different service
+14. Service architectures: This section covers different service
     architectures, including service-oriented architecture (SOA) and
     microservices.
-14. Peer-to-peer systems and the distributed web: This section covers
+15. Peer-to-peer systems and the distributed web: This section covers
     the use of peer-to-peer systems and technologies, such as
     distributed hashtables, blockchain, onion routing, and distributed
     consensus, in the context of the distributed web.
-15. Ultra-large-scale systems: This section covers the design and
+16. Ultra-large-scale systems: This section covers the design and
     implementation of ultra-large-scale systems, including
     considerations related to scalability, performance, network design,
     and datacenter design.
@@ -2523,3 +2556,445 @@ Security in Java RMI
     using an SSL channel.
 -   Use an RMISecurityManager to prevent or control local access from
     downloaded implementations.
+
+Distributed Business Components
+
+Overview
+
+-   Part One: General Component Technology covers the following topics:
+    -   The limitations of traditional object-oriented programming.
+    -   Distributed components.
+    -   Mapping business concepts to programming constructs.
+-   Part Two: Enterprise Java Beans Example covers the following topics:
+    -   Object model of Enterprise Java Beans (EJBs).
+    -   Basic mechanisms of EJBs.
+    -   Separation of concerns in EJBs, including persistence,
+        transactions, and security.
+    -   Separation of context in EJBs, including the environment.
+    -   Evolution and lessons learned from EJBs.
+
+Problems With Object Interfaces
+
+-   Object interfaces are tightly intertwined networks of references
+    that share state and promises, and changes to these interfaces can
+    have ripple effects.
+-   A component framework can simplify the interface for calling objects
+    by encapsulating them.
+-   A messaging system can be stateless, or it can include all necessary
+    state in the message itself, which is known as context-complete
+    communication. This approach is used in webservices and REST
+    architectures and is known as Service Oriented Architecture (SOA).
+
+Component Based Processing
+
+-   Components are self-contained software packages with runtime
+    interfaces and automatic deployment capabilities that are designed
+    to fit into a component framework.
+-   A component framework allows components to be plugged in and
+    supports the composition and collaboration between them.
+-   There are roles for development, composition, and installation of
+    components in the component model.
+
+Enterprise components build on this:
+
+-   Integration with existing infrastructure, such as transactions,
+    security, and legacy systems
+-   Network addressable interfaces
+-   Medium to large granularity, potentially representing 10-20 tables
+    or more
+-   Representation of a business concept in an isomorphic manner
+
+From Objects to Components
+
+1.  Object-oriented design involves isolated, monolithic applications
+    that are not distributed.
+2.  Distributed objects involve calls between applications, but can have
+    management and performance issues with large numbers of small remote
+    objects.
+3.  Distributed systems involve multi-tier systems with point-to-point
+    connectivity, but can be expensive and difficult to develop.
+4.  Distributed components use a framework for pluggable business
+    components and create a market for interoperable components. This
+    approach addresses modeling, development, and deployment and aims to
+    achieve re-use and lower development costs.
+
+Components go beyond distributed systems and were designed to address
+some of the same issues as object-oriented development.
+
+Business Components
+
+-   Business concepts, such as entities and processes, can be translated
+    into software artifacts like EC1 and PC1.
+-   Business components are designed to directly represent concepts from
+    the business and may be represented using the UML “package”
+    construct.
+
+Alternatives to Isomorphic Mapping
+
+-   Isomorphic mapping, or the idea that software artifacts directly
+    correspond to business concepts, may not always be the best
+    approach.
+-   Alternatives to isomorphic mapping include domain analysis,
+    generative computing, and aspect-oriented development.
+-   In generative computing, different models are used to capture the
+    transformation process, including computation-independent models,
+    platform-independent models, and platform-dependent models.
+
+Generative Computing
+
+-   Involves the use of domain-specific languages and code generators to
+    automate software development
+-   Reduces the need for manual coding and allows developers to focus on
+    design and functionality
+-   Uses a high-level, abstract description of the desired software,
+    which is then converted into actual code by a code generator
+-   Can save time and reduce the risk of errors by eliminating the need
+    to manually write and debug code
+-   Often used in domains with repetitive or boilerplate code or where
+    the complexity of the code makes manual coding impractical
+-   Can be used to create customizable software for different users or
+    environments
+
+Monolithic Software vs Components
+
+-   Components are clusters of software, configuration, and other
+    elements that form a unit for deployment and maintenance within a
+    component framework.
+-   Components are made up of collaborating elements and can be adjusted
+    without requiring source code changes. This is an alternative to
+    traditional applications, which are monolithic and cannot be easily
+    modified.
+
+Objects vs. Components
+
+-   A regular object combines business logic with specific mechanisms
+    such as persistence and hides the internal interfaces behind the
+    external interface.
+-   Objects may make assumptions about the environment, such as which
+    database to use, and these are hidden in the code.
+-   Customizing objects requires code changes, which can be
+    time-consuming and risky.
+
+Separation of Concerns and Context
+
+-   The internal interface of a component is described in
+    meta-information, which allows deployers to connect the component to
+    the appropriate framework services.
+-   Concerns such as persistence and transactions are separated from the
+    business logic of the component and are typically implemented by the
+    framework.
+-   Context information, such as which database to use, is contained in
+    meta-information rather than in the code of the component.
+-   This separation of concerns and context allows components to be
+    customized after development.
+
+Enterprise Java Beans
+
+-   Enterprise Java Beans (EJBs) allow the construction of distributed
+    applications by combining components from different vendors.
+-   Developers do not need to understand low-level distributed
+    mechanisms such as transactions when using EJBs.
+-   Can run in EJB containers from different vendors without
+    modification.
+-   Provide enterprise lifecycle support, including development,
+    deployment, and runtime support.
+-   Provide enterprise data support.
+
+EJB Component Model
+
+The EJB component model includes four types of EJBs: stateless session
+beans, stateful session beans, entity beans, and stateless
+message-driven beans.
+
+-   Stateless session beans provide stateless services that are shared
+    among clients.
+-   Stateful session beans hold conversational state and are not shared
+    among clients.
+-   Entity beans map to rows in a database and are shared among clients.
+    They are used to store and access business data in a persistent
+    manner.
+-   Stateless message-driven beans receive messages asynchronously and
+    can connect to an enterprise MOM.
+
+These different EJB types allow for scalability, client code on the
+server side, asynchronous processing, and the representation of business
+data. Entity beans are permanent, while stateful session beans do not
+survive a server crash.
+
+Session Beans (Stateful and Stateless)
+
+-   Session beans are per-client objects, except for stateful session
+    beans which represent client code on the server side.
+-   Both stateful and stateless session beans can participate in
+    transactions if the session-synchronization interface is used.
+-   Session beans may access databases, but do not directly represent
+    persistent objects.
+-   Short-lived and are removed when the container crashes.
+-   Stateless session beans are the most scalable and EJB servers should
+    be able to support large numbers of them.
+
+Entity Beans (Deprecated Since 3.0)
+
+-   Entity beans are shared objects that are protected through
+    transactions.
+-   They have a longer lifetime than session beans and represent
+    important business data.
+-   Entity beans can be persisted through the container mechanism
+    (Container Managed Persistence, or CMP) or they can handle their own
+    persistence (Bean Managed Persistence, or BMP).
+-   Entity beans have a unique identity, which is visible to clients
+    through a primary key, and clients can request a “handle” which is a
+    persistent pointer to the entity object.
+-   In EJB 3.0, persistence is no longer a concern for EJBs and is
+    instead covered by the Java Persistence API.
+
+Message-Driven Beans
+
+-   Message-driven beans are invoked asynchronously and do not have
+    client context available during processing.
+-   They can be transaction aware, meaning that message receipt and
+    processing can be enclosed in a single transaction.
+-   Message-driven beans are short-lived and stateless, and are removed
+    when the container crashes.
+-   They do not directly map to business data.
+-   Message-driven beans have been integrated into the general EJB
+    framework to reuse EJB container services such as transactions,
+    security, concurrency, and deployment description.
+-   If a message-driven bean crashes during processing, the message is
+    marked as “unread” and can be processed after the container is
+    restarted.
+
+Client View of EJBs
+
+-   Clients never access the bean class directly.
+-   EJBs can offer a remote or local interface to clients (clients of
+    the local interface must be in the same Java virtual machine as the
+    bean container).
+-   The business logic is contained in the bean class.
+
+Local vs. Remote Interfaces
+
+-   The remote interface of an EJB uses remote object calling
+    conventions, while the local interface uses local Java calling
+    conventions.
+-   When calling the local interface of an EJB, value objects are passed
+    by reference, meaning the client and EJB will share the same
+    objects.
+-   The remote interface, on the other hand, requires that value objects
+    be copied.
+-   EJB implementers who want to provide both a local and a remote
+    interface must be aware of these different calling conventions and
+    design their beans accordingly.
+
+Separation of Concerns and Context in EJB
+
+Separation of concerns is done through the EJB framework, separation of
+context is done through deployment:
+
+-   The automatic transaction management feature maps to system
+    management transaction modes.
+-   Persistence maps to system management definitions of data sources
+    and pool sizes.
+-   Automatic, method-level security maps to system management
+    definitions of role/user binding.
+-   The roles involved in component development, application assembly,
+    and deployment map to the deployment descriptor and JNDI interface.
+
+The EJB Container
+
+1.  A client invokes an entity bean interface.
+2.  The container delegates the request to the entity bean business
+    logic.
+3.  The entity bean business logic delegates tasks such as transactions,
+    persistence, and security to resources accessed through JDNI and a
+    database.
+
+At the point of interception, the container provides resource
+management, lifecycle, state management, transactions, and security
+services to the bean.
+
+-   Containers are increasingly taking over roles that were previously
+    the responsibility of operating systems, such as isolating different
+    applications from each other.
+-   In the J2EE environment, class loaders are used for this purpose.
+-   However, it is believed that a better concept is needed that does
+    not mix loading with isolation.
+
+Containers and Threads
+
+-   Containers manage resources across applications and store context
+    and session information in threadlocal storage.
+-   As a result, container-managed applications are not allowed to
+    create their own threads, as these threads would not have the
+    necessary metadata and context information.
+-   EJB 3.0 offers a managed service for connectors to create threads,
+    allowing applications to use threads without having to manage
+    resources themselves.
+-   Applications should not assume responsibility for resource
+    management, as the container is responsible for choosing the
+    appropriate resource management policy.
+
+Entity Bean Container Contract
+
+The Entity Bean-Container Contract defines a set of methods that the
+container can call on an entity bean in order to manage its lifecycle
+and access resources.
+
+These methods include:
+
+-   setEntityContext: bean stores context as an interface to the
+    environment
+-   PrimaryKeyClass ejbCreate: actions related to bean instance
+    construction
+-   ejbPostCreate: bean identity is now available
+-   ejbActivate: bean can acquire necessary resources
+-   ejbPassivate: bean releases resources, expecting to be put back into
+    the pool
+-   ejbRemove: last chance for the bean before destruction
+-   ejbStore: bean should update its internal state, expecting it to be
+    synchronized with the database right after this
+-   ejbLoad: bean should update its internal state, expecting that its
+    virtual fields have just been read from the database
+-   ejbFind, ejbSelect: query methods generated at deployment
+-   ejbHome<method>: business logic that does not require an object
+    identity
+
+The actions that can be performed in these framework methods depend on
+the availability of a transactional context, object identity, local or
+remote view, and client security context.
+
+Bean Managed vs. Container Managed Persistence
+
+There are two main approaches to persistence in EJBs: bean-managed and
+container-managed.
+
+-   In bean-managed persistence, the bean is responsible for performing
+    its own persistence, with the timing of these actions controlled by
+    the container.
+-   In container-managed persistence, the bean’s state is completely
+    stored and loaded by the container.
+
+It is generally believed that container-managed persistence is the
+preferred approach in the future, as it is more portable and does not
+require adjustments to different datastores. Bean-managed persistence,
+on the other hand, is less portable and requires more effort to adapt to
+different datastores.
+
+JNDI Naming Context
+
+-   EJBs locate all their resources through JNDI (Java Naming and
+    Directory Interface) calls, which allows deployers to specify the
+    proper services for each EJB through the deployment descriptor.
+-   This allows the deployer to manipulate all JNDI lookups and
+    customize the resources that each EJB has access to.
+
+Deployment Descriptor
+
+-   The deployment descriptor is a file that contains meta-information
+    about an EJB in XML format.
+-   This meta-information is used by different components, including the
+    bean itself (to declare the names and interfaces used), the deployer
+    (to adjust values for specific environments), and generators (to
+    generate queries from the meta-information).
+
+Security Support
+
+Principal delegation:
+
+-   In this mode, the EJB container passes along the identity of the
+    original caller (client) to the EJB, allowing the EJB to operate
+    under the same identity as the client.
+-   This allows the EJB to access resources and perform actions based on
+    the permissions of the client.
+
+“Run as” identity:
+
+-   In this mode, the EJB container assigns a specific identity to the
+    EJB, regardless of the identity of the original caller.
+-   This allows the EJB to operate under a specific identity that is
+    different from the client’s identity, and allows the EJB to access
+    resources and perform actions based on the permissions of the
+    assigned identity.
+-   This can be useful in situations where the EJB needs to perform
+    actions on behalf of a specific user or group, regardless of the
+    identity of the client.
+
+Transaction Modes
+
+EJBs support several transaction modes, which allow developers to
+specify the level of transaction support required by the EJB.
+
+The available transaction modes are:
+
+-   Not supported: The EJB does not require or support transactions.
+-   Required: The EJB requires that a transaction be active when it is
+    called, and will participate in the existing transaction if one is
+    already active. If no transaction is active, a new one will be
+    started.
+-   Supports: The EJB will participate in an existing transaction if one
+    is active, but it does not require a transaction to be active when
+    it is called. If no transaction is active, the EJB will execute
+    without a transaction.
+-   RequiresNew: The EJB requires a new transaction to be started when
+    it is called, regardless of whether a transaction is already active.
+-   Mandatory: The EJB requires that a transaction be active when it is
+    called, and will throw an exception if no transaction is active.
+-   Never: The EJB does not support transactions and will throw an
+    exception if a transaction is active when it is called.
+
+Best Practices for EJBs
+
+-   Use local interfaces if possible to reduce network overhead
+-   Use transfer objects to reduce network traffic
+-   Avoid excessive use of entity beans and use local session beans
+    instead
+-   Use message driven beans for asynchronous processing
+-   Use container managed transactions and security to simplify
+    development
+-   Use container managed persistence and avoid bean managed persistence
+    if possible
+-   Use the Java Persistence API (JPA) for persistence management
+    instead of entity beans in EJB 3.0 and later
+-   Properly design your data model and access patterns to optimize
+    performance
+-   Use performance monitoring tools to identify and fix bottlenecks in
+    your application
+-   Properly size and configure your EJB server to meet the needs of
+    your application.
+
+Shortcomings of EJBs
+
+-   Large number of artifacts for the programmer to control
+-   Meta-data separated in deployment descriptor instead of code
+-   Home interfaces and finding of remote objects tedious
+-   Performance problems in the O/R mapping due to abstract schema
+    approach
+-   No rapid prototyping possible
+-   Entity beans overloaded with security, transactions and persistence
+
+New Ways for Object-Relational Mapping
+
+-   The trend towards using generic, abstract schema mappings for O/R
+    mapping appears to be over, and SQL is becoming more prevalent.
+-   Developers have historically had difficulties with the highly
+    abstract entity beans used in Enterprise Java Beans (EJBs) for
+    persistence. The use of plain old Java objects (POJO) for
+    persistence has been seen as a more straightforward and effective
+    solution.
+
+Lessons Learned from EJBs
+
+-   It takes a long time to develop and scale a complex framework for
+    components like EJBs.
+-   It is important to get the interfaces right in order to achieve good
+    performance.
+-   Developers may not fully understand the implications of
+    abstractions.
+-   Frameworks can sometimes require developers to do unnecessary code
+    duplication.
+-   It is important to avoid coupling too many concerns (such as
+    transactions, persistence, and security) in a single framework.
+-   Code generation can be helpful, but it requires tooling and
+    customization.
+-   It is best to wait for “best practice patterns” to emerge before
+    implementing complex new technology on a large scale.
