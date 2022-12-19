@@ -1,3 +1,33 @@
+commit 35a0bdde52167fd6284d3002b1abd6db97810b33
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Dec 18 22:46:50 2022 +0100
+
+    feat: Add summary of fith section (distributed objects)
+
+commit 30498a88c91c72074e53d592bfd50494c4d0c44e
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Dec 18 04:53:17 2022 +0100
+
+    feat: Add summary of fourth section (RPCs)
+
+commit a20e35148d9b03302f7d76984b8e2615a6351d5f
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Dec 18 03:50:16 2022 +0100
+
+    feat: Add summary of third section (message protocols)
+
+commit 9462cdea461abd1029d9a184bbf45c4c996125f3
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Dec 18 02:01:50 2022 +0100
+
+    feat: Add summary of second section (theoretical models of distributed systems)
+
+commit e4a6a20422df55d9b7968ed16326825693604314
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Dec 18 00:26:04 2022 +0100
+
+    feat: Add summary of first section (introduction to distributed systems)
+
 commit df202ce3147c8d031dde73cfb815aef785702ab2
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Fri Oct 7 11:33:58 2022 +0200
