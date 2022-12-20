@@ -1,3 +1,9 @@
+commit f96f9a707b187b818f851f7daf02f0bb871fc10e
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Tue Dec 20 03:55:37 2022 +0100
+
+    feat: Add summary of seventh section (services)
+
 commit 58debe0b5931f7a70200a32004a4cce7bb19aa2a
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Dec 19 03:08:28 2022 +0100

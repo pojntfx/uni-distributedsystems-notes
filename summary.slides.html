@@ -286,6 +286,72 @@ Mapping</a></li>
 <li><a href="#lessons-learned-from-ejbs"><span class="toc-section-number">7.30</span> Lessons Learned from
 EJBs</a></li>
 </ul></li>
+<li><a href="#services"><span class="toc-section-number">8</span>
+Services</a>
+<ul>
+<li><a href="#overview-6"><span class="toc-section-number">8.1</span>
+Overview</a></li>
+<li><a href="#timeline-of-distributed-service-architectures"><span class="toc-section-number">8.2</span> Timeline of Distributed Service
+Architectures</a></li>
+<li><a href="#corba-security-model"><span class="toc-section-number">8.3</span> CORBA Security Model</a></li>
+<li><a href="#corba-core-properties"><span class="toc-section-number">8.4</span> CORBA Core Properties</a></li>
+<li><a href="#web-services-definition"><span class="toc-section-number">8.5</span> Web Services Definition</a></li>
+<li><a href="#web-services-core-properties"><span class="toc-section-number">8.6</span> Web Services Core
+Properties</a></li>
+<li><a href="#uddi-functionality"><span class="toc-section-number">8.7</span> UDDI Functionality</a></li>
+<li><a href="#uddi-content-and-categories"><span class="toc-section-number">8.8</span> UDDI Content and
+Categories</a></li>
+<li><a href="#wsdl-overview"><span class="toc-section-number">8.9</span>
+WSDL Overview</a></li>
+<li><a href="#wsdl-elements"><span class="toc-section-number">8.10</span> WSDL Elements</a></li>
+<li><a href="#soap"><span class="toc-section-number">8.11</span>
+SOAP</a></li>
+<li><a href="#security-and-web-services"><span class="toc-section-number">8.12</span> Security and Web
+Services</a></li>
+<li><a href="#reliable-messaging"><span class="toc-section-number">8.13</span> Reliable Messaging</a></li>
+<li><a href="#secure-messages"><span class="toc-section-number">8.14</span> Secure Messages</a></li>
+<li><a href="#saml"><span class="toc-section-number">8.15</span>
+SAML</a></li>
+<li><a href="#transaction-models"><span class="toc-section-number">8.16</span> Transaction Models</a></li>
+<li><a href="#stateful-web-services"><span class="toc-section-number">8.17</span> Stateful Web Services</a></li>
+<li><a href="#scaling-web-services"><span class="toc-section-number">8.18</span> Scaling Web Services</a></li>
+<li><a href="#why-uuid-failed"><span class="toc-section-number">8.19</span> Why UUID Failed</a></li>
+<li><a href="#lessons-learned-from-web-services-and-corba"><span class="toc-section-number">8.20</span> Lessons Learned from Web Services
+and CORBA</a></li>
+<li><a href="#soa-core-properties"><span class="toc-section-number">8.21</span> SOA Core Properties</a></li>
+<li><a href="#soa-interface-design"><span class="toc-section-number">8.22</span> SOA Interface Design</a></li>
+<li><a href="#soa-blueprint-service-types"><span class="toc-section-number">8.23</span> SOA Blueprint Service
+Types</a></li>
+<li><a href="#soa-vs.-microservices"><span class="toc-section-number">8.24</span> SOA vs. Microservices</a></li>
+<li><a href="#rpc-vs.-rest"><span class="toc-section-number">8.25</span>
+RPC vs. REST</a></li>
+<li><a href="#the-webs-architecture"><span class="toc-section-number">8.26</span> The Web’s Architecture</a></li>
+<li><a href="#rest-maturity-model"><span class="toc-section-number">8.27</span> REST Maturity Model</a></li>
+<li><a href="#rest-resource-archetypes"><span class="toc-section-number">8.28</span> REST Resource Archetypes</a></li>
+<li><a href="#crud-with-rest"><span class="toc-section-number">8.29</span> CRUD with REST</a></li>
+<li><a href="#restful-web-features"><span class="toc-section-number">8.30</span> RESTful Web Features</a></li>
+<li><a href="#critical-points-with-rest"><span class="toc-section-number">8.31</span> Critical Points with
+REST</a></li>
+<li><a href="#graphql-as-a-rest-alternative"><span class="toc-section-number">8.32</span> GraphQL as a REST
+Alternative</a></li>
+<li><a href="#the-reasons-for-microservice-adoption"><span class="toc-section-number">8.33</span> The Reasons for Microservice
+Adoption</a></li>
+<li><a href="#scalability-problems-of-monolithic-applications"><span class="toc-section-number">8.34</span> Scalability Problems of
+Monolithic Applications</a></li>
+<li><a href="#scalability-benefits-of-microservices"><span class="toc-section-number">8.35</span> Scalability Benefits of
+Microservices</a></li>
+<li><a href="#the-microservice-ecosystem"><span class="toc-section-number">8.36</span> The Microservice
+Ecosystem</a></li>
+<li><a href="#microservice-design-patterns"><span class="toc-section-number">8.37</span> Microservice Design
+Patterns</a></li>
+<li><a href="#critical-points-with-microservices"><span class="toc-section-number">8.38</span> Critical Points with
+Microservices</a></li>
+<li><a href="#serverless-definition"><span class="toc-section-number">8.39</span> Serverless Definition</a></li>
+<li><a href="#stateless-applications"><span class="toc-section-number">8.40</span> Stateless Applications</a></li>
+<li><a href="#issues-with-serverless"><span class="toc-section-number">8.41</span> Issues with Serverless</a></li>
+<li><a href="#serverless-design-patterns"><span class="toc-section-number">8.42</span> Serverless Design
+Patterns</a></li>
+</ul></li>
 </ul>
 </div>
 <div id="meta" class="title-slide slide section level1" number="1">
@@ -3381,24 +3447,24 @@ container can call on an entity bean in order to manage its lifecycle
 and access resources.</p>
 <p>These methods include:</p>
 <ul>
-<li><code>setEntityContext</code>: bean stores context as an interface
+<li><code>setEntityContext</code>: Bean stores context as an interface
 to the environment</li>
-<li><code>PrimaryKeyClass ejbCreate</code>: actions related to bean
+<li><code>PrimaryKeyClass ejbCreate</code>: Actions related to bean
 instance construction</li>
-<li><code>ejbPostCreate</code>: bean identity is now available</li>
-<li><code>ejbActivate</code>: bean can acquire necessary resources</li>
-<li><code>ejbPassivate</code>: bean releases resources, expecting to be
+<li><code>ejbPostCreate</code>: Bean identity is now available</li>
+<li><code>ejbActivate</code>: Bean can acquire necessary resources</li>
+<li><code>ejbPassivate</code>: Bean releases resources, expecting to be
 put back into the pool</li>
-<li><code>ejbRemove</code>: last chance for the bean before
+<li><code>ejbRemove</code>: Last chance for the bean before
 destruction</li>
-<li><code>ejbStore</code>: bean should update its internal state,
+<li><code>ejbStore</code>: Bean should update its internal state,
 expecting it to be synchronized with the database right after this</li>
-<li><code>ejbLoad</code>: bean should update its internal state,
+<li><code>ejbLoad</code>: Bean should update its internal state,
 expecting that its virtual fields have just been read from the
 database</li>
-<li><code>ejbFind</code>, <code>ejbSelect</code>: query methods
+<li><code>ejbFind</code>, <code>ejbSelect</code>: Query methods
 generated at deployment</li>
-<li><code>ejbHome&lt;method&gt;</code>: business logic that does not
+<li><code>ejbHome&lt;method&gt;</code>: Business logic that does not
 require an object identity</li>
 </ul>
 <p>The actions that can be performed in these framework methods depend
@@ -3576,6 +3642,859 @@ framework.</li>
 tooling and customization.</li>
 <li>It is <strong>best to wait for “best practice patterns”</strong> to
 emerge before implementing complex new technology on a large scale.</li>
+</ul>
+</div>
+
+<div id="services" class="title-slide slide section level1" number="8">
+<h1><span class="header-section-number">8</span> Services</h1>
+
+</div>
+<div id="overview-6" class="slide section level2" number="8.1">
+<h1><span class="header-section-number">8.1</span> Overview</h1>
+<ul>
+<li>A recap of CORBA</li>
+<li>Web services</li>
+<li>SOA</li>
+<li>Microservices</li>
+<li>Conway’s Law</li>
+<li>Serverless computing</li>
+</ul>
+</div>
+<div id="timeline-of-distributed-service-architectures" class="slide section level2" number="8.2">
+<h1><span class="header-section-number">8.2</span> Timeline of
+Distributed Service Architectures</h1>
+<ul>
+<li>In the early 1990s, distributed service architectures for use in
+intranets (private networks) emerged, including <strong>Unix RPC and
+DCE</strong>.</li>
+<li>In 1998, <strong>CORBA</strong> (Common Object Request Broker
+Architecture) was introduced as a distributed service architecture for
+use in intranets.</li>
+<li>In the early 2000s, the <strong>REST</strong> (Representational
+State Transfer) architectural style was introduced for building web
+services that could be accessed over the internet.</li>
+<li>In 2004, <strong>SOA</strong> (Service-Oriented Architecture)
+emerged as a way to design and build web services that could be easily
+reused and composed to create larger, more complex systems.</li>
+<li>In 2010, the <strong>Microservices</strong> design pattern became
+popular as a way to build large, complex applications by composing
+small, independent services that communicate with each other through
+APIs.</li>
+<li>In 2016, the concept of <strong>Serverless Computing</strong>,
+emerged as a way to build and run applications and services without the
+need to manage underlying infrastructure.</li>
+</ul>
+</div>
+<div id="corba-security-model" class="slide section level2" number="8.3">
+<h1><span class="header-section-number">8.3</span> CORBA Security
+Model</h1>
+<ul>
+<li>In the CORBA security model, the concept of <strong>secure
+delegation</strong> is used to ensure that communication between systems
+is secure.</li>
+<li>When <strong>systems</strong> communicate with each other, they
+<strong>authenticate themselves</strong> to ensure that they are
+authorized to exchange information.</li>
+<li>Tokens are used to flow client information between systems, but
+<strong>no secrets are shared</strong>.</li>
+<li><strong>Defined routes</strong> are used to prevent token abuse and
+ensure that later tiers can verify the original requestor and route of
+the request.</li>
+</ul>
+</div>
+<div id="corba-core-properties" class="slide section level2" number="8.4">
+<h1><span class="header-section-number">8.4</span> CORBA Core
+Properties</h1>
+<ul>
+<li>CORBA was primarily designed as an <strong>intranet
+technology</strong> for use within private networks.</li>
+<li>CORBA is <strong>language-independent</strong>, with a focus on
+defining interfaces between systems.</li>
+<li>The IIOP (Internet Inter-ORB Protocol) is the <strong>base
+protocol</strong> used in CORBA to ensure interoperability and handle
+cross-cutting concerns.</li>
+<li>IIOP also provides <strong>delivery guarantees</strong> for
+communication between systems.</li>
+<li>CORBA was primarily used to <strong>connect heterogeneous (legacy)
+software</strong> in large corporations.</li>
+<li>The <strong>standardization</strong> process for CORBA was
+<strong>difficult and tedious</strong>.</li>
+<li>The use of “boilerplate code” in CORBA often led to
+<strong>extensive code generation and model-driven
+development</strong>.</li>
+</ul>
+</div>
+<div id="web-services-definition" class="slide section level2" number="8.5">
+<h1><span class="header-section-number">8.5</span> Web Services
+Definition</h1>
+<ul>
+<li>A Web Service is a software component that <strong>represents a
+business function or service</strong>, and can be accessed by other
+applications over <strong>public networks using standard
+protocols</strong> and transports (such as SOAP over HTTP).</li>
+<li>Web Services <strong>use XML</strong> to create requests and
+responses and send them using HTTP, allowing machines to communicate
+with each other for various purposes, such as supply chain management or
+business-to-business processing.</li>
+<li><strong>XML-RPC</strong>, proposed by David Winer, was one of the
+earliest standards for Web Services.</li>
+<li>Web Services <strong>have been used internally</strong> by companies
+for some time.</li>
+</ul>
+</div>
+<div id="web-services-core-properties" class="slide section level2" number="8.6">
+<h1><span class="header-section-number">8.6</span> Web Services Core
+Properties</h1>
+<ul>
+<li>Web Services use <strong>“simple” requests</strong> that can be sent
+over public networks/the internet using HTTP transport for firewall
+reasons.</li>
+<li>XML is used as the message format for Web Services, making them
+<strong>language-independent</strong>.</li>
+<li>Features such as reliability, security, and transactions were added
+to Web Services to improve their functionality.</li>
+<li>Many Web Services were <strong>re-writes of CORBA interfaces using
+XML syntax</strong> and expressing a business function.</li>
+<li>Web Services were heavily promoted as a solution for automatic
+interoperability based on self-describing services and ontologies, but
+this was largely overhyped.</li>
+<li>The technical foundation for Web Services was provided by forms of
+<strong>XML-RPC</strong>, although the acronym “SOAP” (Simple Object
+Access Protocol) did not actually have anything to do with distributed
+objects.</li>
+</ul>
+</div>
+<div id="uddi-functionality" class="slide section level2" number="8.7">
+<h1><span class="header-section-number">8.7</span> UDDI
+Functionality</h1>
+<p>UDDI (Universal Description, Discovery, and Integration) is a
+registry that provides a “find and publish” API for distributed
+services. It works like this:</p>
+<ol style="list-style-type: decimal">
+<li>Providers <strong>publish their services</strong> in a
+registry.</li>
+<li>Requesters <strong>search for the desired service</strong> in the
+UDDI (Universal Description, Discovery, and Integration) registry.</li>
+<li>The UDDI registry <strong>retrieves the provider location and
+WSDL</strong> (Web Service Description Language) service description for
+the requester.</li>
+<li>The requester <strong>creates a request</strong> based on the WSDL
+description.</li>
+<li>The requester <strong>sends the request</strong> to the provider
+using a specified transport protocol (such as SOAP over HTTP).</li>
+</ol>
+<p>This type of architecture is called
+<strong>“service-oriented”</strong> because it uses a broker for service
+advertisement and lookup, and requester and provider bind dynamically
+with respect to the transport protocol used.</p>
+</div>
+<div id="uddi-content-and-categories" class="slide section level2" number="8.8">
+<h1><span class="header-section-number">8.8</span> UDDI Content and
+Categories</h1>
+<ul>
+<li>All content in UDDI is expressed in XML.</li>
+<li>The UDDI registry includes information about companies and services,
+as well as meta-information elements such as tModel.</li>
+<li>A key feature of UDDI is the expectation that requester and provider
+will do a <strong>dynamic bind</strong>, agreeing on service and
+transport characteristics.</li>
+</ul>
+<p>The UDDI registry has three main categories of information:</p>
+<ul>
+<li><strong>White pages</strong>: information about companies, such as
+location and contact details.</li>
+<li><strong>Yellow pages</strong>: business categorization and
+classification by type and industry.</li>
+<li><strong>Green pages</strong>: meta information about services and
+their qualities.</li>
+</ul>
+</div>
+<div id="wsdl-overview" class="slide section level2" number="8.9">
+<h1><span class="header-section-number">8.9</span> WSDL Overview</h1>
+<ul>
+<li>WSDL (Web Service Description Language) is the <strong>metadata
+language</strong> used by Web Services.</li>
+<li>WSDL defines how service providers and requesters understand Web
+Services.</li>
+<li>When exposing back-end systems as Web Services, WSDL <strong>defines
+and exposes the components and lists all the data types, operations, and
+parameters</strong> used by the service.</li>
+<li>WSDL <strong>provides all the information that a client application
+needs</strong> to construct a valid SOAP invocation, which is then
+mapped onto back-end enterprise logic by the Web Services platform.</li>
+</ul>
+</div>
+<div id="wsdl-elements" class="slide section level2" number="8.10">
+<h1><span class="header-section-number">8.10</span> WSDL Elements</h1>
+<ul>
+<li>WSDL documents <strong>define services as collections of network
+endpoints</strong> or ports.</li>
+<li>The abstract definitions of endpoints and messages in WSDL are
+<strong>separated from their concrete network deployment</strong> or
+data format bindings.</li>
+<li>Separation of abstract and concrete definitions <strong>allows for
+the reuse</strong> of abstract definitions</li>
+</ul>
+<p>It includes the following elements:</p>
+<ul>
+<li><strong>Types</strong>: A container for data type definitions using
+a specified type system (such as XSD).</li>
+<li><strong>Message</strong>: An abstract, typed definition of the data
+being communicated.</li>
+<li><strong>Operation</strong>: an abstract description of an action
+supported by the service.</li>
+<li><strong>Port Type</strong>: An abstract set of operations supported
+by one or more endpoints.</li>
+<li><strong>Binding</strong>: A concrete protocol and data format
+specification for a particular port type.</li>
+<li><strong>Port</strong>: A single endpoint defined as a combination of
+a binding and a network address.</li>
+<li><strong>Service</strong>: A collection of related endpoints.</li>
+</ul>
+</div>
+<div id="soap" class="slide section level2" number="8.11">
+<h1><span class="header-section-number">8.11</span> SOAP</h1>
+<ul>
+<li>SOAP is an RPC (Remote Procedure Call) protocol that <strong>uses
+XML</strong>. It includes elements for type marshalling and RPC
+semantics.</li>
+<li>The header element in SOAP <strong>can contain
+meta-information</strong>, but it is optional.</li>
+</ul>
+<p>There are several aspects that define it’s performance:</p>
+<ul>
+<li>Marshaling time</li>
+<li>Internet transport time</li>
+<li>Effect of size on transport</li>
+<li>Demarshaling time</li>
+</ul>
+<p>It has been found that internet <strong>transport time</strong>,
+especially in the absence of Quality of Service (QoS) measures,
+<strong>has a greater impact on overall request time</strong> than the
+size and interpretation effort of a textual format.</p>
+</div>
+<div id="security-and-web-services" class="slide section level2" number="8.12">
+<h1><span class="header-section-number">8.12</span> Security and Web
+Services</h1>
+<ul>
+<li><strong>SOAP, WSDL, and UDDI</strong>: Message Envelope, Interfaces
+Definition, and Registry.</li>
+<li><strong>WS-Security</strong>: Secure Messaging Definitions.</li>
+<li><strong>WS-Trust</strong>: How to Get Security Tokens (issuing,
+validation, etc.).</li>
+<li><strong>WS-Federation</strong>: How to Make Security Interoperable
+Between Trust Domains.</li>
+<li><strong>WS-Policy</strong>: How to Express Security
+Requirements.</li>
+<li><strong>SAML</strong>: A Language to Express Security-Related
+Statements.</li>
+<li><strong>WS-Reli</strong>: Rights Management.</li>
+<li><strong>WS-Util</strong>: Helper Elements.</li>
+<li><strong>WS-Authorization</strong>: Expression of Access Rights.</li>
+</ul>
+</div>
+<div id="reliable-messaging" class="slide section level2" number="8.13">
+<h1><span class="header-section-number">8.13</span> Reliable
+Messaging</h1>
+<p>Reliable B2B (Business-to-Business) messages require the following
+qualities:</p>
+<ul>
+<li><strong>Guaranteed delivery</strong> (acknowledgement enforced)</li>
+<li><strong>Duplicate removal</strong> (using message ID)</li>
+<li><strong>Message ordering</strong> (using sequence numbers)</li>
+</ul>
+<p>SOAP and HTTP partially achieve this like so:</p>
+<ol style="list-style-type: decimal">
+<li>The first application layer exchanges persistent messages with the
+requester.</li>
+<li>The requester sends a SOAP message with a message ID, sequence
+number, and QoS (Quality of Service) tag to the receiver.</li>
+<li>The receiver must send an acknowledgement.</li>
+<li>The receiver exchanges persistent messages with the second
+application layer.</li>
+</ol>
+</div>
+<div id="secure-messages" class="slide section level2" number="8.14">
+<h1><span class="header-section-number">8.14</span> Secure Messages</h1>
+<ul>
+<li>Digital <strong>signatures</strong> with XMLDsig</li>
+<li>Digital <strong>encryption</strong> with XMLEnc</li>
+<li>WS-Security moves from channel-based security to message
+<strong>(object)-based security</strong>, allowing individual messages
+to be signed and encrypted.</li>
+<li>WSDL can <strong>advertise the QoS</strong> expected/provided by a
+receiver.</li>
+<li><strong>End-to-end security</strong> is possible across
+intermediaries.</li>
+<li>Today, <strong>federation</strong> (expressed in the WS-Federation
+standard) is more important, as seen in the use of OAuth2.</li>
+<li><strong>Intermediaries can add signatures or encryption</strong> to
+the SOAP envelope to create a chain of trust.</li>
+<li>New signatures or encryption information is <strong>always
+prepended</strong> to existing information.</li>
+<li>No encryption of the envelope, header, or body tag is allowed.</li>
+<li>Signatures must respect the right of <strong>intermediaries to
+change the envelope</strong> or some header information.</li>
+</ul>
+</div>
+<div id="saml" class="slide section level2" number="8.15">
+<h1><span class="header-section-number">8.15</span> SAML</h1>
+<ul>
+<li>SAML allows <strong>externalization of policies and
+mechanisms</strong> related to authentication, authorization, and
+attribute assertion.</li>
+<li>The access control point <strong>only needs to check
+assertions</strong> and does not have to implement these
+mechanisms.</li>
+<li>SAML allows <strong>interchangeability of statements between
+different services</strong> because the format of the assertions is
+fixed.</li>
+</ul>
+</div>
+<div id="transaction-models" class="slide section level2" number="8.16">
+<h1><span class="header-section-number">8.16</span> Transaction
+Models</h1>
+<p><strong>Atomic transactions:</strong></p>
+<ul>
+<li>Are not nested (<strong>standalone</strong>)</li>
+<li>Are <strong>short</strong></li>
+<li>Involve a <strong>tightly coupled</strong> business task</li>
+<li>Can be <strong>rolled back</strong> in case of error</li>
+<li>Can be disrupted by system crashes</li>
+</ul>
+<p><strong>Activity transactions:</strong></p>
+<ul>
+<li>Involve <strong>nested tasks</strong></li>
+<li>Are <strong>long-running</strong></li>
+<li>Involve a <strong>loosely coupled</strong> business activity</li>
+<li>Include <strong>compensating tasks and activities</strong> to
+address errors</li>
+<li>Can be disrupted by errors such as order cancellations</li>
+</ul>
+</div>
+<div id="stateful-web-services" class="slide section level2" number="8.17">
+<h1><span class="header-section-number">8.17</span> Stateful Web
+Services</h1>
+<ul>
+<li>Stateful architectures, such as computational grids, require the
+concept of a <strong>resource</strong>.</li>
+<li>WS-Resource is a protocol that adds resource information to web
+services through <strong>metadata descriptions</strong> in the WSDL and
+WS-Addressing schemas.</li>
+<li>An <strong>identifier</strong> is used to communicate state
+information between requestors and endpoints.</li>
+<li>Advanced <strong>notification requests</strong> can be built on top
+of WS-Resource.</li>
+</ul>
+</div>
+<div id="scaling-web-services" class="slide section level2" number="8.18">
+<h1><span class="header-section-number">8.18</span> Scaling Web
+Services</h1>
+<ul>
+<li><strong>Avoid</strong> using XML messaging for <strong>fine-grained
+RPC</strong>, such as requesting the square root of a number or a stock
+quote.</li>
+<li><strong>Use course-grained RPC</strong> instead, with web services
+that “do a lot of work, and return a lot of information”.</li>
+<li><strong>Consider an asynchronous messaging model</strong> when the
+transport may be slow or unreliable, or the processing is complex or
+long-running.</li>
+<li>Take the overall system performance into account and <strong>don’t
+assume</strong> that XML’s “bloat” or HTTP’s <strong>limitations are a
+problem until they are demonstrated in your application</strong>.</li>
+<li><strong>Consider the frequency of messaging</strong> when designing
+your web service. A high rate of requests may suggest that you load
+(replicate) some data and processing back to the client.</li>
+<li>For web services that aggregate data from other web services,
+<strong>consider performing the aggregation on demand</strong> or during
+off-hours in one large, course-grained transaction.</li>
+</ul>
+</div>
+<div id="why-uuid-failed" class="slide section level2" number="8.19">
+<h1><span class="header-section-number">8.19</span> Why UUID Failed</h1>
+<p>UDDI relied on the following assumptions:</p>
+<ul>
+<li><strong>Central registries</strong> of service descriptions</li>
+<li><strong>Independent automatic agents</strong> searching for
+services</li>
+<li>Machines <strong>understanding</strong> service descriptions</li>
+<li>Machines <strong>deciding</strong> on service use</li>
+<li>Machines being able to use a service properly</li>
+<li>Machines being able to <strong>construct advanced workflows</strong>
+from different services</li>
+</ul>
+<p>These assumptions were problematic because:</p>
+<ul>
+<li>There is often <strong>ambiguity</strong>, undefined aspects, and
+incompatible terms in service descriptions and interfaces.</li>
+<li>It is difficult for machines to properly use and construct advanced
+workflows from different services.</li>
+</ul>
+<p>To summarize, UDDI lacks technology to address the following
+issues:</p>
+<ul>
+<li>The <strong>meaning of data types</strong> and interfaces</li>
+<li>The <strong>meaning of actions</strong></li>
+<li><strong>Risk</strong> assessment</li>
+<li>Understanding <strong>flows and goals</strong></li>
+<li>Understanding and matching of <strong>constraints</strong></li>
+</ul>
+</div>
+<div id="lessons-learned-from-web-services-and-corba" class="slide section level2" number="8.20">
+<h1><span class="header-section-number">8.20</span> Lessons Learned from
+Web Services and CORBA</h1>
+<ul>
+<li>Web services and CORBA are low-level concepts that <strong>lack
+semantics</strong>.</li>
+<li>Workflow has not been effectively addressed by web services and
+CORBA.</li>
+<li>Service-Oriented Architecture (SOA) is not only about interfaces and
+interface design, but <strong>also about hosting services</strong>.</li>
+<li>The <strong>availability of a service on the web</strong> is more
+valuable than many specifications and interfaces.</li>
+</ul>
+</div>
+<div id="soa-core-properties" class="slide section level2" number="8.21">
+<h1><span class="header-section-number">8.21</span> SOA Core
+Properties</h1>
+<ul>
+<li>Services offer <strong>high-level interfaces</strong> that relate to
+business functions.</li>
+<li>Service choreography (i.e. the coordination of services to achieve a
+larger business process) is performed outside the individual
+services.</li>
+<li><strong>Semantic standards and technologies</strong> (such as OWL,
+SAML, and the Semantic Web) are used to enable agents to understand
+services and their interfaces.</li>
+<li>Legacy applications can be made available to other companies through
+the use of a service interface.</li>
+<li>SOA <strong>relies on Web Service technology</strong> as its
+foundation.</li>
+</ul>
+</div>
+<div id="soa-interface-design" class="slide section level2" number="8.22">
+<h1><span class="header-section-number">8.22</span> SOA Interface
+Design</h1>
+<ul>
+<li><strong>Object interfaces</strong> can be conversational, accept
+transactions, and are fast. They use object references.</li>
+<li><strong>Component interfaces</strong> use value objects, have a
+transaction border, and are generally stateless. They are relatively
+fast.</li>
+<li><strong>Service interfaces</strong> are used for long-running
+transactions with state stored in a database. They include compensation
+functions and have short process times but long business task execution
+times. Service interfaces are isolated, independent, and can be composed
+with larger services (choreography) or made up of smaller services
+(orchestration). They are stateless.</li>
+</ul>
+</div>
+<div id="soa-blueprint-service-types" class="slide section level2" number="8.23">
+<h1><span class="header-section-number">8.23</span> SOA Blueprint
+Service Types</h1>
+<ul>
+<li><strong>Component Services</strong>: These are atomic operations on
+simple objects, such as database access.</li>
+<li><strong>Composite Services</strong>: These are atomic operations
+that use multiple simple services (orchestration) and are stateless for
+the caller.</li>
+<li><strong>Workflow Services</strong>: These are stateful services with
+defined state changes, with the state kept in a persistent store.</li>
+<li><strong>Data Services</strong>: These provide information
+integration through a message-based request and response mechanism.</li>
+<li><strong>Pub/Sub Services</strong>: These are event-based services
+with callbacks and registration.</li>
+<li><strong>Service Broker</strong>: These are intermediate services
+that manipulate and forward messages based on rules.</li>
+<li><strong>Compensation Services</strong>: These revert actions, but do
+not roll back like traditional transactions.</li>
+</ul>
+</div>
+<div id="soa-vs.-microservices" class="slide section level2" number="8.24">
+<h1><span class="header-section-number">8.24</span> SOA
+vs. Microservices</h1>
+<p><strong>SOA:</strong></p>
+<ul>
+<li>Services are usually <strong>larger</strong> and more
+transactional.</li>
+<li><strong>Prefer orchestration</strong> using higher level middleware
+components.</li>
+<li><strong>Enterprise-oriented architecture</strong> with middleware
+(messaging), service layers, and ownership concepts.</li>
+<li>Uses metadata and messaging middleware for <strong>contract
+decoupling</strong>.</li>
+<li>Follows a <strong>“share as much as possible”</strong>
+approach.</li>
+<li>Big services <strong>are transactional</strong>.</li>
+</ul>
+<p><strong>Microservices:</strong></p>
+<ul>
+<li><strong>Smaller and more specialized</strong> than SOA
+services.</li>
+<li>Use <strong>eventual consistency technologies</strong>, which are
+not ACID.</li>
+<li><strong>Prefer choreography</strong>, which can lead to highly
+connected and dependent systems.</li>
+<li>Have a simple <strong>API gateway</strong> and teams own their
+infrastructure and business services.</li>
+<li>Do <strong>not use contract decoupling</strong>.</li>
+<li>Follow a <strong>“share as little as possible”</strong>
+approach.</li>
+</ul>
+</div>
+<div id="rpc-vs.-rest" class="slide section level2" number="8.25">
+<h1><span class="header-section-number">8.25</span> RPC vs. REST</h1>
+<ul>
+<li>The web is based on <strong>representing resources using
+URIs</strong>, while web services create private, non-standard ways of
+accessing information.</li>
+<li>The envelope paradigm used in <strong>RPC does not offer any
+benefits over the generic HTTP methods</strong> (GET, PUT, POST).</li>
+<li><strong>RPC</strong> mechanisms are <strong>not suitable for the
+web</strong>. Some extensions to the HTTP methods might be necessary to
+support certain features, such as tuple-space systems.</li>
+</ul>
+</div>
+<div id="the-webs-architecture" class="slide section level2" number="8.26">
+<h1><span class="header-section-number">8.26</span> The Web’s
+Architecture</h1>
+<ul>
+<li>Follows a <strong>client-server model</strong>, where clients
+request resources from servers.</li>
+<li>Has a <strong>uniform interface</strong>, with resources identified
+using URIs and manipulated through representations.</li>
+<li><strong>Messages are self-descriptive</strong>, with metadata,
+headers, and other information that allows them to be understood and
+processed by clients and servers.</li>
+<li>Uses hypermedia as the engine of application state
+(<strong>HATEOAS</strong>), meaning that responses to requests include
+actionable links that allow clients to navigate the system and access
+related resources.</li>
+<li>Is a <strong>layered system</strong>, with intermediaries such as
+caching servers, security systems, and load balancers playing important
+roles.</li>
+<li>Is <strong>designed to be cacheable</strong>, with responses
+indicating whether they can be cached and for how long.</li>
+<li>Is <strong>stateless</strong>, meaning that clients need to provide
+context and state information with each request.</li>
+<li><strong>Allows for code-on-demand</strong>, where servers can send
+scripts, applets, and other code to clients as needed.</li>
+</ul>
+</div>
+<div id="rest-maturity-model" class="slide section level2" number="8.27">
+<h1><span class="header-section-number">8.27</span> REST Maturity
+Model</h1>
+<ul>
+<li><strong>REST Level 0 (RPC)</strong>: This level resembles regular
+RPC, with function calls being made to a single endpoint. Resources are
+not accessible and do not have an identity.</li>
+<li><strong>REST Level 1 (Resources)</strong>: Function names and
+parameters are turned into resources, and appointments now have an
+identity that can be accessed through GET and POST requests.</li>
+<li><strong>REST Level 2 (HTTP verbs)</strong>: It is important to use
+the correct HTTP verb (GET, POST, etc.) to indicate the intended action.
+GET is idempotent and creates cachable resources. Response codes are
+used to indicate the status of the request, such as the creation of a
+new resource or a conflict.</li>
+<li><strong>REST Level 3 (HATEOAS)</strong>: Responses include encoded
+actions that can be invoked by the client. Services can change their
+URIs without breaking clients, and the “rel” attribute is used to
+describe the semantics behind the URI link.</li>
+</ul>
+</div>
+<div id="rest-resource-archetypes" class="slide section level2" number="8.28">
+<h1><span class="header-section-number">8.28</span> REST Resource
+Archetypes</h1>
+<ul>
+<li><strong>Document</strong>: Fields and links representing a base
+resource. Created using POST.</li>
+<li><strong>Collections</strong>: Containers maintained by the server
+with URI generation. Created using POST.</li>
+<li><strong>Stores</strong>: Container elements maintained by the client
+with “put” and without URI generation on the server side. Inserted or
+updated using PUT.</li>
+<li><strong>Controllers</strong>: Procedures accessed using POST.</li>
+<li><strong>URI path design</strong>: Reflects the resource model, with
+variable path segments and query terms.</li>
+</ul>
+</div>
+<div id="crud-with-rest" class="slide section level2" number="8.29">
+<h1><span class="header-section-number">8.29</span> CRUD with REST</h1>
+<p>In RESTful web services, requests are made by a <strong>requestor to
+a representation of a resource</strong>. The HTTP methods (GET, POST,
+PUT, DELETE) are used to perform different actions on the resource:</p>
+<ul>
+<li><strong>GET</strong>: Reads the resource and does not change the
+server state (idempotent).</li>
+<li><strong>POST</strong>: Creates a new resource on the server.</li>
+<li><strong>PUT</strong>: Updates an existing resource on the
+server.</li>
+<li><strong>DELETE</strong>: Deletes a resource on the server.</li>
+</ul>
+<p>The separation of updates and reads is a principle of good software
+design that has been around for a long time. It is known as the
+“command-query separation principle” and was made a requirement in the
+Eiffel programming language.</p>
+</div>
+<div id="restful-web-features" class="slide section level2" number="8.30">
+<h1><span class="header-section-number">8.30</span> RESTful Web
+Features</h1>
+<p>RESTful web services have four key characteristics:</p>
+<ul>
+<li>Use the HTTP protocol in a <strong>CRUD-like</strong> manner, with
+HTTP methods corresponding to different actions on resources.</li>
+<li>Are <strong>stateless</strong>, meaning that the client and server
+do not maintain a persistent connection or state information between
+requests.</li>
+<li><strong>Use meaningful URIs</strong> to represent objects and their
+relationships in the form of directory entries, with relationships
+typically being parent/child or general/specific entity relations.</li>
+<li><strong>Use XML or JSON</strong> as a transfer format and content
+negotiation with mime types.</li>
+</ul>
+</div>
+<div id="critical-points-with-rest" class="slide section level2" number="8.31">
+<h1><span class="header-section-number">8.31</span> Critical Points with
+REST</h1>
+<ul>
+<li><strong>Delivery of requests</strong>: How to handle at-least-once
+or at-most-once delivery and transactions.</li>
+<li><strong>Security</strong>: How to secure requests and delegate
+security to backend systems (e.g. bearer tokens).</li>
+<li><strong>Performance</strong>: How to optimize performance over HTTP,
+especially with large amounts of data or many round-trips.</li>
+<li><strong>Single responsibility</strong>: How to avoid the service
+becoming heavy, kludgy, and serve more than a single responsibility over
+time.</li>
+</ul>
+</div>
+<div id="graphql-as-a-rest-alternative" class="slide section level2" number="8.32">
+<h1><span class="header-section-number">8.32</span> GraphQL as a REST
+Alternative</h1>
+<ul>
+<li><strong>Avoids over- and under-fetching</strong> of data by allowing
+the client to specify exactly what data it needs in a single
+request.</li>
+<li><strong>Reduces the number of requests</strong> needed by allowing
+the client to request all the necessary data in a single request.</li>
+<li><strong>Uses a single endpoint</strong> with resolvers to handle all
+requests.</li>
+<li><strong>Uses a uniform syntax</strong> for both data and queries,
+making it easy to use and understand.</li>
+<li><strong>Is typed</strong> to prevent mistakes and ensure that the
+correct data is returned.</li>
+<li><strong>Supports federated servers</strong>, allowing multiple
+servers to be combined and accessed through a single endpoint.</li>
+<li><strong>Has the potential for huge queries</strong>, which can be a
+danger if not carefully managed.</li>
+</ul>
+</div>
+<div id="the-reasons-for-microservice-adoption" class="slide section level2" number="8.33">
+<h1><span class="header-section-number">8.33</span> The Reasons for
+Microservice Adoption</h1>
+<ul>
+<li>Ultra large-scale sites require <strong>efficient horizontal
+scaling</strong>.</li>
+<li>Unicorn companies (successful startups) <strong>need to develop new
+features quickly</strong> with independent teams.</li>
+<li>Unicorn companies need to <strong>deploy new features
+quickly</strong> due to competition and the need for
+experimentation.</li>
+<li>Unicorn companies <strong>need to offer an API for network
+effects</strong>.</li>
+</ul>
+</div>
+<div id="scalability-problems-of-monolithic-applications" class="slide section level2" number="8.34">
+<h1><span class="header-section-number">8.34</span> Scalability Problems
+of Monolithic Applications</h1>
+<ul>
+<li>Monolithic applications <strong>can only be deployed as a
+whole</strong>, making it difficult to scale specific components.</li>
+<li>The <strong>central database</strong> of a monolithic application
+can be hard to scale.</li>
+<li>The <strong>API</strong> of a monolithic application can be
+<strong>hard to scale</strong>.</li>
+<li>Developers are <strong>dependent on the general release
+plan</strong> for the entire application, which can be inflexible and
+slow.</li>
+</ul>
+</div>
+<div id="scalability-benefits-of-microservices" class="slide section level2" number="8.35">
+<h1><span class="header-section-number">8.35</span> Scalability Benefits
+of Microservices</h1>
+<ul>
+<li>Individual functions can be <strong>deployed independently</strong>,
+making it easy to perform A/B testing.</li>
+<li><strong>Independent teams and releases are possible</strong>,
+allowing for more flexibility and faster development.</li>
+<li><strong>Databases are often independent</strong> due to sharding,
+making it easy to scale them.</li>
+<li>The <strong>API</strong> can be <strong>quickly scaled</strong> to
+meet demand.</li>
+</ul>
+</div>
+<div id="the-microservice-ecosystem" class="slide section level2" number="8.36">
+<h1><span class="header-section-number">8.36</span> The Microservice
+Ecosystem</h1>
+<ul>
+<li><strong>Continuous integration/deployment</strong> allows for rapid
+experimentation.</li>
+<li><strong>Fully automated build and deploy processes</strong> ensure
+efficient development and deployment.</li>
+<li>A <strong>variety of programming languages</strong> can be
+used.</li>
+<li><strong>Continuous monitoring</strong> tools, such as ELK, help
+identify and troubleshoot issues.</li>
+<li><strong>Both REST APIs and RPC tools</strong> can be used to
+communicate between microservices.</li>
+<li><strong>Containers</strong> are preferred over virtual machines
+(VMs) because they are more lightweight and efficient.</li>
+<li><strong>DevOps</strong> teams are responsible for operations.</li>
+<li><strong>Site-reliability engineers (SREs)</strong> oversee the
+performance and reliability of the system.</li>
+<li><strong>Distributed transactions</strong> are avoided.</li>
+<li><strong>Federated security</strong> ensures the security of data and
+communication across multiple microservices.</li>
+<li><strong>Fault-tolerance patterns</strong> ensure that the system can
+continue to operate even if individual microservices fail.</li>
+</ul>
+</div>
+<div id="microservice-design-patterns" class="slide section level2" number="8.37">
+<h1><span class="header-section-number">8.37</span> Microservice Design
+Patterns</h1>
+<ul>
+<li><strong>API gateway</strong>: Facade to fine-granular services</li>
+<li><strong>Client-side discovery</strong>: Provided by MS chassis
+(e.g. spring boot)</li>
+<li><strong>Server-side discovery</strong>: Services register themselves
+during startup, or self registration by chassis</li>
+<li><strong>Service instance per container</strong>: Scales better than
+VM per service</li>
+<li><strong>Serverless deployment</strong>: Use of functions as a
+service (FaaS) to run small pieces of code in response to specific
+events</li>
+<li><strong>Database per service</strong>: Each microservice has its own
+database, with no direct access to the databases of other
+microservices</li>
+<li><strong>Event-driven architecture</strong>: Programming without a
+stack, with changes triggered by events</li>
+<li><strong>Event sourcing</strong>: Record change events in an event
+store</li>
+<li><strong>CQRS</strong>: Separate update and idempotent read
+operations</li>
+<li><strong>Transaction log tailing</strong>: Follow transaction log for
+changes</li>
+<li><strong>Database triggers</strong>: Put events in events table after
+changes</li>
+</ul>
+</div>
+<div id="critical-points-with-microservices" class="slide section level2" number="8.38">
+<h1><span class="header-section-number">8.38</span> Critical Points with
+Microservices</h1>
+<ul>
+<li><strong>Cross-concerns</strong>, such as transactions, security,
+performance, and scalability, <strong>can be challenging</strong> to
+manage in a microservice system. Site-reliability engineers (SREs) may
+be responsible for addressing these issues.</li>
+<li>Virtual machines (VMs) may be too large for small services with low
+throughput.</li>
+<li>The <strong>maintenance</strong> of many microservices <strong>can
+be time-consuming and complex</strong>.</li>
+<li><strong>Monitoring can be challenging</strong> due to the large
+number of independent services and the difficulty in identifying
+correlations between them.</li>
+<li><strong>Different languages and technologies</strong> may cause
+confusion and fragmentation</li>
+<li>There is a <strong>risk of creating new central
+bottlenecks</strong>, such as an event store.</li>
+<li><strong>REST may not always be the best</strong> API model and
+transport for microservices.</li>
+<li><strong>Distributed commits</strong> must be eventually consistent
+to ensure that they do not get lost.</li>
+</ul>
+</div>
+<div id="serverless-definition" class="slide section level2" number="8.39">
+<h1><span class="header-section-number">8.39</span> Serverless
+Definition</h1>
+<ul>
+<li>Cloud-native platform for <strong>short-running, stateless
+computation and event-driven</strong> applications</li>
+<li><strong>Scales</strong> up and down instantly and automatically</li>
+<li><strong>Charges for actual usage</strong> at a millisecond
+granularity</li>
+<li><strong>Decouples computation and storage</strong>, scales and
+priced separately</li>
+<li><strong>Pays for code execution</strong> instead of allocated
+resources</li>
+<li>Allows developers to <strong>focus on writing code</strong>, not
+infrastructure management</li>
+</ul>
+</div>
+<div id="stateless-applications" class="slide section level2" number="8.40">
+<h1><span class="header-section-number">8.40</span> Stateless
+Applications</h1>
+<ul>
+<li>Stateless system or component <strong>does not maintain state or
+context between requests</strong></li>
+<li>Each request is treated as an <strong>independent action</strong>,
+not influenced by previous requests</li>
+<li>Configuration information may be stored in classpath or persistent
+storage</li>
+<li>Function has <strong>no memory</strong></li>
+<li><strong>Change management may be a challenge</strong> in stateless
+systems</li>
+<li><strong>Hypercomposition</strong> (breaking a system down into
+smaller, independent components) <strong>may be difficult</strong> in
+stateless systems</li>
+</ul>
+</div>
+<div id="issues-with-serverless" class="slide section level2" number="8.41">
+<h1><span class="header-section-number">8.41</span> Issues with
+Serverless</h1>
+<ul>
+<li>Countless small <strong>IAM rules</strong></li>
+<li>Coupling with less scaleable components</li>
+<li>Slow <strong>cold starts</strong></li>
+<li>Unclear <strong>bug handling</strong></li>
+<li>Stateful functions</li>
+<li><strong>Limits</strong> everywhere</li>
+<li>New testing concepts needed</li>
+<li><strong>High costs when waiting</strong> for something</li>
+<li><strong>Unpredictable latency</strong> due to the dynamic nature of
+the environment</li>
+<li><strong>Lack of direct addressability</strong> of functions</li>
+<li><strong>Limited support for common software patterns</strong>, such
+as batch processing</li>
+<li><strong>Difficulty debugging</strong>, tracing, and monitoring
+functions</li>
+<li><strong>Inefficient storage systems</strong> for small objects or
+frequent access</li>
+</ul>
+</div>
+<div id="serverless-design-patterns" class="slide section level2" number="8.42">
+<h1><span class="header-section-number">8.42</span> Serverless Design
+Patterns</h1>
+<ul>
+<li><strong>Scalable Webhook</strong>: Triggers based on external
+events</li>
+<li><strong>Gatekeeper</strong>: Controls access to internal
+resources</li>
+<li><strong>Internal API</strong>: Provides an interface to internal
+resources</li>
+<li><strong>Internal Handoff</strong>: Communicates between serverless
+functions</li>
+<li><strong>Aggregator</strong>: Gathers and processes data from
+multiple sources</li>
+<li><strong>Notifier</strong>: Sends notifications to external systems
+or users</li>
+<li><strong>FIFOer</strong>: Ensures first-in, first-out processing of
+events</li>
+<li><strong>Streamer</strong>: Processes data from a stream in
+real-time</li>
+<li><strong>Router</strong>: Routes events to the appropriate
+destination</li>
+<li><strong>State Machine</strong>: Executes a series of steps based on
+the current state of an event</li>
 </ul>
 </div>
 </body>
