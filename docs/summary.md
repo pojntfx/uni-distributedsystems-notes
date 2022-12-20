@@ -1244,16 +1244,16 @@ The Entity Bean-Container Contract defines a set of methods that the container c
 
 These methods include:
 
-- `setEntityContext`: bean stores context as an interface to the environment
-- `PrimaryKeyClass ejbCreate`: actions related to bean instance construction
-- `ejbPostCreate`: bean identity is now available
-- `ejbActivate`: bean can acquire necessary resources
-- `ejbPassivate`: bean releases resources, expecting to be put back into the pool
-- `ejbRemove`: last chance for the bean before destruction
-- `ejbStore`: bean should update its internal state, expecting it to be synchronized with the database right after this
-- `ejbLoad`: bean should update its internal state, expecting that its virtual fields have just been read from the database
-- `ejbFind`, `ejbSelect`: query methods generated at deployment
-- `ejbHome<method>`: business logic that does not require an object identity
+- `setEntityContext`: Bean stores context as an interface to the environment
+- `PrimaryKeyClass ejbCreate`: Actions related to bean instance construction
+- `ejbPostCreate`: Bean identity is now available
+- `ejbActivate`: Bean can acquire necessary resources
+- `ejbPassivate`: Bean releases resources, expecting to be put back into the pool
+- `ejbRemove`: Last chance for the bean before destruction
+- `ejbStore`: Bean should update its internal state, expecting it to be synchronized with the database right after this
+- `ejbLoad`: Bean should update its internal state, expecting that its virtual fields have just been read from the database
+- `ejbFind`, `ejbSelect`: Query methods generated at deployment
+- `ejbHome<method>`: Business logic that does not require an object identity
 
 The actions that can be performed in these framework methods depend on the availability of a transactional context, object identity, local or remote view, and client security context.
 
@@ -1338,3 +1338,448 @@ The available transaction modes are:
 - It is important to **avoid coupling too many concerns** (such as transactions, persistence, and security) in a single framework.
 - **Code generation can be helpful**, but it requires tooling and customization.
 - It is **best to wait for "best practice patterns"** to emerge before implementing complex new technology on a large scale.
+
+## Services
+
+### Overview
+
+- A recap of CORBA
+- Web services
+- SOA
+- Microservices
+- Conway's Law
+- Serverless computing
+
+### Timeline of Distributed Service Architectures
+
+- In the early 1990s, distributed service architectures for use in intranets (private networks) emerged, including **Unix RPC and DCE**.
+- In 1998, **CORBA** (Common Object Request Broker Architecture) was introduced as a distributed service architecture for use in intranets.
+- In the early 2000s, the **REST** (Representational State Transfer) architectural style was introduced for building web services that could be accessed over the internet.
+- In 2004, **SOA** (Service-Oriented Architecture) emerged as a way to design and build web services that could be easily reused and composed to create larger, more complex systems.
+- In 2010, the **Microservices** design pattern became popular as a way to build large, complex applications by composing small, independent services that communicate with each other through APIs.
+- In 2016, the concept of **Serverless Computing**, emerged as a way to build and run applications and services without the need to manage underlying infrastructure.
+
+### CORBA Security Model
+
+- In the CORBA security model, the concept of **secure delegation** is used to ensure that communication between systems is secure.
+- When **systems** communicate with each other, they **authenticate themselves** to ensure that they are authorized to exchange information.
+- Tokens are used to flow client information between systems, but **no secrets are shared**.
+- **Defined routes** are used to prevent token abuse and ensure that later tiers can verify the original requestor and route of the request.
+
+### CORBA Core Properties
+
+- CORBA was primarily designed as an **intranet technology** for use within private networks.
+- CORBA is **language-independent**, with a focus on defining interfaces between systems.
+- The IIOP (Internet Inter-ORB Protocol) is the **base protocol** used in CORBA to ensure interoperability and handle cross-cutting concerns.
+- IIOP also provides **delivery guarantees** for communication between systems.
+- CORBA was primarily used to **connect heterogeneous (legacy) software** in large corporations.
+- The **standardization** process for CORBA was **difficult and tedious**.
+- The use of "boilerplate code" in CORBA often led to **extensive code generation and model-driven development**.
+
+### Web Services Definition
+
+- A Web Service is a software component that **represents a business function or service**, and can be accessed by other applications over **public networks using standard protocols** and transports (such as SOAP over HTTP).
+- Web Services **use XML** to create requests and responses and send them using HTTP, allowing machines to communicate with each other for various purposes, such as supply chain management or business-to-business processing.
+- **XML-RPC**, proposed by David Winer, was one of the earliest standards for Web Services.
+- Web Services **have been used internally** by companies for some time.
+
+### Web Services Core Properties
+
+- Web Services use **"simple" requests** that can be sent over public networks/the internet using HTTP transport for firewall reasons.
+- XML is used as the message format for Web Services, making them **language-independent**.
+- Features such as reliability, security, and transactions were added to Web Services to improve their functionality.
+- Many Web Services were **re-writes of CORBA interfaces using XML syntax** and expressing a business function.
+- Web Services were heavily promoted as a solution for automatic interoperability based on self-describing services and ontologies, but this was largely overhyped.
+- The technical foundation for Web Services was provided by forms of **XML-RPC**, although the acronym "SOAP" (Simple Object Access Protocol) did not actually have anything to do with distributed objects.
+
+### UDDI Functionality
+
+UDDI (Universal Description, Discovery, and Integration) is a registry that provides a "find and publish" API for distributed services. It works like this:
+
+1. Providers **publish their services** in a registry.
+2. Requesters **search for the desired service** in the UDDI (Universal Description, Discovery, and Integration) registry.
+3. The UDDI registry **retrieves the provider location and WSDL** (Web Service Description Language) service description for the requester.
+4. The requester **creates a request** based on the WSDL description.
+5. The requester **sends the request** to the provider using a specified transport protocol (such as SOAP over HTTP).
+
+This type of architecture is called **"service-oriented"** because it uses a broker for service advertisement and lookup, and requester and provider bind dynamically with respect to the transport protocol used.
+
+### UDDI Content and Categories
+
+- All content in UDDI is expressed in XML.
+- The UDDI registry includes information about companies and services, as well as meta-information elements such as tModel.
+- A key feature of UDDI is the expectation that requester and provider will do a **dynamic bind**, agreeing on service and transport characteristics.
+
+The UDDI registry has three main categories of information:
+
+- **White pages**: information about companies, such as location and contact details.
+- **Yellow pages**: business categorization and classification by type and industry.
+- **Green pages**: meta information about services and their qualities.
+
+### WSDL Overview
+
+- WSDL (Web Service Description Language) is the **metadata language** used by Web Services.
+- WSDL defines how service providers and requesters understand Web Services.
+- When exposing back-end systems as Web Services, WSDL **defines and exposes the components and lists all the data types, operations, and parameters** used by the service.
+- WSDL **provides all the information that a client application needs** to construct a valid SOAP invocation, which is then mapped onto back-end enterprise logic by the Web Services platform.
+
+### WSDL Elements
+
+- WSDL documents **define services as collections of network endpoints** or ports.
+- The abstract definitions of endpoints and messages in WSDL are **separated from their concrete network deployment** or data format bindings.
+- Separation of abstract and concrete definitions **allows for the reuse** of abstract definitions
+
+It includes the following elements:
+
+- **Types**: A container for data type definitions using a specified type system (such as XSD).
+- **Message**: An abstract, typed definition of the data being communicated.
+- **Operation**: an abstract description of an action supported by the service.
+- **Port Type**: An abstract set of operations supported by one or more endpoints.
+- **Binding**: A concrete protocol and data format specification for a particular port type.
+- **Port**: A single endpoint defined as a combination of a binding and a network address.
+- **Service**: A collection of related endpoints.
+
+### SOAP
+
+- SOAP is an RPC (Remote Procedure Call) protocol that **uses XML**. It includes elements for type marshalling and RPC semantics.
+- The header element in SOAP **can contain meta-information**, but it is optional.
+
+There are several aspects that define it's performance:
+
+- Marshaling time
+- Internet transport time
+- Effect of size on transport
+- Demarshaling time
+
+It has been found that internet **transport time**, especially in the absence of Quality of Service (QoS) measures, **has a greater impact on overall request time** than the size and interpretation effort of a textual format.
+
+### Security and Web Services
+
+- **SOAP, WSDL, and UDDI**: Message Envelope, Interfaces Definition, and Registry.
+- **WS-Security**: Secure Messaging Definitions.
+- **WS-Trust**: How to Get Security Tokens (issuing, validation, etc.).
+- **WS-Federation**: How to Make Security Interoperable Between Trust Domains.
+- **WS-Policy**: How to Express Security Requirements.
+- **SAML**: A Language to Express Security-Related Statements.
+- **WS-Reli**: Rights Management.
+- **WS-Util**: Helper Elements.
+- **WS-Authorization**: Expression of Access Rights.
+
+### Reliable Messaging
+
+Reliable B2B (Business-to-Business) messages require the following qualities:
+
+- **Guaranteed delivery** (acknowledgement enforced)
+- **Duplicate removal** (using message ID)
+- **Message ordering** (using sequence numbers)
+
+SOAP and HTTP partially achieve this like so:
+
+1. The first application layer exchanges persistent messages with the requester.
+2. The requester sends a SOAP message with a message ID, sequence number, and QoS (Quality of Service) tag to the receiver.
+3. The receiver must send an acknowledgement.
+4. The receiver exchanges persistent messages with the second application layer.
+
+### Secure Messages
+
+- Digital **signatures** with XMLDsig
+- Digital **encryption** with XMLEnc
+- WS-Security moves from channel-based security to message **(object)-based security**, allowing individual messages to be signed and encrypted.
+- WSDL can **advertise the QoS** expected/provided by a receiver.
+- **End-to-end security** is possible across intermediaries.
+- Today, **federation** (expressed in the WS-Federation standard) is more important, as seen in the use of OAuth2.
+- **Intermediaries can add signatures or encryption** to the SOAP envelope to create a chain of trust.
+- New signatures or encryption information is **always prepended** to existing information.
+- No encryption of the envelope, header, or body tag is allowed.
+- Signatures must respect the right of **intermediaries to change the envelope** or some header information.
+
+### SAML
+
+- SAML allows **externalization of policies and mechanisms** related to authentication, authorization, and attribute assertion.
+- The access control point **only needs to check assertions** and does not have to implement these mechanisms.
+- SAML allows **interchangeability of statements between different services** because the format of the assertions is fixed.
+
+### Transaction Models
+
+**Atomic transactions:**
+
+- Are not nested (**standalone**)
+- Are **short**
+- Involve a **tightly coupled** business task
+- Can be **rolled back** in case of error
+- Can be disrupted by system crashes
+
+**Activity transactions:**
+
+- Involve **nested tasks**
+- Are **long-running**
+- Involve a **loosely coupled** business activity
+- Include **compensating tasks and activities** to address errors
+- Can be disrupted by errors such as order cancellations
+
+### Stateful Web Services
+
+- Stateful architectures, such as computational grids, require the concept of a **resource**.
+- WS-Resource is a protocol that adds resource information to web services through **metadata descriptions** in the WSDL and WS-Addressing schemas.
+- An **identifier** is used to communicate state information between requestors and endpoints.
+- Advanced **notification requests** can be built on top of WS-Resource.
+
+### Scaling Web Services
+
+- **Avoid** using XML messaging for **fine-grained RPC**, such as requesting the square root of a number or a stock quote.
+- **Use course-grained RPC** instead, with web services that "do a lot of work, and return a lot of information".
+- **Consider an asynchronous messaging model** when the transport may be slow or unreliable, or the processing is complex or long-running.
+- Take the overall system performance into account and **don't assume** that XML's "bloat" or HTTP's **limitations are a problem until they are demonstrated in your application**.
+- **Consider the frequency of messaging** when designing your web service. A high rate of requests may suggest that you load (replicate) some data and processing back to the client.
+- For web services that aggregate data from other web services, **consider performing the aggregation on demand** or during off-hours in one large, course-grained transaction.
+
+### Why UUID Failed
+
+UDDI relied on the following assumptions:
+
+- **Central registries** of service descriptions
+- **Independent automatic agents** searching for services
+- Machines **understanding** service descriptions
+- Machines **deciding** on service use
+- Machines being able to use a service properly
+- Machines being able to **construct advanced workflows** from different services
+
+These assumptions were problematic because:
+
+- There is often **ambiguity**, undefined aspects, and incompatible terms in service descriptions and interfaces.
+- It is difficult for machines to properly use and construct advanced workflows from different services.
+
+To summarize, UDDI lacks technology to address the following issues:
+
+- The **meaning of data types** and interfaces
+- The **meaning of actions**
+- **Risk** assessment
+- Understanding **flows and goals**
+- Understanding and matching of **constraints**
+
+### Lessons Learned from Web Services and CORBA
+
+- Web services and CORBA are low-level concepts that **lack semantics**.
+- Workflow has not been effectively addressed by web services and CORBA.
+- Service-Oriented Architecture (SOA) is not only about interfaces and interface design, but **also about hosting services**.
+- The **availability of a service on the web** is more valuable than many specifications and interfaces.
+
+### SOA Core Properties
+
+- Services offer **high-level interfaces** that relate to business functions.
+- Service choreography (i.e. the coordination of services to achieve a larger business process) is performed outside the individual services.
+- **Semantic standards and technologies** (such as OWL, SAML, and the Semantic Web) are used to enable agents to understand services and their interfaces.
+- Legacy applications can be made available to other companies through the use of a service interface.
+- SOA **relies on Web Service technology** as its foundation.
+
+### SOA Interface Design
+
+- **Object interfaces** can be conversational, accept transactions, and are fast. They use object references.
+- **Component interfaces** use value objects, have a transaction border, and are generally stateless. They are relatively fast.
+- **Service interfaces** are used for long-running transactions with state stored in a database. They include compensation functions and have short process times but long business task execution times. Service interfaces are isolated, independent, and can be composed with larger services (choreography) or made up of smaller services (orchestration). They are stateless.
+
+### SOA Blueprint Service Types
+
+- **Component Services**: These are atomic operations on simple objects, such as database access.
+- **Composite Services**: These are atomic operations that use multiple simple services (orchestration) and are stateless for the caller.
+- **Workflow Services**: These are stateful services with defined state changes, with the state kept in a persistent store.
+- **Data Services**: These provide information integration through a message-based request and response mechanism.
+- **Pub/Sub Services**: These are event-based services with callbacks and registration.
+- **Service Broker**: These are intermediate services that manipulate and forward messages based on rules.
+- **Compensation Services**: These revert actions, but do not roll back like traditional transactions.
+
+### SOA vs. Microservices
+
+**SOA:**
+
+- Services are usually **larger** and more transactional.
+- **Prefer orchestration** using higher level middleware components.
+- **Enterprise-oriented architecture** with middleware (messaging), service layers, and ownership concepts.
+- Uses metadata and messaging middleware for **contract decoupling**.
+- Follows a **"share as much as possible"** approach.
+- Big services **are transactional**.
+
+**Microservices:**
+
+- **Smaller and more specialized** than SOA services.
+- Use **eventual consistency technologies**, which are not ACID.
+- **Prefer choreography**, which can lead to highly connected and dependent systems.
+- Have a simple **API gateway** and teams own their infrastructure and business services.
+- Do **not use contract decoupling**.
+- Follow a **"share as little as possible"** approach.
+
+### RPC vs. REST
+
+- The web is based on **representing resources using URIs**, while web services create private, non-standard ways of accessing information.
+- The envelope paradigm used in **RPC does not offer any benefits over the generic HTTP methods** (GET, PUT, POST).
+- **RPC** mechanisms are **not suitable for the web**. Some extensions to the HTTP methods might be necessary to support certain features, such as tuple-space systems.
+
+### The Web's Architecture
+
+- Follows a **client-server model**, where clients request resources from servers.
+- Has a **uniform interface**, with resources identified using URIs and manipulated through representations.
+- **Messages are self-descriptive**, with metadata, headers, and other information that allows them to be understood and processed by clients and servers.
+- Uses hypermedia as the engine of application state (**HATEOAS**), meaning that responses to requests include actionable links that allow clients to navigate the system and access related resources.
+- Is a **layered system**, with intermediaries such as caching servers, security systems, and load balancers playing important roles.
+- Is **designed to be cacheable**, with responses indicating whether they can be cached and for how long.
+- Is **stateless**, meaning that clients need to provide context and state information with each request.
+- **Allows for code-on-demand**, where servers can send scripts, applets, and other code to clients as needed.
+
+### REST Maturity Model
+
+- **REST Level 0 (RPC)**: This level resembles regular RPC, with function calls being made to a single endpoint. Resources are not accessible and do not have an identity.
+- **REST Level 1 (Resources)**: Function names and parameters are turned into resources, and appointments now have an identity that can be accessed through GET and POST requests.
+- **REST Level 2 (HTTP verbs)**: It is important to use the correct HTTP verb (GET, POST, etc.) to indicate the intended action. GET is idempotent and creates cachable resources. Response codes are used to indicate the status of the request, such as the creation of a new resource or a conflict.
+- **REST Level 3 (HATEOAS)**: Responses include encoded actions that can be invoked by the client. Services can change their URIs without breaking clients, and the "rel" attribute is used to describe the semantics behind the URI link.
+
+### REST Resource Archetypes
+
+- **Document**: Fields and links representing a base resource. Created using POST.
+- **Collections**: Containers maintained by the server with URI generation. Created using POST.
+- **Stores**: Container elements maintained by the client with "put" and without URI generation on the server side. Inserted or updated using PUT.
+- **Controllers**: Procedures accessed using POST.
+- **URI path design**: Reflects the resource model, with variable path segments and query terms.
+
+### CRUD with REST
+
+In RESTful web services, requests are made by a **requestor to a representation of a resource**. The HTTP methods (GET, POST, PUT, DELETE) are used to perform different actions on the resource:
+
+- **GET**: Reads the resource and does not change the server state (idempotent).
+- **POST**: Creates a new resource on the server.
+- **PUT**: Updates an existing resource on the server.
+- **DELETE**: Deletes a resource on the server.
+
+The separation of updates and reads is a principle of good software design that has been around for a long time. It is known as the "command-query separation principle" and was made a requirement in the Eiffel programming language.
+
+### RESTful Web Features
+
+RESTful web services have four key characteristics:
+
+- Use the HTTP protocol in a **CRUD-like** manner, with HTTP methods corresponding to different actions on resources.
+- Are **stateless**, meaning that the client and server do not maintain a persistent connection or state information between requests.
+- **Use meaningful URIs** to represent objects and their relationships in the form of directory entries, with relationships typically being parent/child or general/specific entity relations.
+- **Use XML or JSON** as a transfer format and content negotiation with mime types.
+
+### Critical Points with REST
+
+- **Delivery of requests**: How to handle at-least-once or at-most-once delivery and transactions.
+- **Security**: How to secure requests and delegate security to backend systems (e.g. bearer tokens).
+- **Performance**: How to optimize performance over HTTP, especially with large amounts of data or many round-trips.
+- **Single responsibility**: How to avoid the service becoming heavy, kludgy, and serve more than a single responsibility over time.
+
+### GraphQL as a REST Alternative
+
+- **Avoids over- and under-fetching** of data by allowing the client to specify exactly what data it needs in a single request.
+- **Reduces the number of requests** needed by allowing the client to request all the necessary data in a single request.
+- **Uses a single endpoint** with resolvers to handle all requests.
+- **Uses a uniform syntax** for both data and queries, making it easy to use and understand.
+- **Is typed** to prevent mistakes and ensure that the correct data is returned.
+- **Supports federated servers**, allowing multiple servers to be combined and accessed through a single endpoint.
+- **Has the potential for huge queries**, which can be a danger if not carefully managed.
+
+### The Reasons for Microservice Adoption
+
+- Ultra large-scale sites require **efficient horizontal scaling**.
+- Unicorn companies (successful startups) **need to develop new features quickly** with independent teams.
+- Unicorn companies need to **deploy new features quickly** due to competition and the need for experimentation.
+- Unicorn companies **need to offer an API for network effects**.
+
+### Scalability Problems of Monolithic Applications
+
+- Monolithic applications **can only be deployed as a whole**, making it difficult to scale specific components.
+- The **central database** of a monolithic application can be hard to scale.
+- The **API** of a monolithic application can be **hard to scale**.
+- Developers are **dependent on the general release plan** for the entire application, which can be inflexible and slow.
+
+### Scalability Benefits of Microservices
+
+- Individual functions can be **deployed independently**, making it easy to perform A/B testing.
+- **Independent teams and releases are possible**, allowing for more flexibility and faster development.
+- **Databases are often independent** due to sharding, making it easy to scale them.
+- The **API** can be **quickly scaled** to meet demand.
+
+### The Microservice Ecosystem
+
+- **Continuous integration/deployment** allows for rapid experimentation.
+- **Fully automated build and deploy processes** ensure efficient development and deployment.
+- A **variety of programming languages** can be used.
+- **Continuous monitoring** tools, such as ELK, help identify and troubleshoot issues.
+- **Both REST APIs and RPC tools** can be used to communicate between microservices.
+- **Containers** are preferred over virtual machines (VMs) because they are more lightweight and efficient.
+- **DevOps** teams are responsible for operations.
+- **Site-reliability engineers (SREs)** oversee the performance and reliability of the system.
+- **Distributed transactions** are avoided.
+- **Federated security** ensures the security of data and communication across multiple microservices.
+- **Fault-tolerance patterns** ensure that the system can continue to operate even if individual microservices fail.
+
+### Microservice Design Patterns
+
+- **API gateway**: Facade to fine-granular services
+- **Client-side discovery**: Provided by MS chassis (e.g. spring boot)
+- **Server-side discovery**: Services register themselves during startup, or self registration by chassis
+- **Service instance per container**: Scales better than VM per service
+- **Serverless deployment**: Use of functions as a service (FaaS) to run small pieces of code in response to specific events
+- **Database per service**: Each microservice has its own database, with no direct access to the databases of other microservices
+- **Event-driven architecture**: Programming without a stack, with changes triggered by events
+- **Event sourcing**: Record change events in an event store
+- **CQRS**: Separate update and idempotent read operations
+- **Transaction log tailing**: Follow transaction log for changes
+- **Database triggers**: Put events in events table after changes
+
+### Critical Points with Microservices
+
+- **Cross-concerns**, such as transactions, security, performance, and scalability, **can be challenging** to manage in a microservice system. Site-reliability engineers (SREs) may be responsible for addressing these issues.
+- Virtual machines (VMs) may be too large for small services with low throughput.
+- The **maintenance** of many microservices **can be time-consuming and complex**.
+- **Monitoring can be challenging** due to the large number of independent services and the difficulty in identifying correlations between them.
+- **Different languages and technologies** may cause confusion and fragmentation
+- There is a **risk of creating new central bottlenecks**, such as an event store.
+- **REST may not always be the best** API model and transport for microservices.
+- **Distributed commits** must be eventually consistent to ensure that they do not get lost.
+
+### Serverless Definition
+
+- Cloud-native platform for **short-running, stateless computation and event-driven** applications
+- **Scales** up and down instantly and automatically
+- **Charges for actual usage** at a millisecond granularity
+- **Decouples computation and storage**, scales and priced separately
+- **Pays for code execution** instead of allocated resources
+- Allows developers to **focus on writing code**, not infrastructure management
+
+### Stateless Applications
+
+- Stateless system or component **does not maintain state or context between requests**
+- Each request is treated as an **independent action**, not influenced by previous requests
+- Configuration information may be stored in classpath or persistent storage
+- Function has **no memory**
+- **Change management may be a challenge** in stateless systems
+- **Hypercomposition** (breaking a system down into smaller, independent components) **may be difficult** in stateless systems
+
+### Issues with Serverless
+
+- Countless small **IAM rules**
+- Coupling with less scaleable components
+- Slow **cold starts**
+- Unclear **bug handling**
+- Stateful functions
+- **Limits** everywhere
+- New testing concepts needed
+- **High costs when waiting** for something
+- **Unpredictable latency** due to the dynamic nature of the environment
+- **Lack of direct addressability** of functions
+- **Limited support for common software patterns**, such as batch processing
+- **Difficulty debugging**, tracing, and monitoring functions
+- **Inefficient storage systems** for small objects or frequent access
+
+### Serverless Design Patterns
+
+- **Scalable Webhook**: Triggers based on external events
+- **Gatekeeper**: Controls access to internal resources
+- **Internal API**: Provides an interface to internal resources
+- **Internal Handoff**: Communicates between serverless functions
+- **Aggregator**: Gathers and processes data from multiple sources
+- **Notifier**: Sends notifications to external systems or users
+- **FIFOer**: Ensures first-in, first-out processing of events
+- **Streamer**: Processes data from a stream in real-time
+- **Router**: Routes events to the appropriate destination
+- **State Machine**: Executes a series of steps based on the current state of an event
