@@ -181,6 +181,51 @@ Felicitas Pojtinger
     -   8.40 Stateless Applications
     -   8.41 Issues with Serverless
     -   8.42 Serverless Design Patterns
+-   9 Theoretical Foundations of Distributed Systems
+    -   9.1 Overview
+    -   9.2 The Eight Fallacies of Distributed Computing
+    -   9.3 Analyzing Latency
+    -   9.4 Characteristics of Distributed Systems
+    -   9.5 Liveness vs. Correctness
+    -   9.6 Liveness and Correctness in Practice
+    -   9.7 Timing Models
+    -   9.8 The Fischer, Lynch and Patterson Result
+    -   9.9 The CAP Theorem
+    -   9.10 Preconditions for the CAP Theorem
+    -   9.11 Common Misconceptions of the CAP Theorem
+    -   9.12 The Modern View of the CAP Theorem
+    -   9.13 PACELC
+    -   9.14 Technical Failures
+    -   9.15 Failure Types
+    -   9.16 Failure Models
+    -   9.17 Failures and Timeouts
+    -   9.18 Failure Detectors
+    -   9.19 Time in Distributed Systems
+    -   9.20 Consistent vs. Inconsistent Cuts
+    -   9.21 Event Clocks (Logical Clocks)
+    -   9.22 Lamport Logical Clock
+    -   9.23 Vector Clocks
+    -   9.24 Physical Interval Time (TrueTime)
+    -   9.25 Hybrid Clocks
+    -   9.26 Ordering in Distributed Event Systems
+    -   9.27 Consensus
+    -   9.28 Algorithms for Consensus
+    -   9.29 Two-Phase Commit (2PC)
+    -   9.30 Quorum-Based Consensus
+    -   9.31 Paxos
+    -   9.32 Raft
+    -   9.33 Atomic Broadcast Conditions
+    -   9.34 Atomic Broadcast Protocol
+    -   9.35 Gossip Protocols
+    -   9.36 DWAL
+    -   9.37 Design Components of DWALs
+    -   9.38 Properties of Replication Models
+    -   9.39 Single-Leader Replication
+    -   9.40 Eventually Consistent Reads
+    -   9.41 Multi-Master Replication
+    -   9.42 Leaderless Quorum Replication
+    -   9.43 Session Modes of Asynchronous Replication
+    -   9.44 Global Modes of Replication
 
 Meta
 
@@ -3702,3 +3747,983 @@ Serverless Design Patterns
 -   Router: Routes events to the appropriate destination
 -   State Machine: Executes a series of steps based on the current state
     of an event
+
+Theoretical Foundations of Distributed Systems
+
+Overview
+
+-   Basic Concepts
+    -   Distributed Systems Fallacies
+    -   Latency
+    -   Correctness and Liveness
+    -   Time, Ordering and Failures
+    -   The Impossibility of Consensus in Async. DS (FLP)
+    -   The CAP Theorem
+-   Failures, Failure Types and Failure Detectors
+-   Time in Distributed Systems
+-   Ordering and Causality
+-   Algorithms for Consensus in DS
+-   Optimistic Replication and Eventual Consistency
+
+The Eight Fallacies of Distributed Computing
+
+-   The network is reliable: This fallacy assumes that the network will
+    always be available and free of errors or failures, which is not
+    always the case.
+-   Latency is zero: This fallacy assumes that communication between
+    nodes in a distributed system will be instantaneous, but in reality,
+    there is always some latency due to the time it takes for a request
+    to be processed and a response to be received.
+-   Bandwidth is infinite: This fallacy assumes that there is unlimited
+    bandwidth available for communication between nodes, but in reality,
+    bandwidth can be limited by factors such as network congestion or
+    hardware limitations.
+-   The network is secure: This fallacy assumes that the network is
+    completely secure and free from threats such as hackers or malicious
+    software, but this is not always the case.
+-   Topology doesn’t change: This fallacy assumes that the topology of
+    the network, or the way that nodes are connected, will remain
+    constant, but in reality, the topology can change due to factors
+    such as node failures or changes in network configuration.
+-   There is one administrator: This fallacy assumes that there is only
+    one person or entity responsible for managing the network, but in
+    distributed systems, there may be multiple administrators or
+    stakeholders with different roles and responsibilities.
+-   Transport cost is zero: This fallacy assumes that there are no costs
+    associated with communication between nodes, but in reality, there
+    may be costs such as network fees or hardware expenses.
+-   The network is homogeneous: This fallacy assumes that all nodes in
+    the network are identical and operate in the same way, but in
+    reality, nodes can have different hardware, software, and
+    configurations.
+
+Analyzing Latency
+
+-   Know the long-term trends in hardware: Latency can be influenced by
+    the performance of the hardware being used, so it’s important to be
+    aware of trends in hardware development and how they may impact
+    latency.
+-   Understand the problem of deep queuing networks and the solutions:
+    Deep queuing occurs when there are many requests waiting to be
+    processed, leading to longer latency. Understanding this problem and
+    implementing solutions such as load balancing can help reduce
+    latency.
+-   Know your numbers with respect to switching times, router delays,
+    round-trip times, IOPS per device, and perform “back of the
+    envelope” calculations: It’s important to have a good understanding
+    of the specific numbers and metrics related to latency in your
+    system, such as switching times and router delays, and to perform
+    calculations to estimate the impact of these factors on latency.
+-   Understand buffering effects on latency: Buffering, or the temporary
+    storage of data, can impact latency by adding additional processing
+    time. Understanding the effects of buffering on latency can help you
+    optimize your system to minimize this impact.
+-   Include the client side in your calculations: Latency is often
+    impacted by factors on the client side, such as the client’s
+    hardware and network connection. It’s important to consider these
+    factors when calculating latency and optimizing your system to
+    minimize it.
+
+Characteristics of Distributed Systems
+
+-   High complexity: Distributed systems involve a large number of
+    interacting agents, such as servers, clients, and network devices,
+    which can make them complex to design, build, and maintain.
+-   Partial knowledge: In distributed systems, each node or agent
+    typically has only partial knowledge about the state of the system,
+    the actions of other nodes, and the current time. This can make it
+    difficult to coordinate actions and ensure consistency across the
+    system.
+-   Uncertainty: Distributed systems are prone to uncertainty due to
+    factors such as node failures, network delays, and changes in the
+    system’s environment. This uncertainty can make it challenging to
+    predict the behavior of the system and ensure its reliability.
+
+Liveness vs. Correctness
+
+Correctness and liveness are two important properties of distributed
+systems that ensure they function as intended and make progress.
+
+-   Correctness refers to the property that ensures that a system will
+    not exhibit undesirable behaviors, such as incorrect results or
+    incorrect behavior. It can be thought of as the absence of bad
+    things happening in the system.
+
+-   Liveness, on the other hand, refers to the property that ensures
+    that a system will eventually make progress and achieve its intended
+    goals. It can be thought of as the presence of good things happening
+    in the system.
+
+Both correctness and liveness are based on assumptions about failures
+and other conditions in the system, such as fairness and the presence of
+Byzantine errors. Ensuring that a distributed system has both
+correctness and liveness is critical for its success.
+
+Liveness and Correctness in Practice
+
+Here is an example of how correctness and liveness can be defined for an
+event-based system:
+
+Correctness:
+
+-   Receive notifications only if subscribed to them: This ensures that
+    a node only receives notifications for events it is interested in.
+-   Received notifications must have been published before: This ensures
+    that notifications are not received before they have been published,
+    which would lead to incorrect behavior.
+-   Receive a notification only at most once: This ensures that a node
+    does not receive the same notification multiple times, which could
+    lead to incorrect behavior.
+
+Liveness:
+
+-   Start receiving notifications some time after a subscription was
+    made: This ensures that a node will eventually start receiving
+    notifications after it has subscribed to them.
+
+Failure Assumptions: Fail-stop model with fairness
+
+In this example, the system is designed to ensure correctness by
+limiting the notifications a node receives to those it is subscribed to
+and ensuring that notifications are received only once. It is designed
+to ensure liveness by ensuring that a node will eventually start
+receiving notifications after subscribing. The system also makes
+assumptions about failures, such as the fail-stop model with fairness,
+which are used to ensure the correctness and liveness of the system.
+
+Timing Models
+
+In distributed systems, timing models refer to the way that events and
+communication between nodes are synchronized. There are three main types
+of timing models: synchronous, asynchronous, and partial synchronous.
+
+-   Synchronous timing models: In synchronous timing models, transmit
+    times are strictly defined and events happen at specific moments.
+    Nodes in a synchronous system can immediately detect when another
+    node has crashed because the system relies on a clock to synchronize
+    events. Examples of synchronous systems include CPUs and other types
+    of hardware.
+-   Asynchronous timing models: In asynchronous timing models, there is
+    no exact time between sending and receiving messages. Messages will
+    “eventually” arrive, but there is no guarantee about when. Because
+    there are no strict timing constraints, a node in an asynchronous
+    system cannot tell whether another node has crashed or is simply
+    very slow to respond. There are no timeouts in asynchronous systems
+    because they would require a clock.
+-   Partial synchronous timing models: Partial synchronous timing models
+    are a combination of synchronous and asynchronous models. These
+    systems are asynchronous, but they are enhanced with local clocks
+    that provide some level of synchronization. This is the model that
+    is typically used for real-world distributed systems, as it allows
+    for the flexibility of asynchronous communication while still
+    providing some guarantees about timing.
+
+The Fischer, Lynch and Patterson Result
+
+-   The FLP (Fischer, Lynch, and Patterson) result is a theoretical
+    result that shows it is impossible to reach consensus in
+    asynchronous distributed systems in certain circumstances.
+-   The result has significant implications for distributed algorithms
+    that rely on consensus, such as leader election, agreement,
+    replication, locking, and atomic broadcast.
+-   The problem is caused by the need for a unique leader to make a
+    decision, but the asynchronous nature of the system can lead to
+    delays and the re-election of new leaders, which can indefinitely
+    delay the decision-making process.
+-   This problem affects most consensus-based distributed algorithms and
+    can result in non-terminating runs where no decision is reached.
+
+The CAP Theorem
+
+States that in the presence of network partitions, a client must choose
+either consistency or availability, but not both.
+
+-   Choosing consistency: If the client chooses consistency, they may
+    not get an answer at all.
+-   Choosing availability: If the client chooses availability, they may
+    receive a potentially incorrect answer.
+
+Preconditions for the CAP Theorem
+
+-   To be considered consistent, the system must ensure that all
+    operations are atomic and linearizable, meaning that they can be
+    thought of as occurring at a single instant in time and have a total
+    order.
+-   For a system to be considered available, it must ensure that every
+    request received by a non-failing node is met with a response, and
+    that every request terminates.
+-   Partition tolerance: The network will be allowed to lose arbitrarily
+    many messages sent from one node to another.
+
+Common Misconceptions of the CAP Theorem
+
+-   Consistency: Many systems do not achieve a total order of requests
+    due to the costs (latency, partial results) involved.
+-   Availability: Even an isolated node with a working quorum on the
+    other side must answer requests, breaking consistency. The node does
+    not know that a quorum exists.
+-   Partition Tolerance: You cannot un-choose partition tolerance, as it
+    is always present. CA systems are therefore not possible.
+
+The Modern View of the CAP Theorem
+
+-   There are more failure types than just partition tolerance, such as
+    host-crash and client-server disconnect. These failures cannot be
+    completely avoided.
+-   Many systems do not need linearizability, and it is important to
+    carefully consider the type of consistency that is needed.
+-   Most systems prioritize latency over consistency, with availability
+    coming in second.
+-   A fully consistent system in an asynchronous network is impossible
+    (in the sense of FLP). FLP is much stronger than CAP.
+-   The architecture of the system (replication, sharding) and the
+    abilities of the client (failover) also have an impact on the
+    system’s behavior.
+
+PACELC
+
+PACELC: A more complete portrayal of the space of potential consistency
+tradeoffs for distributed database systems.
+
+-   In the presence of a partition (P), the system must trade off
+    availability and consistency (A and C).
+-   In the absence of a partition (E), the system can trade off
+    latency (L) and consistency (C) when running normally.
+
+Technical Failures
+
+-   Network failures, such as partitioning, which can occur when a
+    network is divided into smaller, separate networks that are unable
+    to communicate with each other.
+-   CPU/Hardware failures, such as instruction failures or RAM failures,
+    which can occur when the hardware components of a system malfunction
+    or fail.
+-   Operating system failures, such as crashes or reduced function,
+    which can occur when the operating system experiences an error or
+    malfunction.
+-   Application failures, such as crashes, stopped states, or partially
+    functioning states, which can occur when an application experiences
+    an error or malfunction.
+
+Unfortunately, in most cases there is no failure detection service that
+can identify when these failures occur and allow others to take
+appropriate action. However, it is possible to develop a failure
+detection service that could detect even partitioning and other types of
+failures through the use of MIBs (Management Information Bases) and
+triangulation. Applications could also be designed to track themselves
+and restart if necessary.
+
+Failure Types
+
+-   Bohr-Bug:
+    -   Shows up consistently and can be reproduced. Easy to recognize
+        and fix.
+-   Heisenbug:
+    -   Shows up intermittently, depending on the order of execution.
+    -   High degree of non-determinism and context dependency.
+    -   Due to complex IT environments, they are both more frequent and
+        harder to solve.
+    -   They are only symptoms of a deeper problem.
+    -   Changes to software may make them disappear temporarily, but
+        more changes can cause them to reappear.
+    -   Example: Deadlock “solving” through delays instead of resource
+        order management.
+
+Failure Models
+
+-   Crash-stop: A process crashes atomically and stays down.
+-   Crash-stop with recovery: A process crashes and is down until it
+    begins recovery, and is up again until the next crash occurs. For
+    consensus, at least 2f+1 machines are needed (quorum).
+-   Crash-amnesia: A process crashes and restarts without recollection
+    of previous events or data.
+-   Failstop: A machine fails completely, and the failure is reported to
+    other machines reliably.
+-   Omission errors: Processes fail to send or receive messages even
+    though they are alive.
+-   Byzantine errors: Machines or parts of machines, networks, or
+    applications fail in unpredictable ways and may recover partially.
+    For consensus, at least 3f+1 machines are needed.
+
+Many protocols for achieving consistency and availability make
+assumptions about failure models. For example, transaction protocols may
+assume recovery behavior by its participants if the protocol terminates.
+
+Failures and Timeouts
+
+-   Timeouts are not a reliable way to detect failures in distributed
+    systems because they can be caused by various factors, such as short
+    interruptions on the network, overload conditions, and routing
+    changes.
+-   Timeouts cannot distinguish between different types and locations of
+    failures.
+-   Timeouts cannot be used in protocols that require failstop behavior
+    of its participants.
+-   Most distributed systems only offer timeouts for applications to
+    notice problems, so they do not provide detailed information about
+    the state of participants or membership.
+-   Using timeouts can result in “split-brain” conditions, where a
+    system behaves as if it is functioning properly but is actually
+    experiencing a failure or malfunction.
+
+Failure Detectors
+
+A failure detector (FD) is a mechanism used in distributed systems to
+detect failures of processes or machines. It is not required to be
+correct all the time, but it should provide the following quality of
+service (QoS):
+
+-   Safety: The FD should be safe all the time, meaning it should not
+    falsely suspect processes of being faulty during “better” failure
+    periods.
+-   Liveness: The FD should be live during “better” failure periods,
+    meaning no process should block forever waiting for a message from a
+    dead coordinator.
+-   Accuracy: Eventually, some process x should not be falsely suspected
+    of being faulty. When x becomes the coordinator, every process
+    should receive x’s estimate and make a decision based on it.
+-   Low overhead: The FD should not cause a lot of overhead, meaning it
+    should not consume too many resources or slow down the system.
+
+Time in Distributed Systems
+
+In distributed systems, there is no global time that is shared across
+all processes. Instead, different approaches are used to model time in
+these systems. These approaches include:
+
+-   Event clock time: This is a logical model of time that represents
+    the order of events within a single process.
+-   Vector clock time: This is a logical model of time that represents
+    the order of events between multiple processes.
+-   TrueTime: This is a physical model of time that represents the
+    interval of time between events.
+-   Augmented time: This is a combination of physical and logical models
+    of time that takes into account both the interval of time between
+    events and the order of events.
+
+Logical time is modeled as partially ordered events within a process or
+between processes. It is used to represent the relative order of events
+in a distributed system, rather than the actual clock time at which they
+occurred.
+
+Causal meta-data in the system can also order the events properly.
+
+Consistent vs. Inconsistent Cuts
+
+-   Consistent cuts: These cuts produce causally possible events,
+    meaning that events occur in a logical and possible order.
+-   Inconsistent cuts: These cuts produce events that arrive before they
+    have been sent, resulting in an illogical or impossible order.
+
+Event Clocks (Logical Clocks)
+
+-   Event clocks, also known as logical clocks, are systems for ordering
+    events within processes according to a chosen causal model and
+    granularity.
+-   Events are partially ordered based on the order in which they occur.
+    The time between events is a logical unit of time that has no
+    physical extension.
+-   Events delivered through messages can be used to relate the
+    processes and their times to the events. The external order of these
+    events is also a partial order of events between processes (for
+    example, the event “send(p1,m)” occurs before the event
+    “recv(p2,m)”).
+-   The value of the logical clock is updated to the maximum of the
+    current value plus one or the received value.
+
+Lamport Logical Clock
+
+-   The Lamport logical clock counts events and creates an ordering
+    relation between them. These counters can be used as timestamps on
+    events.
+-   The ordering relation captures all causally related events, but it
+    also includes many unrelated (concurrent) events, which can create
+    false dependencies.
+
+Vector Clocks
+
+-   Vector clocks are transmitted with messages and compared at the
+    receiving end.
+-   If, for all positions in two vector clocks A and B, the values in A
+    are larger than or the same as the values from B, we say that Vector
+    Clock A dominates B.
+-   This can be interpreted as potential causality to detect conflicts,
+    as missed messages to order propagation, etc.
+
+Physical Interval Time (TrueTime)
+
+-   TrueTime works by using time servers to check for rogue clocks,
+    which are clocks that are not synchronized with the correct time.
+-   The error in TrueTime is typically in the range of 6 milliseconds.
+
+Hybrid Clocks
+
+Hybrid clocks are systems that combine elements of both logical and
+physical models of time in order to address the limitations of each
+approach. There are several reasons why hybrid clocks may be used in
+distributed systems:
+
+-   In large distributed systems, such as those spanning multiple data
+    centers across the world, vector clocks can become too large to
+    maintain efficiently. Hybrid clocks can be used to reduce the size
+    of the clocks while still maintaining an accurate ordering of
+    events.
+-   Physical interval time, such as TrueTime, requires that reads and
+    writes wait until the interval time is over on all machines. This
+    can be inefficient in some cases, and hybrid clocks can be used to
+    allow for more flexibility in terms of when reads and writes can
+    occur.
+
+Ordering in Distributed Event Systems
+
+-   FIFO (first-in, first-out) ordering: This refers to the requirement
+    that a component must receive notifications in the order in which
+    they were published by the publisher.
+-   Causal ordering: This refers to the requirement that events must be
+    ordered based on their causal relationships, as defined by the
+    system.
+-   Total ordering: This refers to the requirement that events must be
+    ordered in a specific way, such that no other component in the
+    system is allowed to receive an event before a preceding event has
+    been received. One component may be responsible for deciding the
+    global order of events in this case.
+
+Consensus
+
+Consensus is a process used by a group of processes to reach agreement
+on a specific value, based on their individual inputs. The objective of
+consensus is for all processes to decide on a value v that is present in
+the input set.
+
+-   Termination: Every correct process eventually decides on some value.
+-   Validity: If a process decides on a value v, then v was proposed by
+    some process.
+-   Integrity: No process decides on a value more than once.
+-   Agreement: No two correct processes decide on different values.
+
+Algorithms for Consensus
+
+These protocols offer trade-offs in terms of correctness, liveness
+(availability and progress), and performance:
+
+-   Two-Phase Commit (2PC): This algorithm is used to ensure that a
+    group of processes all commit to the same decision. It involves two
+    phases: a prepare phase, in which the processes prepare to commit to
+    a decision, and a commit phase, in which they actually commit to the
+    decision.
+-   Static Membership Quorum: This algorithm is based on the concept of
+    quorum, which refers to a minimum number of processes that must be
+    present in order to reach a decision. The static membership quorum
+    algorithm is used to achieve consensus in systems with a fixed
+    number of processes.
+-   Paxos: This algorithm is used to achieve consensus in distributed
+    systems with a dynamic membership. It involves multiple rounds of
+    voting in order to reach a decision.
+-   Raft: This algorithm is similar to Paxos, but it is designed to be
+    easier to understand and implement.
+-   Dynamic Group Membership: This class of algorithms is used to
+    achieve consensus in systems with a dynamic membership. These
+    algorithms include virtual synchrony and multicast-based approaches.
+-   Gossip Protocols: These algorithms are used to disseminate
+    information between processes in a distributed system. They can be
+    used to achieve consensus by allowing processes to exchange
+    information and reach agreement on a decision.
+
+Two-Phase Commit (2PC)
+
+Steps:
+
+1.  Preparation phase: In this phase, the processes prepare to commit to
+    a decision. Each process sends a “prepare to commit” message to a
+    coordinator process, which is responsible for coordinating the
+    decision-making process.
+2.  Decision phase: Once all the processes have prepared to commit, the
+    coordinator process sends a “commit” message to all the processes.
+    This message instructs the processes to commit to the decision.
+3.  Confirmation phase: Each process sends a “commit confirmation”
+    message to the coordinator process, indicating that it has
+    successfully committed to the decision.
+4.  Finalization phase: Once all the processes have confirmed that they
+    have committed to the decision, the coordinator process sends a
+    “commit complete” message to all the processes, indicating that the
+    decision has been successfully made.
+
+Example:
+
+1.  Imagine that there are three processes in a distributed system: A,
+    B, and C.
+2.  The coordinator process is A.
+3.  The processes are deciding whether to commit to a new software
+    update.
+4.  In the preparation phase, A sends a “prepare to commit” message to B
+    and C.
+5.  B and C send “prepare to commit” messages back to A.
+6.  In the decision phase, A sends a “commit” message to B and C.
+7.  In the confirmation phase, B and C send “commit confirmation”
+    messages back to A.
+8.  In the finalization phase, A sends a “commit complete” message to B
+    and C, indicating that the decision to commit to the software update
+    has been successfully made.
+
+Liveness and Correctness:
+
+-   The two-phase commit protocol (2PC) allows for atomic (linearizable)
+    updates to be made by participating processes.
+-   2PC is considered relatively expensive in terms of latency due to
+    the requirement for a persistent log at each participant.
+-   A crash failure of the coordinator or a participant can halt or
+    disrupt the execution of 2PC.
+-   If everything goes as planned, 2PC has a clear and
+    easy-to-understand semantic for application developers.
+
+Quorum-Based Consensus
+
+Steps:
+
+1.  A decision is proposed by one of the processes in the distributed
+    system.
+2.  Each process in the system votes on the proposed decision.
+3.  The votes are counted and checked against the quorum requirement.
+    The quorum requirement is the minimum number of votes that must be
+    received in favor of the decision in order for it to be approved.
+4.  If the quorum requirement has been met, the decision is considered
+    to have been approved.
+5.  The processes move forward with implementing the decision.
+
+Example:
+
+1.  A group of five processes in a distributed system (A, B, C, D,
+    and E) are deciding whether to commit to a new software update.
+2.  Process A proposes the decision to update the software.
+3.  Processes B, C, D, and E all vote on the proposed decision.
+4.  The votes are counted and checked against the quorum requirement,
+    which is set at three votes.
+5.  Since a quorum of three votes has been received in favor of the
+    decision, it is considered to have been approved.
+6.  The processes move forward with implementing the software update.
+
+Liveness and Correctness:
+
+-   Quorum-based consensus protocols (QP) allow for atomic
+    (linearizable) updates to be made by participating processes, but
+    this depends on the type of implementation being used (e.g., whether
+    read quoras are used).
+-   QP are known to be relatively expensive in terms of latency, as even
+    simple reads may require a quorum for consistency. To improve
+    performance, many QP systems use a leader-based approach, which
+    involves routing client requests through a designated leader
+    process.
+-   Leader crashes are usually handled through the use of leases, which
+    can cause delays.
+-   In the case of a crash failure, QP can continue as long as a quorum
+    is still possible.
+-   Network partitions may cause the system to either respond with all
+    non-failing nodes (which may sacrifice consistency) or to stop
+    responding to requests from minority nodes (which may sacrifice
+    availability).
+-   QP offer a reliable and efficient method for achieving consensus in
+    distributed systems, but they also come with some trade-offs in
+    terms of performance and fault tolerance.
+
+Paxos
+
+Steps:
+
+1.  Prepare (Phase 1a):
+
+-   The Proposer (also known as the leader) selects a proposal number N
+    and sends a Prepare message to a quorum of Acceptors.
+
+2.  Promise (Phase 1b):
+
+-   If the proposal number N is larger than any previous proposal, the
+    Acceptors promise not to accept proposals less than N and send the
+    value they last accepted for this instance to the Proposer.
+-   If the proposal number is not larger, a denial is sent.
+
+3.  Accept! (Phase 2a):
+
+-   If the Proposer receives responses from a quorum of Acceptors, it
+    may choose a value to be agreed upon.
+-   If any of the Acceptors have already accepted a value, the leader
+    must choose a value from this set. Otherwise, the Proposer is free
+    to propose any value.
+-   The Proposer sends an Accept! message to a quorum of Acceptors with
+    the chosen value.
+
+4.  Accepted (Phase 2b):
+
+-   If the Acceptor receives an Accept! message for a proposal it has
+    promised, it accepts the value and sends an Accepted message to the
+    Proposer and every Learner.
+
+Example:
+
+-   Let’s say there are 5 replicas in the Paxos system: A, B, C, D, and
+    E.
+-   A client wants to update the value of a shared key-value store from
+    “apple” to “banana”.
+
+1.  Prepare (Phase 1a):
+
+-   The Proposer (also known as the leader) selects a proposal number N
+    and sends a Prepare message to a quorum of Acceptors (in this case,
+    a quorum is defined as 3 or more replicas).
+-   The message includes the proposal number N and the value “banana”
+    that the client wants to update the key-value store to.
+-   The Acceptors respond to the Prepare message with either a Promise
+    message or a Deny message.
+
+2.  Promise (Phase 1b):
+
+-   If an Acceptor receives a Prepare message with a proposal number N
+    that is higher than any previous proposal number it has seen, it
+    sends a Promise message to the Proposer and includes the value it
+    last accepted for this instance (if it has accepted a value in the
+    past).
+-   If the proposal number N is not higher than any previous proposal
+    number, the Acceptor sends a Deny message.
+
+3.  Accept! (Phase 2a):
+
+-   If the Proposer receives Promise messages from a quorum of
+    Acceptors, it may choose a value to be agreed upon.
+-   If any of the Acceptors have already accepted a value, the Proposer
+    must choose a value from this set. Otherwise, the Proposer is free
+    to propose any value.
+-   The Proposer sends an Accept! message to a quorum of Acceptors with
+    the chosen value.
+
+4.  Accepted (Phase 2b):
+
+-   If an Acceptor receives an Accept! message for a proposal it has
+    promised, it accepts the value and sends an Accepted
+
+Raft
+
+RAFT is a distributed consensus protocol that allows a group of
+processes (called “replicas”) to agree on a value (“decide”) in the
+presence of failures. RAFT is divided into three distinct roles: Leader,
+Follower, and Candidate.
+
+The protocol consists of the following steps:
+
+1.  Leader Election:
+
+-   When a replica starts up or its leader fails, it becomes a Candidate
+    and initiates an election by sending RequestVote messages to all
+    other replicas.
+-   If a Follower receives a RequestVote message from a Candidate with a
+    higher term, it responds with its vote and updates its term to match
+    the Candidate’s term.
+-   If a Candidate receives a quorum of votes (more than half of the
+    replicas), it becomes the Leader and sends AppendEntries messages to
+    all other replicas to replicate its log.
+
+2.  Log Replication:
+
+-   The Leader sends AppendEntries messages to all other replicas to
+    replicate its log.
+-   If a Follower’s log is missing an entry preceding the one in the
+    Leader’s message, it responds with a missing entry error.
+-   If the Follower’s log is up-to-date and the Leader’s entry is valid,
+    the Follower appends the entry and responds with a success message.
+-   If the Leader receives a success message from a quorum of replicas,
+    it updates its commit index and sends a Commit message to all other
+    replicas to apply the committed entry to their state machines.
+
+3.  State Machine Update::
+
+-   If a replica receives a Commit message, it applies the committed
+    entry to its state machine and responds with an Apply message to the
+    Leader.
+-   If the Leader receives an Apply message from a quorum of replicas,
+    it updates its commit index and sends an Apply message to all other
+    replicas.
+
+Atomic Broadcast Conditions
+
+A distributed algorithm that guarantees correct transmission of a
+message from a primary process to all other processes in a network or
+broadcast domain, including the primary.
+
+It satisfies the following conditions:
+
+-   Validity: If a correct process broadcasts a message, then all
+    correct processes will eventually deliver it
+-   Uniform Agreement: If a process delivers a message, then all correct
+    processes eventually deliver that message
+-   Uniform Integrity: For any message m, every process delivers m at
+    most once, and only if m was previously broadcast by the sender of m
+-   Uniform Total Order: If processes p and q both deliver messages m
+    and m0, then p delivers m before m0 if and only if q delivers m
+    before m0
+
+It is widely used in distributed computing for group communication and
+defined as a reliable broadcast that satisfies total order.
+
+Atomic Broadcast Protocol
+
+Data:
+
+-   Epoch (e): The duration of a specific leadership
+-   View (v): Defined membership set that lasts until an existing member
+    leaves or comes back
+-   Transaction counter (tc): Counts rounds of execution, such as
+    updates to replicas
+
+Phases:
+
+1.  Leader election/discovery: Members decide on a new leader and form a
+    consistent view of the group.
+2.  Synchronization/recovery: Leader gathers outstanding, uncommitted
+    requests recorded at members and updates members missing certain
+    data until all share the same state.
+3.  Working: Leader proposes new transactions to the group, collects
+    confirmations, and sends out commits.
+
+-   Frequent leader changes can cause overhead and may be a potential
+    denial of service. It is important to consider latency on the leader
+    node when implementing an atomic broadcast protocol.
+-   Paxos, Raft etc. are Atomic Broadcast Protocols!
+
+Gossip Protocols
+
+Gossip protocols are a class of distributed algorithms that rely on
+randomly chosen pairs of nodes in a network to exchange information
+about the state of the system. They are typically used for group
+membership, failure detection, and dissemination of information.
+
+There are several key characteristics of gossip protocols:
+
+-   Randomized: Gossip protocols rely on randomly chosen pairs of nodes
+    to exchange information, which helps to reduce the risk of
+    overloading any particular node.
+-   Scalability: Gossip protocols scale well in large, distributed
+    systems because they only require communication with a few nodes at
+    a time.
+-   Fault tolerance: Gossip protocols are designed to tolerate failures
+    and can continue to operate even if some nodes go down.
+-   Asynchronous: Gossip protocols do not rely on a central authority or
+    global clock, so they can operate asynchronously in a distributed
+    system.
+
+DWAL
+
+A DWAL (Distributed Write-Ahead-Log) is a data structure that is used to
+ensure that updates to a distributed system are stored in a way that
+allows them to be recovered in case of system failure. It is a type of
+write-ahead log, which means that updates are written to the log before
+they are applied to the system’s state. This allows the updates to be
+replayed in the correct order after a system failure.
+
+Design Components of DWALs
+
+-   Global visibility: Replicated state should be visible to all
+    processes in the system. This can be achieved through the use of
+    atomic broadcast or other consensus protocols to ensure that all
+    processes have a consistent view of the system state.
+-   Consensus protocol: A consensus protocol such as Paxos or Raft is
+    used to ensure that all processes agree on the order of updates to
+    the replicated state. This ensures that all processes have a
+    consistent view of the system state and reduces the risk of
+    conflicts or data loss.
+-   Majority decisions: In a consensus protocol-based system, majority
+    decisions are used to ensure that the system can make progress even
+    in the presence of failures. This means that a majority of processes
+    must agree on the order of updates to the replicated state before
+    they can be applied.
+-   Group membership: In order to ensure that the DWAL can function
+    properly, it is important to have a mechanism in place for
+    maintaining an up-to-date view of the membership of the group of
+    processes.
+-   Message order and latency hiding: To ensure that the DWAL can
+    function effectively, it is important to ensure that updates are
+    delivered to all processes in a consistent order.
+
+Properties of Replication Models
+
+-   Who is responsible for updates: Single master or multiple masters?
+-   What is being updated: State transfer or operation transfer?
+-   How updates are ordered
+-   Conflict detection and resolution
+-   Method for updating replica nodes
+-   Guarantees for divergence
+
+Single-Leader Replication
+
+Steps:
+
+1.  Client sends x=5 to Node1 (master)
+2.  Master updates node 2 and node 3 (followers)
+3.  Client receives changed value (or old value; due to replication lag)
+
+Advantages:
+
+-   Ordered updates
+-   Efficient caching
+-   Highly available reads
+
+Disadvantages:
+
+-   Replicas may be out of sync with the master
+-   Leader crash may cause problems
+-   Followers may take a while to take over in case of leader failure
+-   Not suitable for critical resources such as primary keys
+
+Eventually Consistent Reads
+
+Eventual consistency model: Allows for a certain level of lag between
+updates to be propagated to all replicas
+
+Steps:
+
+1.  Client updates value on Master-Replica node
+2.  Master-Replica eventually propagates update to Slave replica
+3.  Client performs a stale read from client node, potentially returning
+    outdated value
+
+Multi-Master Replication
+
+Multi-Master Replication (MMR) is a type of replication in which
+multiple servers can accept write requests, allowing any server to act
+as a master. This means that updates can be made to any server, and the
+changes will be replicated to all other servers in the network. MMR can
+be used to improve the availability and scalability of asystem, as it
+allows updates to be made to any server and allows multiple servers to
+handle write requests.
+
+It also introduces the possibility of conflicts, as multiple servers may
+receive updates to the same data simultaneously. To resolve these
+conflicts, MMR systems typically use conflict resolution algorithms
+(last writer wins, keeping different versions, anti-entropy background
+merge/resolve) or allow the user to manually resolve conflicts.
+
+Steps:
+
+1.  Client 1 writes x=5 to Node 1 (master)
+2.  Client 2 writes x=10 to Node 2 (master)
+3.  The masters detect a conflict
+
+Conflict types:
+
+-   Update conflict: Two identical rows changed on two servers
+-   Uniqueness conflict: Two identical primary (uniqe) keys added in
+    same table on two servers
+-   Delete conflict: During delete of a row the same row is changed on a
+    different server.
+
+Leaderless Quorum Replication
+
+Write:
+
+-   In a leader-less (quorum) replication system, the client decides how
+    many machines to write to or read from using the formula W+R>N,
+    where N is the number of machines in the replication group.
+-   Without a designated leader, quorum systems may suffer from long
+    tail effects.
+-   If a quorum is not available, the client can choose to write to a
+    “sloppy quorum” and risk the write being lost.
+-   Without anti-entropy, there is a high risk of partial writes in the
+    system, which can lead to inconsistencies and can be difficult to
+    clean up.
+
+Read:
+
+-   Some systems may detect inconsistencies during a read operation.
+-   These systems can either automatically perform a cleanup (e.g. using
+    version numbers to return the correct value) or offer both values
+    for the client to choose from.
+
+Session Modes of Asynchronous Replication
+
+The following guarantees seem to enable “sequential consistency” for a
+specific client, meaning that the program order of updates from this
+client is respected by the system. Clients can track these guarantees
+using vector clocks:
+
+-   “Read your writes” (RYW) ensures that the contents read from a
+    replica include previous writes by the same user.
+-   “Monotonic reads” (MR) ensures that successive reads by the same
+    user return increasingly up-to-date contents.
+-   “Writes follow reads” (WFR) ensures that a write operation is
+    accepted only after writes observed by previous reads by the same
+    user are incorporated in the same replica.
+-   “Monotonic writes” (MW) ensures that a write operation is accepted
+    only after all write operations made by the same user are
+    incorporated in the same replica.
+
+We can also derive session anomalies from this:
+
+-   Non-monotonic reads: Reads that do not return increasingly
+    up-to-date contents.
+-   Non-monotonic writes: Write operations that are not accepted in the
+    order that they were made by the same user.
+-   Non-monotonic transactions: Transactions that do not preserve the
+    order in which they were made by the same user.
+-   Not-reading-my-writes: Reads that do not include previous writes by
+    the same user.
+
+Global Modes of Replication
+
+There are multiple different modes to choose from:
+
+-   Strong consistency ensures that all previous writes are visible, and
+    is characterized by the following properties:
+    -   Ordered: Writes are accepted in the order that they were made.
+    -   Real: All writes are visible.
+    -   Monotonic: Write operations are accepted only after all previous
+        write operations made by the same user are incorporated in the
+        same replica.
+    -   Complete: All writes are included.
+-   Consistent prefix ensures that an ordered sequence of writes is
+    visible, and is characterized by the following properties:
+    -   Ordered: Writes are accepted in the order that they were made.
+    -   Real: All writes are visible.
+    -   X latest missing: Some of the latest writes may be missing.
+    -   Snapshot isolation-like: The system behaves like snapshot
+        isolation, where writes made by a transaction are not visible to
+        other transactions until the transaction is committed.
+-   Bounded staleness ensures that all writes older than X or every
+    write except the last Y are visible, and is characterized by the
+    following properties:
+    -   Ordered: Writes are accepted in the order that they were made.
+    -   Real: All writes are visible.
+    -   X latest missing: Some of the latest writes may be missing.
+    -   Monotonic increasing due to bound: Write operations are accepted
+        only after all previous write operations made by the same user
+        are incorporated in the same replica, but the bound on staleness
+        allows for some deviation from strict monotonicity.
+-   Eventual consistency ensures that a subset of previous writes is
+    visible, and is characterized by the following properties:
+    -   Unordered: Writes may not be accepted in the order that they
+        were made.
+    -   Un-real: Some writes may not be visible.
+    -   Incomplete: Some writes may be missing.
+
+Each of them have their own trade-offs:
+
+-   Strong consistency:
+    -   Consistency: Excellent
+    -   Performance: Poor
+    -   Availability: Poor
+-   Eventual consistency:
+    -   Consistency: Poor
+    -   Performance: Excellent
+    -   Availability: Excellent
+-   Consistent prefix:
+    -   Consistency: Okay
+    -   Performance: Good
+    -   Availability: Excellent
+-   Bounded stalenes:
+    -   Consistency: Good
+    -   Performance: Okay
+    -   Availability: Poor
+-   Monotonic reads:
+    -   Consistency: Okay
+    -   Performance: Good
+    -   Availability: Good
+-   Read my writes:
+    -   Consistency: Okay
+    -   Performance: Okay
+    -   Availability: Okay
