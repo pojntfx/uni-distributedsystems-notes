@@ -1,3 +1,9 @@
+commit 9bec7018cb24cf92eb5efa58a5a0579da76e0674
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Wed Dec 21 05:35:41 2022 +0100
+
+    feat: Add summary of eight section (theoretical  functions of distributed systems)
+
 commit f96f9a707b187b818f851f7daf02f0bb871fc10e
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Dec 20 03:55:37 2022 +0100
