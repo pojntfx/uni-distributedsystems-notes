@@ -2346,3 +2346,512 @@ Each of them have their own trade-offs:
   - Consistency: Okay
   - Performance: Okay
   - Availability: Okay
+
+## Distributed Services and Algorithms I
+
+### Overview
+
+1. Distributed Services
+   1. Replication, Availability and Fault-Tolerance
+   2. Global Server Load Balancing for PoPs
+2. Typical Cluster Services
+   1. Fail-over and Load-Balancing
+   2. Directory Services
+   3. Cluster Scheduler (neu)
+3. Distributed Operating Systems
+4. Example Services and Algorithms
+   1. Distributed File System with replication and map/reduce
+   2. Distributed (streaming) Log
+   3. Distributed Cache with consistent hashing
+   4. Distributed DB with sharding/partitioning functions
+   5. Distributed Messaging with event notification and gossip
+
+### What is a Distributed Service?
+
+Function provided by a **distributed middleware** with:
+
+- High scalability
+- High availabilit
+
+### Services and Instances
+
+- Distributed systems:
+  - Comprised of **services**, such as applications, databases, caches, etc.
+  - **Services are** made up of instances or nodes, which are **individually addressable hosts** (physical or virtual)
+- Key observation:
+  - Unit of **interaction is at the service level, not the instance level**
+  - Concerned with **logical groups of nodes, not specific instances**
+  - Example: Interacting with a database server, rather than a specific database instance.
+
+### Core Distributed Services
+
+- **Finding** Things
+  - Name Service
+  - Registry
+  - Search
+- **Storing** Things
+  - Various databases
+  - Data grids
+  - Block storage, etc.
+- **Events** Handling and asynchronous processing: Queues
+- Load **Balancing** and Failover
+- **Caching** Service
+- **Locking** Things and preventing concurrent access: Lock service
+- **Request scheduling** and control: Request multiplexing
+- **Time** handling
+- Providing **atomic transactions**: Consistency and persistence
+- **Replicating** Things: NoSQL DBs
+- **Object handling**: Lifecycle services for creation, destruction, relationship service, etc.
+
+### Availability
+
+Is defined as:
+
+$Availability = \frac{Uptime_{agreed\ upon} - Downtime_{planned\ and\ unplanned}}{Uptime_{agreed\ upon}}$
+
+Continuous availability **does not allow for planned downtime**.
+
+### Typical Hardware Causes for Downtime
+
+- Overheating
+- PDU failure
+- Rack-move
+- Network rewiring
+- Rack failures
+- Racks go wonky
+- Network maintenances
+- Router reloads
+- Router failures
+- Individual machine failures
+- Hard drive failures
+
+### Availability through Redundancy
+
+**Across groups of resources:**
+
+- Multi-site data center
+- Disaster recovery
+- Scalability
+
+**Within a group of resources:**
+
+- High availability (HA)
+- Clustering
+- Centralized administration (CA)
+- Automatic failover (CO)
+- Scalability
+- Data replication
+- Quorum algorithms (require multiple machines)
+
+**Between two resources:**
+
+- High availability (HA)
+- Centralized administration (CA)
+- Automatic failover (CO)
+- Load distribution to prevent overload in case of failure
+
+**For an individual resource:**
+
+- Single point of failure (SPOF)
+- Easy updates
+- Maintenance problems
+- Simple reliability
+- Limited vertical scalability
+
+### 3 Copy Disaster Recover Solution
+
+- Maintains 3 copies of data/resources with at least 2 in different locations
+- Enables quick switchover in case of disaster for business continuity
+- Provides high availability and protects against data loss.
+
+### Serial vs. Redundant Availability
+
+- **Serial chain** of components:
+  - **Availability decreases with more members** in the chain
+  - Individual components need higher availability
+- **Redundant, parallel** components:
+  - Unavailability of each component is multiplied and subtracted from 1 to determine overall availability
+  - **Only one component needs to be up** to maintain availability.
+
+### Global Server Load Balancing
+
+- **DNS Round Robin**:
+  - Simple load balancing technique that distributes traffic to multiple servers based on the client's DNS query
+  - Little mitigation in case of problems like overload, failure, etc.
+  - Clients may disregard TTL settings
+  - Takes approximately 15 minutes to drain traffic from troubled servers.
+- **BGP Anycast**:
+  - Uses BGP routing to direct clients to the nearest available server
+  - BGP does not consider link latency, throughput, packet loss, etc. in selecting the best route
+  - With multiple routes to the destination, BGP simply selects the one with the least number of hops
+  - Troubleshooting can be demanding.
+- **Geo-DNS**:
+  - Uses the client's geographical location to determine the closest server for traffic distribution
+  - Relies on the accuracy of the DNS provider's IP and location guesswork
+  - TTL setting may not accurately reflect the time-to-live of cached information.
+- **Real User Measurements (RUM)**:
+  - Uses real-time data from end-user devices to dynamically adjust traffic distribution for optimal performance.
+
+### Failover with Virtual IPs
+
+**Failover with one virtual IP**:
+
+- DNS points only to **one Virtual IP (VIP)**
+- In case of a server failure, **client sessions are lost** but they can establish a new session on reconnect
+- **No changes in DNS are required**, avoiding the potential issues of flushes and timeouts
+
+**Multi-site failover**:
+
+- A **combination** of geo-aware DNS and a Load Balancer/Fail-over front-server
+- **Requests can be re-routed** to different locations in case of a server failure
+- May still have the limitations and **issues associated with geo-aware DNS**.
+
+### Failover, Load Balancing and Session State
+
+- **Sticky Sessions**: Keeps session state on a single server, offers advantages with a non-replicated system of records but limited in terms of fail-over and load-balancing options.
+- Session Storage **in DB**: Session state is stored in a database, offers better scalability and fail-over options compared to sticky sessions.
+- Session Storage **in Distributed Cache**: Session state is stored in a distributed cache, provides better performance and scalability compared to database storage, but still with fail-over options.
+
+**Today: Stateless servers with state in DB are the norm**, but sticky sessions are still useful because records need to be replicated.
+
+**Compromise**: Replicate sessions between pairs of servers, then enable switching between them as failovers
+
+### P2P Load Balancing
+
+- **Evaluator Functions**: Access server stats in shared memory and determine the outcome of a request, whether it is handled by its own server, redirected, or proxied.
+- **Server Stats**: Various metrics such as CPU usage, number of requests, memory usage, etc., are replicated in shared memory and used by evaluator functions to make load-balancing decisions.
+- **Server Stat Replication**: The replication of server stats is done through multicast.
+
+### Requirements of Distributed Name/Directory Systems
+
+**Functional Requirements**:
+
+- **Re-bind/resolve methods** to store name/value pairs
+- **Query Interface**
+- **Name Aliases** for multiple logical hierarchies (**DAG-structured name space**)
+- **Composite Names** (path names)
+- **Location Independence** by separating address and location of objects
+- Sound **security system** to ensure access to objects based on names.
+
+**Non-Functional Requirements**:
+
+**Definition**: Non-Functional Requirements are necessary functions of a system that **ensure speed, reliability, availability, security, etc**. Many systems fulfill functional requirements but fail to meet non-functional requirements.
+
+- Persistent Name/Value Combinations (**retain mapping in case of a crash**)
+- **Transacted Manipulation** (all-or-nothing handling during application installation)
+- **Federated Naming Services** to combine different naming zones
+- **Fault tolerance** through replication for availability
+- **Fast lookup** through clustering, with slower writes and client-side caching support to reduce communication costs
+
+### Design of Distributed Name/Directory Systems
+
+**Name Space**:
+
+- The company name space organization is a **design and architecture concern**.
+- **System Management** enforces rules, policies, and controls changes.
+- **Different machines** host parts of the name space (zones).
+
+**Naming Service**:
+
+- **Interfaces** (naming service, factoryfinder, factory, account) allow administrators to **hide versions/implementations** from clients.
+- Finders in a remote environment support **object migration and copying**.
+
+### Examples of Naming Services
+
+- Domain Name System (DNS)
+- X.500 Directory
+- Lightweight Directory Access Protocol (LDAP)
+- CORBA Naming Service
+- Java Registry
+- J2EE JNDI (mapped to CORBA Naming Service)
+
+### Google vs. Amazon
+
+**Amazon**:
+
+> Services
+
+- Storage Services:
+  - S3 (huge storage capacity)
+  - RDS
+  - Aurora
+  - Mongo
+- Computation Services: EC2 (Virtual Machines)
+- Queuing Services
+- Load-balancing services
+- Elastic map reduce
+- Cloudfront (fast cache)
+- Lambda
+- Stepfunctions
+- AI framework services
+
+**Google**:
+
+> Products
+
+- Scheduling Service
+- Map/Reduce Execution Environment
+- F1 NewSQL DB
+- Spanner Replicated DB
+- BigTable NoSQL Storage
+- Distributed File System
+- Chubby Lock Service
+- Graph Processing and SQL:
+  - Pregel
+  - Percolator
+  - Dremel
+- Dapper (distributed locking)
+- Google Compute Platform
+
+### Best Practices for Designing Services
+
+- Keep services **independent**
+- **Measure** services
+- Define **SLAs and QoS** for services
+- Allow **agile development** of services
+- Allow hundreds of services, **aggregate** them on special servers
+- **Avoid middleware and frameworks** that force patterns
+- Keep **teams small and organized around services**
+- Manage **dependencies carefully**
+- **Create APIs** for customer access to services
+
+### Grid Storage vs. NAS/SAN
+
+**Grid Storage**:
+
+- **Requires** POSIX-Grid **gateway**
+- **Special caching may be needed** for video (readahead)
+- Offers **huge bandwidth and scalability**
+- May require **special maintenance**
+- May be **proprietary**
+- Supports **parallel processing**
+- **Requires special applications**
+- **Compatibility** with existing apps is **questionable**
+- **Disaster recovery** across sites is **unclear**
+- Requires **more electric power and space**
+
+**NAS/SAN**:
+
+- **POSIX**-compatible
+- Special **caching is difficult** to implement
+- Has a **hard limit** in SPxx storage interface
+- Offers **simple upgrades**
+- Supports **standard file system**
+- Allows **dynamic growth** of file systems via LUN organization
+- Requires **maintenance effort to balance** space/use
+- **Proven and fast** technology
+- **Expensive disaster recovery** through smaller replicas
+- Several **different** file system **configurations are possible**
+- Without virtual SAN, **hot-spots can occur** on a single drive
+- **Longer drive-rebuild times**
+
+To summarize:
+
+- **Watch out for proprietary lock-in** and compatibility issues with grid storage
+- **Grid storage requires programming skills** for solutions (map/reduce with Hadoop)
+- **NAS/SAN is a proven and faster** technology
+- **NAS/SAN won't be replaced** by grid storage (which is specialized)
+
+### CQRS (Command Query Responsibility Segregation)
+
+- **Separates the responsibilities of reading data** (queries) **and modifying data** (commands) into separate objects or services.
+- **Improves scalability and performance** by allowing reads and writes to be **optimized separately**.
+- **Promotes event-driven architecture** by allowing commands to trigger domain events.
+- Simplifies domain modeling by **reducing the complexity of aggregates**.
+- **Increases consistency** by using separate models for reads and writes.
+- **Reduces the coupling** between the read and write sides of the system.
+
+### Requirements of Caching Services
+
+- **Scalable** with ability to add machines
+- **Avoid "thundering herds"** due to placement changes
+- **Supports replication** of cache entries
+- **High performance** required
+- Optional **disk backup** support
+- Supports **various storage mediums**, from RAM to SSD
+- Supports **different cache replacement policies** with caution.
+
+### Handling Changing Machine Counts in Caching Services
+
+- Problem: Changing Machine Count
+- Solution: **Consistent Hashing (Ring)**
+- **Machines are mapped into a ring** and their **position determines the key-space they are responsible for**.
+- Machines can be assigned multiple virtual positions.
+
+### Consistent Hashing Algorithms
+
+**Simple Consistent Hashing Algorithm:**
+
+- URLs and caches are **mapped to points on a circle** using a standard hash function.
+- URL assigned to **closest cache in clockwise direction**.
+- Adding a new cache only reassigns the closest URLs to it, **items don't move between existing caches**.
+
+**Dynamo Consistent Hashing Algorithm:**
+
+- **Separates placement and partitioning.**
+- Uses **virtual nodes** assigned to real machines for more flexibility.
+- Virtual node is responsible for multiple real nodes.
+- Improved load balancing due to **additional indirection**.
+
+### Cache Patterns
+
+**Pull**:
+
+- Occurs **during request time**
+- Concurrent misses and client crashes **can result in outdated caches**
+- **Complicated handling** of concurrent misses and updates
+- Can be **slow and dangerous for backends**
+
+**Push**:
+
+- Automated **push updates cached values**
+- Should **only** be used **for values that are always needed**
+
+**Pre-warmed:**
+
+- The system **loads the cache before the application starts** serving clients
+- Used **for big applications with pull caches** to avoid boot issues
+
+**General consideration**: Be aware of LRU or clocked invalidations as cache is mission critical.
+
+### Cache Design Considerations
+
+- **Kinds** of information fragments
+- **Lifecycle** of fragments
+- **Validity** of fragments
+- **Effects** of fragment invalidation
+- **Dependencies** between fragments, pages, etc.
+
+### Local vs. Distributed Events
+
+**Local**:
+
+- Observer updates sent on one thread
+- If observer doesn't return, mechanism stops
+- If observer calls back to observed during update call, deadlock can occur
+- Solution doesn't scale and is not reliable (e.g. observer crashes result in lost registrations)
+- Does not work for remote communication
+
+**Distributed**:
+
+- Various combinations of **push and pull models** possible
+- Receivers can install **filters** using a constraint language to filter content (reduces unwanted notifications)
+
+### Asynchronous Event-Processing
+
+- Publisher and subscriber communicate through **interaction middleware**
+- Used to **decouple components** and asynchronous sub-requests from synchronous main requests (so that multiple fast tasks can run parallel to a slow main task)
+- Implemented as **Message-Oriented-Middleware (MOM)** or socket-based communication library
+- Can be implemented in **broker-less or brokered mode**.
+
+### Features of Event-Driven Interaction
+
+- **Basic Event**: Any entity can send and receive events without restrictions or filtering.
+- **Subscription**: A receiver can subscribe to specific events, making event delivery more efficient.
+- **Advertisement**: The sender informs receivers about possible events, reducing the need for broadcasting.
+- **Content-Based Filtering**: The sender, middleware, or receiver can apply filtering based on event content.
+- **Scoping**: Administrative components can manipulate event routes, enabling invisible communication between components.
+
+### Types of Message Oriented Middleware (MOMs)
+
+**Centralized Message-Oriented-Middleware:**
+
+- Collects all notifications and subscriptions in one central place, enabling **easy event matching and filtering**
+- Has a **high degree of control** and no security/reliability issues on clients
+- Can create **scalability and single-point-of-failure problems**
+
+**Clustered Message-Oriented-Middleware:**
+
+- Provides **scalability** at **higher communication costs**
+- Has lots of routing/filter-tables at cluster nodes, making **filtering and routing of notifications expensive**
+
+**Simple P2P Event Libraries:**
+
+- Local libraries are aware of each other, but **components are de-coupled**
+- Broker-less architecture is **faster** than brokered ones
+- **Does not provide** at-most-once semantics or **protection against message loss**
+- Guarantees **atomicity** and **possibly FIFO**
+- Examples include ZeroMQ, Aaron, and Nanomsg
+
+**Flooding Protocols:**
+
+- Notifications travel towards **subscriptions**, which are only kept at **leaf brokers**
+- Advantages include that **subscriptions become effective quickly**, and notifications are guaranteed to arrive everywhere
+- Price is **many unnecessary notifications** to leaf nodes without subscribers
+
+### ZeroMQ
+
+- **Brokerless** socket library for messaging, with message filtering
+- Connection patterns include **pipeline, pub/sub, and multi-worker**
+- **Various transports**, including in process, across local process, across machines, and multicast groups
+- **Message-passing process model** without the need for synchronization
+- **Multi-platform and multi-language** support
+- "Suicidal snail" fail-fast mechanism to **kill slow subscribers**
+
+### Horizontal vs. Vertical Sharding
+
+**Horizontal**: Per (database) row, e.g. first 100 users are in shard 1, 200 in shard 2 etc.
+
+**Vertical**: Per (database) column, e.g. profile and email is in shard 1, photos and messages in shard 2 etc.
+
+### Sharding Strategies
+
+- Allow adding heterogenous hardware in the future
+- Sharding should not make app code unstable
+- Sharding should be transparent to the app
+- Sharding and placement strategies should be separate
+
+### Horizontal Sharding Functions
+
+Algorithms applied to the key (often: user ID) to create different groups (shards):
+
+- **Numerical range**: users 0-100000, 100001-200000, etc.
+- **Time range**: 1970-80, 81-90, 91-2000, etc.
+- **Hash and modulo** calculation
+- **Directory-based mapping** using a meta-data table for arbitrary mapping from key to shard
+
+### Consequences of Sharding
+
+- **No more SQL `JOIN`s**, leading to lots of copied data
+- Increased need for **partial requests** for data aggregation
+- **Expensive distributed transactions** required for consistency (if needed)
+- Vertical sharding distributes related data types from one user, while horizontal sharding distributes related users from each other (**bad for social graph processing**)
+- **SQL limitations** due to mostly key/value queries and problems with automatic DB-Sequences
+- Every change **requires corresponding application changes**
+
+### Relationships
+
+- Within the database, **referential integrity** rules protect containment relationships
+- **No equivalent in object space**
+- No protection in distributed systems
+
+For example when an employee leaves:
+
+- All rights are cancelled
+- Disc-space is archived and erased
+- Databases for authentication and application-specific DBs are updated
+- Badge no longer works
+- All equipment has been returned
+
+### Functional Requirements of Relationship Services
+
+- **Definition of relations between objects** without modifying those objects
+- Support for **different types of relations**
+- Ability to **create graphs of relations**
+- Ability to **traverse relationship graphs**
+- Support for **reference and containment relations**
+
+### Why Relationship Services Failed
+
+**The good**:
+
+- Powerful **modeling tool**
+- Helps with creation, migration, copy, and deletion of composite objects
+- Maintains referential integrity
+
+**The bad**:
+
+- Tends to create **many small server objects**
+- **Performance impact**
+- Not supported by many CORBA vendors for a long time
+- EJB only supported with local objects in the same container.
