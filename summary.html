@@ -573,6 +573,77 @@ Replication</a></li>
 <li><a href="#global-modes-of-replication"><span class="toc-section-number">1.9.44</span> Global Modes of
 Replication</a></li>
 </ul></li>
+<li><a href="#distributed-services-and-algorithms-i"><span class="toc-section-number">1.10</span> Distributed Services and
+Algorithms I</a>
+<ul>
+<li><a href="#overview-8"><span class="toc-section-number">1.10.1</span>
+Overview</a></li>
+<li><a href="#what-is-a-distributed-service"><span class="toc-section-number">1.10.2</span> What is a Distributed
+Service?</a></li>
+<li><a href="#services-and-instances"><span class="toc-section-number">1.10.3</span> Services and Instances</a></li>
+<li><a href="#core-distributed-services"><span class="toc-section-number">1.10.4</span> Core Distributed
+Services</a></li>
+<li><a href="#availability"><span class="toc-section-number">1.10.5</span> Availability</a></li>
+<li><a href="#typical-hardware-causes-for-downtime"><span class="toc-section-number">1.10.6</span> Typical Hardware Causes for
+Downtime</a></li>
+<li><a href="#availability-through-redundancy"><span class="toc-section-number">1.10.7</span> Availability through
+Redundancy</a></li>
+<li><a href="#copy-disaster-recover-solution"><span class="toc-section-number">1.10.8</span> 3 Copy Disaster Recover
+Solution</a></li>
+<li><a href="#serial-vs.-redundant-availability"><span class="toc-section-number">1.10.9</span> Serial vs. Redundant
+Availability</a></li>
+<li><a href="#global-server-load-balancing"><span class="toc-section-number">1.10.10</span> Global Server Load
+Balancing</a></li>
+<li><a href="#failover-with-virtual-ips"><span class="toc-section-number">1.10.11</span> Failover with Virtual
+IPs</a></li>
+<li><a href="#failover-load-balancing-and-session-state"><span class="toc-section-number">1.10.12</span> Failover, Load Balancing and
+Session State</a></li>
+<li><a href="#p2p-load-balancing"><span class="toc-section-number">1.10.13</span> P2P Load Balancing</a></li>
+<li><a href="#requirements-of-distributed-namedirectory-systems"><span class="toc-section-number">1.10.14</span> Requirements of Distributed
+Name/Directory Systems</a></li>
+<li><a href="#design-of-distributed-namedirectory-systems"><span class="toc-section-number">1.10.15</span> Design of Distributed
+Name/Directory Systems</a></li>
+<li><a href="#examples-of-naming-services"><span class="toc-section-number">1.10.16</span> Examples of Naming
+Services</a></li>
+<li><a href="#google-vs.-amazon"><span class="toc-section-number">1.10.17</span> Google vs. Amazon</a></li>
+<li><a href="#best-practices-for-designing-services"><span class="toc-section-number">1.10.18</span> Best Practices for Designing
+Services</a></li>
+<li><a href="#grid-storage-vs.-nassan"><span class="toc-section-number">1.10.19</span> Grid Storage
+vs. NAS/SAN</a></li>
+<li><a href="#cqrs-command-query-responsibility-segregation"><span class="toc-section-number">1.10.20</span> CQRS (Command Query
+Responsibility Segregation)</a></li>
+<li><a href="#requirements-of-caching-services"><span class="toc-section-number">1.10.21</span> Requirements of Caching
+Services</a></li>
+<li><a href="#handling-changing-machine-counts-in-caching-services"><span class="toc-section-number">1.10.22</span> Handling Changing Machine
+Counts in Caching Services</a></li>
+<li><a href="#consistent-hashing-algorithms"><span class="toc-section-number">1.10.23</span> Consistent Hashing
+Algorithms</a></li>
+<li><a href="#cache-patterns"><span class="toc-section-number">1.10.24</span> Cache Patterns</a></li>
+<li><a href="#cache-design-considerations"><span class="toc-section-number">1.10.25</span> Cache Design
+Considerations</a></li>
+<li><a href="#local-vs.-distributed-events"><span class="toc-section-number">1.10.26</span> Local vs. Distributed
+Events</a></li>
+<li><a href="#asynchronous-event-processing"><span class="toc-section-number">1.10.27</span> Asynchronous
+Event-Processing</a></li>
+<li><a href="#features-of-event-driven-interaction"><span class="toc-section-number">1.10.28</span> Features of Event-Driven
+Interaction</a></li>
+<li><a href="#types-of-message-oriented-middleware-moms"><span class="toc-section-number">1.10.29</span> Types of Message Oriented
+Middleware (MOMs)</a></li>
+<li><a href="#zeromq"><span class="toc-section-number">1.10.30</span>
+ZeroMQ</a></li>
+<li><a href="#horizontal-vs.-vertical-sharding"><span class="toc-section-number">1.10.31</span> Horizontal vs. Vertical
+Sharding</a></li>
+<li><a href="#sharding-strategies"><span class="toc-section-number">1.10.32</span> Sharding Strategies</a></li>
+<li><a href="#horizontal-sharding-functions"><span class="toc-section-number">1.10.33</span> Horizontal Sharding
+Functions</a></li>
+<li><a href="#consequences-of-sharding"><span class="toc-section-number">1.10.34</span> Consequences of
+Sharding</a></li>
+<li><a href="#relationships"><span class="toc-section-number">1.10.35</span> Relationships</a></li>
+<li><a href="#functional-requirements-of-relationship-services"><span class="toc-section-number">1.10.36</span> Functional Requirements of
+Relationship Services</a></li>
+<li><a href="#why-relationship-services-failed"><span class="toc-section-number">1.10.37</span> Why Relationship Services
+Failed</a></li>
+</ul></li>
 </ul>
 </nav>
 <section id="meta" data-number="0.1">
@@ -5860,6 +5931,779 @@ made.</li>
 <li>Performance: Okay</li>
 <li>Availability: Okay</li>
 </ul></li>
+</ul>
+</section>
+</section>
+<section id="distributed-services-and-algorithms-i" data-number="0.10">
+<h2 data-number="1.10"><span class="header-section-number">1.10</span>
+Distributed Services and Algorithms I</h2>
+<section id="overview-8" data-number="0.10.1">
+<h3 data-number="1.10.1"><span class="header-section-number">1.10.1</span> Overview</h3>
+<ol type="1">
+<li>Distributed Services
+<ol type="1">
+<li>Replication, Availability and Fault-Tolerance</li>
+<li>Global Server Load Balancing for PoPs</li>
+</ol></li>
+<li>Typical Cluster Services
+<ol type="1">
+<li>Fail-over and Load-Balancing</li>
+<li>Directory Services</li>
+<li>Cluster Scheduler (neu)</li>
+</ol></li>
+<li>Distributed Operating Systems</li>
+<li>Example Services and Algorithms
+<ol type="1">
+<li>Distributed File System with replication and map/reduce</li>
+<li>Distributed (streaming) Log</li>
+<li>Distributed Cache with consistent hashing</li>
+<li>Distributed DB with sharding/partitioning functions</li>
+<li>Distributed Messaging with event notification and gossip</li>
+</ol></li>
+</ol>
+</section>
+<section id="what-is-a-distributed-service" data-number="0.10.2">
+<h3 data-number="1.10.2"><span class="header-section-number">1.10.2</span> What is a Distributed
+Service?</h3>
+<p>Function provided by a <strong>distributed middleware</strong>
+with:</p>
+<ul>
+<li>High scalability</li>
+<li>High availabilit</li>
+</ul>
+</section>
+<section id="services-and-instances" data-number="0.10.3">
+<h3 data-number="1.10.3"><span class="header-section-number">1.10.3</span> Services and Instances</h3>
+<ul>
+<li>Distributed systems:
+<ul>
+<li>Comprised of <strong>services</strong>, such as applications,
+databases, caches, etc.</li>
+<li><strong>Services are</strong> made up of instances or nodes, which
+are <strong>individually addressable hosts</strong> (physical or
+virtual)</li>
+</ul></li>
+<li>Key observation:
+<ul>
+<li>Unit of <strong>interaction is at the service level, not the
+instance level</strong></li>
+<li>Concerned with <strong>logical groups of nodes, not specific
+instances</strong></li>
+<li>Example: Interacting with a database server, rather than a specific
+database instance.</li>
+</ul></li>
+</ul>
+</section>
+<section id="core-distributed-services" data-number="0.10.4">
+<h3 data-number="1.10.4"><span class="header-section-number">1.10.4</span> Core Distributed
+Services</h3>
+<ul>
+<li><strong>Finding</strong> Things
+<ul>
+<li>Name Service</li>
+<li>Registry</li>
+<li>Search</li>
+</ul></li>
+<li><strong>Storing</strong> Things
+<ul>
+<li>Various databases</li>
+<li>Data grids</li>
+<li>Block storage, etc.</li>
+</ul></li>
+<li><strong>Events</strong> Handling and asynchronous processing:
+Queues</li>
+<li>Load <strong>Balancing</strong> and Failover</li>
+<li><strong>Caching</strong> Service</li>
+<li><strong>Locking</strong> Things and preventing concurrent access:
+Lock service</li>
+<li><strong>Request scheduling</strong> and control: Request
+multiplexing</li>
+<li><strong>Time</strong> handling</li>
+<li>Providing <strong>atomic transactions</strong>: Consistency and
+persistence</li>
+<li><strong>Replicating</strong> Things: NoSQL DBs</li>
+<li><strong>Object handling</strong>: Lifecycle services for creation,
+destruction, relationship service, etc.</li>
+</ul>
+</section>
+<section id="availability" data-number="0.10.5">
+<h3 data-number="1.10.5"><span class="header-section-number">1.10.5</span> Availability</h3>
+<p>Is defined as:</p>
+<p><span class="math inline">Availability = \frac{Uptime_{agreed\ upon}
+- Downtime_{planned\ and\ unplanned}}{Uptime_{agreed\ upon}}</span></p>
+<p>Continuous availability <strong>does not allow for planned
+downtime</strong>.</p>
+</section>
+<section id="typical-hardware-causes-for-downtime" data-number="0.10.6">
+<h3 data-number="1.10.6"><span class="header-section-number">1.10.6</span> Typical Hardware Causes for
+Downtime</h3>
+<ul>
+<li>Overheating</li>
+<li>PDU failure</li>
+<li>Rack-move</li>
+<li>Network rewiring</li>
+<li>Rack failures</li>
+<li>Racks go wonky</li>
+<li>Network maintenances</li>
+<li>Router reloads</li>
+<li>Router failures</li>
+<li>Individual machine failures</li>
+<li>Hard drive failures</li>
+</ul>
+</section>
+<section id="availability-through-redundancy" data-number="0.10.7">
+<h3 data-number="1.10.7"><span class="header-section-number">1.10.7</span> Availability through
+Redundancy</h3>
+<p><strong>Across groups of resources:</strong></p>
+<ul>
+<li>Multi-site data center</li>
+<li>Disaster recovery</li>
+<li>Scalability</li>
+</ul>
+<p><strong>Within a group of resources:</strong></p>
+<ul>
+<li>High availability (HA)</li>
+<li>Clustering</li>
+<li>Centralized administration (CA)</li>
+<li>Automatic failover (CO)</li>
+<li>Scalability</li>
+<li>Data replication</li>
+<li>Quorum algorithms (require multiple machines)</li>
+</ul>
+<p><strong>Between two resources:</strong></p>
+<ul>
+<li>High availability (HA)</li>
+<li>Centralized administration (CA)</li>
+<li>Automatic failover (CO)</li>
+<li>Load distribution to prevent overload in case of failure</li>
+</ul>
+<p><strong>For an individual resource:</strong></p>
+<ul>
+<li>Single point of failure (SPOF)</li>
+<li>Easy updates</li>
+<li>Maintenance problems</li>
+<li>Simple reliability</li>
+<li>Limited vertical scalability</li>
+</ul>
+</section>
+<section id="copy-disaster-recover-solution" data-number="0.10.8">
+<h3 data-number="1.10.8"><span class="header-section-number">1.10.8</span> 3 Copy Disaster Recover
+Solution</h3>
+<ul>
+<li>Maintains 3 copies of data/resources with at least 2 in different
+locations</li>
+<li>Enables quick switchover in case of disaster for business
+continuity</li>
+<li>Provides high availability and protects against data loss.</li>
+</ul>
+</section>
+<section id="serial-vs.-redundant-availability" data-number="0.10.9">
+<h3 data-number="1.10.9"><span class="header-section-number">1.10.9</span> Serial vs. Redundant
+Availability</h3>
+<ul>
+<li><strong>Serial chain</strong> of components:
+<ul>
+<li><strong>Availability decreases with more members</strong> in the
+chain</li>
+<li>Individual components need higher availability</li>
+</ul></li>
+<li><strong>Redundant, parallel</strong> components:
+<ul>
+<li>Unavailability of each component is multiplied and subtracted from 1
+to determine overall availability</li>
+<li><strong>Only one component needs to be up</strong> to maintain
+availability.</li>
+</ul></li>
+</ul>
+</section>
+<section id="global-server-load-balancing" data-number="0.10.10">
+<h3 data-number="1.10.10"><span class="header-section-number">1.10.10</span> Global Server Load
+Balancing</h3>
+<ul>
+<li><strong>DNS Round Robin</strong>:
+<ul>
+<li>Simple load balancing technique that distributes traffic to multiple
+servers based on the client’s DNS query</li>
+<li>Little mitigation in case of problems like overload, failure,
+etc.</li>
+<li>Clients may disregard TTL settings</li>
+<li>Takes approximately 15 minutes to drain traffic from troubled
+servers.</li>
+</ul></li>
+<li><strong>BGP Anycast</strong>:
+<ul>
+<li>Uses BGP routing to direct clients to the nearest available
+server</li>
+<li>BGP does not consider link latency, throughput, packet loss, etc. in
+selecting the best route</li>
+<li>With multiple routes to the destination, BGP simply selects the one
+with the least number of hops</li>
+<li>Troubleshooting can be demanding.</li>
+</ul></li>
+<li><strong>Geo-DNS</strong>:
+<ul>
+<li>Uses the client’s geographical location to determine the closest
+server for traffic distribution</li>
+<li>Relies on the accuracy of the DNS provider’s IP and location
+guesswork</li>
+<li>TTL setting may not accurately reflect the time-to-live of cached
+information.</li>
+</ul></li>
+<li><strong>Real User Measurements (RUM)</strong>:
+<ul>
+<li>Uses real-time data from end-user devices to dynamically adjust
+traffic distribution for optimal performance.</li>
+</ul></li>
+</ul>
+</section>
+<section id="failover-with-virtual-ips" data-number="0.10.11">
+<h3 data-number="1.10.11"><span class="header-section-number">1.10.11</span> Failover with Virtual
+IPs</h3>
+<p><strong>Failover with one virtual IP</strong>:</p>
+<ul>
+<li>DNS points only to <strong>one Virtual IP (VIP)</strong></li>
+<li>In case of a server failure, <strong>client sessions are
+lost</strong> but they can establish a new session on reconnect</li>
+<li><strong>No changes in DNS are required</strong>, avoiding the
+potential issues of flushes and timeouts</li>
+</ul>
+<p><strong>Multi-site failover</strong>:</p>
+<ul>
+<li>A <strong>combination</strong> of geo-aware DNS and a Load
+Balancer/Fail-over front-server</li>
+<li><strong>Requests can be re-routed</strong> to different locations in
+case of a server failure</li>
+<li>May still have the limitations and <strong>issues associated with
+geo-aware DNS</strong>.</li>
+</ul>
+</section>
+<section id="failover-load-balancing-and-session-state" data-number="0.10.12">
+<h3 data-number="1.10.12"><span class="header-section-number">1.10.12</span> Failover, Load Balancing
+and Session State</h3>
+<ul>
+<li><strong>Sticky Sessions</strong>: Keeps session state on a single
+server, offers advantages with a non-replicated system of records but
+limited in terms of fail-over and load-balancing options.</li>
+<li>Session Storage <strong>in DB</strong>: Session state is stored in a
+database, offers better scalability and fail-over options compared to
+sticky sessions.</li>
+<li>Session Storage <strong>in Distributed Cache</strong>: Session state
+is stored in a distributed cache, provides better performance and
+scalability compared to database storage, but still with fail-over
+options.</li>
+</ul>
+<p><strong>Today: Stateless servers with state in DB are the
+norm</strong>, but sticky sessions are still useful because records need
+to be replicated.</p>
+<p><strong>Compromise</strong>: Replicate sessions between pairs of
+servers, then enable switching between them as failovers</p>
+</section>
+<section id="p2p-load-balancing" data-number="0.10.13">
+<h3 data-number="1.10.13"><span class="header-section-number">1.10.13</span> P2P Load Balancing</h3>
+<ul>
+<li><strong>Evaluator Functions</strong>: Access server stats in shared
+memory and determine the outcome of a request, whether it is handled by
+its own server, redirected, or proxied.</li>
+<li><strong>Server Stats</strong>: Various metrics such as CPU usage,
+number of requests, memory usage, etc., are replicated in shared memory
+and used by evaluator functions to make load-balancing decisions.</li>
+<li><strong>Server Stat Replication</strong>: The replication of server
+stats is done through multicast.</li>
+</ul>
+</section>
+<section id="requirements-of-distributed-namedirectory-systems" data-number="0.10.14">
+<h3 data-number="1.10.14"><span class="header-section-number">1.10.14</span> Requirements of Distributed
+Name/Directory Systems</h3>
+<p><strong>Functional Requirements</strong>:</p>
+<ul>
+<li><strong>Re-bind/resolve methods</strong> to store name/value
+pairs</li>
+<li><strong>Query Interface</strong></li>
+<li><strong>Name Aliases</strong> for multiple logical hierarchies
+(<strong>DAG-structured name space</strong>)</li>
+<li><strong>Composite Names</strong> (path names)</li>
+<li><strong>Location Independence</strong> by separating address and
+location of objects</li>
+<li>Sound <strong>security system</strong> to ensure access to objects
+based on names.</li>
+</ul>
+<p><strong>Non-Functional Requirements</strong>:</p>
+<p><strong>Definition</strong>: Non-Functional Requirements are
+necessary functions of a system that <strong>ensure speed, reliability,
+availability, security, etc</strong>. Many systems fulfill functional
+requirements but fail to meet non-functional requirements.</p>
+<ul>
+<li>Persistent Name/Value Combinations (<strong>retain mapping in case
+of a crash</strong>)</li>
+<li><strong>Transacted Manipulation</strong> (all-or-nothing handling
+during application installation)</li>
+<li><strong>Federated Naming Services</strong> to combine different
+naming zones</li>
+<li><strong>Fault tolerance</strong> through replication for
+availability</li>
+<li><strong>Fast lookup</strong> through clustering, with slower writes
+and client-side caching support to reduce communication costs</li>
+</ul>
+</section>
+<section id="design-of-distributed-namedirectory-systems" data-number="0.10.15">
+<h3 data-number="1.10.15"><span class="header-section-number">1.10.15</span> Design of Distributed
+Name/Directory Systems</h3>
+<p><strong>Name Space</strong>:</p>
+<ul>
+<li>The company name space organization is a <strong>design and
+architecture concern</strong>.</li>
+<li><strong>System Management</strong> enforces rules, policies, and
+controls changes.</li>
+<li><strong>Different machines</strong> host parts of the name space
+(zones).</li>
+</ul>
+<p><strong>Naming Service</strong>:</p>
+<ul>
+<li><strong>Interfaces</strong> (naming service, factoryfinder, factory,
+account) allow administrators to <strong>hide
+versions/implementations</strong> from clients.</li>
+<li>Finders in a remote environment support <strong>object migration and
+copying</strong>.</li>
+</ul>
+</section>
+<section id="examples-of-naming-services" data-number="0.10.16">
+<h3 data-number="1.10.16"><span class="header-section-number">1.10.16</span> Examples of Naming
+Services</h3>
+<ul>
+<li>Domain Name System (DNS)</li>
+<li>X.500 Directory</li>
+<li>Lightweight Directory Access Protocol (LDAP)</li>
+<li>CORBA Naming Service</li>
+<li>Java Registry</li>
+<li>J2EE JNDI (mapped to CORBA Naming Service)</li>
+</ul>
+</section>
+<section id="google-vs.-amazon" data-number="0.10.17">
+<h3 data-number="1.10.17"><span class="header-section-number">1.10.17</span> Google vs. Amazon</h3>
+<p><strong>Amazon</strong>:</p>
+<blockquote>
+<p>Services</p>
+</blockquote>
+<ul>
+<li>Storage Services:
+<ul>
+<li>S3 (huge storage capacity)</li>
+<li>RDS</li>
+<li>Aurora</li>
+<li>Mongo</li>
+</ul></li>
+<li>Computation Services: EC2 (Virtual Machines)</li>
+<li>Queuing Services</li>
+<li>Load-balancing services</li>
+<li>Elastic map reduce</li>
+<li>Cloudfront (fast cache)</li>
+<li>Lambda</li>
+<li>Stepfunctions</li>
+<li>AI framework services</li>
+</ul>
+<p><strong>Google</strong>:</p>
+<blockquote>
+<p>Products</p>
+</blockquote>
+<ul>
+<li>Scheduling Service</li>
+<li>Map/Reduce Execution Environment</li>
+<li>F1 NewSQL DB</li>
+<li>Spanner Replicated DB</li>
+<li>BigTable NoSQL Storage</li>
+<li>Distributed File System</li>
+<li>Chubby Lock Service</li>
+<li>Graph Processing and SQL:
+<ul>
+<li>Pregel</li>
+<li>Percolator</li>
+<li>Dremel</li>
+</ul></li>
+<li>Dapper (distributed locking)</li>
+<li>Google Compute Platform</li>
+</ul>
+</section>
+<section id="best-practices-for-designing-services" data-number="0.10.18">
+<h3 data-number="1.10.18"><span class="header-section-number">1.10.18</span> Best Practices for
+Designing Services</h3>
+<ul>
+<li>Keep services <strong>independent</strong></li>
+<li><strong>Measure</strong> services</li>
+<li>Define <strong>SLAs and QoS</strong> for services</li>
+<li>Allow <strong>agile development</strong> of services</li>
+<li>Allow hundreds of services, <strong>aggregate</strong> them on
+special servers</li>
+<li><strong>Avoid middleware and frameworks</strong> that force
+patterns</li>
+<li>Keep <strong>teams small and organized around services</strong></li>
+<li>Manage <strong>dependencies carefully</strong></li>
+<li><strong>Create APIs</strong> for customer access to services</li>
+</ul>
+</section>
+<section id="grid-storage-vs.-nassan" data-number="0.10.19">
+<h3 data-number="1.10.19"><span class="header-section-number">1.10.19</span> Grid Storage
+vs. NAS/SAN</h3>
+<p><strong>Grid Storage</strong>:</p>
+<ul>
+<li><strong>Requires</strong> POSIX-Grid <strong>gateway</strong></li>
+<li><strong>Special caching may be needed</strong> for video
+(readahead)</li>
+<li>Offers <strong>huge bandwidth and scalability</strong></li>
+<li>May require <strong>special maintenance</strong></li>
+<li>May be <strong>proprietary</strong></li>
+<li>Supports <strong>parallel processing</strong></li>
+<li><strong>Requires special applications</strong></li>
+<li><strong>Compatibility</strong> with existing apps is
+<strong>questionable</strong></li>
+<li><strong>Disaster recovery</strong> across sites is
+<strong>unclear</strong></li>
+<li>Requires <strong>more electric power and space</strong></li>
+</ul>
+<p><strong>NAS/SAN</strong>:</p>
+<ul>
+<li><strong>POSIX</strong>-compatible</li>
+<li>Special <strong>caching is difficult</strong> to implement</li>
+<li>Has a <strong>hard limit</strong> in SPxx storage interface</li>
+<li>Offers <strong>simple upgrades</strong></li>
+<li>Supports <strong>standard file system</strong></li>
+<li>Allows <strong>dynamic growth</strong> of file systems via LUN
+organization</li>
+<li>Requires <strong>maintenance effort to balance</strong>
+space/use</li>
+<li><strong>Proven and fast</strong> technology</li>
+<li><strong>Expensive disaster recovery</strong> through smaller
+replicas</li>
+<li>Several <strong>different</strong> file system
+<strong>configurations are possible</strong></li>
+<li>Without virtual SAN, <strong>hot-spots can occur</strong> on a
+single drive</li>
+<li><strong>Longer drive-rebuild times</strong></li>
+</ul>
+<p>To summarize:</p>
+<ul>
+<li><strong>Watch out for proprietary lock-in</strong> and compatibility
+issues with grid storage</li>
+<li><strong>Grid storage requires programming skills</strong> for
+solutions (map/reduce with Hadoop)</li>
+<li><strong>NAS/SAN is a proven and faster</strong> technology</li>
+<li><strong>NAS/SAN won’t be replaced</strong> by grid storage (which is
+specialized)</li>
+</ul>
+</section>
+<section id="cqrs-command-query-responsibility-segregation" data-number="0.10.20">
+<h3 data-number="1.10.20"><span class="header-section-number">1.10.20</span> CQRS (Command Query
+Responsibility Segregation)</h3>
+<ul>
+<li><strong>Separates the responsibilities of reading data</strong>
+(queries) <strong>and modifying data</strong> (commands) into separate
+objects or services.</li>
+<li><strong>Improves scalability and performance</strong> by allowing
+reads and writes to be <strong>optimized separately</strong>.</li>
+<li><strong>Promotes event-driven architecture</strong> by allowing
+commands to trigger domain events.</li>
+<li>Simplifies domain modeling by <strong>reducing the complexity of
+aggregates</strong>.</li>
+<li><strong>Increases consistency</strong> by using separate models for
+reads and writes.</li>
+<li><strong>Reduces the coupling</strong> between the read and write
+sides of the system.</li>
+</ul>
+</section>
+<section id="requirements-of-caching-services" data-number="0.10.21">
+<h3 data-number="1.10.21"><span class="header-section-number">1.10.21</span> Requirements of Caching
+Services</h3>
+<ul>
+<li><strong>Scalable</strong> with ability to add machines</li>
+<li><strong>Avoid “thundering herds”</strong> due to placement
+changes</li>
+<li><strong>Supports replication</strong> of cache entries</li>
+<li><strong>High performance</strong> required</li>
+<li>Optional <strong>disk backup</strong> support</li>
+<li>Supports <strong>various storage mediums</strong>, from RAM to
+SSD</li>
+<li>Supports <strong>different cache replacement policies</strong> with
+caution.</li>
+</ul>
+</section>
+<section id="handling-changing-machine-counts-in-caching-services" data-number="0.10.22">
+<h3 data-number="1.10.22"><span class="header-section-number">1.10.22</span> Handling Changing Machine
+Counts in Caching Services</h3>
+<ul>
+<li>Problem: Changing Machine Count</li>
+<li>Solution: <strong>Consistent Hashing (Ring)</strong></li>
+<li><strong>Machines are mapped into a ring</strong> and their
+<strong>position determines the key-space they are responsible
+for</strong>.</li>
+<li>Machines can be assigned multiple virtual positions.</li>
+</ul>
+</section>
+<section id="consistent-hashing-algorithms" data-number="0.10.23">
+<h3 data-number="1.10.23"><span class="header-section-number">1.10.23</span> Consistent Hashing
+Algorithms</h3>
+<p><strong>Simple Consistent Hashing Algorithm:</strong></p>
+<ul>
+<li>URLs and caches are <strong>mapped to points on a circle</strong>
+using a standard hash function.</li>
+<li>URL assigned to <strong>closest cache in clockwise
+direction</strong>.</li>
+<li>Adding a new cache only reassigns the closest URLs to it,
+<strong>items don’t move between existing caches</strong>.</li>
+</ul>
+<p><strong>Dynamo Consistent Hashing Algorithm:</strong></p>
+<ul>
+<li><strong>Separates placement and partitioning.</strong></li>
+<li>Uses <strong>virtual nodes</strong> assigned to real machines for
+more flexibility.</li>
+<li>Virtual node is responsible for multiple real nodes.</li>
+<li>Improved load balancing due to <strong>additional
+indirection</strong>.</li>
+</ul>
+</section>
+<section id="cache-patterns" data-number="0.10.24">
+<h3 data-number="1.10.24"><span class="header-section-number">1.10.24</span> Cache Patterns</h3>
+<p><strong>Pull</strong>:</p>
+<ul>
+<li>Occurs <strong>during request time</strong></li>
+<li>Concurrent misses and client crashes <strong>can result in outdated
+caches</strong></li>
+<li><strong>Complicated handling</strong> of concurrent misses and
+updates</li>
+<li>Can be <strong>slow and dangerous for backends</strong></li>
+</ul>
+<p><strong>Push</strong>:</p>
+<ul>
+<li>Automated <strong>push updates cached values</strong></li>
+<li>Should <strong>only</strong> be used <strong>for values that are
+always needed</strong></li>
+</ul>
+<p><strong>Pre-warmed:</strong></p>
+<ul>
+<li>The system <strong>loads the cache before the application
+starts</strong> serving clients</li>
+<li>Used <strong>for big applications with pull caches</strong> to avoid
+boot issues</li>
+</ul>
+<p><strong>General consideration</strong>: Be aware of LRU or clocked
+invalidations as cache is mission critical.</p>
+</section>
+<section id="cache-design-considerations" data-number="0.10.25">
+<h3 data-number="1.10.25"><span class="header-section-number">1.10.25</span> Cache Design
+Considerations</h3>
+<ul>
+<li><strong>Kinds</strong> of information fragments</li>
+<li><strong>Lifecycle</strong> of fragments</li>
+<li><strong>Validity</strong> of fragments</li>
+<li><strong>Effects</strong> of fragment invalidation</li>
+<li><strong>Dependencies</strong> between fragments, pages, etc.</li>
+</ul>
+</section>
+<section id="local-vs.-distributed-events" data-number="0.10.26">
+<h3 data-number="1.10.26"><span class="header-section-number">1.10.26</span> Local vs. Distributed
+Events</h3>
+<p><strong>Local</strong>:</p>
+<ul>
+<li>Observer updates sent on one thread</li>
+<li>If observer doesn’t return, mechanism stops</li>
+<li>If observer calls back to observed during update call, deadlock can
+occur</li>
+<li>Solution doesn’t scale and is not reliable (e.g. observer crashes
+result in lost registrations)</li>
+<li>Does not work for remote communication</li>
+</ul>
+<p><strong>Distributed</strong>:</p>
+<ul>
+<li>Various combinations of <strong>push and pull models</strong>
+possible</li>
+<li>Receivers can install <strong>filters</strong> using a constraint
+language to filter content (reduces unwanted notifications)</li>
+</ul>
+</section>
+<section id="asynchronous-event-processing" data-number="0.10.27">
+<h3 data-number="1.10.27"><span class="header-section-number">1.10.27</span> Asynchronous
+Event-Processing</h3>
+<ul>
+<li>Publisher and subscriber communicate through <strong>interaction
+middleware</strong></li>
+<li>Used to <strong>decouple components</strong> and asynchronous
+sub-requests from synchronous main requests (so that multiple fast tasks
+can run parallel to a slow main task)</li>
+<li>Implemented as <strong>Message-Oriented-Middleware (MOM)</strong> or
+socket-based communication library</li>
+<li>Can be implemented in <strong>broker-less or brokered
+mode</strong>.</li>
+</ul>
+</section>
+<section id="features-of-event-driven-interaction" data-number="0.10.28">
+<h3 data-number="1.10.28"><span class="header-section-number">1.10.28</span> Features of Event-Driven
+Interaction</h3>
+<ul>
+<li><strong>Basic Event</strong>: Any entity can send and receive events
+without restrictions or filtering.</li>
+<li><strong>Subscription</strong>: A receiver can subscribe to specific
+events, making event delivery more efficient.</li>
+<li><strong>Advertisement</strong>: The sender informs receivers about
+possible events, reducing the need for broadcasting.</li>
+<li><strong>Content-Based Filtering</strong>: The sender, middleware, or
+receiver can apply filtering based on event content.</li>
+<li><strong>Scoping</strong>: Administrative components can manipulate
+event routes, enabling invisible communication between components.</li>
+</ul>
+</section>
+<section id="types-of-message-oriented-middleware-moms" data-number="0.10.29">
+<h3 data-number="1.10.29"><span class="header-section-number">1.10.29</span> Types of Message Oriented
+Middleware (MOMs)</h3>
+<p><strong>Centralized Message-Oriented-Middleware:</strong></p>
+<ul>
+<li>Collects all notifications and subscriptions in one central place,
+enabling <strong>easy event matching and filtering</strong></li>
+<li>Has a <strong>high degree of control</strong> and no
+security/reliability issues on clients</li>
+<li>Can create <strong>scalability and single-point-of-failure
+problems</strong></li>
+</ul>
+<p><strong>Clustered Message-Oriented-Middleware:</strong></p>
+<ul>
+<li>Provides <strong>scalability</strong> at <strong>higher
+communication costs</strong></li>
+<li>Has lots of routing/filter-tables at cluster nodes, making
+<strong>filtering and routing of notifications expensive</strong></li>
+</ul>
+<p><strong>Simple P2P Event Libraries:</strong></p>
+<ul>
+<li>Local libraries are aware of each other, but <strong>components are
+de-coupled</strong></li>
+<li>Broker-less architecture is <strong>faster</strong> than brokered
+ones</li>
+<li><strong>Does not provide</strong> at-most-once semantics or
+<strong>protection against message loss</strong></li>
+<li>Guarantees <strong>atomicity</strong> and <strong>possibly
+FIFO</strong></li>
+<li>Examples include ZeroMQ, Aaron, and Nanomsg</li>
+</ul>
+<p><strong>Flooding Protocols:</strong></p>
+<ul>
+<li>Notifications travel towards <strong>subscriptions</strong>, which
+are only kept at <strong>leaf brokers</strong></li>
+<li>Advantages include that <strong>subscriptions become effective
+quickly</strong>, and notifications are guaranteed to arrive
+everywhere</li>
+<li>Price is <strong>many unnecessary notifications</strong> to leaf
+nodes without subscribers</li>
+</ul>
+</section>
+<section id="zeromq" data-number="0.10.30">
+<h3 data-number="1.10.30"><span class="header-section-number">1.10.30</span> ZeroMQ</h3>
+<ul>
+<li><strong>Brokerless</strong> socket library for messaging, with
+message filtering</li>
+<li>Connection patterns include <strong>pipeline, pub/sub, and
+multi-worker</strong></li>
+<li><strong>Various transports</strong>, including in process, across
+local process, across machines, and multicast groups</li>
+<li><strong>Message-passing process model</strong> without the need for
+synchronization</li>
+<li><strong>Multi-platform and multi-language</strong> support</li>
+<li>“Suicidal snail” fail-fast mechanism to <strong>kill slow
+subscribers</strong></li>
+</ul>
+</section>
+<section id="horizontal-vs.-vertical-sharding" data-number="0.10.31">
+<h3 data-number="1.10.31"><span class="header-section-number">1.10.31</span> Horizontal vs. Vertical
+Sharding</h3>
+<p><strong>Horizontal</strong>: Per (database) row, e.g. first 100 users
+are in shard 1, 200 in shard 2 etc.</p>
+<p><strong>Vertical</strong>: Per (database) column, e.g. profile and
+email is in shard 1, photos and messages in shard 2 etc.</p>
+</section>
+<section id="sharding-strategies" data-number="0.10.32">
+<h3 data-number="1.10.32"><span class="header-section-number">1.10.32</span> Sharding Strategies</h3>
+<ul>
+<li>Allow adding heterogenous hardware in the future</li>
+<li>Sharding should not make app code unstable</li>
+<li>Sharding should be transparent to the app</li>
+<li>Sharding and placement strategies should be separate</li>
+</ul>
+</section>
+<section id="horizontal-sharding-functions" data-number="0.10.33">
+<h3 data-number="1.10.33"><span class="header-section-number">1.10.33</span> Horizontal Sharding
+Functions</h3>
+<p>Algorithms applied to the key (often: user ID) to create different
+groups (shards):</p>
+<ul>
+<li><strong>Numerical range</strong>: users 0-100000, 100001-200000,
+etc.</li>
+<li><strong>Time range</strong>: 1970-80, 81-90, 91-2000, etc.</li>
+<li><strong>Hash and modulo</strong> calculation</li>
+<li><strong>Directory-based mapping</strong> using a meta-data table for
+arbitrary mapping from key to shard</li>
+</ul>
+</section>
+<section id="consequences-of-sharding" data-number="0.10.34">
+<h3 data-number="1.10.34"><span class="header-section-number">1.10.34</span> Consequences of
+Sharding</h3>
+<ul>
+<li><strong>No more SQL <code>JOIN</code>s</strong>, leading to lots of
+copied data</li>
+<li>Increased need for <strong>partial requests</strong> for data
+aggregation</li>
+<li><strong>Expensive distributed transactions</strong> required for
+consistency (if needed)</li>
+<li>Vertical sharding distributes related data types from one user,
+while horizontal sharding distributes related users from each other
+(<strong>bad for social graph processing</strong>)</li>
+<li><strong>SQL limitations</strong> due to mostly key/value queries and
+problems with automatic DB-Sequences</li>
+<li>Every change <strong>requires corresponding application
+changes</strong></li>
+</ul>
+</section>
+<section id="relationships" data-number="0.10.35">
+<h3 data-number="1.10.35"><span class="header-section-number">1.10.35</span> Relationships</h3>
+<ul>
+<li>Within the database, <strong>referential integrity</strong> rules
+protect containment relationships</li>
+<li><strong>No equivalent in object space</strong></li>
+<li>No protection in distributed systems</li>
+</ul>
+<p>For example when an employee leaves:</p>
+<ul>
+<li>All rights are cancelled</li>
+<li>Disc-space is archived and erased</li>
+<li>Databases for authentication and application-specific DBs are
+updated</li>
+<li>Badge no longer works</li>
+<li>All equipment has been returned</li>
+</ul>
+</section>
+<section id="functional-requirements-of-relationship-services" data-number="0.10.36">
+<h3 data-number="1.10.36"><span class="header-section-number">1.10.36</span> Functional Requirements of
+Relationship Services</h3>
+<ul>
+<li><strong>Definition of relations between objects</strong> without
+modifying those objects</li>
+<li>Support for <strong>different types of relations</strong></li>
+<li>Ability to <strong>create graphs of relations</strong></li>
+<li>Ability to <strong>traverse relationship graphs</strong></li>
+<li>Support for <strong>reference and containment
+relations</strong></li>
+</ul>
+</section>
+<section id="why-relationship-services-failed" data-number="0.10.37">
+<h3 data-number="1.10.37"><span class="header-section-number">1.10.37</span> Why Relationship Services
+Failed</h3>
+<p><strong>The good</strong>:</p>
+<ul>
+<li>Powerful <strong>modeling tool</strong></li>
+<li>Helps with creation, migration, copy, and deletion of composite
+objects</li>
+<li>Maintains referential integrity</li>
+</ul>
+<p><strong>The bad</strong>:</p>
+<ul>
+<li>Tends to create <strong>many small server objects</strong></li>
+<li><strong>Performance impact</strong></li>
+<li>Not supported by many CORBA vendors for a long time</li>
+<li>EJB only supported with local objects in the same container.</li>
 </ul>
 </section>
 </section>
