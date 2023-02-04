@@ -500,14 +500,61 @@ Relationship Services</a></li>
 <li><a href="#why-relationship-services-failed"><span class="toc-section-number">10.37</span> Why Relationship Services
 Failed</a></li>
 </ul></li>
+<li><a href="#distributed-services-and-algorithms-ii"><span class="toc-section-number">11</span> Distributed Services and Algorithms
+II</a></li>
+<li><a href="#design-of-distributed-systems"><span class="toc-section-number">12</span> Design of Distributed Systems</a>
+<ul>
+<li><a href="#overview-9"><span class="toc-section-number">12.1</span>
+Overview</a></li>
+<li><a href="#design-principles-for-distributed-systems"><span class="toc-section-number">12.2</span> Design Principles for Distributed
+Systems</a></li>
+<li><a href="#sharing-ressources-and-data"><span class="toc-section-number">12.3</span> Sharing Ressources and
+Data</a></li>
+<li><a href="#connection-pooling"><span class="toc-section-number">12.4</span> Connection Pooling</a></li>
+<li><a href="#horizonal-scalingparallelization"><span class="toc-section-number">12.5</span> Horizonal
+Scaling/Parallelization</a></li>
+<li><a href="#caching-and-replication"><span class="toc-section-number">12.6</span> Caching and Replication</a></li>
+<li><a href="#end-to-end-argument"><span class="toc-section-number">12.7</span> End-to-End Argument</a></li>
+<li><a href="#design-methodology"><span class="toc-section-number">12.8</span> Design Methodology</a></li>
+<li><a href="#uncomfortable-real-world-questions"><span class="toc-section-number">12.9</span> Uncomfortable Real-World
+Questions</a></li>
+<li><a href="#architecture-fields"><span class="toc-section-number">12.10</span> Architecture Fields</a></li>
+<li><a href="#architecture-validation"><span class="toc-section-number">12.11</span> Architecture Validation</a></li>
+<li><a href="#problems-with-naive-portal-designs"><span class="toc-section-number">12.12</span> Problems with Naive Portal
+Designs</a></li>
+<li><a href="#improving-the-gui-architecture"><span class="toc-section-number">12.13</span> Improving the GUI
+Architecture</a></li>
+<li><a href="#improving-the-system-architecture"><span class="toc-section-number">12.14</span> Improving the System
+Architecture</a></li>
+<li><a href="#lessons-learned-from-naive-portal-designs"><span class="toc-section-number">12.15</span> Lessons Learned from Naive
+Portal Designs</a></li>
+<li><a href="#fan-out-architecture"><span class="toc-section-number">12.16</span> Fan-Out Architecture</a></li>
+<li><a href="#reliability-issues-in-dependencies"><span class="toc-section-number">12.17</span> Reliability Issues in
+Dependencies</a></li>
+<li><a href="#distribution-architcture"><span class="toc-section-number">12.18</span> Distribution
+Architcture</a></li>
+<li><a href="#service-access-layer"><span class="toc-section-number">12.19</span> Service Access Layer</a></li>
+<li><a href="#information-architecture-to-analyze-caching"><span class="toc-section-number">12.20</span> Information Architecture (to
+analyze Caching)</a></li>
+<li><a href="#fragments"><span class="toc-section-number">12.21</span>
+Fragments</a></li>
+<li><a href="#physical-and-process-architecture"><span class="toc-section-number">12.22</span> Physical and Process
+Architecture</a></li>
+<li><a href="#latency-reduction-tolerance-in-fan-out-architectures"><span class="toc-section-number">12.23</span> Latency Reduction &amp;
+Tolerance in Fan Out Architectures</a></li>
+<li><a href="#avoiding-getting-stuck-in-fan-out-architectures"><span class="toc-section-number">12.24</span> Avoiding Getting Stuck in
+Fan-Out Architectures</a></li>
+<li><a href="#circuit-breakers"><span class="toc-section-number">12.25</span> Circuit Breakers</a></li>
+<li><a href="#bulkheads"><span class="toc-section-number">12.26</span>
+Bulkheads</a></li>
+<li><a href="#blast-reduction"><span class="toc-section-number">12.27</span> Blast Reduction</a></li>
+</ul></li>
 </ul>
 </div>
-<div id="meta" class="title-slide slide section level1" number="1">
+<div id="meta" class="slide section level1" number="1">
 <h1><span class="header-section-number">1</span> Meta</h1>
-
-</div>
-<div id="contributing" class="slide section level2" number="1.1">
-<h1><span class="header-section-number">1.1</span> Contributing</h1>
+<h2 id="contributing"><span class="header-section-number">1.1</span>
+Contributing</h2>
 <p>These study materials are heavily based on <a href="https://www.hdm-stuttgart.de/vorlesung_detail?vorlid=5212233">professor
 Kriha’s “Verteilte Systeme” lecture at HdM Stuttgart</a> and prior work
 of fellow students.</p>
@@ -519,9 +566,8 @@ issue on GitHub (<a href="https://github.com/pojntfx/uni-distributedsystems-note
 </div>
 <p>If you like the study materials, a GitHub star is always appreciated
 :)</p>
-</div>
-<div id="license" class="slide section level2" number="1.2">
-<h1><span class="header-section-number">1.2</span> License</h1>
+<h2 id="license"><span class="header-section-number">1.2</span>
+License</h2>
 <div class="figure">
 <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAJsAAAAzCAYAAACALnoPAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAADzQAAA80BCukWCQAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAA1dSURBVHja7V15uI9VHr9cO1doxLWEeOxCjAlDeYiHrjuomKmMbFfIDY+tHpRlkoloo2QZkiVbChXTpnDR1FhnapAZKUvK7doud5nv0ed95jtf73LO+3vf371mfn98Hu7Z3/N+3vM93+WcX1xubm5cDDGYIuW2lDKEjoTRhKWEvYTLhFxCJmE34QVCVatObOJiMCFYPOFuwnoQKhc4R9hOeJUwmzCXkEbIQl6KEdlSmqXcRciNITDkEA5ex2P/gkg0hFCdUMCBnA0JOwhXCM1MyPZEjCCBIo2wOh+P7zzhFCGTpZ0hzCLilDZYDSsS0gmbTMi2OUaQQDGasCifjekKYTthN+E40rIJSwh3RiB+d6oVTpdoBQk/xQgSKG4hPJ+PVtkFhPVY0az0jYSGAez1PiJ8oUu2xjFyBIo9mNc/5PE41Co2grBVpKuFpXeAioXSTPfokm1wFB78kkDO/zDZXsa8jsuj/pViMoAwD2KS5+1Qq26ARGsKjXWCLtmWhvzwo2z6/Jrlq43qs4TuhHqEOpqoS+hKmEE4IfrsjHxTqP57EeYQzrH2uolyR1ye92E845Aok+wbQgphGOEHkZdFmEIoFLC5RNngLhHK65LtSIgTMMGmv8pCK2oe8UM3I/vQf9pMV/vQANocgfYuEAqz9NI2KwbHr1Cud5RIpog1htDhqsni2vx/EtqEYJerBkPvQi07Gw0iMcRJeMqhz15OZejvPoQ3NTDUhWxbRF5LzTZTRL1H0N4nIr2DyzMrEpZAuaQo2MOUElKf8JpDmcOEKi7vvxihBqGW4oIB0YrAxqZWtfq6ZLsnpImYxfpQD9KC/c21tCSfJphUUW8yy5vikueGAQ7biz+K9Alu+yVWrkqIRFOrVTuI9x8dyiiJVdXmnScQfkt4g5DBymfqShl4EdRerZ+2uwp7paAnYi5rvzxhv/W1I+1zVvYXwgRzVrOPFuI53mN5XUTeFs02G4h6h5DeXaRvdGljoyj7XQjzu5BwAwzxTorWUUI1MRb1Lp6DgqY1rw5E6wuizeXpOmRLC3gilCGzANouQdiliCC+qiyU/YcYSwMDzbYIq1dAfN3lBIHTNdo8a42bvRgrL1GM84xLO38SZdcHOLeq32RCKcJaD+NtMzaGkoSJGrbUfxGKexCtB0TnNiVKtcmmGiZcDnAyllsbc/o3nrAB6Y+yPjuy8q+J8fTX7GeHqFeX5X3pk8DviXrJ1goh0mt7tDNDlB8f0NwqaVCdUJOwz6PsRPRdGBrxCc0+engQLZWQTdhPuGZ/50W2tgESbS1Xq2HjsfJqs/RJLH2IGM+rmn3NtlEqrLzFIm+AZptPinpPWR+QS192GCvKdwpgbhdjYbjLY1VV2AmS9VSSw6CP9S4kK0CYAdH5oQo/sivnRbagjI4bhVjjhDok+nyf5d0m8vbprmxKXDHslTYu1uZ8zTY7iXofylUZ6XM92uknypeLUNsciXZGsu2HW/neIJxJP8pXmuBAtKKElSDaGik6Tcj2dgBE+7NSn1mbo0T+iyyvEDOUnhcroZftShdNxDPu13ypZVideDZOqYj81aOtZJt5PuTjObKxrSgMR7lOnQwRxaGDv6v9qcuKtojFtV0kDDQmGzbV30f4YrcKLdPO7XUPy2/O0j82sF3pQhEk3geBD4ixNEH6RWHMLaWxunS2mevlhs9xGbZIpdysCNl8crOG9nkTIRk+UEW6B03JVjeASIIEsZexU8PLszLDWfr0EDbSH/gMCJ3v4Cv+VKS302grycUToatpd0W9V0Ik2m4TIy4TqYcJn5uSrV+EmhEXOz0dvviDok8eTChtVxuC9lh4GF85+ot6Sxw0y8c02rITo782WJnbo870EIm2ysvE4UK4VwgZpmRb4HOg+4QhtquL+WSui4Gzosg77fD1rfAA1866GhhfOeqLel/JLQDS39Joq7uDiemihp2vVRSiRaZye6IPsikl4SdTsv3Nx0C/JFQQ+yw3a/TvWNma3LotxlLLof4dHgpOARHdUF7kt1ARqBrgxtxbWXuVRHunNOboXoexvuNSR31oTVHu4ZBIpsbeLULHezEccFmpTTbq9EYf8WTKoVtZiIbzHnUqOdinVojxOEVHdBGkuFXUq+NkYvEZ5VEDVvSr1nSRV1Nznno6tD3MobzafrRjH0dWCERb66RxGpItGQpCLxOymUYjqBdQXawofbHhd8IgF4OttF29pDmOl0S9h1jeUhuD9WxNLLUxT6wU7T2oOca+DnPuRNYxyC+qtOKASXZWRuQiyqMbjO4boOi9S2itKUKVqyrBhGzTDAb8rRJzAawaB2W8F8v7i+ZYHhD1XmZ5Q30ac50wXLT3oma9sQZbl7Us7+mAiabsZ3UYwVRg6jIX/+hqD6J1xqo2y8jOpmxcBnK+XgBE42JbOtFLwHGsdYjExcDazIcx1w23+/wgnnWZh8li/1s6JPGp9ocVla8TNr4MP1o0I1pJwtdASW2ywSJ9QTPCoDGrVx0unDRNJNo4ta8ewvDpnz0h6nED6wXhjbghwjMOkXwQr7uQrQnznjQMSXyqj+J1TYLl2sXr2ZDN8ot2citn98AtNDpP50F0aqMPBUF38KdFn9OdvnwldjTbXOdiYN0a8On+7REELOx0IZtl97s/IHtnEJjDvS42ROuKaxaWeEmwOB/W7HOWvYfFdZleI/Cm6HObk7aGcGydNse4GFilN2JihC9AfhCjTTblDkS7CXO7wCUwIdoHlgd7rGitCRcIBwll/ZBtlcsALlhqOMqWcThA4XkaXGg/3DlcVYznpGabbVwMrN0NbFo6uE+0t8awfgWbeX8e81tJHPzJzgOiHfY6AY97PH4gHOM3FZmS7VuXfUonsSfa4fNhWrJ22rD042Istxg4pou7GFgTXQy9fiA/iG8M67cV9avjg5NnGUZFmWTKi/Ekj9JxOTV1nHDGOsxiTDY8tNPLTBar0QcRPFARh5i51WI8D2i2ucvFZnU04AAD+UH4ObQy0MbXepaHq4cUku+Gt3UOJxO5ahOOEM4TWppYHeI0Xm4WFxvQVjdG8FBbXRzsswI5r/jfK8JyF0OvH6zxOSZ+lG4mS28IUTneps6xKJDsiPQZuxDtdsJp5fsktDedgzgPS302tzAjaHBVhA83zUWknYLt50YfLzMepoNJYp+T6tMboX16X3N8j7M2trH0xdiXlrKpcyJkkTnJS2Qyov0GyoASn439zEGcR5Rpjrh/IzMgLYe36RQZexhWbl2cc2jrmGY5bTFqOC4L34ltSQl8bCetAyg2ZHs3BJJlY8GoqUmygoTJhBwcZKnqV+LIg6nZeWzT+X9CB2bEbeNAtqEB9nfy6kV+7HCRBtHKEt5h5wsSItnexK4xzTtMwf0bl50CFZUiFWHY9yWcak8yvTCGiNUEioA6mjcuiL10WNeYfgUnOEcQq+ZnhGew2c70OKCyCJELVwyPrEULW3EYKE0jJm+qwRYmA6f/B/FoacNLmh/HBc3KtNExqItmwrrGdDzMD92A/inBuE0ScQdFDXapix2eg4ljDg49L8uHZMvEyjNTU8FIgPI0D6folalik3LTgYz34YB0wQji0RqwQyubI9mfOZIthGtM24uQG3VKp5WKlMDmNA0X1vRi0RfKE3E/Ql3sIijq4abGbEzyVKRvwhagL2LO1iGK5Gac9i4Ewqu+PkGg4L2o+xCCB5Soak34JdO2eyAAdCSUjGEI0FwfMOl65ZMr58chFk2ZNQaF0U8Y15hm4yusgtWlKcReOYi2g3Dcq71EKoiiohyqIX8aXvo1kQfYwyTC75mFoM0qcD/1BDGOw+i8DiRKhGbbCkGQDVBnM/5/BB/BFkQEqwiU71kM2S58PGOxQhYPSCu30CePidaIsAur2fvKOxBWX3Eh3IC4B2q9WjE+wssayo7pTcJqUwxoj31YPEuTZPsUK98Z3NBTFitQP7bXfAKh5fvYedCZ7MqvZIjU2lj5mkMU7cWKVQZ9j7es6ey6goJsbCUCJtuEPCJZJcICKAAZhMFOv2cQNNmCvMZUKQN3iLSm7JieEoUDcatQH9iSHoNoS8fGVmpgqSDKUZC4LMRvEsTpITit38JZSutymp5oO8c6jmeFczOfbBuU2Yt21+HvPiz+qxa2GU8z8R0U5kWZZAmEqXA3KaItJFSJRt9299dGiuFQ67mlujI7KHIAq1l5lM2B9toFonagTSDiUdwOWRSiz7oOahtWqAosbHoEi49LRaDkZYypM0R2RRZEMAWrWmMoHp+B+ItYIGM/tNNZ8wSVCX6MEskKEx4hnILI3KAiN6JJ9LCvMQ3j2s7rqV1dzAiRZOoXVibCzZSL35RqmxeiO45pZjHk7Uf0aMAka0VYxn4p72NCt7xURsK6xjQGf3gjQjF5J2E64QAIdh7XITTKD7/qF+fjrq4Ywv+tAmWUbqRBsMqE/vBbpoNgOTDMjnS6lC8vyTbE4zBxDNHBmKt3l/xMFos0hwjz8RueFpbiyvdT7F40FZ69gvB7dX1Vfv290tiPtubPXyhOIjwDY2sWI1Uu/JVqk7+EMB6HTuKvh2f7N9VeRpHFJFpXAAAAAElFTkSuQmCC" width="128" alt />
 <p class="caption">AGPL-3.0 license badge</p>
@@ -529,9 +575,8 @@ issue on GitHub (<a href="https://github.com/pojntfx/uni-distributedsystems-note
 <p>Uni Distributed Systems Notes (c) 2023 Felicitas Pojtinger and
 contributors</p>
 <p>SPDX-License-Identifier: AGPL-3.0 </p>
-</div>
-<div id="course-timeline" class="slide section level2" number="1.3">
-<h1><span class="header-section-number">1.3</span> Course Timeline</h1>
+<h2 id="course-timeline"><span class="header-section-number">1.3</span>
+Course Timeline</h2>
 <p>This course on distributed systems covers a range of topics related
 to the design, implementation, and management of distributed systems.
 The course is divided into several sections, including:</p>
@@ -567,41 +612,19 @@ replication.</li>
 covers the design and implementation of various distributed services and
 algorithms, including load balancing, message queues, caching, and
 consistent hashing.</li>
-<li><strong>Distributed services II</strong>: This section covers more
-advanced topics in distributed services, including persistence,
-transactions, eventual consistency, and coordination.</li>
-<li><strong>Distributed security</strong>: This section covers the key
-considerations for securing distributed systems, including
-authentication, authorization, and access control (AAA), secure
-delegation, and backend security.</li>
+<li><strong>Distributed services and algorithms II</strong>: This
+section covers more advanced topics in distributed services, including
+persistence, transactions, eventual consistency, and coordination.</li>
 <li><strong>Design of distributed systems</strong>: This section covers
 the methodology and principles for designing distributed systems, as
 well as examples of different architectures and design patterns.</li>
-<li><strong>System management in distributed systems</strong>: This
-section covers the key considerations for managing and maintaining
-distributed systems, including monitoring, chaos monkeys, and patterns
-of resilience.</li>
-<li><strong>Service architectures</strong>: This section covers
-different service architectures, including service-oriented architecture
-(SOA) and microservices.</li>
-<li><strong>Peer-to-peer systems and the distributed web</strong>: This
-section covers the use of peer-to-peer systems and technologies, such as
-distributed hashtables, blockchain, onion routing, and distributed
-consensus, in the context of the distributed web.</li>
-<li><strong>Ultra-large-scale systems</strong>: This section covers the
-design and implementation of ultra-large-scale systems, including
-considerations related to scalability, performance, network design, and
-datacenter design.</li>
 </ol>
 </div>
-
-<div id="introduction-to-distributed-systems" class="title-slide slide section level1" number="2">
+<div id="introduction-to-distributed-systems" class="slide section level1" number="2">
 <h1><span class="header-section-number">2</span> Introduction to
 Distributed Systems</h1>
-
-</div>
-<div id="overview" class="slide section level2" number="2.1">
-<h1><span class="header-section-number">2.1</span> Overview</h1>
+<h2 id="overview"><span class="header-section-number">2.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Definition of a distributed system (DS)</li>
 <li>Challenges for developers working with DS</li>
@@ -613,10 +636,8 @@ Distributed Systems</h1>
 latency</li>
 <li>Resources related to DS</li>
 </ol>
-</div>
-<div id="definition-of-a-distributed-system" class="slide section level2" number="2.2">
-<h1><span class="header-section-number">2.2</span> Definition of a
-Distributed System</h1>
+<h2 id="definition-of-a-distributed-system"><span class="header-section-number">2.2</span> Definition of a Distributed
+System</h2>
 <p>A system that is made up of independent agents that interact with
 each other and produce a cohesive behavior. The interactions and events
 in this system happen concurrently and in parallel, meaning that they
@@ -625,9 +646,8 @@ system is often used to perform tasks that are too complex or large for
 a single agent to handle, and the concurrent and parallel nature of the
 interactions allows for efficient and effective processing of the
 tasks.</p>
-</div>
-<div id="emergence" class="slide section level2" number="2.3">
-<h1><span class="header-section-number">2.3</span> Emergence</h1>
+<h2 id="emergence"><span class="header-section-number">2.3</span>
+Emergence</h2>
 <p>Four types of emergence: strong emergence, weak emergence,
 evolutionary emergence, and constructed emergence.</p>
 <ul>
@@ -645,10 +665,8 @@ designed, such as a distributed system.</li>
 </ul>
 <p><strong>Emergent failure modes</strong>: Instances of cascading
 failures in constructed emergence.</p>
-</div>
-<div id="why-distributed-systems-hard-for-devs" class="slide section level2" number="2.4">
-<h1><span class="header-section-number">2.4</span> Why Distributed
-Systems hard for Devs?</h1>
+<h2 id="why-distributed-systems-hard-for-devs"><span class="header-section-number">2.4</span> Why Distributed Systems hard
+for Devs?</h2>
 <ul>
 <li>One reason is <strong>emergence</strong>, which refers to the
 complex and often unexpected behaviors that can arise when multiple
@@ -659,7 +677,7 @@ distributed system.</li>
 <li><strong>Errors</strong> are also an inherent part of distributed
 systems, and developers must be prepared to handle and troubleshoot
 these errors.</li>
-<li>Additionally, there is no <strong>“free lunch”*</strong> in
+<li>Additionally, there is no <strong>“free lunch”</strong> in
 distributed systems, meaning that there is always some trade-off or cost
 associated with every design decision.</li>
 <li>Finally, developing a distributed system involves <strong>total
@@ -669,10 +687,7 @@ time-consuming process.</li>
 failures that are expected</strong> and how they are handled, which can
 add to the complexity of developing a distributed system.</li>
 </ul>
-</div>
-<div id="why-distribute-a-system" class="slide section level2" number="2.5">
-<h1><span class="header-section-number">2.5</span> Why Distribute a
-System?</h1>
+<h2 id="why-distribute-a-system"><span class="header-section-number">2.5</span> Why Distribute a System?</h2>
 <p>There are several reasons why an organization might choose to use a
 distributed system:</p>
 <ul>
@@ -697,10 +712,8 @@ ensure that it is only accessed by authorized users.</li>
 designed to use cheaper horizontal scaling or free resources, which can
 help to reduce the cost of processing each request.</li>
 </ul>
-</div>
-<div id="examples-of-distributed-systems" class="slide section level2" number="2.6">
-<h1><span class="header-section-number">2.6</span> Examples of
-Distributed Systems</h1>
+<h2 id="examples-of-distributed-systems"><span class="header-section-number">2.6</span> Examples of Distributed
+Systems</h2>
 <p>There are many examples of distributed systems, including:</p>
 <ul>
 <li><strong>Energy grids and telecom networks</strong>: These systems
@@ -732,10 +745,8 @@ functioning of the system.</li>
 a distributed system in nature, with each bird communicating and
 coordinating with the others to achieve a common goal.</li>
 </ul>
-</div>
-<div id="characteristics-of-distributed-systems" class="slide section level2" number="2.7">
-<h1><span class="header-section-number">2.7</span> Characteristics of
-Distributed Systems</h1>
+<h2 id="characteristics-of-distributed-systems"><span class="header-section-number">2.7</span> Characteristics of Distributed
+Systems</h2>
 <ul>
 <li><strong>Influence of distribution topology and remoteness</strong>:
 The physical layout of a distributed system and the distance between its
@@ -771,10 +782,8 @@ behavior of distributed systems are often shaped by the failure models
 that are used to define how the system should respond to different types
 of failures.</li>
 </ul>
-</div>
-<div id="eight-fallacies-of-distributed-computing" class="slide section level2" number="2.8">
-<h1><span class="header-section-number">2.8</span> Eight Fallacies of
-Distributed Computing</h1>
+<h2 id="eight-fallacies-of-distributed-computing"><span class="header-section-number">2.8</span> Eight Fallacies of Distributed
+Computing</h2>
 <ul>
 <li><strong>The network is reliable</strong>: This fallacy assumes that
 the network is always available and that communication between
@@ -817,10 +826,8 @@ case. In reality, distributed systems often consist of a variety of
 components with different hardware, software, and other
 characteristics.</li>
 </ul>
-</div>
-<div id="programming-languages-and-distributed-systems" class="slide section level2" number="2.9">
-<h1><span class="header-section-number">2.9</span> Programming Languages
-and Distributed Systems</h1>
+<h2 id="programming-languages-and-distributed-systems"><span class="header-section-number">2.9</span> Programming Languages and
+Distributed Systems</h2>
 <p>There are two main approaches to programming languages and
 distributed systems: the transparency camp and the message camp.</p>
 <p>The <strong>transparency camp</strong> focuses on hiding the
@@ -839,10 +846,8 @@ single message, often in the form of documents. Programmers in this camp
 deal with the complexity of remoteness directly, and architectures are
 often event-based or based on the representational state transfer (REST)
 model.</p>
-</div>
-<div id="history-of-distributed-systems" class="slide section level2" number="2.10">
-<h1><span class="header-section-number">2.10</span> History of
-Distributed Systems</h1>
+<h2 id="history-of-distributed-systems"><span class="header-section-number">2.10</span> History of Distributed
+Systems</h2>
 <p>The history of distributed systems can be divided into several
 distinct periods:</p>
 <ul>
@@ -871,9 +876,8 @@ memory and network performance have become key considerations, and
 microservices and serverless computing have emerged as popular
 approaches to designing and building distributed systems.</li>
 </ul>
-</div>
-<div id="metcalfes-law" class="slide section level2" number="2.11">
-<h1><span class="header-section-number">2.11</span> Metcalfe’s Law</h1>
+<h2 id="metcalfes-law"><span class="header-section-number">2.11</span>
+Metcalfe’s Law</h2>
 <p>Metcalfe’s law is a principle that states that the value or utility
 of a network increases as the number of users in the network increases.
 This is because the more people who are using the network, the more
@@ -892,10 +896,8 @@ with the number of users, can help to explain why we don’t see many
 Facebooks or Googles – it can be difficult for new networks to gain
 traction and achieve the same level of utility as established networks
 with a large user base.</p>
-</div>
-<div id="security-topics-for-distributed-systems" class="slide section level2" number="2.12">
-<h1><span class="header-section-number">2.12</span> Security Topics for
-Distributed Systems</h1>
+<h2 id="security-topics-for-distributed-systems"><span class="header-section-number">2.12</span> Security Topics for
+Distributed Systems</h2>
 <p>Security is an important concern in distributed systems, as they
 often handle sensitive data or perform critical functions. Some key
 security topics that are relevant to distributed systems include:</p>
@@ -972,10 +974,8 @@ legitimate users from accessing the system. In a distributed system, DoS
 attacks can be particularly disruptive as they can affect multiple
 components at once.</li>
 </ul>
-</div>
-<div id="theoretical-foundations-of-distributed-systems" class="slide section level2" number="2.13">
-<h1><span class="header-section-number">2.13</span> Theoretical
-Foundations of Distributed Systems</h1>
+<h2 id="theoretical-foundations-of-distributed-systems"><span class="header-section-number">2.13</span> Theoretical Foundations of
+Distributed Systems</h2>
 <p>The theoretical foundations of distributed systems are a set of
 concepts and principles that form the basis for the design and analysis
 of these systems. Some of the key theoretical foundations of distributed
@@ -1018,10 +1018,8 @@ system. This can be challenging in the presence of failures or delays,
 and requires mechanisms such as leader selection or voting to
 resolve.</li>
 </ul>
-</div>
-<div id="distributed-systems-design-fields" class="slide section level2" number="2.14">
-<h1><span class="header-section-number">2.14</span> Distributed Systems
-Design Fields</h1>
+<h2 id="distributed-systems-design-fields"><span class="header-section-number">2.14</span> Distributed Systems Design
+Fields</h2>
 <p>The design of a distributed system involves addressing a number of
 common problems and considering various architectural factors in order
 to create a system that is scalable, reliable, and secure. Some key
@@ -1045,10 +1043,8 @@ participating systems and their quality of service, and determining how
 communication and resource sharing will be managed within the
 system.</li>
 </ul>
-</div>
-<div id="an-introduction-to-middleware" class="slide section level2" number="2.15">
-<h1><span class="header-section-number">2.15</span> An Introduction to
-Middleware</h1>
+<h2 id="an-introduction-to-middleware"><span class="header-section-number">2.15</span> An Introduction to
+Middleware</h2>
 <p>Middleware is software that sits between the operating system and the
 application layer of a distributed system, providing a layer of
 abstraction that enables communication and resource sharing among the
@@ -1084,10 +1080,8 @@ sharing among the various components of the system, and for abstracting
 away the complexities of working with distributed systems. Without
 middleware, it would be much more difficult to develop distributed
 applications that are scalable, reliable, and secure.</p>
-</div>
-<div id="distribution-transparencies" class="slide section level2" number="2.16">
-<h1><span class="header-section-number">2.16</span> Distribution
-Transparencies</h1>
+<h2 id="distribution-transparencies"><span class="header-section-number">2.16</span> Distribution
+Transparencies</h2>
 <p>Distribution transparencies are features that are designed to hide
 the complexities of working with distributed systems from the user or
 developer. Some key distribution transparencies include:</p>
@@ -1126,10 +1120,8 @@ authorized users can access resources.</li>
 with correlation IDs that join request parts across nodes, enabling
 administrators to track and monitor the performance of the system.</li>
 </ul>
-</div>
-<div id="classification-of-middleware" class="slide section level2" number="2.17">
-<h1><span class="header-section-number">2.17</span> Classification of
-Middleware</h1>
+<h2 id="classification-of-middleware"><span class="header-section-number">2.17</span> Classification of
+Middleware</h2>
 <p>Middleware can be classified into several categories based on the
 type of service it provides and the way it communicates with other
 components in a distributed system. Some common types of middleware
@@ -1181,24 +1173,19 @@ processing of large volumes of data in a distributed environment, such
 as a data center.</li>
 </ul>
 </div>
-
-<div id="theoretical-models-of-distributed-systems" class="title-slide slide section level1" number="3">
+<div id="theoretical-models-of-distributed-systems" class="slide section level1" number="3">
 <h1><span class="header-section-number">3</span> Theoretical Models of
 Distributed Systems</h1>
-
-</div>
-<div id="overview-1" class="slide section level2" number="3.1">
-<h1><span class="header-section-number">3.1</span> Overview</h1>
+<h2 id="overview-1"><span class="header-section-number">3.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Message passing theoretical model</li>
 <li>Distributed computing topologies</li>
 <li>Client-server systems, including critical points, architectures,
 processing and I/O models</li>
 </ol>
-</div>
-<div id="synchronous-vs.-asynchronous-systems" class="slide section level2" number="3.2">
-<h1><span class="header-section-number">3.2</span> Synchronous
-vs. Asynchronous Systems</h1>
+<h2 id="synchronous-vs.-asynchronous-systems"><span class="header-section-number">3.2</span> Synchronous vs. Asynchronous
+Systems</h2>
 <p>Synchronous and asynchronous systems are two types of distributed
 systems that differ in the way that they handle communication and the
 passage of time.</p>
@@ -1217,10 +1204,8 @@ generally easier to build and maintain than synchronous systems.</p>
 <p>In practice, most distributed systems are asynchronous, with
 additional mechanisms such as failure detectors and randomization used
 to help ensure correct operation.</p>
-</div>
-<div id="properties-of-message-protocols" class="slide section level2" number="3.3">
-<h1><span class="header-section-number">3.3</span> Properties of Message
-Protocols</h1>
+<h2 id="properties-of-message-protocols"><span class="header-section-number">3.3</span> Properties of Message
+Protocols</h2>
 <p>Message protocol properties are characteristics that describe the
 desired behavior of a message passing protocol in a distributed system.
 These properties are used to ensure that the protocol operates correctly
@@ -1253,10 +1238,8 @@ A protocol that satisfies this property is said to be “valid”, while a
 protocol that does not satisfy this property is said to be
 “invalid”.</li>
 </ul>
-</div>
-<div id="complexity-of-distributed-algorithms" class="slide section level2" number="3.4">
-<h1><span class="header-section-number">3.4</span> Complexity of
-Distributed Algorithms</h1>
+<h2 id="complexity-of-distributed-algorithms"><span class="header-section-number">3.4</span> Complexity of Distributed
+Algorithms</h2>
 <ul>
 <li><strong>Time complexity</strong> refers to the amount of time it
 takes for an algorithm to complete. This is often measured in terms of
@@ -1268,9 +1251,8 @@ The number of rounds needed for termination is also an important factor
 in the message complexity of an algorithm, as it can have a significant
 impact on the overall scalability of the protocol.</li>
 </ul>
-</div>
-<div id="failure-types" class="slide section level2" number="3.5">
-<h1><span class="header-section-number">3.5</span> Failure Types</h1>
+<h2 id="failure-types"><span class="header-section-number">3.5</span>
+Failure Types</h2>
 <p>In distributed systems, there are several types of failures that can
 occur. These failures can have different impacts on the system and can
 require different approaches to handling them.</p>
@@ -1295,10 +1277,8 @@ Byzantine failures are often considered to be the most difficult type of
 failure to handle in a distributed system, as they can be difficult to
 detect and can have significant impacts on the system.</li>
 </ul>
-</div>
-<div id="distributed-computing-topologies" class="slide section level2" number="3.6">
-<h1><span class="header-section-number">3.6</span> Distributed Computing
-Topologies</h1>
+<h2 id="distributed-computing-topologies"><span class="header-section-number">3.6</span> Distributed Computing
+Topologies</h2>
 <p>There are several types of distributed computing topologies that can
 be used to design distributed systems. These topologies can have
 different characteristics and can be used to achieve different goals,
@@ -1324,10 +1304,8 @@ every node listens for data and posts data in response. This can be
 useful for event-driven systems where nodes need to communicate with
 each other asynchronously.</li>
 </ul>
-</div>
-<div id="queuing-theory-kendall-notation-mmmßnq" class="slide section level2" number="3.7">
-<h1><span class="header-section-number">3.7</span> Queuing Theory:
-Kendall Notation M/M/m/ß/N/Q</h1>
+<h2 id="queuing-theory-kendall-notation-mmmßnq"><span class="header-section-number">3.7</span> Queuing Theory: Kendall
+Notation M/M/m/ß/N/Q</h2>
 <p>The Kendall notation, also known as the Kendall notation for Markov
 chains, is a way of describing the behavior of a queuing system. It is
 often used in the field of operations research to analyze the
@@ -1342,10 +1320,8 @@ first etc)</li>
 <li><code>M,D,G</code>: Probability distribution for service time</li>
 <li><code>m</code>: Number of service channels</li>
 </ul>
-</div>
-<div id="generalized-queuing-theory-terms-henry-liu" class="slide section level2" number="3.8">
-<h1><span class="header-section-number">3.8</span> Generalized Queuing
-Theory Terms (Henry Liu)</h1>
+<h2 id="generalized-queuing-theory-terms-henry-liu"><span class="header-section-number">3.8</span> Generalized Queuing Theory
+Terms (Henry Liu)</h2>
 <ul>
 <li><strong>Server/Node</strong>: A combination of a wait queue and a
 processing element</li>
@@ -1370,9 +1346,8 @@ times</li>
 serviced, or how fast requests can be processed without long wait
 times.</li>
 </ul>
-</div>
-<div id="littles-law" class="slide section level2" number="3.9">
-<h1><span class="header-section-number">3.9</span> Little’s Law</h1>
+<h2 id="littles-law"><span class="header-section-number">3.9</span>
+Little’s Law</h2>
 <ul>
 <li>Little’s Law states that in a stable system, the long-term average
 number of customers (L) is equal to the long-term average effective
@@ -1384,9 +1359,8 @@ systems that involve waiting, such as queues or lines. It can help to
 predict the average number of customers in a system, as well as the
 average time they will spend waiting, given a certain arrival rate.</li>
 </ul>
-</div>
-<div id="hejunka" class="slide section level2" number="3.10">
-<h1><span class="header-section-number">3.10</span> Hejunka</h1>
+<h2 id="hejunka"><span class="header-section-number">3.10</span>
+Hejunka</h2>
 <p>Hejunka is a Japanese term that refers to the practice of leveling
 the production process by smoothing out fluctuations in demand and task
 sizes. It is often used in lean manufacturing and just-in-time (JIT)
@@ -1409,10 +1383,8 @@ similar tasks together to reduce variability</li>
 sizes, Hejunka can help to improve the efficiency and flow of work
 through a system, and reduce the risk of bottlenecks or delays caused by
 large differences in task size.</p>
-</div>
-<div id="lessons-learned-from-queuing-theory" class="slide section level2" number="3.11">
-<h1><span class="header-section-number">3.11</span> Lessons Learned from
-Queuing Theory</h1>
+<h2 id="lessons-learned-from-queuing-theory"><span class="header-section-number">3.11</span> Lessons Learned from Queuing
+Theory</h2>
 <ul>
 <li><strong>Request numbers</strong>: Caching can be used to reduce the
 number of requests that need to be processed by storing frequently
@@ -1429,10 +1401,8 @@ technique that involves leveling the production process by smoothing out
 fluctuations in demand and task sizes. This can help to reduce
 variability and improve the efficiency of the system.</li>
 </ul>
-</div>
-<div id="request-problem-in-multi-tier-networks" class="slide section level2" number="3.12">
-<h1><span class="header-section-number">3.12</span> Request Problem in
-Multi-Tier Networks</h1>
+<h2 id="request-problem-in-multi-tier-networks"><span class="header-section-number">3.12</span> Request Problem in Multi-Tier
+Networks</h2>
 <p>In a multi-tier network, the request problem refers to the fact that
 <strong>requests must travel through multiple layers or tiers of
 servers</strong> in order to be processed, and each layer adds its own
@@ -1449,10 +1419,8 @@ that wait times can occur due to contention for server resources. This
 can impact the overall efficiency of the system and may require the use
 of techniques such as caching or batching to reduce the number of
 requests that need to be processed.</p>
-</div>
-<div id="task-size-problem-in-multi-tier-networks" class="slide section level2" number="3.13">
-<h1><span class="header-section-number">3.13</span> Task Size Problem in
-Multi-Tier Networks</h1>
+<h2 id="task-size-problem-in-multi-tier-networks"><span class="header-section-number">3.13</span> Task Size Problem in
+Multi-Tier Networks</h2>
 <p>In a multi-tier network, the task size problem refers to the fact
 that differences in task size can cause delays and inefficiencies in the
 processing of requests.</p>
@@ -1460,10 +1428,8 @@ processing of requests.</p>
 task size can cause requests to be held up at one node while waiting for
 the next node to become available, leading to delays in the overall
 response time.</p>
-</div>
-<div id="theories-model-vs.-reality" class="slide section level2" number="3.14">
-<h1><span class="header-section-number">3.14</span> Theories &amp; Model
-vs. Reality</h1>
+<h2 id="theories-model-vs.-reality"><span class="header-section-number">3.14</span> Theories &amp; Model
+vs. Reality</h2>
 <p>When applying queuing theory models to real-world systems, there are
 several factors that can impact the accuracy and usefulness of the
 model. These include:</p>
@@ -1495,10 +1461,8 @@ theory models may not always include all the relevant variables or may
 not accurately account for coherence losses, which can impact their
 accuracy in predicting the behavior of real-world systems.</li>
 </ul>
-</div>
-<div id="critical-points-in-clientserver-systems" class="slide section level2" number="3.15">
-<h1><span class="header-section-number">3.15</span> Critical Points in
-Client/Server Systems</h1>
+<h2 id="critical-points-in-clientserver-systems"><span class="header-section-number">3.15</span> Critical Points in
+Client/Server Systems</h2>
 <p>On the <strong>client side</strong>:</p>
 <ul>
 <li><strong>Locating the server</strong>: The client must be able to
@@ -1548,10 +1512,8 @@ requests and ensure that they are processed in an orderly manner.</li>
 <p>Between both: <strong>Bandwidth/latency</strong>; The bandwidth and
 latency of the network connection between the client and the server can
 impact the performance and efficiency of the system.</p>
-</div>
-<div id="stateful-vs-stateless-systems-the-stateful-server-problem" class="slide section level2" number="3.16">
-<h1><span class="header-section-number">3.16</span> Stateful vs
-Stateless Systems (The Stateful Server Problem)</h1>
+<h2 id="stateful-vs-stateless-systems-the-stateful-server-problem"><span class="header-section-number">3.16</span> Stateful vs Stateless Systems
+(The Stateful Server Problem)</h2>
 <p>The stateful server problem refers to the trade-offs that must be
 considered when designing and implementing a server-based system that
 maintains state information.</p>
@@ -1580,10 +1542,8 @@ storage such as databases or caches, which can make it easier to design
 and implement the system. However, in the event of failures, programming
 stateless systems can be more difficult, as all data must be retrieved
 from external storage.</p>
-</div>
-<div id="terminology-for-clientserver-systems" class="slide section level2" number="3.17">
-<h1><span class="header-section-number">3.17</span> Terminology for
-Client/Server Systems</h1>
+<h2 id="terminology-for-clientserver-systems"><span class="header-section-number">3.17</span> Terminology for Client/Server
+Systems</h2>
 <ul>
 <li><strong>Host</strong>: A physical machine with n CPUs.</li>
 <li><strong>Server</strong>: A process running on a host that receives
@@ -1621,10 +1581,8 @@ something else and try again later (poll again).</li>
 <li><strong>Synchronization</strong>: The control of access to shared
 data by multiple threads in order to prevent data inconsistencies.</li>
 </ul>
-</div>
-<div id="overarching-clientserver-architectures" class="slide section level2" number="3.18">
-<h1><span class="header-section-number">3.18</span> Overarching
-Client/Server Architectures</h1>
+<h2 id="overarching-clientserver-architectures"><span class="header-section-number">3.18</span> Overarching Client/Server
+Architectures</h2>
 <ul>
 <li><strong>Multi-Tier System</strong>: This type of architecture
 involves splitting up the system into multiple layers or tiers, each of
@@ -1647,10 +1605,7 @@ rather than in real-time. This can be useful in situations where the
 workload is too large to handle in real-time, or where real-time
 processing is not required.</li>
 </ul>
-</div>
-<div id="different-process-models" class="slide section level2" number="3.19">
-<h1><span class="header-section-number">3.19</span> Different Process
-Models</h1>
+<h2 id="different-process-models"><span class="header-section-number">3.19</span> Different Process Models</h2>
 <ul>
 <li><strong>Single Thread/Single Core</strong>: This type of process
 model involves a single thread of execution running on a single core.
@@ -1672,10 +1627,8 @@ multiple processes. This can allow the system to take advantage of
 multiple cores or processors, but may be less efficient than other
 models for certain types of workloads.</li>
 </ul>
-</div>
-<div id="questions-for-process-models" class="slide section level2" number="3.20">
-<h1><span class="header-section-number">3.20</span> Questions for
-Process Models</h1>
+<h2 id="questions-for-process-models"><span class="header-section-number">3.20</span> Questions for Process
+Models</h2>
 <ul>
 <li>Can it use available cores/CPUs?</li>
 <li>What is the ideal number of threads?</li>
@@ -1685,9 +1638,8 @@ Process Models</h1>
 <li>Is locking/synchronization needed?</li>
 <li>What is the overhead of context switches and memory?</li>
 </ul>
-</div>
-<div id="amdahls-law" class="slide section level2" number="3.21">
-<h1><span class="header-section-number">3.21</span> Amdahl’s Law</h1>
+<h2 id="amdahls-law"><span class="header-section-number">3.21</span>
+Amdahl’s Law</h2>
 <p>According to Amdahl’s Law, the maximum improvement in overall system
 performance that can be achieved by improving a particular part of the
 system is limited by the fraction of time that the improved part of the
@@ -1708,10 +1660,7 @@ can be a useful tool for determining how much resources should be
 invested in improving a particular part of the system, and for
 understanding the potential impact of those improvements on overall
 system performance.</p>
-</div>
-<div id="different-io-models" class="slide section level2" number="3.22">
-<h1><span class="header-section-number">3.22</span> Different I/O
-Models</h1>
+<h2 id="different-io-models"><span class="header-section-number">3.22</span> Different I/O Models</h2>
 <ul>
 <li><strong>Java before NIO/AIO</strong>: Prior to the introduction of
 the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a
@@ -1735,10 +1684,7 @@ environments where many I/O operations are occurring simultaneously. It
 uses a combination of asynchronous I/O and event-driven design to allow
 for efficient handling of multiple I/O operations at once.</li>
 </ul>
-</div>
-<div id="questions-for-io-models" class="slide section level2" number="3.23">
-<h1><span class="header-section-number">3.23</span> Questions for I/O
-Models</h1>
+<h2 id="questions-for-io-models"><span class="header-section-number">3.23</span> Questions for I/O Models</h2>
 <ul>
 <li>Can it deal with all kinds of input/output?</li>
 <li>How are synchronous channels integrated?</li>
@@ -1748,13 +1694,10 @@ Models</h1>
 <li>Race conditions possible?</li>
 </ul>
 </div>
-
-<div id="message-protocols" class="title-slide slide section level1" number="4">
+<div id="message-protocols" class="slide section level1" number="4">
 <h1><span class="header-section-number">4</span> Message Protocols</h1>
-
-</div>
-<div id="overview-2" class="slide section level2" number="4.1">
-<h1><span class="header-section-number">4.1</span> Overview</h1>
+<h2 id="overview-2"><span class="header-section-number">4.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Message protocols
 <ol style="list-style-type: decimal">
@@ -1764,10 +1707,8 @@ Models</h1>
 </ol></li>
 <li>Programming client-server systems using sockets</li>
 </ol>
-</div>
-<div id="the-role-of-delivery-guarantees" class="slide section level2" number="4.2">
-<h1><span class="header-section-number">4.2</span> The Role of Delivery
-Guarantees</h1>
+<h2 id="the-role-of-delivery-guarantees"><span class="header-section-number">4.2</span> The Role of Delivery
+Guarantees</h2>
 <p><strong>Shop order</strong>: The scenario described involves an
 online shop in which orders are placed and processed. The goal is to
 ensure that orders are delivered correctly and efficiently, regardless
@@ -1800,10 +1741,7 @@ messages sent may affect the efficiency and reliability of the
 communication process, and may need to be taken into account when
 determining the appropriate delivery guarantee to use.</li>
 </ul>
-</div>
-<div id="why-is-tcp-not-enough" class="slide section level2" number="4.3">
-<h1><span class="header-section-number">4.3</span> Why is TCP not
-Enough?</h1>
+<h2 id="why-is-tcp-not-enough"><span class="header-section-number">4.3</span> Why is TCP not Enough?</h2>
 <p>While TCP (Transmission Control Protocol) is a widely used networking
 protocol that provides a reliable communication channel between devices,
 it is not always sufficient on its own to ensure proper behavior in all
@@ -1841,10 +1779,8 @@ additional protocols or techniques, such as message-oriented middleware
 or application-level protocols, to ensure proper behavior in case of
 connection failures and to provide additional features and guarantees
 for message delivery.</p>
-</div>
-<div id="different-levels-of-timeouts" class="slide section level2" number="4.4">
-<h1><span class="header-section-number">4.4</span> Different Levels of
-Timeouts</h1>
+<h2 id="different-levels-of-timeouts"><span class="header-section-number">4.4</span> Different Levels of
+Timeouts</h2>
 <ul>
 <li><strong>Business-Process-Timeout</strong>: This timeout is set at
 the business process level and is used to ensure that a business process
@@ -1863,10 +1799,8 @@ that the reliable communication channel provided by TCP is functioning
 properly. This timeout may be triggered if a connection is lost or if
 the channel becomes congested or otherwise unstable.</li>
 </ul>
-</div>
-<div id="delivery-guarantees-for-rpcs" class="slide section level2" number="4.5">
-<h1><span class="header-section-number">4.5</span> Delivery Guarantees
-for RPCs</h1>
+<h2 id="delivery-guarantees-for-rpcs"><span class="header-section-number">4.5</span> Delivery Guarantees for
+RPCs</h2>
 <ul>
 <li><strong>Best effort</strong>: The “best effort” delivery guarantee
 means that no specific guarantees are made about the delivery of
@@ -1889,9 +1823,8 @@ delivered exactly once, with no duplicates. This can be more difficult
 to achieve than the other delivery guarantees, as it requires additional
 complexity and overhead to ensure that duplicates are prevented.</li>
 </ul>
-</div>
-<div id="idempotency" class="slide section level2" number="4.6">
-<h1><span class="header-section-number">4.6</span> Idempotency</h1>
+<h2 id="idempotency"><span class="header-section-number">4.6</span>
+Idempotency</h2>
 <p>Idempotency is a property of operations or requests that ensures that
 they can be safely repeated without changing the result of the
 operation. In other words, if an operation is idempotent, it will have
@@ -1904,10 +1837,8 @@ affecting the overall result of the operation.</li>
 <li>The last request can be only best effort</li>
 <li>Messages may be reordered</li>
 </ul>
-</div>
-<div id="server-state-and-idempotency" class="slide section level2" number="4.7">
-<h1><span class="header-section-number">4.7</span> Server State and
-Idempotency</h1>
+<h2 id="server-state-and-idempotency"><span class="header-section-number">4.7</span> Server State and
+Idempotency</h2>
 <p>Idempotency is an important property to consider when designing
 operations or requests that may be repeated or delivered multiple times,
 as it can help to ensure that the operation or request is able to be
@@ -1932,10 +1863,8 @@ without the need for concurrency control mechanisms such as locks or
 transactions. This can help to improve the efficiency and performance of
 the system.</li>
 </ul>
-</div>
-<div id="implementing-delivery-guarantees-for-idempotent-requests" class="slide section level2" number="4.8">
-<h1><span class="header-section-number">4.8</span> Implementing Delivery
-Guarantees for Idempotent Requests</h1>
+<h2 id="implementing-delivery-guarantees-for-idempotent-requests"><span class="header-section-number">4.8</span> Implementing Delivery
+Guarantees for Idempotent Requests</h2>
 <ul>
 <li><strong>“At least once”</strong> implementation for idempotent
 requests: For idempotent requests, the “at least once” delivery
@@ -1959,10 +1888,8 @@ their decisions. This approach may involve maintaining an atomic log on
 both the client and server, and storing responses on the server until
 they are confirmed by the client</li>
 </ul>
-</div>
-<div id="repeating-non-idempotent-operations" class="slide section level2" number="4.9">
-<h1><span class="header-section-number">4.9</span> Repeating
-Non-Idempotent Operations</h1>
+<h2 id="repeating-non-idempotent-operations"><span class="header-section-number">4.9</span> Repeating Non-Idempotent
+Operations</h2>
 <p>If an operation is not idempotent, it means that it cannot be safely
 repeated multiple times and is likely to have unintended side effects.
 In this case, there are several measures that can be taken to ensure
@@ -1985,10 +1912,8 @@ are used efficiently and released when they are no longer needed.</li>
 avoid overloading the system with old replies. It may be necessary to
 set limits on how long to store old replies and when to discard
 them.</p>
-</div>
-<div id="request-order-in-multi-point-protocols" class="slide section level2" number="4.10">
-<h1><span class="header-section-number">4.10</span> Request Order in
-Multi-Point-Protocols</h1>
+<h2 id="request-order-in-multi-point-protocols"><span class="header-section-number">4.10</span> Request Order in
+Multi-Point-Protocols</h2>
 <ul>
 <li><strong>No request order from one sender</strong>: In a multi-point
 protocol, there is no guaranteed order for requests sent by a single
@@ -2007,10 +1932,8 @@ that independent requests from different senders may be received and
 processed in a different order than they were sent, and the senders
 should be prepared to handle this possibility.</li>
 </ul>
-</div>
-<div id="request-ordering-with-multiple-nodes" class="slide section level2" number="4.11">
-<h1><span class="header-section-number">4.11</span> Request Ordering
-with Multiple Nodes</h1>
+<h2 id="request-ordering-with-multiple-nodes"><span class="header-section-number">4.11</span> Request Ordering with Multiple
+Nodes</h2>
 <p>In a multi-node system, it may be necessary to use a reliable
 broadcast protocol to ensure that requests are processed in the desired
 order. Here are some examples of protocols that can be used for request
@@ -2041,10 +1964,8 @@ messages were sent. This can help to ensure that requests are processed
 in the correct order, even if they are sent from different nodes or if
 there are delays or other issues with the network.</li>
 </ul>
-</div>
-<div id="implementing-causal-ordered-broadcasts" class="slide section level2" number="4.12">
-<h1><span class="header-section-number">4.12</span> Implementing Causal
-Ordered Broadcasts</h1>
+<h2 id="implementing-causal-ordered-broadcasts"><span class="header-section-number">4.12</span> Implementing Causal Ordered
+Broadcasts</h2>
 <ul>
 <li><strong>Piggybacking previous messages</strong>: One solution for
 implementing causal ordered broadcasts is to piggyback every message
@@ -2062,10 +1983,8 @@ until the order is correct. This can help to ensure that messages are
 delivered in the correct order, even if there are delays or other issues
 with the network.</li>
 </ul>
-</div>
-<div id="implementing-absolutely-ordered-casts" class="slide section level2" number="4.13">
-<h1><span class="header-section-number">4.13</span> Implementing
-Absolutely Ordered Casts</h1>
+<h2 id="implementing-absolutely-ordered-casts"><span class="header-section-number">4.13</span> Implementing Absolutely
+Ordered Casts</h2>
 <ul>
 <li><strong>All nodes send messages to every other node</strong>: One
 solution for implementing atomic broadcasts is for all nodes to send
@@ -2099,10 +2018,7 @@ high latency, as it requires all nodes to wait for the total order to be
 determined before delivering their messages. This can be particularly
 problematic in systems where low latency is critical.</li>
 </ul>
-</div>
-<div id="properties-of-sockets" class="slide section level2" number="4.14">
-<h1><span class="header-section-number">4.14</span> Properties of
-Sockets</h1>
+<h2 id="properties-of-sockets"><span class="header-section-number">4.14</span> Properties of Sockets</h2>
 <p>Sockets are a programming interface that enables communication
 between networked computers. They are used to send and receive data over
 a network connection using either TCP (Transmission Control Protocol) or
@@ -2130,10 +2046,7 @@ is assigned a unique address that identifies it as a communication
 endpoint. This address is used to identify the socket when sending or
 receiving data over the network.</li>
 </ul>
-</div>
-<div id="berkeley-sockets" class="slide section level2" number="4.15">
-<h1><span class="header-section-number">4.15</span> Berkeley
-Sockets</h1>
+<h2 id="berkeley-sockets"><span class="header-section-number">4.15</span> Berkeley Sockets</h2>
 <p>Berkeley sockets provide a set of primitives or functions that can be
 used to create, manage, and manipulate network connections and
 communication channels.</p>
@@ -2164,10 +2077,8 @@ over the connection associated with a socket.</li>
 associated with a socket, allowing it to be used for other
 purposes.</li>
 </ul>
-</div>
-<div id="server-side-processing-using-processes" class="slide section level2" number="4.16">
-<h1><span class="header-section-number">4.16</span> Server Side
-Processing using Processes</h1>
+<h2 id="server-side-processing-using-processes"><span class="header-section-number">4.16</span> Server Side Processing using
+Processes</h2>
 <p>Server-side processing using processes is a model for handling
 incoming requests in a networked system. It involves the following
 steps:</p>
@@ -2188,10 +2099,8 @@ there may be limits on the number of processes that can be created on a
 given system. An example of this model is traditional CGI processing in
 a web server, where a new process is spawned to handle each incoming
 request.</p>
-</div>
-<div id="server-side-processing-using-threads" class="slide section level2" number="4.17">
-<h1><span class="header-section-number">4.17</span> Server Side
-Processing using Threads</h1>
+<h2 id="server-side-processing-using-threads"><span class="header-section-number">4.17</span> Server Side Processing using
+Threads</h2>
 <p>Server-side processing using threads is a model for handling incoming
 requests in a networked system that is similar to the process-based
 model, but uses threads instead of processes to handle requests. It
@@ -2224,10 +2133,8 @@ and other problems. Instead, state should be kept on the stack, with
 each thread having its own copy of the state. This ensures that each
 thread has its own private version of the state, and can operate
 independently of other threads.</p>
-</div>
-<div id="design-considerations-for-socket-based-services" class="slide section level2" number="4.18">
-<h1><span class="header-section-number">4.18</span> Design
-Considerations for Socket-Based Services</h1>
+<h2 id="design-considerations-for-socket-based-services"><span class="header-section-number">4.18</span> Design Considerations for
+Socket-Based Services</h2>
 <ul>
 <li><strong>Message formats</strong>: The message formats that will be
 exchanged between clients and servers should be carefully designed to
@@ -2244,10 +2151,8 @@ the connection will be permanent or closed after each request, whether
 the server will hold client-related state (e.g. a session), and whether
 the server will allow concurrent requests.</li>
 </ul>
-</div>
-<div id="stateless-vs.-stateful-socket-based-services" class="slide section level2" number="4.19">
-<h1><span class="header-section-number">4.19</span> Stateless
-vs. Stateful Socket-Based Services</h1>
+<h2 id="stateless-vs.-stateful-socket-based-services"><span class="header-section-number">4.19</span> Stateless vs. Stateful
+Socket-Based Services</h2>
 <p>A stateless service is one in which the server does not store any
 information about previous requests or maintain any state between
 requests. This can have several advantages, including:</p>
@@ -2293,10 +2198,7 @@ hardware and networks, as they rely on the server being able to maintain
 state between requests. If the server or network experiences failures,
 this can disrupt the stateful interaction.</li>
 </ul>
-</div>
-<div id="tcp-syn-flooding" class="slide section level2" number="4.20">
-<h1><span class="header-section-number">4.20</span> TCP SYN
-Flooding</h1>
+<h2 id="tcp-syn-flooding"><span class="header-section-number">4.20</span> TCP SYN Flooding</h2>
 <p>TCP SYN flooding is a type of denial of service (DoS) attack that
 exploits a weakness in the TCP connection establishment process. In a
 normal TCP connection, the client sends a SYN (synchronize) packet to
@@ -2319,10 +2221,8 @@ to track half-open connections without using any resources. Other
 measures, such as rate limiting and filtering of incoming SYN packets,
 can also help to prevent or mitigate the effects of TCP SYN flooding
 attacks.</p>
-</div>
-<div id="writing-a-socket-client-server" class="slide section level2" number="4.21">
-<h1><span class="header-section-number">4.21</span> Writing a Socket
-Client &amp; Server</h1>
+<h2 id="writing-a-socket-client-server"><span class="header-section-number">4.21</span> Writing a Socket Client &amp;
+Server</h2>
 <p>For the server:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Define the port number of the service</strong>: The server
@@ -2378,10 +2278,8 @@ channel</li>
 <li>The other thread reads from the input channel and displays or writes
 the server messages</li>
 </ul>
-</div>
-<div id="distribution-transparency-with-sockets" class="slide section level2" number="4.22">
-<h1><span class="header-section-number">4.22</span> Distribution
-Transparency with Sockets</h1>
+<h2 id="distribution-transparency-with-sockets"><span class="header-section-number">4.22</span> Distribution Transparency with
+Sockets</h2>
 <ul>
 <li><strong>Invocation</strong>: Server-side functions cannot be called
 directly from the client side, and messages must be defined and sent
@@ -2392,10 +2290,8 @@ moves, the client connection will be broken</li>
 <li><strong>Failure</strong>: Not supported</li>
 <li><strong>Persistence</strong>: Not supported</li>
 </ul>
-</div>
-<div id="infrastructure-of-client-server-systems" class="slide section level2" number="4.23">
-<h1><span class="header-section-number">4.23</span> Infrastructure of
-Client-Server Systems</h1>
+<h2 id="infrastructure-of-client-server-systems"><span class="header-section-number">4.23</span> Infrastructure of
+Client-Server Systems</h2>
 <ol style="list-style-type: decimal">
 <li><strong>Directory</strong>: Helps locate the server</li>
 <li><strong>Proxy</strong>: Checks client authorization and routes
@@ -2409,14 +2305,11 @@ authorizes clients</li>
 servers</li>
 </ol>
 </div>
-
-<div id="remote-procedure-calls" class="title-slide slide section level1" number="5">
+<div id="remote-procedure-calls" class="slide section level1" number="5">
 <h1><span class="header-section-number">5</span> Remote Procedure
 Calls</h1>
-
-</div>
-<div id="overview-3" class="slide section level2" number="5.1">
-<h1><span class="header-section-number">5.1</span> Overview</h1>
+<h2 id="overview-3"><span class="header-section-number">5.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Call versions: local, inter-process, and remote</li>
 <li>Mechanics of remote calls:
@@ -2429,9 +2322,8 @@ Calls</h1>
 </ol></li>
 <li>Cross-language call infrastructures: Thrift and gRPC</li>
 </ol>
-</div>
-<div id="call-versions" class="slide section level2" number="5.2">
-<h1><span class="header-section-number">5.2</span> Call Versions</h1>
+<h2 id="call-versions"><span class="header-section-number">5.2</span>
+Call Versions</h2>
 <ol style="list-style-type: decimal">
 <li><strong>Local calls</strong>: made within a single process and do
 not require network communication</li>
@@ -2441,10 +2333,8 @@ as shared memory or pipes</li>
 <li><strong>Remote calls</strong>: Made between processes on different
 machines and typically require network communication</li>
 </ol>
-</div>
-<div id="remote-calls-vs.-remote-messages" class="slide section level2" number="5.3">
-<h1><span class="header-section-number">5.3</span> Remote Calls
-vs. Remote Messages</h1>
+<h2 id="remote-calls-vs.-remote-messages"><span class="header-section-number">5.3</span> Remote Calls vs. Remote
+Messages</h2>
 <ul>
 <li><strong>Remote calls</strong>: Hide the remote service calls behind
 a programming language call and are tightly coupled with synchronous
@@ -2453,10 +2343,7 @@ processing</li>
 create a new concept of a message and its delivery semantics; a message
 system can simulate a call-based system, but not vice versa</li>
 </ul>
-</div>
-<div id="in-process-local-calls" class="slide section level2" number="5.4">
-<h1><span class="header-section-number">5.4</span> In-Process (Local)
-Calls</h1>
+<h2 id="in-process-local-calls"><span class="header-section-number">5.4</span> In-Process (Local) Calls</h2>
 <ul>
 <li><strong>No special middleware is required</strong> for calls made
 within the same programming language</li>
@@ -2493,10 +2380,7 @@ explicit messages, which means that they appear to the programmer as
 regular function calls and do not require the creation and handling of
 explicit messages.</li>
 </ul>
-</div>
-<div id="inter-process-calls-ipc" class="slide section level2" number="5.5">
-<h1><span class="header-section-number">5.5</span> Inter-Process Calls
-(IPC)</h1>
+<h2 id="inter-process-calls-ipc"><span class="header-section-number">5.5</span> Inter-Process Calls (IPC)</h2>
 <ul>
 <li>Local inter-process calls are faster than remote calls, but
 <strong>not as fast as in-process calls</strong></li>
@@ -2523,10 +2407,8 @@ failures</strong></li>
 hardware and uses the same language at the sender and receiver, which
 <strong>can reduce security issues</strong> and ensure that a system
 crash affects both sender and receiver (fail-stop semantics)</p>
-</div>
-<div id="remote-procedure-calls-rpc" class="slide section level2" number="5.6">
-<h1><span class="header-section-number">5.6</span> Remote Procedure
-Calls (RPC)</h1>
+<h2 id="remote-procedure-calls-rpc"><span class="header-section-number">5.6</span> Remote Procedure Calls
+(RPC)</h2>
 <ul>
 <li>Remote procedure calls (RPCs) are <strong>much slower than local
 calls</strong> and <strong>do not have delivery guarantees</strong>
@@ -2548,10 +2430,7 @@ process cannot access memory in the calling process</li>
 require the creation of messages to simulate the missing features</li>
 <li>Often stateless</li>
 </ul>
-</div>
-<div id="mechanics-of-remote-calls" class="slide section level2" number="5.7">
-<h1><span class="header-section-number">5.7</span> Mechanics of Remote
-Calls</h1>
+<h2 id="mechanics-of-remote-calls"><span class="header-section-number">5.7</span> Mechanics of Remote Calls</h2>
 <ul>
 <li><strong>Marshaling/Serialization</strong>: Process of converting
 program data into a format that can be transmitted over a network</li>
@@ -2568,10 +2447,7 @@ occur during the remote call process</li>
 <li><strong>Process/I/O Layer</strong>: Responsible for managing threads
 and input/output operations</li>
 </ul>
-</div>
-<div id="marshalingserialization" class="slide section level2" number="5.8">
-<h1><span class="header-section-number">5.8</span>
-Marshaling/Serialization</h1>
+<h2 id="marshalingserialization"><span class="header-section-number">5.8</span> Marshaling/Serialization</h2>
 <p>Marshaling/serialization is the process of converting parameters
 (basic types or objects) into a common transfer format (message) that
 can be transmitted over a network. At the target site, the message is
@@ -2624,9 +2500,8 @@ of the resulting message, but it is not as flexible as text-based
 serialization because it requires a shared understanding of the schema
 between the sender and receiver. Binary serialization can also be used
 for language-independent encoding.</p>
-</div>
-<div id="schema-evolution" class="slide section level2" number="5.9">
-<h1><span class="header-section-number">5.9</span> Schema Evolution</h1>
+<h2 id="schema-evolution"><span class="header-section-number">5.9</span>
+Schema Evolution</h2>
 <p>When data or functions change, it is important to consider how
 different versions of a system will coexist and communicate with each
 other.</p>
@@ -2638,10 +2513,8 @@ existing clients.</p>
 should be able to understand messages from older senders. This allows
 older versions of a system to continue functioning even after newer
 versions have been introduced.</p>
-</div>
-<div id="keeping-compatibility-when-evolving-a-schema" class="slide section level2" number="5.10">
-<h1><span class="header-section-number">5.10</span> Keeping
-Compatibility when Evolving a Schema</h1>
+<h2 id="keeping-compatibility-when-evolving-a-schema"><span class="header-section-number">5.10</span> Keeping Compatibility when
+Evolving a Schema</h2>
 <blockquote>
 <p>For JSON</p>
 </blockquote>
@@ -2691,10 +2564,7 @@ changes that can break compatibility include:</p>
 <li><strong>Changing the type</strong> of a field (other than the
 numeric conversions mentioned above)</li>
 </ul>
-</div>
-<div id="stubs-and-skeletons" class="slide section level2" number="5.11">
-<h1><span class="header-section-number">5.11</span> Stubs and
-Skeletons</h1>
+<h2 id="stubs-and-skeletons"><span class="header-section-number">5.11</span> Stubs and Skeletons</h2>
 <p>Stubs and skeletons are code that is used to facilitate communication
 between different systems, typically in the context of remote procedure
 calls (RPCs). Stubs are used by clients to initiate a remote call, while
@@ -2724,10 +2594,7 @@ stubs and skeletons are downloaded by the clients and servers as needed,
 rather than being distributed in advance. This allows for more
 flexibility and can be more efficient in terms of bandwidth usage.</li>
 </ul>
-</div>
-<div id="finding-an-rpc-server" class="slide section level2" number="5.12">
-<h1><span class="header-section-number">5.12</span> Finding an RPC
-Server</h1>
+<h2 id="finding-an-rpc-server"><span class="header-section-number">5.12</span> Finding an RPC Server</h2>
 <p>In a remote procedure call (RPC) system, a client needs to be able to
 locate the server in order to initiate a remote call.</p>
 <p><strong>Service:</strong></p>
@@ -2752,10 +2619,8 @@ the procedure call to the server on the specified port.</li>
 </ol>
 <p>This process is known as “binding,” and there are several ways to
 handle it, including using inetd, DCE, or a Unix portmapper.</p>
-</div>
-<div id="factors-to-consider-when-choosing-an-idl" class="slide section level2" number="5.13">
-<h1><span class="header-section-number">5.13</span> Factors to Consider
-when Choosing an IDL</h1>
+<h2 id="factors-to-consider-when-choosing-an-idl"><span class="header-section-number">5.13</span> Factors to Consider when
+Choosing an IDL</h2>
 <ul>
 <li><strong>Are data types easily expressed using the IDL?</strong> It
 is important to choose an IDL that can easily represent the types of
@@ -2794,10 +2659,7 @@ statements)?</strong> It is important to choose an IDL that allows for
 changes and extensions to the runtime system, such as the ability to add
 trace statements.</li>
 </ul>
-</div>
-<div id="popular-idls-for-rpcs" class="slide section level2" number="5.14">
-<h1><span class="header-section-number">5.14</span> Popular IDLs for
-RPCs</h1>
+<h2 id="popular-idls-for-rpcs"><span class="header-section-number">5.14</span> Popular IDLs for RPCs</h2>
 <ul>
 <li><strong>CORBA (Common Object Request Broker Architecture)</strong>:
 CORBA is a standard for interoperating between different programming
@@ -2822,14 +2684,11 @@ well as code generators for generating the stubs and skeletons that are
 used to initiate and process the RPCs.</li>
 </ul>
 </div>
-
-<div id="distributed-objects" class="title-slide slide section level1" number="6">
+<div id="distributed-objects" class="slide section level1" number="6">
 <h1><span class="header-section-number">6</span> Distributed
 Objects</h1>
-
-</div>
-<div id="overview-4" class="slide section level2" number="6.1">
-<h1><span class="header-section-number">6.1</span> Overview</h1>
+<h2 id="overview-4"><span class="header-section-number">6.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Fundamental Properties of Objects</li>
 <li>Local and remote object references</li>
@@ -2840,10 +2699,8 @@ Objects</h1>
 <li>Interface Design</li>
 <li>Java RMI</li>
 </ol>
-</div>
-<div id="objects-vs.-abstract-data-types" class="slide section level2" number="6.2">
-<h1><span class="header-section-number">6.2</span> Objects vs. Abstract
-Data Types</h1>
+<h2 id="objects-vs.-abstract-data-types"><span class="header-section-number">6.2</span> Objects vs. Abstract Data
+Types</h2>
 <ul>
 <li>Objects are data structures that combine state (data) and behavior
 (methods or functions) in a single entity. They are a key concept in
@@ -2867,10 +2724,7 @@ depending on the programming language or system in which they are used.
 ADTs, on the other hand, are defined more abstractly and can be
 implemented in many ways.</li>
 </ul>
-</div>
-<div id="properties-of-objects" class="slide section level2" number="6.3">
-<h1><span class="header-section-number">6.3</span> Properties of
-Objects</h1>
+<h2 id="properties-of-objects"><span class="header-section-number">6.3</span> Properties of Objects</h2>
 <ul>
 <li>Local objects are created with the new() operator and are
 <strong>only accessible within the scope of their creator</strong>.</li>
@@ -2891,10 +2745,8 @@ behavior.</li>
 <p>Objects in an object-oriented (OO) programming language do have many
 properties that can make them challenging to implement in a concurrent
 or distributed system.</p>
-</div>
-<div id="challenges-for-remote-objects" class="slide section level2" number="6.4">
-<h1><span class="header-section-number">6.4</span> Challenges for Remote
-Objects</h1>
+<h2 id="challenges-for-remote-objects"><span class="header-section-number">6.4</span> Challenges for Remote
+Objects</h2>
 <p>Remote objects (ROs) are objects that are accessed and managed
 remotely, typically over a network. They are a key concept in
 distributed object systems, which are systems that enable objects on
@@ -2929,10 +2781,7 @@ across the network.</li>
 different interface that is tailored to the needs of remote
 clients.</li>
 </ul>
-</div>
-<div id="what-is-a-remote-object" class="slide section level2" number="6.5">
-<h1><span class="header-section-number">6.5</span> What is a Remote
-Object?</h1>
+<h2 id="what-is-a-remote-object"><span class="header-section-number">6.5</span> What is a Remote Object?</h2>
 <ul>
 <li>A remote object is an object that is accessed and managed remotely,
 typically over a network.</li>
@@ -2953,10 +2802,8 @@ object.</li>
 interfaces can be <strong>challenging in practice</strong>, especially
 in distributed systems.</li>
 </ul>
-</div>
-<div id="object-models-and-type-systems" class="slide section level2" number="6.6">
-<h1><span class="header-section-number">6.6</span> Object Models and
-Type Systems</h1>
+<h2 id="object-models-and-type-systems"><span class="header-section-number">6.6</span> Object Models and Type
+Systems</h2>
 <p><strong>CORBA:</strong></p>
 <ul>
 <li>Defines its <strong>own basic types</strong>, including sequence,
@@ -2981,10 +2828,7 @@ to locate and access objects on remote machines.</li>
 <p>Java RMI <strong>allows user-defined classes</strong> to be used as
 value objects if they are serializable, but is specific to the Java
 programming language.</p>
-</div>
-<div id="accessing-remote-objects" class="slide section level2" number="6.7">
-<h1><span class="header-section-number">6.7</span> Accessing Remote
-Objects</h1>
+<h2 id="accessing-remote-objects"><span class="header-section-number">6.7</span> Accessing Remote Objects</h2>
 <ul>
 <li>A <strong>naming service</strong> is a service that acts like a
 directory and allows clients to look up the location of a remote object
@@ -3004,10 +2848,7 @@ creates and manages other remote objects. The client can access the
 factory object and use its methods to create and access other remote
 objects as needed.</li>
 </ul>
-</div>
-<div id="the-broker-pattern" class="slide section level2" number="6.8">
-<h1><span class="header-section-number">6.8</span> The Broker
-Pattern</h1>
+<h2 id="the-broker-pattern"><span class="header-section-number">6.8</span> The Broker Pattern</h2>
 <ul>
 <li>Is a design pattern that involves using a separate component (the
 broker) to mediate communication between two other components (the
@@ -3018,10 +2859,7 @@ between them.</li>
 <li><strong>Decouples the client and the service</strong>, allowing them
 to evolve independently and communicate through the broker.</li>
 </ul>
-</div>
-<div id="remote-object-reference" class="slide section level2" number="6.9">
-<h1><span class="header-section-number">6.9</span> Remote Object
-Reference</h1>
+<h2 id="remote-object-reference"><span class="header-section-number">6.9</span> Remote Object Reference</h2>
 <ul>
 <li><strong>Object implementation (servant)</strong>: The object
 implementation is the code that defines how the object behaves and
@@ -3043,10 +2881,8 @@ well as routing requests to the appropriate object adapter.</li>
 <li><strong>Host, port, protcocol, object adapter, object ID</strong>:
 The system-wide object reference</li>
 </ul>
-</div>
-<div id="static-vs-dynamic-invocation" class="slide section level2" number="6.10">
-<h1><span class="header-section-number">6.10</span> Static vs Dynamic
-Invocation</h1>
+<h2 id="static-vs-dynamic-invocation"><span class="header-section-number">6.10</span> Static vs Dynamic
+Invocation</h2>
 <p><strong>Static Remote Method Invocation</strong></p>
 <ul>
 <li>Involves using <strong>pre-generated stubs</strong> that are linked
@@ -3067,10 +2903,7 @@ which handles the request as if it were a normal method invocation.</li>
 pattern</strong>, which involves using meta-information about an object
 to manipulate it at runtime.</li>
 </ul>
-</div>
-<div id="asynchronous-invocations" class="slide section level2" number="6.11">
-<h1><span class="header-section-number">6.11</span> Asynchronous
-Invocations</h1>
+<h2 id="asynchronous-invocations"><span class="header-section-number">6.11</span> Asynchronous Invocations</h2>
 <ul>
 <li><strong>One-way calls</strong>: One-way calls are calls that do not
 expect a response from the server. They are called “one-way” because
@@ -3092,10 +2925,8 @@ callback message to the client when the results of the method are
 available. True asynchronous invocations require messaging middleware to
 achieve at-most-once delivery guarantees.</li>
 </ul>
-</div>
-<div id="main-distributed-object-services" class="slide section level2" number="6.12">
-<h1><span class="header-section-number">6.12</span> Main Distributed
-Object Services</h1>
+<h2 id="main-distributed-object-services"><span class="header-section-number">6.12</span> Main Distributed Object
+Services</h2>
 <ul>
 <li><strong>Finding objects</strong>:
 <ul>
@@ -3118,17 +2949,11 @@ principals</li>
 </ul></li>
 <li><strong>Grouping of objects</strong>: Collections</li>
 </ul>
-</div>
-<div id="portable-interceptors" class="slide section level2" number="6.13">
-<h1><span class="header-section-number">6.13</span> Portable
-Interceptors</h1>
+<h2 id="portable-interceptors"><span class="header-section-number">6.13</span> Portable Interceptors</h2>
 <p>Interceptors can be used to <strong>transparently add additional
 (context) information</strong> to calls and transport it between object
 request brokers (ORBs).</p>
-</div>
-<div id="remote-interface-design" class="slide section level2" number="6.14">
-<h1><span class="header-section-number">6.14</span> Remote Interface
-Design</h1>
+<h2 id="remote-interface-design"><span class="header-section-number">6.14</span> Remote Interface Design</h2>
 <ul>
 <li>Respect the <strong>possibility of concurrent calls</strong> in your
 interface design: Avoid keeping inconsistent state across method
@@ -3138,10 +2963,8 @@ perform staged initialization of an object.</li>
 <li>Avoid using complicated or <strong>unclear orders of calls</strong>:
 Design the interface in a clear and straightforward manner.</li>
 </ul>
-</div>
-<div id="problems-with-remote-objects" class="slide section level2" number="6.15">
-<h1><span class="header-section-number">6.15</span> Problems with Remote
-Objects</h1>
+<h2 id="problems-with-remote-objects"><span class="header-section-number">6.15</span> Problems with Remote
+Objects</h2>
 <ul>
 <li><strong>Interfaces</strong>: Remote object interfaces can be too
 granular, with many small methods that perform simple tasks. This can
@@ -3172,10 +2995,8 @@ do not generally provide built-in support for transactions, which can
 make it difficult to ensure the consistency of data across multiple
 objects in a distributed system</li>
 </ul>
-</div>
-<div id="java-rmi-requestreply-protocols" class="slide section level2" number="6.16">
-<h1><span class="header-section-number">6.16</span> Java RMI
-Request/Reply Protocols</h1>
+<h2 id="java-rmi-requestreply-protocols"><span class="header-section-number">6.16</span> Java RMI Request/Reply
+Protocols</h2>
 <p><strong>JRMP (Java Remote Method Protocol)</strong> is the first
 protocol for RMI. It has the following characteristics:</p>
 <ul>
@@ -3196,10 +3017,8 @@ Interfaces to CORBA systems, and the generation of CORBA stubs with IDL
 compilers. This <strong>allows CORBA systems to call Java remote
 objects</strong>, or for Java systems to call into CORBA systems.</li>
 </ul>
-</div>
-<div id="java-rmi-classes-tools" class="slide section level2" number="6.17">
-<h1><span class="header-section-number">6.17</span> Java RMI Classes
-&amp; Tools</h1>
+<h2 id="java-rmi-classes-tools"><span class="header-section-number">6.17</span> Java RMI Classes &amp;
+Tools</h2>
 <ul>
 <li><strong>Remote</strong>: Tag interface that Remote Object Interfaces
 extend.</li>
@@ -3213,19 +3032,13 @@ Implementations extend.</li>
 files.</li>
 <li><strong>registry</strong>: Simple name server for Java objects.</li>
 </ul>
-</div>
-<div id="activation-in-java-rmi" class="slide section level2" number="6.18">
-<h1><span class="header-section-number">6.18</span> Activation in Java
-RMI</h1>
+<h2 id="activation-in-java-rmi"><span class="header-section-number">6.18</span> Activation in Java RMI</h2>
 <p>Activation is an important feature in Java RMI (Remote Method
 Invocation) because it allows servers to transparently store servant
 state on persistent storage and recreate servants on demand. This helps
 the server <strong>control its resources</strong> against memory
 exhaustion and performance degradation.</p>
-</div>
-<div id="security-in-java-rmi" class="slide section level2" number="6.19">
-<h1><span class="header-section-number">6.19</span> Security in Java
-RMI</h1>
+<h2 id="security-in-java-rmi"><span class="header-section-number">6.19</span> Security in Java RMI</h2>
 <ul>
 <li>Specify the quality of service (QOS) of sockets used by RMI, such as
 <strong>using an SSL channel</strong>.</li>
@@ -3233,14 +3046,11 @@ RMI</h1>
 local access from downloaded implementations.</li>
 </ul>
 </div>
-
-<div id="distributed-business-components" class="title-slide slide section level1" number="7">
+<div id="distributed-business-components" class="slide section level1" number="7">
 <h1><span class="header-section-number">7</span> Distributed Business
 Components</h1>
-
-</div>
-<div id="overview-5" class="slide section level2" number="7.1">
-<h1><span class="header-section-number">7.1</span> Overview</h1>
+<h2 id="overview-5"><span class="header-section-number">7.1</span>
+Overview</h2>
 <ul>
 <li><strong>Part One</strong>: General Component Technology covers the
 following topics:
@@ -3260,10 +3070,8 @@ and security.</li>
 <li>Evolution and lessons learned from EJBs.</li>
 </ul></li>
 </ul>
-</div>
-<div id="problems-with-object-interfaces" class="slide section level2" number="7.2">
-<h1><span class="header-section-number">7.2</span> Problems With Object
-Interfaces</h1>
+<h2 id="problems-with-object-interfaces"><span class="header-section-number">7.2</span> Problems With Object
+Interfaces</h2>
 <ul>
 <li><strong>Object interfaces</strong> are tightly intertwined networks
 of references that share state and promises, and changes to these
@@ -3276,10 +3084,7 @@ include all necessary state in the message itself, which is known as
 in webservices and REST architectures and is known as Service Oriented
 Architecture (SOA).</li>
 </ul>
-</div>
-<div id="component-based-processing" class="slide section level2" number="7.3">
-<h1><span class="header-section-number">7.3</span> Component Based
-Processing</h1>
+<h2 id="component-based-processing"><span class="header-section-number">7.3</span> Component Based Processing</h2>
 <ul>
 <li>Components are <strong>self-contained software packages</strong>
 with runtime interfaces and automatic deployment capabilities that are
@@ -3300,10 +3105,7 @@ representing 10-20 tables or more</li>
 <li>Representation of a business concept in an
 <strong>isomorphic</strong> manner</li>
 </ul>
-</div>
-<div id="from-objects-to-components" class="slide section level2" number="7.4">
-<h1><span class="header-section-number">7.4</span> From Objects to
-Components</h1>
+<h2 id="from-objects-to-components"><span class="header-section-number">7.4</span> From Objects to Components</h2>
 <ol style="list-style-type: decimal">
 <li><strong>Object-oriented design</strong> involves isolated,
 monolithic applications that are not distributed.</li>
@@ -3321,10 +3123,7 @@ deployment and aims to achieve re-use and lower development costs.</li>
 <p>Components <strong>go beyond distributed systems</strong> and were
 designed to address some of the same issues as object-oriented
 development.</p>
-</div>
-<div id="business-components" class="slide section level2" number="7.5">
-<h1><span class="header-section-number">7.5</span> Business
-Components</h1>
+<h2 id="business-components"><span class="header-section-number">7.5</span> Business Components</h2>
 <ul>
 <li>Business concepts, such as entities and processes, can be translated
 into software artifacts like EC1 and PC1.</li>
@@ -3332,10 +3131,8 @@ into software artifacts like EC1 and PC1.</li>
 <strong>directly represent concepts</strong> from the business and may
 be represented using the UML “package” construct.</li>
 </ul>
-</div>
-<div id="alternatives-to-isomorphic-mapping" class="slide section level2" number="7.6">
-<h1><span class="header-section-number">7.6</span> Alternatives to
-Isomorphic Mapping</h1>
+<h2 id="alternatives-to-isomorphic-mapping"><span class="header-section-number">7.6</span> Alternatives to Isomorphic
+Mapping</h2>
 <ul>
 <li>Isomorphic mapping, or the idea that software artifacts directly
 correspond to business concepts, <strong>may not always be the best
@@ -3346,10 +3143,7 @@ generative computing, and aspect-oriented development</strong>.</li>
 transformation process, including computation-independent models,
 platform-independent models, and platform-dependent models.</li>
 </ul>
-</div>
-<div id="generative-computing" class="slide section level2" number="7.7">
-<h1><span class="header-section-number">7.7</span> Generative
-Computing</h1>
+<h2 id="generative-computing"><span class="header-section-number">7.7</span> Generative Computing</h2>
 <ul>
 <li>Involves the use of <strong>domain-specific languages and code
 generators</strong> to automate software development</li>
@@ -3366,10 +3160,8 @@ impractical</li>
 <li>Can be used to <strong>create customizable software</strong> for
 different users or environments</li>
 </ul>
-</div>
-<div id="monolithic-software-vs-components" class="slide section level2" number="7.8">
-<h1><span class="header-section-number">7.8</span> Monolithic Software
-vs Components</h1>
+<h2 id="monolithic-software-vs-components"><span class="header-section-number">7.8</span> Monolithic Software vs
+Components</h2>
 <ul>
 <li>Components are <strong>clusters of software, configuration, and
 other elements</strong> that form a unit for deployment and maintenance
@@ -3379,10 +3171,7 @@ within a component framework.</li>
 an alternative to traditional applications, which are monolithic and
 cannot be easily modified.</li>
 </ul>
-</div>
-<div id="objects-vs.-components" class="slide section level2" number="7.9">
-<h1><span class="header-section-number">7.9</span> Objects
-vs. Components</h1>
+<h2 id="objects-vs.-components"><span class="header-section-number">7.9</span> Objects vs. Components</h2>
 <ul>
 <li>A regular object <strong>combines business logic</strong> with
 specific mechanisms such as persistence and hides the internal
@@ -3392,10 +3181,8 @@ such as which database to use, and these are hidden in the code.</li>
 <li><strong>Customizing objects requires code changes</strong>, which
 can be time-consuming and risky.</li>
 </ul>
-</div>
-<div id="separation-of-concerns-and-context" class="slide section level2" number="7.10">
-<h1><span class="header-section-number">7.10</span> Separation of
-Concerns and Context</h1>
+<h2 id="separation-of-concerns-and-context"><span class="header-section-number">7.10</span> Separation of Concerns and
+Context</h2>
 <ul>
 <li>The internal interface of a component is described in
 <strong>meta-information</strong>, which allows deployers to connect the
@@ -3409,10 +3196,7 @@ code of the component.</li>
 <li>This separation of concerns and context <strong>allows components to
 be customized after development</strong>.</li>
 </ul>
-</div>
-<div id="enterprise-java-beans" class="slide section level2" number="7.11">
-<h1><span class="header-section-number">7.11</span> Enterprise Java
-Beans</h1>
+<h2 id="enterprise-java-beans"><span class="header-section-number">7.11</span> Enterprise Java Beans</h2>
 <ul>
 <li>Enterprise Java Beans (EJBs) allow the construction of distributed
 applications by combining components from different vendors.</li>
@@ -3424,10 +3208,7 @@ without modification.</li>
 development, deployment, and runtime support.</li>
 <li>Provide <strong>enterprise data</strong> support.</li>
 </ul>
-</div>
-<div id="ejb-component-model" class="slide section level2" number="7.12">
-<h1><span class="header-section-number">7.12</span> EJB Component
-Model</h1>
+<h2 id="ejb-component-model"><span class="header-section-number">7.12</span> EJB Component Model</h2>
 <p>The EJB component model includes four types of EJBs: stateless
 session beans, stateful session beans, entity beans, and stateless
 message-driven beans.</p>
@@ -3446,10 +3227,8 @@ asynchronously and can connect to an enterprise MOM.</li>
 server side, asynchronous processing, and the representation of business
 data. Entity beans are permanent, while stateful session beans do not
 survive a server crash.</p>
-</div>
-<div id="session-beans-stateful-and-stateless" class="slide section level2" number="7.13">
-<h1><span class="header-section-number">7.13</span> Session Beans
-(Stateful and Stateless)</h1>
+<h2 id="session-beans-stateful-and-stateless"><span class="header-section-number">7.13</span> Session Beans (Stateful and
+Stateless)</h2>
 <ul>
 <li>Session beans are <strong>per-client objects</strong>, except for
 stateful session beans which represent client code on the server
@@ -3464,10 +3243,8 @@ crashes.</li>
 <li>Stateless session beans are the most scalable and EJB servers should
 be able to support large numbers of them.</li>
 </ul>
-</div>
-<div id="entity-beans-deprecated-since-3.0" class="slide section level2" number="7.14">
-<h1><span class="header-section-number">7.14</span> Entity Beans
-(Deprecated Since 3.0)</h1>
+<h2 id="entity-beans-deprecated-since-3.0"><span class="header-section-number">7.14</span> Entity Beans (Deprecated Since
+3.0)</h2>
 <ul>
 <li>Entity beans are <strong>shared objects</strong> that are protected
 through transactions.</li>
@@ -3482,10 +3259,7 @@ visible to clients through a primary key, and clients can request a
 <li>In EJB 3.0, persistence is no longer a concern for EJBs and is
 <strong>instead covered by the Java Persistence API</strong>.</li>
 </ul>
-</div>
-<div id="message-driven-beans" class="slide section level2" number="7.15">
-<h1><span class="header-section-number">7.15</span> Message-Driven
-Beans</h1>
+<h2 id="message-driven-beans"><span class="header-section-number">7.15</span> Message-Driven Beans</h2>
 <ul>
 <li>Message-driven beans are <strong>invoked asynchronously</strong> and
 do not have client context available during processing.</li>
@@ -3501,10 +3275,7 @@ transactions, security, concurrency, and deployment description.</li>
 marked as “unread” and <strong>can be processed after the container is
 restarted</strong>.</li>
 </ul>
-</div>
-<div id="client-view-of-ejbs" class="slide section level2" number="7.16">
-<h1><span class="header-section-number">7.16</span> Client View of
-EJBs</h1>
+<h2 id="client-view-of-ejbs"><span class="header-section-number">7.16</span> Client View of EJBs</h2>
 <ul>
 <li>Clients <strong>never access the bean class</strong> directly.</li>
 <li>EJBs can offer a <strong>remote or local interface</strong> to
@@ -3512,10 +3283,8 @@ clients (clients of the local interface must be in the same Java virtual
 machine as the bean container).</li>
 <li>The business logic is contained in the bean class.</li>
 </ul>
-</div>
-<div id="local-vs.-remote-interfaces" class="slide section level2" number="7.17">
-<h1><span class="header-section-number">7.17</span> Local vs. Remote
-Interfaces</h1>
+<h2 id="local-vs.-remote-interfaces"><span class="header-section-number">7.17</span> Local vs. Remote
+Interfaces</h2>
 <ul>
 <li>The remote interface of an EJB uses remote object calling
 conventions, while the local interface uses local Java calling
@@ -3529,10 +3298,8 @@ that <strong>value objects be copied</strong>.</li>
 interface must be aware of these different calling conventions and
 design their beans accordingly.</li>
 </ul>
-</div>
-<div id="separation-of-concerns-and-context-in-ejb" class="slide section level2" number="7.18">
-<h1><span class="header-section-number">7.18</span> Separation of
-Concerns and Context in EJB</h1>
+<h2 id="separation-of-concerns-and-context-in-ejb"><span class="header-section-number">7.18</span> Separation of Concerns and
+Context in EJB</h2>
 <p>Separation of concerns is done through the EJB framework, separation
 of context is done through deployment:</p>
 <ul>
@@ -3545,10 +3312,7 @@ management definitions of role/user binding.</li>
 <li>The roles involved in component development, application assembly,
 and deployment map to the deployment descriptor and JNDI interface.</li>
 </ul>
-</div>
-<div id="the-ejb-container" class="slide section level2" number="7.19">
-<h1><span class="header-section-number">7.19</span> The EJB
-Container</h1>
+<h2 id="the-ejb-container"><span class="header-section-number">7.19</span> The EJB Container</h2>
 <ol style="list-style-type: decimal">
 <li>A client invokes an <strong>entity bean interface.</strong></li>
 <li>The container delegates the request to the <strong>entity bean
@@ -3569,10 +3333,7 @@ purpose.</li>
 <li>However, it is believed that <strong>a better concept is
 needed</strong> that does not mix loading with isolation.</li>
 </ul>
-</div>
-<div id="containers-and-threads" class="slide section level2" number="7.20">
-<h1><span class="header-section-number">7.20</span> Containers and
-Threads</h1>
+<h2 id="containers-and-threads"><span class="header-section-number">7.20</span> Containers and Threads</h2>
 <ul>
 <li>Containers manage resources across applications and store context
 and session information in threadlocal storage.</li>
@@ -3586,10 +3347,8 @@ themselves.</li>
 management, as the <strong>container is responsible for choosing the
 appropriate resource management policy</strong>.</li>
 </ul>
-</div>
-<div id="entity-bean-container-contract" class="slide section level2" number="7.21">
-<h1><span class="header-section-number">7.21</span> Entity Bean
-Container Contract</h1>
+<h2 id="entity-bean-container-contract"><span class="header-section-number">7.21</span> Entity Bean Container
+Contract</h2>
 <p>The Entity Bean-Container Contract defines a set of methods that the
 container can call on an entity bean in order to manage its lifecycle
 and access resources.</p>
@@ -3618,10 +3377,8 @@ require an object identity</li>
 <p>The actions that can be performed in these framework methods depend
 on the availability of a transactional context, object identity, local
 or remote view, and client security context.</p>
-</div>
-<div id="bean-managed-vs.-container-managed-persistence" class="slide section level2" number="7.22">
-<h1><span class="header-section-number">7.22</span> Bean Managed
-vs. Container Managed Persistence</h1>
+<h2 id="bean-managed-vs.-container-managed-persistence"><span class="header-section-number">7.22</span> Bean Managed vs. Container
+Managed Persistence</h2>
 <p>There are two main approaches to persistence in EJBs: bean-managed
 and container-managed.</p>
 <ul>
@@ -3636,10 +3393,7 @@ is the preferred approach in the future</strong>, as it is more portable
 and does not require adjustments to different datastores. Bean-managed
 persistence, on the other hand, is less portable and requires more
 effort to adapt to different datastores.</p>
-</div>
-<div id="jndi-naming-context" class="slide section level2" number="7.23">
-<h1><span class="header-section-number">7.23</span> JNDI Naming
-Context</h1>
+<h2 id="jndi-naming-context"><span class="header-section-number">7.23</span> JNDI Naming Context</h2>
 <ul>
 <li>EJBs locate all their resources through JNDI (Java Naming and
 Directory Interface) calls, which allows deployers to <strong>specify
@@ -3649,10 +3403,7 @@ descriptor</strong>.</li>
 lookups</strong> and customize the resources that each EJB has access
 to.</li>
 </ul>
-</div>
-<div id="deployment-descriptor" class="slide section level2" number="7.24">
-<h1><span class="header-section-number">7.24</span> Deployment
-Descriptor</h1>
+<h2 id="deployment-descriptor"><span class="header-section-number">7.24</span> Deployment Descriptor</h2>
 <ul>
 <li>The deployment descriptor is a <strong>file that contains
 meta-information</strong> about an EJB in XML format.</li>
@@ -3662,10 +3413,7 @@ interfaces used), the deployer (to adjust values for specific
 environments), and generators (to generate queries from the
 meta-information).</li>
 </ul>
-</div>
-<div id="security-support" class="slide section level2" number="7.25">
-<h1><span class="header-section-number">7.25</span> Security
-Support</h1>
+<h2 id="security-support"><span class="header-section-number">7.25</span> Security Support</h2>
 <p><strong>Principal delegation:</strong></p>
 <ul>
 <li>In this mode, the EJB container <strong>passes along the
@@ -3687,10 +3435,7 @@ identity.</li>
 <strong>perform actions on behalf of a specific user or group</strong>,
 regardless of the identity of the client.</li>
 </ul>
-</div>
-<div id="transaction-modes" class="slide section level2" number="7.26">
-<h1><span class="header-section-number">7.26</span> Transaction
-Modes</h1>
+<h2 id="transaction-modes"><span class="header-section-number">7.26</span> Transaction Modes</h2>
 <p>EJBs support several transaction modes, which allow developers to
 specify the level of transaction support required by the EJB.</p>
 <p>The available transaction modes are:</p>
@@ -3715,10 +3460,7 @@ is active.</li>
 will throw an exception if a transaction is active when it is
 called.</li>
 </ul>
-</div>
-<div id="best-practices-for-ejbs" class="slide section level2" number="7.27">
-<h1><span class="header-section-number">7.27</span> Best Practices for
-EJBs</h1>
+<h2 id="best-practices-for-ejbs"><span class="header-section-number">7.27</span> Best Practices for EJBs</h2>
 <ul>
 <li><strong>Use local interfaces if possible</strong> to reduce network
 overhead</li>
@@ -3739,10 +3481,7 @@ fix bottlenecks in your application</li>
 <li><strong>Properly size and configure your EJB server</strong> to meet
 the needs of your application.</li>
 </ul>
-</div>
-<div id="shortcomings-of-ejbs" class="slide section level2" number="7.28">
-<h1><span class="header-section-number">7.28</span> Shortcomings of
-EJBs</h1>
+<h2 id="shortcomings-of-ejbs"><span class="header-section-number">7.28</span> Shortcomings of EJBs</h2>
 <ul>
 <li><strong>Large number of artifacts</strong> for the programmer to
 control</li>
@@ -3756,10 +3495,8 @@ abstract schema approach</li>
 <li>Entity beans <strong>overloaded with security, transactions and
 persistence</strong></li>
 </ul>
-</div>
-<div id="new-ways-for-object-relational-mapping" class="slide section level2" number="7.29">
-<h1><span class="header-section-number">7.29</span> New Ways for
-Object-Relational Mapping</h1>
+<h2 id="new-ways-for-object-relational-mapping"><span class="header-section-number">7.29</span> New Ways for Object-Relational
+Mapping</h2>
 <ul>
 <li>The trend towards using generic, abstract schema mappings for O/R
 mapping appears to be over, and <strong>SQL is becoming more
@@ -3770,10 +3507,7 @@ persistence. The use of <strong>plain old Java objects (POJO)</strong>
 for persistence has been seen as a more straightforward and effective
 solution.</li>
 </ul>
-</div>
-<div id="lessons-learned-from-ejbs" class="slide section level2" number="7.30">
-<h1><span class="header-section-number">7.30</span> Lessons Learned from
-EJBs</h1>
+<h2 id="lessons-learned-from-ejbs"><span class="header-section-number">7.30</span> Lessons Learned from EJBs</h2>
 <ul>
 <li>It <strong>takes a long time to develop</strong> and scale a complex
 framework for components like EJBs.</li>
@@ -3792,13 +3526,10 @@ tooling and customization.</li>
 emerge before implementing complex new technology on a large scale.</li>
 </ul>
 </div>
-
-<div id="services" class="title-slide slide section level1" number="8">
+<div id="services" class="slide section level1" number="8">
 <h1><span class="header-section-number">8</span> Services</h1>
-
-</div>
-<div id="overview-6" class="slide section level2" number="8.1">
-<h1><span class="header-section-number">8.1</span> Overview</h1>
+<h2 id="overview-6"><span class="header-section-number">8.1</span>
+Overview</h2>
 <ul>
 <li>A recap of CORBA</li>
 <li>Web services</li>
@@ -3807,10 +3538,8 @@ emerge before implementing complex new technology on a large scale.</li>
 <li>Conway’s Law</li>
 <li>Serverless computing</li>
 </ul>
-</div>
-<div id="timeline-of-distributed-service-architectures" class="slide section level2" number="8.2">
-<h1><span class="header-section-number">8.2</span> Timeline of
-Distributed Service Architectures</h1>
+<h2 id="timeline-of-distributed-service-architectures"><span class="header-section-number">8.2</span> Timeline of Distributed Service
+Architectures</h2>
 <ul>
 <li>In the early 1990s, distributed service architectures for use in
 intranets (private networks) emerged, including <strong>Unix RPC and
@@ -3832,10 +3561,7 @@ APIs.</li>
 emerged as a way to build and run applications and services without the
 need to manage underlying infrastructure.</li>
 </ul>
-</div>
-<div id="corba-security-model" class="slide section level2" number="8.3">
-<h1><span class="header-section-number">8.3</span> CORBA Security
-Model</h1>
+<h2 id="corba-security-model"><span class="header-section-number">8.3</span> CORBA Security Model</h2>
 <ul>
 <li>In the CORBA security model, the concept of <strong>secure
 delegation</strong> is used to ensure that communication between systems
@@ -3849,10 +3575,7 @@ authorized to exchange information.</li>
 ensure that later tiers can verify the original requestor and route of
 the request.</li>
 </ul>
-</div>
-<div id="corba-core-properties" class="slide section level2" number="8.4">
-<h1><span class="header-section-number">8.4</span> CORBA Core
-Properties</h1>
+<h2 id="corba-core-properties"><span class="header-section-number">8.4</span> CORBA Core Properties</h2>
 <ul>
 <li>CORBA was primarily designed as an <strong>intranet
 technology</strong> for use within private networks.</li>
@@ -3871,10 +3594,7 @@ software</strong> in large corporations.</li>
 <strong>extensive code generation and model-driven
 development</strong>.</li>
 </ul>
-</div>
-<div id="web-services-definition" class="slide section level2" number="8.5">
-<h1><span class="header-section-number">8.5</span> Web Services
-Definition</h1>
+<h2 id="web-services-definition"><span class="header-section-number">8.5</span> Web Services Definition</h2>
 <ul>
 <li>A Web Service is a software component that <strong>represents a
 business function or service</strong>, and can be accessed by other
@@ -3889,10 +3609,8 @@ earliest standards for Web Services.</li>
 <li>Web Services <strong>have been used internally</strong> by companies
 for some time.</li>
 </ul>
-</div>
-<div id="web-services-core-properties" class="slide section level2" number="8.6">
-<h1><span class="header-section-number">8.6</span> Web Services Core
-Properties</h1>
+<h2 id="web-services-core-properties"><span class="header-section-number">8.6</span> Web Services Core
+Properties</h2>
 <ul>
 <li>Web Services use <strong>“simple” requests</strong> that can be sent
 over public networks/the internet using HTTP transport for firewall
@@ -3911,10 +3629,7 @@ this was largely overhyped.</li>
 Access Protocol) did not actually have anything to do with distributed
 objects.</li>
 </ul>
-</div>
-<div id="uddi-functionality" class="slide section level2" number="8.7">
-<h1><span class="header-section-number">8.7</span> UDDI
-Functionality</h1>
+<h2 id="uddi-functionality"><span class="header-section-number">8.7</span> UDDI Functionality</h2>
 <p>UDDI (Universal Description, Discovery, and Integration) is a
 registry that provides a “find and publish” API for distributed
 services. It works like this:</p>
@@ -3935,10 +3650,8 @@ using a specified transport protocol (such as SOAP over HTTP).</li>
 <strong>“service-oriented”</strong> because it uses a broker for service
 advertisement and lookup, and requester and provider bind dynamically
 with respect to the transport protocol used.</p>
-</div>
-<div id="uddi-content-and-categories" class="slide section level2" number="8.8">
-<h1><span class="header-section-number">8.8</span> UDDI Content and
-Categories</h1>
+<h2 id="uddi-content-and-categories"><span class="header-section-number">8.8</span> UDDI Content and
+Categories</h2>
 <ul>
 <li>All content in UDDI is expressed in XML.</li>
 <li>The UDDI registry includes information about companies and services,
@@ -3956,9 +3669,8 @@ classification by type and industry.</li>
 <li><strong>Green pages</strong>: meta information about services and
 their qualities.</li>
 </ul>
-</div>
-<div id="wsdl-overview" class="slide section level2" number="8.9">
-<h1><span class="header-section-number">8.9</span> WSDL Overview</h1>
+<h2 id="wsdl-overview"><span class="header-section-number">8.9</span>
+WSDL Overview</h2>
 <ul>
 <li>WSDL (Web Service Description Language) is the <strong>metadata
 language</strong> used by Web Services.</li>
@@ -3971,9 +3683,8 @@ parameters</strong> used by the service.</li>
 needs</strong> to construct a valid SOAP invocation, which is then
 mapped onto back-end enterprise logic by the Web Services platform.</li>
 </ul>
-</div>
-<div id="wsdl-elements" class="slide section level2" number="8.10">
-<h1><span class="header-section-number">8.10</span> WSDL Elements</h1>
+<h2 id="wsdl-elements"><span class="header-section-number">8.10</span>
+WSDL Elements</h2>
 <ul>
 <li>WSDL documents <strong>define services as collections of network
 endpoints</strong> or ports.</li>
@@ -3999,9 +3710,7 @@ specification for a particular port type.</li>
 a binding and a network address.</li>
 <li><strong>Service</strong>: A collection of related endpoints.</li>
 </ul>
-</div>
-<div id="soap" class="slide section level2" number="8.11">
-<h1><span class="header-section-number">8.11</span> SOAP</h1>
+<h2 id="soap"><span class="header-section-number">8.11</span> SOAP</h2>
 <ul>
 <li>SOAP is an RPC (Remote Procedure Call) protocol that <strong>uses
 XML</strong>. It includes elements for type marshalling and RPC
@@ -4020,10 +3729,7 @@ meta-information</strong>, but it is optional.</li>
 especially in the absence of Quality of Service (QoS) measures,
 <strong>has a greater impact on overall request time</strong> than the
 size and interpretation effort of a textual format.</p>
-</div>
-<div id="security-and-web-services" class="slide section level2" number="8.12">
-<h1><span class="header-section-number">8.12</span> Security and Web
-Services</h1>
+<h2 id="security-and-web-services"><span class="header-section-number">8.12</span> Security and Web Services</h2>
 <ul>
 <li><strong>SOAP, WSDL, and UDDI</strong>: Message Envelope, Interfaces
 Definition, and Registry.</li>
@@ -4040,10 +3746,7 @@ Statements.</li>
 <li><strong>WS-Util</strong>: Helper Elements.</li>
 <li><strong>WS-Authorization</strong>: Expression of Access Rights.</li>
 </ul>
-</div>
-<div id="reliable-messaging" class="slide section level2" number="8.13">
-<h1><span class="header-section-number">8.13</span> Reliable
-Messaging</h1>
+<h2 id="reliable-messaging"><span class="header-section-number">8.13</span> Reliable Messaging</h2>
 <p>Reliable B2B (Business-to-Business) messages require the following
 qualities:</p>
 <ul>
@@ -4061,9 +3764,8 @@ number, and QoS (Quality of Service) tag to the receiver.</li>
 <li>The receiver exchanges persistent messages with the second
 application layer.</li>
 </ol>
-</div>
-<div id="secure-messages" class="slide section level2" number="8.14">
-<h1><span class="header-section-number">8.14</span> Secure Messages</h1>
+<h2 id="secure-messages"><span class="header-section-number">8.14</span>
+Secure Messages</h2>
 <ul>
 <li>Digital <strong>signatures</strong> with XMLDsig</li>
 <li>Digital <strong>encryption</strong> with XMLEnc</li>
@@ -4084,9 +3786,7 @@ prepended</strong> to existing information.</li>
 <li>Signatures must respect the right of <strong>intermediaries to
 change the envelope</strong> or some header information.</li>
 </ul>
-</div>
-<div id="saml" class="slide section level2" number="8.15">
-<h1><span class="header-section-number">8.15</span> SAML</h1>
+<h2 id="saml"><span class="header-section-number">8.15</span> SAML</h2>
 <ul>
 <li>SAML allows <strong>externalization of policies and
 mechanisms</strong> related to authentication, authorization, and
@@ -4098,10 +3798,7 @@ mechanisms.</li>
 different services</strong> because the format of the assertions is
 fixed.</li>
 </ul>
-</div>
-<div id="transaction-models" class="slide section level2" number="8.16">
-<h1><span class="header-section-number">8.16</span> Transaction
-Models</h1>
+<h2 id="transaction-models"><span class="header-section-number">8.16</span> Transaction Models</h2>
 <p><strong>Atomic transactions:</strong></p>
 <ul>
 <li>Are not nested (<strong>standalone</strong>)</li>
@@ -4119,10 +3816,7 @@ Models</h1>
 address errors</li>
 <li>Can be disrupted by errors such as order cancellations</li>
 </ul>
-</div>
-<div id="stateful-web-services" class="slide section level2" number="8.17">
-<h1><span class="header-section-number">8.17</span> Stateful Web
-Services</h1>
+<h2 id="stateful-web-services"><span class="header-section-number">8.17</span> Stateful Web Services</h2>
 <ul>
 <li>Stateful architectures, such as computational grids, require the
 concept of a <strong>resource</strong>.</li>
@@ -4134,10 +3828,7 @@ information between requestors and endpoints.</li>
 <li>Advanced <strong>notification requests</strong> can be built on top
 of WS-Resource.</li>
 </ul>
-</div>
-<div id="scaling-web-services" class="slide section level2" number="8.18">
-<h1><span class="header-section-number">8.18</span> Scaling Web
-Services</h1>
+<h2 id="scaling-web-services"><span class="header-section-number">8.18</span> Scaling Web Services</h2>
 <ul>
 <li><strong>Avoid</strong> using XML messaging for <strong>fine-grained
 RPC</strong>, such as requesting the square root of a number or a stock
@@ -4157,9 +3848,8 @@ your web service. A high rate of requests may suggest that you load
 <strong>consider performing the aggregation on demand</strong> or during
 off-hours in one large, course-grained transaction.</li>
 </ul>
-</div>
-<div id="why-uuid-failed" class="slide section level2" number="8.19">
-<h1><span class="header-section-number">8.19</span> Why UUID Failed</h1>
+<h2 id="why-uuid-failed"><span class="header-section-number">8.19</span>
+Why UUID Failed</h2>
 <p>UDDI relied on the following assumptions:</p>
 <ul>
 <li><strong>Central registries</strong> of service descriptions</li>
@@ -4187,10 +3877,8 @@ issues:</p>
 <li>Understanding <strong>flows and goals</strong></li>
 <li>Understanding and matching of <strong>constraints</strong></li>
 </ul>
-</div>
-<div id="lessons-learned-from-web-services-and-corba" class="slide section level2" number="8.20">
-<h1><span class="header-section-number">8.20</span> Lessons Learned from
-Web Services and CORBA</h1>
+<h2 id="lessons-learned-from-web-services-and-corba"><span class="header-section-number">8.20</span> Lessons Learned from Web
+Services and CORBA</h2>
 <ul>
 <li>Web services and CORBA are low-level concepts that <strong>lack
 semantics</strong>.</li>
@@ -4201,10 +3889,7 @@ interface design, but <strong>also about hosting services</strong>.</li>
 <li>The <strong>availability of a service on the web</strong> is more
 valuable than many specifications and interfaces.</li>
 </ul>
-</div>
-<div id="soa-core-properties" class="slide section level2" number="8.21">
-<h1><span class="header-section-number">8.21</span> SOA Core
-Properties</h1>
+<h2 id="soa-core-properties"><span class="header-section-number">8.21</span> SOA Core Properties</h2>
 <ul>
 <li>Services offer <strong>high-level interfaces</strong> that relate to
 business functions.</li>
@@ -4219,10 +3904,7 @@ the use of a service interface.</li>
 <li>SOA <strong>relies on Web Service technology</strong> as its
 foundation.</li>
 </ul>
-</div>
-<div id="soa-interface-design" class="slide section level2" number="8.22">
-<h1><span class="header-section-number">8.22</span> SOA Interface
-Design</h1>
+<h2 id="soa-interface-design"><span class="header-section-number">8.22</span> SOA Interface Design</h2>
 <ul>
 <li><strong>Object interfaces</strong> can be conversational, accept
 transactions, and are fast. They use object references.</li>
@@ -4236,10 +3918,8 @@ times. Service interfaces are isolated, independent, and can be composed
 with larger services (choreography) or made up of smaller services
 (orchestration). They are stateless.</li>
 </ul>
-</div>
-<div id="soa-blueprint-service-types" class="slide section level2" number="8.23">
-<h1><span class="header-section-number">8.23</span> SOA Blueprint
-Service Types</h1>
+<h2 id="soa-blueprint-service-types"><span class="header-section-number">8.23</span> SOA Blueprint Service
+Types</h2>
 <ul>
 <li><strong>Component Services</strong>: These are atomic operations on
 simple objects, such as database access.</li>
@@ -4257,10 +3937,7 @@ that manipulate and forward messages based on rules.</li>
 <li><strong>Compensation Services</strong>: These revert actions, but do
 not roll back like traditional transactions.</li>
 </ul>
-</div>
-<div id="soa-vs.-microservices" class="slide section level2" number="8.24">
-<h1><span class="header-section-number">8.24</span> SOA
-vs. Microservices</h1>
+<h2 id="soa-vs.-microservices"><span class="header-section-number">8.24</span> SOA vs. Microservices</h2>
 <p><strong>SOA:</strong></p>
 <ul>
 <li>Services are usually <strong>larger</strong> and more
@@ -4289,9 +3966,8 @@ infrastructure and business services.</li>
 <li>Follow a <strong>“share as little as possible”</strong>
 approach.</li>
 </ul>
-</div>
-<div id="rpc-vs.-rest" class="slide section level2" number="8.25">
-<h1><span class="header-section-number">8.25</span> RPC vs. REST</h1>
+<h2 id="rpc-vs.-rest"><span class="header-section-number">8.25</span>
+RPC vs. REST</h2>
 <ul>
 <li>The web is based on <strong>representing resources using
 URIs</strong>, while web services create private, non-standard ways of
@@ -4302,10 +3978,7 @@ benefits over the generic HTTP methods</strong> (GET, PUT, POST).</li>
 web</strong>. Some extensions to the HTTP methods might be necessary to
 support certain features, such as tuple-space systems.</li>
 </ul>
-</div>
-<div id="the-webs-architecture" class="slide section level2" number="8.26">
-<h1><span class="header-section-number">8.26</span> The Web’s
-Architecture</h1>
+<h2 id="the-webs-architecture"><span class="header-section-number">8.26</span> The Web’s Architecture</h2>
 <ul>
 <li>Follows a <strong>client-server model</strong>, where clients
 request resources from servers.</li>
@@ -4328,10 +4001,7 @@ context and state information with each request.</li>
 <li><strong>Allows for code-on-demand</strong>, where servers can send
 scripts, applets, and other code to clients as needed.</li>
 </ul>
-</div>
-<div id="rest-maturity-model" class="slide section level2" number="8.27">
-<h1><span class="header-section-number">8.27</span> REST Maturity
-Model</h1>
+<h2 id="rest-maturity-model"><span class="header-section-number">8.27</span> REST Maturity Model</h2>
 <ul>
 <li><strong>REST Level 0 (RPC)</strong>: This level resembles regular
 RPC, with function calls being made to a single endpoint. Resources are
@@ -4349,10 +4019,7 @@ actions that can be invoked by the client. Services can change their
 URIs without breaking clients, and the “rel” attribute is used to
 describe the semantics behind the URI link.</li>
 </ul>
-</div>
-<div id="rest-resource-archetypes" class="slide section level2" number="8.28">
-<h1><span class="header-section-number">8.28</span> REST Resource
-Archetypes</h1>
+<h2 id="rest-resource-archetypes"><span class="header-section-number">8.28</span> REST Resource Archetypes</h2>
 <ul>
 <li><strong>Document</strong>: Fields and links representing a base
 resource. Created using POST.</li>
@@ -4365,9 +4032,8 @@ updated using PUT.</li>
 <li><strong>URI path design</strong>: Reflects the resource model, with
 variable path segments and query terms.</li>
 </ul>
-</div>
-<div id="crud-with-rest" class="slide section level2" number="8.29">
-<h1><span class="header-section-number">8.29</span> CRUD with REST</h1>
+<h2 id="crud-with-rest"><span class="header-section-number">8.29</span>
+CRUD with REST</h2>
 <p>In RESTful web services, requests are made by a <strong>requestor to
 a representation of a resource</strong>. The HTTP methods (GET, POST,
 PUT, DELETE) are used to perform different actions on the resource:</p>
@@ -4383,10 +4049,7 @@ server.</li>
 design that has been around for a long time. It is known as the
 “command-query separation principle” and was made a requirement in the
 Eiffel programming language.</p>
-</div>
-<div id="restful-web-features" class="slide section level2" number="8.30">
-<h1><span class="header-section-number">8.30</span> RESTful Web
-Features</h1>
+<h2 id="restful-web-features"><span class="header-section-number">8.30</span> RESTful Web Features</h2>
 <p>RESTful web services have four key characteristics:</p>
 <ul>
 <li>Use the HTTP protocol in a <strong>CRUD-like</strong> manner, with
@@ -4400,10 +4063,7 @@ typically being parent/child or general/specific entity relations.</li>
 <li><strong>Use XML or JSON</strong> as a transfer format and content
 negotiation with mime types.</li>
 </ul>
-</div>
-<div id="critical-points-with-rest" class="slide section level2" number="8.31">
-<h1><span class="header-section-number">8.31</span> Critical Points with
-REST</h1>
+<h2 id="critical-points-with-rest"><span class="header-section-number">8.31</span> Critical Points with REST</h2>
 <ul>
 <li><strong>Delivery of requests</strong>: How to handle at-least-once
 or at-most-once delivery and transactions.</li>
@@ -4415,10 +4075,8 @@ especially with large amounts of data or many round-trips.</li>
 becoming heavy, kludgy, and serve more than a single responsibility over
 time.</li>
 </ul>
-</div>
-<div id="graphql-as-a-rest-alternative" class="slide section level2" number="8.32">
-<h1><span class="header-section-number">8.32</span> GraphQL as a REST
-Alternative</h1>
+<h2 id="graphql-as-a-rest-alternative"><span class="header-section-number">8.32</span> GraphQL as a REST
+Alternative</h2>
 <ul>
 <li><strong>Avoids over- and under-fetching</strong> of data by allowing
 the client to specify exactly what data it needs in a single
@@ -4436,10 +4094,8 @@ servers to be combined and accessed through a single endpoint.</li>
 <li><strong>Has the potential for huge queries</strong>, which can be a
 danger if not carefully managed.</li>
 </ul>
-</div>
-<div id="the-reasons-for-microservice-adoption" class="slide section level2" number="8.33">
-<h1><span class="header-section-number">8.33</span> The Reasons for
-Microservice Adoption</h1>
+<h2 id="the-reasons-for-microservice-adoption"><span class="header-section-number">8.33</span> The Reasons for Microservice
+Adoption</h2>
 <ul>
 <li>Ultra large-scale sites require <strong>efficient horizontal
 scaling</strong>.</li>
@@ -4451,10 +4107,8 @@ experimentation.</li>
 <li>Unicorn companies <strong>need to offer an API for network
 effects</strong>.</li>
 </ul>
-</div>
-<div id="scalability-problems-of-monolithic-applications" class="slide section level2" number="8.34">
-<h1><span class="header-section-number">8.34</span> Scalability Problems
-of Monolithic Applications</h1>
+<h2 id="scalability-problems-of-monolithic-applications"><span class="header-section-number">8.34</span> Scalability Problems of
+Monolithic Applications</h2>
 <ul>
 <li>Monolithic applications <strong>can only be deployed as a
 whole</strong>, making it difficult to scale specific components.</li>
@@ -4466,10 +4120,8 @@ can be hard to scale.</li>
 plan</strong> for the entire application, which can be inflexible and
 slow.</li>
 </ul>
-</div>
-<div id="scalability-benefits-of-microservices" class="slide section level2" number="8.35">
-<h1><span class="header-section-number">8.35</span> Scalability Benefits
-of Microservices</h1>
+<h2 id="scalability-benefits-of-microservices"><span class="header-section-number">8.35</span> Scalability Benefits of
+Microservices</h2>
 <ul>
 <li>Individual functions can be <strong>deployed independently</strong>,
 making it easy to perform A/B testing.</li>
@@ -4480,10 +4132,8 @@ making it easy to scale them.</li>
 <li>The <strong>API</strong> can be <strong>quickly scaled</strong> to
 meet demand.</li>
 </ul>
-</div>
-<div id="the-microservice-ecosystem" class="slide section level2" number="8.36">
-<h1><span class="header-section-number">8.36</span> The Microservice
-Ecosystem</h1>
+<h2 id="the-microservice-ecosystem"><span class="header-section-number">8.36</span> The Microservice
+Ecosystem</h2>
 <ul>
 <li><strong>Continuous integration/deployment</strong> allows for rapid
 experimentation.</li>
@@ -4506,10 +4156,8 @@ communication across multiple microservices.</li>
 <li><strong>Fault-tolerance patterns</strong> ensure that the system can
 continue to operate even if individual microservices fail.</li>
 </ul>
-</div>
-<div id="microservice-design-patterns" class="slide section level2" number="8.37">
-<h1><span class="header-section-number">8.37</span> Microservice Design
-Patterns</h1>
+<h2 id="microservice-design-patterns"><span class="header-section-number">8.37</span> Microservice Design
+Patterns</h2>
 <ul>
 <li><strong>API gateway</strong>: Facade to fine-granular services</li>
 <li><strong>Client-side discovery</strong>: Provided by MS chassis
@@ -4535,10 +4183,8 @@ changes</li>
 <li><strong>Database triggers</strong>: Put events in events table after
 changes</li>
 </ul>
-</div>
-<div id="critical-points-with-microservices" class="slide section level2" number="8.38">
-<h1><span class="header-section-number">8.38</span> Critical Points with
-Microservices</h1>
+<h2 id="critical-points-with-microservices"><span class="header-section-number">8.38</span> Critical Points with
+Microservices</h2>
 <ul>
 <li><strong>Cross-concerns</strong>, such as transactions, security,
 performance, and scalability, <strong>can be challenging</strong> to
@@ -4560,10 +4206,7 @@ transport for microservices.</li>
 <li><strong>Distributed commits</strong> must be eventually consistent
 to ensure that they do not get lost.</li>
 </ul>
-</div>
-<div id="serverless-definition" class="slide section level2" number="8.39">
-<h1><span class="header-section-number">8.39</span> Serverless
-Definition</h1>
+<h2 id="serverless-definition"><span class="header-section-number">8.39</span> Serverless Definition</h2>
 <ul>
 <li>Cloud-native platform for <strong>short-running, stateless
 computation and event-driven</strong> applications</li>
@@ -4577,10 +4220,7 @@ resources</li>
 <li>Allows developers to <strong>focus on writing code</strong>, not
 infrastructure management</li>
 </ul>
-</div>
-<div id="stateless-applications" class="slide section level2" number="8.40">
-<h1><span class="header-section-number">8.40</span> Stateless
-Applications</h1>
+<h2 id="stateless-applications"><span class="header-section-number">8.40</span> Stateless Applications</h2>
 <ul>
 <li>Stateless system or component <strong>does not maintain state or
 context between requests</strong></li>
@@ -4595,10 +4235,7 @@ systems</li>
 smaller, independent components) <strong>may be difficult</strong> in
 stateless systems</li>
 </ul>
-</div>
-<div id="issues-with-serverless" class="slide section level2" number="8.41">
-<h1><span class="header-section-number">8.41</span> Issues with
-Serverless</h1>
+<h2 id="issues-with-serverless"><span class="header-section-number">8.41</span> Issues with Serverless</h2>
 <ul>
 <li>Countless small <strong>IAM rules</strong></li>
 <li>Coupling with less scaleable components</li>
@@ -4618,10 +4255,8 @@ functions</li>
 <li><strong>Inefficient storage systems</strong> for small objects or
 frequent access</li>
 </ul>
-</div>
-<div id="serverless-design-patterns" class="slide section level2" number="8.42">
-<h1><span class="header-section-number">8.42</span> Serverless Design
-Patterns</h1>
+<h2 id="serverless-design-patterns"><span class="header-section-number">8.42</span> Serverless Design
+Patterns</h2>
 <ul>
 <li><strong>Scalable Webhook</strong>: Triggers based on external
 events</li>
@@ -4645,14 +4280,11 @@ destination</li>
 the current state of an event</li>
 </ul>
 </div>
-
-<div id="theoretical-foundations-of-distributed-systems-1" class="title-slide slide section level1" number="9">
+<div id="theoretical-foundations-of-distributed-systems-1" class="slide section level1" number="9">
 <h1><span class="header-section-number">9</span> Theoretical Foundations
 of Distributed Systems</h1>
-
-</div>
-<div id="overview-7" class="slide section level2" number="9.1">
-<h1><span class="header-section-number">9.1</span> Overview</h1>
+<h2 id="overview-7"><span class="header-section-number">9.1</span>
+Overview</h2>
 <ul>
 <li>Basic Concepts
 <ul>
@@ -4669,10 +4301,8 @@ of Distributed Systems</h1>
 <li>Algorithms for Consensus in DS</li>
 <li>Optimistic Replication and Eventual Consistency</li>
 </ul>
-</div>
-<div id="the-eight-fallacies-of-distributed-computing" class="slide section level2" number="9.2">
-<h1><span class="header-section-number">9.2</span> The Eight Fallacies
-of Distributed Computing</h1>
+<h2 id="the-eight-fallacies-of-distributed-computing"><span class="header-section-number">9.2</span> The Eight Fallacies of
+Distributed Computing</h2>
 <ul>
 <li><strong>The network is reliable</strong>: This fallacy assumes that
 the network will always be available and free of errors or failures,
@@ -4707,10 +4337,7 @@ that all nodes in the network are identical and operate in the same way,
 but in reality, nodes can have different hardware, software, and
 configurations.</li>
 </ul>
-</div>
-<div id="analyzing-latency" class="slide section level2" number="9.3">
-<h1><span class="header-section-number">9.3</span> Analyzing
-Latency</h1>
+<h2 id="analyzing-latency"><span class="header-section-number">9.3</span> Analyzing Latency</h2>
 <ul>
 <li><strong>Know the long-term trends in hardware</strong>: Latency can
 be influenced by the performance of the hardware being used, so it’s
@@ -4737,10 +4364,8 @@ client’s hardware and network connection. It’s important to consider
 these factors when calculating latency and optimizing your system to
 minimize it.</li>
 </ul>
-</div>
-<div id="characteristics-of-distributed-systems-1" class="slide section level2" number="9.4">
-<h1><span class="header-section-number">9.4</span> Characteristics of
-Distributed Systems</h1>
+<h2 id="characteristics-of-distributed-systems-1"><span class="header-section-number">9.4</span> Characteristics of Distributed
+Systems</h2>
 <ul>
 <li><strong>High complexity</strong>: Distributed systems involve a
 large number of interacting agents, such as servers, clients, and
@@ -4757,10 +4382,7 @@ changes in the system’s environment. This uncertainty can make it
 challenging to predict the behavior of the system and ensure its
 reliability.</li>
 </ul>
-</div>
-<div id="liveness-vs.-correctness" class="slide section level2" number="9.5">
-<h1><span class="header-section-number">9.5</span> Liveness
-vs. Correctness</h1>
+<h2 id="liveness-vs.-correctness"><span class="header-section-number">9.5</span> Liveness vs. Correctness</h2>
 <p>Correctness and liveness are two important properties of distributed
 systems that ensure they function as intended and make progress.</p>
 <ul>
@@ -4778,10 +4400,8 @@ assumptions</strong> about failures and other conditions in the system,
 such as fairness and the presence of Byzantine errors. Ensuring that a
 distributed system has both correctness and liveness is critical for its
 success.</p>
-</div>
-<div id="liveness-and-correctness-in-practice" class="slide section level2" number="9.6">
-<h1><span class="header-section-number">9.6</span> Liveness and
-Correctness in Practice</h1>
+<h2 id="liveness-and-correctness-in-practice"><span class="header-section-number">9.6</span> Liveness and Correctness in
+Practice</h2>
 <p>Here is an example of how correctness and liveness can be defined for
 an event-based system:</p>
 <p><strong>Correctness:</strong></p>
@@ -4811,9 +4431,8 @@ to ensure liveness by ensuring that a node will eventually start
 receiving notifications after subscribing. The system also makes
 assumptions about failures, such as the fail-stop model with fairness,
 which are used to ensure the correctness and liveness of the system.</p>
-</div>
-<div id="timing-models" class="slide section level2" number="9.7">
-<h1><span class="header-section-number">9.7</span> Timing Models</h1>
+<h2 id="timing-models"><span class="header-section-number">9.7</span>
+Timing Models</h2>
 <p>In distributed systems, timing models refer to the way that events
 and communication between nodes are synchronized. There are three main
 types of timing models: synchronous, asynchronous, and partial
@@ -4840,10 +4459,8 @@ This is the model that is typically used for real-world distributed
 systems, as it allows for the flexibility of asynchronous communication
 while still providing some guarantees about timing.</li>
 </ul>
-</div>
-<div id="the-fischer-lynch-and-patterson-result" class="slide section level2" number="9.8">
-<h1><span class="header-section-number">9.8</span> The Fischer, Lynch
-and Patterson Result</h1>
+<h2 id="the-fischer-lynch-and-patterson-result"><span class="header-section-number">9.8</span> The Fischer, Lynch and
+Patterson Result</h2>
 <ul>
 <li>The FLP (Fischer, Lynch, and Patterson) result is a theoretical
 result that shows it is <strong>impossible to reach consensus in
@@ -4858,9 +4475,8 @@ system can lead to delays and the re-election of new leaders, which can
 <li>This problem affects most consensus-based distributed algorithms and
 can result in non-terminating runs where no decision is reached.</li>
 </ul>
-</div>
-<div id="the-cap-theorem" class="slide section level2" number="9.9">
-<h1><span class="header-section-number">9.9</span> The CAP Theorem</h1>
+<h2 id="the-cap-theorem"><span class="header-section-number">9.9</span>
+The CAP Theorem</h2>
 <p>States that in the presence of network partitions, a client must
 choose either consistency or availability, but not both.</p>
 <ul>
@@ -4869,10 +4485,8 @@ consistency, they may not get an answer at all.</li>
 <li><strong>Choosing availability</strong>: If the client chooses
 availability, they may receive a potentially incorrect answer.</li>
 </ul>
-</div>
-<div id="preconditions-for-the-cap-theorem" class="slide section level2" number="9.10">
-<h1><span class="header-section-number">9.10</span> Preconditions for
-the CAP Theorem</h1>
+<h2 id="preconditions-for-the-cap-theorem"><span class="header-section-number">9.10</span> Preconditions for the CAP
+Theorem</h2>
 <ul>
 <li>To be considered consistent, the system must ensure that <strong>all
 operations are atomic and linearizable</strong>, meaning that they can
@@ -4884,10 +4498,8 @@ with a response</strong>, and that every request terminates.</li>
 <li>Partition tolerance: The network will be <strong>allowed to lose
 arbitrarily many messages</strong> sent from one node to another.</li>
 </ul>
-</div>
-<div id="common-misconceptions-of-the-cap-theorem" class="slide section level2" number="9.11">
-<h1><span class="header-section-number">9.11</span> Common
-Misconceptions of the CAP Theorem</h1>
+<h2 id="common-misconceptions-of-the-cap-theorem"><span class="header-section-number">9.11</span> Common Misconceptions of the
+CAP Theorem</h2>
 <ul>
 <li><strong>Consistency</strong>: Many systems do not achieve a total
 order of requests due to the costs (latency, partial results)
@@ -4899,10 +4511,8 @@ node does not know that a quorum exists.</li>
 tolerance, as it is always present. CA systems are therefore not
 possible.</li>
 </ul>
-</div>
-<div id="the-modern-view-of-the-cap-theorem" class="slide section level2" number="9.12">
-<h1><span class="header-section-number">9.12</span> The Modern View of
-the CAP Theorem</h1>
+<h2 id="the-modern-view-of-the-cap-theorem"><span class="header-section-number">9.12</span> The Modern View of the CAP
+Theorem</h2>
 <ul>
 <li>There are <strong>more failure types than just partition
 tolerance</strong>, such as host-crash and client-server disconnect.
@@ -4919,9 +4529,8 @@ much stronger than CAP.</li>
 sharding) and the <strong>abilities of the client</strong> (failover)
 also have an impact on the system’s behavior.</li>
 </ul>
-</div>
-<div id="pacelc" class="slide section level2" number="9.13">
-<h1><span class="header-section-number">9.13</span> PACELC</h1>
+<h2 id="pacelc"><span class="header-section-number">9.13</span>
+PACELC</h2>
 <p>PACELC: A <strong>more complete portrayal</strong> of the space of
 potential consistency tradeoffs for distributed database systems.</p>
 <ul>
@@ -4930,10 +4539,7 @@ availability and consistency (A and C).</li>
 <li>In the absence of a partition (E), the system can trade off latency
 (L) and consistency (C) when running normally.</li>
 </ul>
-</div>
-<div id="technical-failures" class="slide section level2" number="9.14">
-<h1><span class="header-section-number">9.14</span> Technical
-Failures</h1>
+<h2 id="technical-failures"><span class="header-section-number">9.14</span> Technical Failures</h2>
 <ul>
 <li><strong>Network failures</strong>, such as partitioning, which can
 occur when a network is divided into smaller, separate networks that are
@@ -4955,9 +4561,8 @@ detection service</strong> that could detect even partitioning and other
 types of failures through the use of MIBs (Management Information Bases)
 and triangulation. Applications could also be designed to track
 themselves and restart if necessary.</p>
-</div>
-<div id="failure-types-1" class="slide section level2" number="9.15">
-<h1><span class="header-section-number">9.15</span> Failure Types</h1>
+<h2 id="failure-types-1"><span class="header-section-number">9.15</span>
+Failure Types</h2>
 <ul>
 <li><strong>Bohr-Bug:</strong>
 <ul>
@@ -4979,9 +4584,8 @@ changes can cause them to reappear.</li>
 management.</li>
 </ul></li>
 </ul>
-</div>
-<div id="failure-models" class="slide section level2" number="9.16">
-<h1><span class="header-section-number">9.16</span> Failure Models</h1>
+<h2 id="failure-models"><span class="header-section-number">9.16</span>
+Failure Models</h2>
 <ul>
 <li><strong>Crash-stop</strong>: A process crashes atomically and stays
 down.</li>
@@ -5004,10 +4608,7 @@ needed.</li>
 <strong>make assumptions about failure models</strong>. For example,
 transaction protocols may assume recovery behavior by its participants
 if the protocol terminates.</p>
-</div>
-<div id="failures-and-timeouts" class="slide section level2" number="9.17">
-<h1><span class="header-section-number">9.17</span> Failures and
-Timeouts</h1>
+<h2 id="failures-and-timeouts"><span class="header-section-number">9.17</span> Failures and Timeouts</h2>
 <ul>
 <li><strong>Timeouts are not a reliable way to detect failures</strong>
 in distributed systems because they can be caused by various factors,
@@ -5024,10 +4625,7 @@ state of participants or membership.</li>
 conditions</strong>, where a system behaves as if it is functioning
 properly but is actually experiencing a failure or malfunction.</li>
 </ul>
-</div>
-<div id="failure-detectors" class="slide section level2" number="9.18">
-<h1><span class="header-section-number">9.18</span> Failure
-Detectors</h1>
+<h2 id="failure-detectors"><span class="header-section-number">9.18</span> Failure Detectors</h2>
 <p>A failure detector (FD) is a mechanism used in distributed systems to
 detect failures of processes or machines. It is not required to be
 correct all the time, but it should provide the following
@@ -5047,10 +4645,8 @@ it.</li>
 overhead, meaning it should not consume too many resources or slow down
 the system.</li>
 </ul>
-</div>
-<div id="time-in-distributed-systems" class="slide section level2" number="9.19">
-<h1><span class="header-section-number">9.19</span> Time in Distributed
-Systems</h1>
+<h2 id="time-in-distributed-systems"><span class="header-section-number">9.19</span> Time in Distributed
+Systems</h2>
 <p>In distributed systems, there is <strong>no global time</strong> that
 is shared across all processes. Instead, different approaches are used
 to model time in these systems. These approaches include:</p>
@@ -5071,10 +4667,8 @@ of events</strong> in a distributed system, <strong>rather than the
 actual clock time</strong> at which they occurred.</p>
 <p>Causal meta-data in the system can also order the events
 properly.</p>
-</div>
-<div id="consistent-vs.-inconsistent-cuts" class="slide section level2" number="9.20">
-<h1><span class="header-section-number">9.20</span> Consistent
-vs. Inconsistent Cuts</h1>
+<h2 id="consistent-vs.-inconsistent-cuts"><span class="header-section-number">9.20</span> Consistent vs. Inconsistent
+Cuts</h2>
 <ul>
 <li><strong>Consistent cuts</strong>: These cuts produce causally
 possible events, meaning that events occur in a <strong>logical and
@@ -5083,10 +4677,8 @@ possible order</strong>.</li>
 arrive before they have been sent, resulting in an <strong>illogical or
 impossible order</strong>.</li>
 </ul>
-</div>
-<div id="event-clocks-logical-clocks" class="slide section level2" number="9.21">
-<h1><span class="header-section-number">9.21</span> Event Clocks
-(Logical Clocks)</h1>
+<h2 id="event-clocks-logical-clocks"><span class="header-section-number">9.21</span> Event Clocks (Logical
+Clocks)</h2>
 <ul>
 <li>Event clocks, also known as logical clocks, are <strong>systems for
 ordering events</strong> within processes according to a chosen causal
@@ -5101,10 +4693,7 @@ the event “send(p1,m)” occurs before the event “recv(p2,m)”).</li>
 <li>The value of the logical clock is <strong>updated to the maximum of
 the current value plus one or the received value</strong>.</li>
 </ul>
-</div>
-<div id="lamport-logical-clock" class="slide section level2" number="9.22">
-<h1><span class="header-section-number">9.22</span> Lamport Logical
-Clock</h1>
+<h2 id="lamport-logical-clock"><span class="header-section-number">9.22</span> Lamport Logical Clock</h2>
 <ul>
 <li>The Lamport logical clock <strong>counts events and creates an
 ordering relation between them</strong>. These counters can be used as
@@ -5113,9 +4702,8 @@ timestamps on events.</li>
 also includes many unrelated (concurrent) events, which <strong>can
 create false dependencies</strong>.</li>
 </ul>
-</div>
-<div id="vector-clocks" class="slide section level2" number="9.23">
-<h1><span class="header-section-number">9.23</span> Vector Clocks</h1>
+<h2 id="vector-clocks"><span class="header-section-number">9.23</span>
+Vector Clocks</h2>
 <ul>
 <li>Vector clocks are <strong>transmitted with messages</strong> and
 compared at the receiving end.</li>
@@ -5125,10 +4713,8 @@ are larger than or the same as the values from B, we say that
 <li>This <strong>can be interpreted</strong> as potential causality to
 detect conflicts, as missed messages to order propagation, etc.</li>
 </ul>
-</div>
-<div id="physical-interval-time-truetime" class="slide section level2" number="9.24">
-<h1><span class="header-section-number">9.24</span> Physical Interval
-Time (TrueTime)</h1>
+<h2 id="physical-interval-time-truetime"><span class="header-section-number">9.24</span> Physical Interval Time
+(TrueTime)</h2>
 <ul>
 <li>TrueTime works by <strong>using time servers</strong> to check for
 rogue clocks, which are clocks that are not synchronized with the
@@ -5136,9 +4722,8 @@ correct time.</li>
 <li>The error in TrueTime is <strong>typically in the range of 6
 milliseconds</strong>.</li>
 </ul>
-</div>
-<div id="hybrid-clocks" class="slide section level2" number="9.25">
-<h1><span class="header-section-number">9.25</span> Hybrid Clocks</h1>
+<h2 id="hybrid-clocks"><span class="header-section-number">9.25</span>
+Hybrid Clocks</h2>
 <p>Hybrid clocks are systems that <strong>combine elements of both
 logical and physical models</strong> of time in order to address the
 limitations of each approach. There are several reasons why hybrid
@@ -5155,10 +4740,8 @@ all machines</strong>. This can be inefficient in some cases, and hybrid
 clocks can be used to allow for more flexibility in terms of when reads
 and writes can occur.</li>
 </ul>
-</div>
-<div id="ordering-in-distributed-event-systems" class="slide section level2" number="9.26">
-<h1><span class="header-section-number">9.26</span> Ordering in
-Distributed Event Systems</h1>
+<h2 id="ordering-in-distributed-event-systems"><span class="header-section-number">9.26</span> Ordering in Distributed Event
+Systems</h2>
 <ul>
 <li><strong>FIFO (first-in, first-out) ordering</strong>: This refers to
 the requirement that a component must receive notifications in the order
@@ -5172,9 +4755,8 @@ in the system is allowed to receive an event before a preceding event
 has been received. One component may be responsible for deciding the
 global order of events in this case.</li>
 </ul>
-</div>
-<div id="consensus" class="slide section level2" number="9.27">
-<h1><span class="header-section-number">9.27</span> Consensus</h1>
+<h2 id="consensus"><span class="header-section-number">9.27</span>
+Consensus</h2>
 <p>Consensus is a <strong>process used by a group</strong> of processes
 to <strong>reach agreement on a specific value</strong>, based on their
 individual inputs. The objective of consensus is for all processes to
@@ -5189,10 +4771,7 @@ once.</li>
 <li><strong>Agreement</strong>: No two correct processes decide on
 different values.</li>
 </ul>
-</div>
-<div id="algorithms-for-consensus" class="slide section level2" number="9.28">
-<h1><span class="header-section-number">9.28</span> Algorithms for
-Consensus</h1>
+<h2 id="algorithms-for-consensus"><span class="header-section-number">9.28</span> Algorithms for Consensus</h2>
 <p>These protocols offer <strong>trade-offs</strong> in terms of
 correctness, liveness (availability and progress), and performance:</p>
 <ul>
@@ -5220,10 +4799,7 @@ disseminate information between processes in a distributed system. They
 can be used to achieve consensus by allowing processes to exchange
 information and reach agreement on a decision.</li>
 </ul>
-</div>
-<div id="two-phase-commit-2pc" class="slide section level2" number="9.29">
-<h1><span class="header-section-number">9.29</span> Two-Phase Commit
-(2PC)</h1>
+<h2 id="two-phase-commit-2pc"><span class="header-section-number">9.29</span> Two-Phase Commit (2PC)</h2>
 <p><strong>Steps</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Preparation phase</strong>: In this phase, the processes
@@ -5273,10 +4849,7 @@ participant.</li>
 <li>If everything goes as planned, 2PC has a <strong>clear and
 easy-to-understand</strong> semantic for application developers.</li>
 </ul>
-</div>
-<div id="quorum-based-consensus" class="slide section level2" number="9.30">
-<h1><span class="header-section-number">9.30</span> Quorum-Based
-Consensus</h1>
+<h2 id="quorum-based-consensus"><span class="header-section-number">9.30</span> Quorum-Based Consensus</h2>
 <p><strong>Steps</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>A <strong>decision is proposed</strong> by one of the processes in
@@ -5331,9 +4904,8 @@ nodes (which may <strong>sacrifice availability</strong>).</li>
 achieving consensus in distributed systems, but they also come with some
 trade-offs in terms of performance and fault tolerance.</li>
 </ul>
-</div>
-<div id="paxos" class="slide section level2" number="9.31">
-<h1><span class="header-section-number">9.31</span> Paxos</h1>
+<h2 id="paxos"><span class="header-section-number">9.31</span>
+Paxos</h2>
 <p><strong>Steps</strong>:</p>
 <ol style="list-style-type: decimal">
 <li><strong>Prepare</strong> (Phase 1a):</li>
@@ -5424,9 +4996,7 @@ the chosen value.</li>
 <li>If an Acceptor receives an Accept! message for a proposal it has
 promised, it accepts the value and sends an Accepted</li>
 </ul>
-</div>
-<div id="raft" class="slide section level2" number="9.32">
-<h1><span class="header-section-number">9.32</span> Raft</h1>
+<h2 id="raft"><span class="header-section-number">9.32</span> Raft</h2>
 <p>RAFT is a distributed consensus protocol that allows a group of
 processes (called “replicas”) to agree on a value (“decide”) in the
 presence of failures. RAFT is divided into three distinct roles:
@@ -5475,10 +5045,8 @@ Apply message</strong> to the Leader.</li>
 quorum of replicas, it updates its commit index and <strong>sends an
 Apply message to all other replicas</strong>.</li>
 </ul>
-</div>
-<div id="atomic-broadcast-conditions" class="slide section level2" number="9.33">
-<h1><span class="header-section-number">9.33</span> Atomic Broadcast
-Conditions</h1>
+<h2 id="atomic-broadcast-conditions"><span class="header-section-number">9.33</span> Atomic Broadcast
+Conditions</h2>
 <p>A distributed algorithm that <strong>guarantees correct
 transmission</strong> of a message from a primary process to all other
 processes in a network or broadcast domain, including the primary.</p>
@@ -5498,10 +5066,7 @@ delivers m before m0</li>
 <p>It is widely used in distributed computing for group communication
 and defined as a reliable broadcast that <strong>satisfies total
 order</strong>.</p>
-</div>
-<div id="atomic-broadcast-protocol" class="slide section level2" number="9.34">
-<h1><span class="header-section-number">9.34</span> Atomic Broadcast
-Protocol</h1>
+<h2 id="atomic-broadcast-protocol"><span class="header-section-number">9.34</span> Atomic Broadcast Protocol</h2>
 <p><strong>Data</strong>:</p>
 <ul>
 <li><strong>Epoch (e)</strong>: The duration of a specific
@@ -5530,10 +5095,7 @@ the leader node when implementing an atomic broadcast protocol.</li>
 <li><strong>Paxos, Raft etc. are Atomic Broadcast
 Protocols!</strong></li>
 </ul>
-</div>
-<div id="gossip-protocols" class="slide section level2" number="9.35">
-<h1><span class="header-section-number">9.35</span> Gossip
-Protocols</h1>
+<h2 id="gossip-protocols"><span class="header-section-number">9.35</span> Gossip Protocols</h2>
 <p>Gossip protocols are a class of distributed algorithms that
 <strong>rely on randomly chosen pairs of nodes</strong> in a network to
 exchange information about the state of the system. They are typically
@@ -5554,19 +5116,15 @@ down.</li>
 central authority or global clock, so they can operate asynchronously in
 a distributed system.</li>
 </ul>
-</div>
-<div id="dwal" class="slide section level2" number="9.36">
-<h1><span class="header-section-number">9.36</span> DWAL</h1>
+<h2 id="dwal"><span class="header-section-number">9.36</span> DWAL</h2>
 <p>A DWAL (Distributed Write-Ahead-Log) is a data structure that is used
 to ensure that updates to a distributed system are stored in a way that
 allows them to be recovered in case of system failure. It is a type of
 write-ahead log, which means that updates are written to the log before
 they are applied to the system’s state. This allows the updates to be
 replayed in the correct order after a system failure.</p>
-</div>
-<div id="design-components-of-dwals" class="slide section level2" number="9.37">
-<h1><span class="header-section-number">9.37</span> Design Components of
-DWALs</h1>
+<h2 id="design-components-of-dwals"><span class="header-section-number">9.37</span> Design Components of
+DWALs</h2>
 <ul>
 <li><strong>Global visibility</strong>: Replicated <strong>state should
 be visible to all processes in the system</strong>. This can be achieved
@@ -5591,10 +5149,8 @@ processes.</li>
 the DWAL can function effectively, it is important to ensure that
 updates are delivered to all processes in a consistent order.</li>
 </ul>
-</div>
-<div id="properties-of-replication-models" class="slide section level2" number="9.38">
-<h1><span class="header-section-number">9.38</span> Properties of
-Replication Models</h1>
+<h2 id="properties-of-replication-models"><span class="header-section-number">9.38</span> Properties of Replication
+Models</h2>
 <ul>
 <li><strong>Who is responsible for updates</strong>: Single master or
 multiple masters?</li>
@@ -5605,10 +5161,7 @@ transfer?</li>
 <li><strong>Method for updating</strong> replica nodes</li>
 <li><strong>Guarantees for divergence</strong></li>
 </ul>
-</div>
-<div id="single-leader-replication" class="slide section level2" number="9.39">
-<h1><span class="header-section-number">9.39</span> Single-Leader
-Replication</h1>
+<h2 id="single-leader-replication"><span class="header-section-number">9.39</span> Single-Leader Replication</h2>
 <p><strong>Steps</strong>:</p>
 <ol style="list-style-type: decimal">
 <li>Client sends x=5 to Node1 (master)</li>
@@ -5631,10 +5184,8 @@ leader failure</li>
 <li><strong>Not suitable for critical resources</strong> such as primary
 keys</li>
 </ul>
-</div>
-<div id="eventually-consistent-reads" class="slide section level2" number="9.40">
-<h1><span class="header-section-number">9.40</span> Eventually
-Consistent Reads</h1>
+<h2 id="eventually-consistent-reads"><span class="header-section-number">9.40</span> Eventually Consistent
+Reads</h2>
 <p>Eventual consistency model: <strong>Allows for a certain level of
 lag</strong> between updates to be propagated to all replicas</p>
 <p><strong>Steps</strong>:</p>
@@ -5644,10 +5195,7 @@ lag</strong> between updates to be propagated to all replicas</p>
 <li>Client performs a stale read from client node, potentially returning
 outdated value</li>
 </ol>
-</div>
-<div id="multi-master-replication" class="slide section level2" number="9.41">
-<h1><span class="header-section-number">9.41</span> Multi-Master
-Replication</h1>
+<h2 id="multi-master-replication"><span class="header-section-number">9.41</span> Multi-Master Replication</h2>
 <p>Multi-Master Replication (MMR) is a type of replication in which
 <strong>multiple servers can accept write requests</strong>, allowing
 any server to act as a master. This means that updates can be made to
@@ -5676,10 +5224,8 @@ keys added in same table on two servers</li>
 <li><strong>Delete conflict</strong>: During delete of a row the same
 row is changed on a different server.</li>
 </ul>
-</div>
-<div id="leaderless-quorum-replication" class="slide section level2" number="9.42">
-<h1><span class="header-section-number">9.42</span> Leaderless Quorum
-Replication</h1>
+<h2 id="leaderless-quorum-replication"><span class="header-section-number">9.42</span> Leaderless Quorum
+Replication</h2>
 <p><strong>Write</strong>:</p>
 <ul>
 <li>In a leader-less (quorum) replication system, the <strong>client
@@ -5703,10 +5249,8 @@ cleanup</strong> (e.g. using version numbers to return the correct
 value) or <strong>offer both values for the client</strong> to choose
 from.</li>
 </ul>
-</div>
-<div id="session-modes-of-asynchronous-replication" class="slide section level2" number="9.43">
-<h1><span class="header-section-number">9.43</span> Session Modes of
-Asynchronous Replication</h1>
+<h2 id="session-modes-of-asynchronous-replication"><span class="header-section-number">9.43</span> Session Modes of Asynchronous
+Replication</h2>
 <p>The following guarantees seem to enable <strong>“sequential
 consistency”</strong> for a specific client, meaning that the program
 order of updates from this client is respected by the system. Clients
@@ -5734,10 +5278,8 @@ not preserve the order in which they were made by the same user.</li>
 <li><strong>Not-reading-my-writes</strong>: Reads that do not include
 previous writes by the same user.</li>
 </ul>
-</div>
-<div id="global-modes-of-replication" class="slide section level2" number="9.44">
-<h1><span class="header-section-number">9.44</span> Global Modes of
-Replication</h1>
+<h2 id="global-modes-of-replication"><span class="header-section-number">9.44</span> Global Modes of
+Replication</h2>
 <p>There are multiple different modes to choose from:</p>
 <ul>
 <li><strong>Strong consistency</strong> ensures that <strong>all
@@ -5824,14 +5366,11 @@ made.</li>
 </ul></li>
 </ul>
 </div>
-
-<div id="distributed-services-and-algorithms-i" class="title-slide slide section level1" number="10">
+<div id="distributed-services-and-algorithms-i" class="slide section level1" number="10">
 <h1><span class="header-section-number">10</span> Distributed Services
 and Algorithms I</h1>
-
-</div>
-<div id="overview-8" class="slide section level2" number="10.1">
-<h1><span class="header-section-number">10.1</span> Overview</h1>
+<h2 id="overview-8"><span class="header-section-number">10.1</span>
+Overview</h2>
 <ol style="list-style-type: decimal">
 <li>Distributed Services
 <ol style="list-style-type: decimal">
@@ -5854,20 +5393,15 @@ and Algorithms I</h1>
 <li>Distributed Messaging with event notification and gossip</li>
 </ol></li>
 </ol>
-</div>
-<div id="what-is-a-distributed-service" class="slide section level2" number="10.2">
-<h1><span class="header-section-number">10.2</span> What is a
-Distributed Service?</h1>
+<h2 id="what-is-a-distributed-service"><span class="header-section-number">10.2</span> What is a Distributed
+Service?</h2>
 <p>Function provided by a <strong>distributed middleware</strong>
 with:</p>
 <ul>
 <li>High scalability</li>
 <li>High availabilit</li>
 </ul>
-</div>
-<div id="services-and-instances" class="slide section level2" number="10.3">
-<h1><span class="header-section-number">10.3</span> Services and
-Instances</h1>
+<h2 id="services-and-instances"><span class="header-section-number">10.3</span> Services and Instances</h2>
 <ul>
 <li>Distributed systems:
 <ul>
@@ -5887,10 +5421,7 @@ instances</strong></li>
 database instance.</li>
 </ul></li>
 </ul>
-</div>
-<div id="core-distributed-services" class="slide section level2" number="10.4">
-<h1><span class="header-section-number">10.4</span> Core Distributed
-Services</h1>
+<h2 id="core-distributed-services"><span class="header-section-number">10.4</span> Core Distributed Services</h2>
 <ul>
 <li><strong>Finding</strong> Things
 <ul>
@@ -5919,18 +5450,15 @@ persistence</li>
 <li><strong>Object handling</strong>: Lifecycle services for creation,
 destruction, relationship service, etc.</li>
 </ul>
-</div>
-<div id="availability" class="slide section level2" number="10.5">
-<h1><span class="header-section-number">10.5</span> Availability</h1>
+<h2 id="availability"><span class="header-section-number">10.5</span>
+Availability</h2>
 <p>Is defined as:</p>
 <p><span class="math inline">Availability = \frac{Uptime_{agreed\ upon}
 - Downtime_{planned\ and\ unplanned}}{Uptime_{agreed\ upon}}</span></p>
 <p>Continuous availability <strong>does not allow for planned
 downtime</strong>.</p>
-</div>
-<div id="typical-hardware-causes-for-downtime" class="slide section level2" number="10.6">
-<h1><span class="header-section-number">10.6</span> Typical Hardware
-Causes for Downtime</h1>
+<h2 id="typical-hardware-causes-for-downtime"><span class="header-section-number">10.6</span> Typical Hardware Causes for
+Downtime</h2>
 <ul>
 <li>Overheating</li>
 <li>PDU failure</li>
@@ -5944,10 +5472,8 @@ Causes for Downtime</h1>
 <li>Individual machine failures</li>
 <li>Hard drive failures</li>
 </ul>
-</div>
-<div id="availability-through-redundancy" class="slide section level2" number="10.7">
-<h1><span class="header-section-number">10.7</span> Availability through
-Redundancy</h1>
+<h2 id="availability-through-redundancy"><span class="header-section-number">10.7</span> Availability through
+Redundancy</h2>
 <p><strong>Across groups of resources:</strong></p>
 <ul>
 <li>Multi-site data center</li>
@@ -5979,10 +5505,8 @@ Redundancy</h1>
 <li>Simple reliability</li>
 <li>Limited vertical scalability</li>
 </ul>
-</div>
-<div id="copy-disaster-recover-solution" class="slide section level2" number="10.8">
-<h1><span class="header-section-number">10.8</span> 3 Copy Disaster
-Recover Solution</h1>
+<h2 id="copy-disaster-recover-solution"><span class="header-section-number">10.8</span> 3 Copy Disaster Recover
+Solution</h2>
 <ul>
 <li>Maintains 3 copies of data/resources with at least 2 in different
 locations</li>
@@ -5990,10 +5514,8 @@ locations</li>
 continuity</li>
 <li>Provides high availability and protects against data loss.</li>
 </ul>
-</div>
-<div id="serial-vs.-redundant-availability" class="slide section level2" number="10.9">
-<h1><span class="header-section-number">10.9</span> Serial vs. Redundant
-Availability</h1>
+<h2 id="serial-vs.-redundant-availability"><span class="header-section-number">10.9</span> Serial vs. Redundant
+Availability</h2>
 <ul>
 <li><strong>Serial chain</strong> of components:
 <ul>
@@ -6009,10 +5531,8 @@ to determine overall availability</li>
 availability.</li>
 </ul></li>
 </ul>
-</div>
-<div id="global-server-load-balancing" class="slide section level2" number="10.10">
-<h1><span class="header-section-number">10.10</span> Global Server Load
-Balancing</h1>
+<h2 id="global-server-load-balancing"><span class="header-section-number">10.10</span> Global Server Load
+Balancing</h2>
 <ul>
 <li><strong>DNS Round Robin</strong>:
 <ul>
@@ -6049,10 +5569,8 @@ information.</li>
 traffic distribution for optimal performance.</li>
 </ul></li>
 </ul>
-</div>
-<div id="failover-with-virtual-ips" class="slide section level2" number="10.11">
-<h1><span class="header-section-number">10.11</span> Failover with
-Virtual IPs</h1>
+<h2 id="failover-with-virtual-ips"><span class="header-section-number">10.11</span> Failover with Virtual
+IPs</h2>
 <p><strong>Failover with one virtual IP</strong>:</p>
 <ul>
 <li>DNS points only to <strong>one Virtual IP (VIP)</strong></li>
@@ -6070,10 +5588,8 @@ case of a server failure</li>
 <li>May still have the limitations and <strong>issues associated with
 geo-aware DNS</strong>.</li>
 </ul>
-</div>
-<div id="failover-load-balancing-and-session-state" class="slide section level2" number="10.12">
-<h1><span class="header-section-number">10.12</span> Failover, Load
-Balancing and Session State</h1>
+<h2 id="failover-load-balancing-and-session-state"><span class="header-section-number">10.12</span> Failover, Load Balancing and
+Session State</h2>
 <ul>
 <li><strong>Sticky Sessions</strong>: Keeps session state on a single
 server, offers advantages with a non-replicated system of records but
@@ -6091,10 +5607,7 @@ norm</strong>, but sticky sessions are still useful because records need
 to be replicated.</p>
 <p><strong>Compromise</strong>: Replicate sessions between pairs of
 servers, then enable switching between them as failovers</p>
-</div>
-<div id="p2p-load-balancing" class="slide section level2" number="10.13">
-<h1><span class="header-section-number">10.13</span> P2P Load
-Balancing</h1>
+<h2 id="p2p-load-balancing"><span class="header-section-number">10.13</span> P2P Load Balancing</h2>
 <ul>
 <li><strong>Evaluator Functions</strong>: Access server stats in shared
 memory and determine the outcome of a request, whether it is handled by
@@ -6105,10 +5618,8 @@ and used by evaluator functions to make load-balancing decisions.</li>
 <li><strong>Server Stat Replication</strong>: The replication of server
 stats is done through multicast.</li>
 </ul>
-</div>
-<div id="requirements-of-distributed-namedirectory-systems" class="slide section level2" number="10.14">
-<h1><span class="header-section-number">10.14</span> Requirements of
-Distributed Name/Directory Systems</h1>
+<h2 id="requirements-of-distributed-namedirectory-systems"><span class="header-section-number">10.14</span> Requirements of Distributed
+Name/Directory Systems</h2>
 <p><strong>Functional Requirements</strong>:</p>
 <ul>
 <li><strong>Re-bind/resolve methods</strong> to store name/value
@@ -6139,10 +5650,8 @@ availability</li>
 <li><strong>Fast lookup</strong> through clustering, with slower writes
 and client-side caching support to reduce communication costs</li>
 </ul>
-</div>
-<div id="design-of-distributed-namedirectory-systems" class="slide section level2" number="10.15">
-<h1><span class="header-section-number">10.15</span> Design of
-Distributed Name/Directory Systems</h1>
+<h2 id="design-of-distributed-namedirectory-systems"><span class="header-section-number">10.15</span> Design of Distributed
+Name/Directory Systems</h2>
 <p><strong>Name Space</strong>:</p>
 <ul>
 <li>The company name space organization is a <strong>design and
@@ -6160,10 +5669,8 @@ versions/implementations</strong> from clients.</li>
 <li>Finders in a remote environment support <strong>object migration and
 copying</strong>.</li>
 </ul>
-</div>
-<div id="examples-of-naming-services" class="slide section level2" number="10.16">
-<h1><span class="header-section-number">10.16</span> Examples of Naming
-Services</h1>
+<h2 id="examples-of-naming-services"><span class="header-section-number">10.16</span> Examples of Naming
+Services</h2>
 <ul>
 <li>Domain Name System (DNS)</li>
 <li>X.500 Directory</li>
@@ -6172,10 +5679,7 @@ Services</h1>
 <li>Java Registry</li>
 <li>J2EE JNDI (mapped to CORBA Naming Service)</li>
 </ul>
-</div>
-<div id="google-vs.-amazon" class="slide section level2" number="10.17">
-<h1><span class="header-section-number">10.17</span> Google
-vs. Amazon</h1>
+<h2 id="google-vs.-amazon"><span class="header-section-number">10.17</span> Google vs. Amazon</h2>
 <p><strong>Amazon</strong>:</p>
 <blockquote>
 <p>Services</p>
@@ -6218,10 +5722,8 @@ vs. Amazon</h1>
 <li>Dapper (distributed locking)</li>
 <li>Google Compute Platform</li>
 </ul>
-</div>
-<div id="best-practices-for-designing-services" class="slide section level2" number="10.18">
-<h1><span class="header-section-number">10.18</span> Best Practices for
-Designing Services</h1>
+<h2 id="best-practices-for-designing-services"><span class="header-section-number">10.18</span> Best Practices for Designing
+Services</h2>
 <ul>
 <li>Keep services <strong>independent</strong></li>
 <li><strong>Measure</strong> services</li>
@@ -6235,10 +5737,7 @@ patterns</li>
 <li>Manage <strong>dependencies carefully</strong></li>
 <li><strong>Create APIs</strong> for customer access to services</li>
 </ul>
-</div>
-<div id="grid-storage-vs.-nassan" class="slide section level2" number="10.19">
-<h1><span class="header-section-number">10.19</span> Grid Storage
-vs. NAS/SAN</h1>
+<h2 id="grid-storage-vs.-nassan"><span class="header-section-number">10.19</span> Grid Storage vs. NAS/SAN</h2>
 <p><strong>Grid Storage</strong>:</p>
 <ul>
 <li><strong>Requires</strong> POSIX-Grid <strong>gateway</strong></li>
@@ -6285,10 +5784,8 @@ solutions (map/reduce with Hadoop)</li>
 <li><strong>NAS/SAN won’t be replaced</strong> by grid storage (which is
 specialized)</li>
 </ul>
-</div>
-<div id="cqrs-command-query-responsibility-segregation" class="slide section level2" number="10.20">
-<h1><span class="header-section-number">10.20</span> CQRS (Command Query
-Responsibility Segregation)</h1>
+<h2 id="cqrs-command-query-responsibility-segregation"><span class="header-section-number">10.20</span> CQRS (Command Query
+Responsibility Segregation)</h2>
 <ul>
 <li><strong>Separates the responsibilities of reading data</strong>
 (queries) <strong>and modifying data</strong> (commands) into separate
@@ -6304,10 +5801,8 @@ reads and writes.</li>
 <li><strong>Reduces the coupling</strong> between the read and write
 sides of the system.</li>
 </ul>
-</div>
-<div id="requirements-of-caching-services" class="slide section level2" number="10.21">
-<h1><span class="header-section-number">10.21</span> Requirements of
-Caching Services</h1>
+<h2 id="requirements-of-caching-services"><span class="header-section-number">10.21</span> Requirements of Caching
+Services</h2>
 <ul>
 <li><strong>Scalable</strong> with ability to add machines</li>
 <li><strong>Avoid “thundering herds”</strong> due to placement
@@ -6320,10 +5815,8 @@ SSD</li>
 <li>Supports <strong>different cache replacement policies</strong> with
 caution.</li>
 </ul>
-</div>
-<div id="handling-changing-machine-counts-in-caching-services" class="slide section level2" number="10.22">
-<h1><span class="header-section-number">10.22</span> Handling Changing
-Machine Counts in Caching Services</h1>
+<h2 id="handling-changing-machine-counts-in-caching-services"><span class="header-section-number">10.22</span> Handling Changing Machine
+Counts in Caching Services</h2>
 <ul>
 <li>Problem: Changing Machine Count</li>
 <li>Solution: <strong>Consistent Hashing (Ring)</strong></li>
@@ -6332,10 +5825,8 @@ Machine Counts in Caching Services</h1>
 for</strong>.</li>
 <li>Machines can be assigned multiple virtual positions.</li>
 </ul>
-</div>
-<div id="consistent-hashing-algorithms" class="slide section level2" number="10.23">
-<h1><span class="header-section-number">10.23</span> Consistent Hashing
-Algorithms</h1>
+<h2 id="consistent-hashing-algorithms"><span class="header-section-number">10.23</span> Consistent Hashing
+Algorithms</h2>
 <p><strong>Simple Consistent Hashing Algorithm:</strong></p>
 <ul>
 <li>URLs and caches are <strong>mapped to points on a circle</strong>
@@ -6354,9 +5845,8 @@ more flexibility.</li>
 <li>Improved load balancing due to <strong>additional
 indirection</strong>.</li>
 </ul>
-</div>
-<div id="cache-patterns" class="slide section level2" number="10.24">
-<h1><span class="header-section-number">10.24</span> Cache Patterns</h1>
+<h2 id="cache-patterns"><span class="header-section-number">10.24</span>
+Cache Patterns</h2>
 <p><strong>Pull</strong>:</p>
 <ul>
 <li>Occurs <strong>during request time</strong></li>
@@ -6381,10 +5871,8 @@ boot issues</li>
 </ul>
 <p><strong>General consideration</strong>: Be aware of LRU or clocked
 invalidations as cache is mission critical.</p>
-</div>
-<div id="cache-design-considerations" class="slide section level2" number="10.25">
-<h1><span class="header-section-number">10.25</span> Cache Design
-Considerations</h1>
+<h2 id="cache-design-considerations"><span class="header-section-number">10.25</span> Cache Design
+Considerations</h2>
 <ul>
 <li><strong>Kinds</strong> of information fragments</li>
 <li><strong>Lifecycle</strong> of fragments</li>
@@ -6392,10 +5880,8 @@ Considerations</h1>
 <li><strong>Effects</strong> of fragment invalidation</li>
 <li><strong>Dependencies</strong> between fragments, pages, etc.</li>
 </ul>
-</div>
-<div id="local-vs.-distributed-events" class="slide section level2" number="10.26">
-<h1><span class="header-section-number">10.26</span> Local
-vs. Distributed Events</h1>
+<h2 id="local-vs.-distributed-events"><span class="header-section-number">10.26</span> Local vs. Distributed
+Events</h2>
 <p><strong>Local</strong>:</p>
 <ul>
 <li>Observer updates sent on one thread</li>
@@ -6413,10 +5899,8 @@ possible</li>
 <li>Receivers can install <strong>filters</strong> using a constraint
 language to filter content (reduces unwanted notifications)</li>
 </ul>
-</div>
-<div id="asynchronous-event-processing" class="slide section level2" number="10.27">
-<h1><span class="header-section-number">10.27</span> Asynchronous
-Event-Processing</h1>
+<h2 id="asynchronous-event-processing"><span class="header-section-number">10.27</span> Asynchronous
+Event-Processing</h2>
 <ul>
 <li>Publisher and subscriber communicate through <strong>interaction
 middleware</strong></li>
@@ -6428,10 +5912,8 @@ socket-based communication library</li>
 <li>Can be implemented in <strong>broker-less or brokered
 mode</strong>.</li>
 </ul>
-</div>
-<div id="features-of-event-driven-interaction" class="slide section level2" number="10.28">
-<h1><span class="header-section-number">10.28</span> Features of
-Event-Driven Interaction</h1>
+<h2 id="features-of-event-driven-interaction"><span class="header-section-number">10.28</span> Features of Event-Driven
+Interaction</h2>
 <ul>
 <li><strong>Basic Event</strong>: Any entity can send and receive events
 without restrictions or filtering.</li>
@@ -6444,10 +5926,8 @@ receiver can apply filtering based on event content.</li>
 <li><strong>Scoping</strong>: Administrative components can manipulate
 event routes, enabling invisible communication between components.</li>
 </ul>
-</div>
-<div id="types-of-message-oriented-middleware-moms" class="slide section level2" number="10.29">
-<h1><span class="header-section-number">10.29</span> Types of Message
-Oriented Middleware (MOMs)</h1>
+<h2 id="types-of-message-oriented-middleware-moms"><span class="header-section-number">10.29</span> Types of Message Oriented
+Middleware (MOMs)</h2>
 <p><strong>Centralized Message-Oriented-Middleware:</strong></p>
 <ul>
 <li>Collects all notifications and subscriptions in one central place,
@@ -6486,9 +5966,8 @@ everywhere</li>
 <li>Price is <strong>many unnecessary notifications</strong> to leaf
 nodes without subscribers</li>
 </ul>
-</div>
-<div id="zeromq" class="slide section level2" number="10.30">
-<h1><span class="header-section-number">10.30</span> ZeroMQ</h1>
+<h2 id="zeromq"><span class="header-section-number">10.30</span>
+ZeroMQ</h2>
 <ul>
 <li><strong>Brokerless</strong> socket library for messaging, with
 message filtering</li>
@@ -6502,28 +5981,21 @@ synchronization</li>
 <li>“Suicidal snail” fail-fast mechanism to <strong>kill slow
 subscribers</strong></li>
 </ul>
-</div>
-<div id="horizontal-vs.-vertical-sharding" class="slide section level2" number="10.31">
-<h1><span class="header-section-number">10.31</span> Horizontal
-vs. Vertical Sharding</h1>
+<h2 id="horizontal-vs.-vertical-sharding"><span class="header-section-number">10.31</span> Horizontal vs. Vertical
+Sharding</h2>
 <p><strong>Horizontal</strong>: Per (database) row, e.g. first 100 users
 are in shard 1, 200 in shard 2 etc.</p>
 <p><strong>Vertical</strong>: Per (database) column, e.g. profile and
 email is in shard 1, photos and messages in shard 2 etc.</p>
-</div>
-<div id="sharding-strategies" class="slide section level2" number="10.32">
-<h1><span class="header-section-number">10.32</span> Sharding
-Strategies</h1>
+<h2 id="sharding-strategies"><span class="header-section-number">10.32</span> Sharding Strategies</h2>
 <ul>
 <li>Allow adding heterogenous hardware in the future</li>
 <li>Sharding should not make app code unstable</li>
 <li>Sharding should be transparent to the app</li>
 <li>Sharding and placement strategies should be separate</li>
 </ul>
-</div>
-<div id="horizontal-sharding-functions" class="slide section level2" number="10.33">
-<h1><span class="header-section-number">10.33</span> Horizontal Sharding
-Functions</h1>
+<h2 id="horizontal-sharding-functions"><span class="header-section-number">10.33</span> Horizontal Sharding
+Functions</h2>
 <p>Algorithms applied to the key (often: user ID) to create different
 groups (shards):</p>
 <ul>
@@ -6534,10 +6006,7 @@ etc.</li>
 <li><strong>Directory-based mapping</strong> using a meta-data table for
 arbitrary mapping from key to shard</li>
 </ul>
-</div>
-<div id="consequences-of-sharding" class="slide section level2" number="10.34">
-<h1><span class="header-section-number">10.34</span> Consequences of
-Sharding</h1>
+<h2 id="consequences-of-sharding"><span class="header-section-number">10.34</span> Consequences of Sharding</h2>
 <ul>
 <li><strong>No more SQL <code>JOIN</code>s</strong>, leading to lots of
 copied data</li>
@@ -6553,9 +6022,8 @@ problems with automatic DB-Sequences</li>
 <li>Every change <strong>requires corresponding application
 changes</strong></li>
 </ul>
-</div>
-<div id="relationships" class="slide section level2" number="10.35">
-<h1><span class="header-section-number">10.35</span> Relationships</h1>
+<h2 id="relationships"><span class="header-section-number">10.35</span>
+Relationships</h2>
 <ul>
 <li>Within the database, <strong>referential integrity</strong> rules
 protect containment relationships</li>
@@ -6571,10 +6039,8 @@ updated</li>
 <li>Badge no longer works</li>
 <li>All equipment has been returned</li>
 </ul>
-</div>
-<div id="functional-requirements-of-relationship-services" class="slide section level2" number="10.36">
-<h1><span class="header-section-number">10.36</span> Functional
-Requirements of Relationship Services</h1>
+<h2 id="functional-requirements-of-relationship-services"><span class="header-section-number">10.36</span> Functional Requirements of
+Relationship Services</h2>
 <ul>
 <li><strong>Definition of relations between objects</strong> without
 modifying those objects</li>
@@ -6584,10 +6050,8 @@ modifying those objects</li>
 <li>Support for <strong>reference and containment
 relations</strong></li>
 </ul>
-</div>
-<div id="why-relationship-services-failed" class="slide section level2" number="10.37">
-<h1><span class="header-section-number">10.37</span> Why Relationship
-Services Failed</h1>
+<h2 id="why-relationship-services-failed"><span class="header-section-number">10.37</span> Why Relationship Services
+Failed</h2>
 <p><strong>The good</strong>:</p>
 <ul>
 <li>Powerful <strong>modeling tool</strong></li>
@@ -6601,6 +6065,508 @@ objects</li>
 <li><strong>Performance impact</strong></li>
 <li>Not supported by many CORBA vendors for a long time</li>
 <li>EJB only supported with local objects in the same container.</li>
+</ul>
+</div>
+<div id="distributed-services-and-algorithms-ii" class="slide section level1" number="11">
+<h1><span class="header-section-number">11</span> Distributed Services
+and Algorithms II</h1>
+<blockquote>
+<p>TODO: Add overview</p>
+</blockquote>
+</div>
+<div id="design-of-distributed-systems" class="slide section level1" number="12">
+<h1><span class="header-section-number">12</span> Design of Distributed
+Systems</h1>
+<h2 id="overview-9"><span class="header-section-number">12.1</span>
+Overview</h2>
+<ul>
+<li>Key principles for system design</li>
+<li>Utilizing caching and replication for efficient operations</li>
+<li>Importance of architecture in optimizing performance</li>
+<li>Validation of architectural design</li>
+<li>Techniques for improving performance in large fan-out
+architecture</li>
+<li>Strategies for achieving fault-tolerance in high-scale systems.</li>
+</ul>
+<h2 id="design-principles-for-distributed-systems"><span class="header-section-number">12.2</span> Design Principles for
+Distributed Systems</h2>
+<ul>
+<li><strong>Consideration of Latency</strong>: Examination of buffering
+and round-trip times</li>
+<li><strong>Importance of Locality</strong>: Proper placement of heavily
+interacting components</li>
+<li><strong>Avoiding Duplication of Work</strong>: Utilizing resources
+effectively</li>
+<li><strong>Resource Pooling</strong>: Reusing resources in
+communication such as connections or thread pools</li>
+<li><strong>Parallelization</strong>: Design for concurrent operations
+and minimize serialization</li>
+<li><strong>Evaluating Consistency</strong>: Determining the appropriate
+level of consistency with caching and replication</li>
+<li><strong>Caching and Replication Strategies</strong>: Utilizing
+prediction and bandwidth to reduce latency</li>
+<li><strong>End-to-end Argument</strong>: Minimizing heavy guarantees at
+lower levels of the system.</li>
+</ul>
+<blockquote>
+<p>Know Your No. 1 Enemy: <strong>Latency</strong>!</p>
+</blockquote>
+<h2 id="sharing-ressources-and-data"><span class="header-section-number">12.3</span> Sharing Ressources and
+Data</h2>
+<ul>
+<li><strong>Pooling resources</strong> can improve performance even in
+local systems</li>
+<li>High-frequency requests can lead to memory allocation issues and
+poor performance</li>
+<li><strong>Caching is crucial</strong> for the effectiveness of
+distributed applications</li>
+<li><strong>Minimizing backend requests</strong> while maintaining sane
+application logic</li>
+<li><strong>Breaking down information</strong> into smaller fragments
+can reveal reusable parts</li>
+</ul>
+<h2 id="connection-pooling"><span class="header-section-number">12.4</span> Connection Pooling</h2>
+<ul>
+<li><strong>Matching</strong> server and database CPU
+<strong>capabilities</strong></li>
+<li><strong>Avoiding blocking</strong> and app threads holding onto
+connections</li>
+<li><strong>Careful monitoring of wait time</strong> in the pool</li>
+<li><strong>Checking I/O</strong> rates with new hardware</li>
+<li><strong>Understanding what constitutes a “connection”</strong> to
+storage</li>
+<li><strong>Monitoring core/thread ratio</strong>, etc.</li>
+</ul>
+<h2 id="horizonal-scalingparallelization"><span class="header-section-number">12.5</span> Horizonal
+Scaling/Parallelization</h2>
+<ul>
+<li>Horizontal scaling through <strong>parallel processing</strong></li>
+<li>Every <strong>request can be handled by any thread on any
+host</strong></li>
+<li><strong>Avoid synchronization points</strong> in servlet engines or
+database connections.</li>
+</ul>
+<h2 id="caching-and-replication"><span class="header-section-number">12.6</span> Caching and Replication</h2>
+<ul>
+<li>Caching components are responsible for maintaining data
+validity</li>
+<li>Data source is responsible for keeping replicas consistent and
+up-to-date</li>
+<li>Focus on reducing back-end requests for improved efficiency.</li>
+</ul>
+<h2 id="end-to-end-argument"><span class="header-section-number">12.7</span> End-to-End Argument</h2>
+<ul>
+<li><strong>User/Developer</strong>: Compensation for behavior through
+application</li>
+<li><strong>Application Layer</strong>: Use of special commands, such as
+“Select for Update” or “Begin Transaction”</li>
+<li><strong>Intermediate Layer</strong>: Compiler/Languages utilizing
+technologies such as Software Transactional Memory and memory
+models</li>
+<li><strong>Base Layer</strong>: Considerations for CPU cache coherence,
+database isolation levels, and real-time streaming, etc.</li>
+</ul>
+<h2 id="design-methodology"><span class="header-section-number">12.8</span> Design Methodology</h2>
+<ul>
+<li><strong>Back-of-the-envelope</strong> calculations</li>
+<li>Decide on <strong>geographical distribution and replication
+strategy</strong></li>
+<li>Determine <strong>data segregation</strong>, including single or
+multi-tenancy models and partitioning</li>
+<li>Divide <strong>business requirements into REST</strong>-like
+services</li>
+<li><strong>Define SLAs for services</strong>, including availability,
+latency, throughput, consistency, and durability</li>
+<li><strong>Define security context</strong> with IAAA (Identity,
+Authentication, Authorization, Audit) and perform risk analysis</li>
+<li>Complete <strong>monitoring and logging setup</strong></li>
+<li><strong>Plan for deployment, release changes, testing, and
+maintenance</strong> using fault-tolerant features.</li>
+</ul>
+<h2 id="uncomfortable-real-world-questions"><span class="header-section-number">12.9</span> Uncomfortable Real-World
+Questions</h2>
+<ul>
+<li>How many application servers are needed to support the customer
+base?</li>
+<li>What is the optimal ratio of users to web servers?</li>
+<li>What is the maximum number of users per server?</li>
+<li>What is the maximum number of transactions per server?</li>
+<li>Which specific hardware configurations provide the best
+performance?</li>
+<li>What is the current production server capability?</li>
+<li>What do the users do? (These are business process definitions.)</li>
+<li>How fast do the users do it? What are the transaction rates of each
+business process?</li>
+<li>When do they do it? What time of day are most users using it?</li>
+<li>What major geographic locations are they doing it from?</li>
+<li>How many connections can the server handle?</li>
+<li>How many open file descriptors or handles is the server configured
+to handle?</li>
+<li>How many processes or threads is the server configured to
+handle?</li>
+<li>Does it release and renew threads and connections correctly?</li>
+<li>How large is the server’s listen queue?</li>
+<li>What is the server’s “page push” capacity?</li>
+<li>What type of caching is done?</li>
+</ul>
+<h2 id="architecture-fields"><span class="header-section-number">12.10</span> Architecture Fields</h2>
+<ul>
+<li><strong>Information</strong> Architecture</li>
+<li><strong>Distribution</strong> Architecture</li>
+<li><strong>System</strong> Architecture</li>
+<li><strong>Physical</strong> Architecture</li>
+<li><strong>Architectural</strong> Validation</li>
+</ul>
+<h2 id="architecture-validation"><span class="header-section-number">12.11</span> Architecture Validation</h2>
+<p>In the architecture validation phase these questions are answered:
+How does the architecture …</p>
+<ul>
+<li>Handle security and privacy?</li>
+<li>Handle data consistency and durability?</li>
+<li>Handle disaster recovery and business continuity?</li>
+<li>Handle performance, scalability and capacity?</li>
+<li>Handle integration with other systems and data sources?</li>
+<li>Handle upgrades, maintenance and support?</li>
+<li>Align with the organization’s goals, strategies and plans?</li>
+</ul>
+<h2 id="problems-with-naive-portal-designs"><span class="header-section-number">12.12</span> Problems with Naive Portal
+Designs</h2>
+<p>The portal had no caching etc.</p>
+<ul>
+<li><strong>GUI architecture</strong>: Long time with empty page</li>
+<li><strong>System architecture</strong>: No System Architecture
+Diagram!</li>
+<li><strong>Performance</strong>: Very slow construction of
+home-page</li>
+<li><strong>Reliability</strong>: Frequent stalls and crashes of the
+application</li>
+<li><strong>Throughput</strong>: 10 users max. with top-notch
+hardware!</li>
+<li><strong>Team</strong>: Little understanding of performance or
+architecture</li>
+</ul>
+<h2 id="improving-the-gui-architecture"><span class="header-section-number">12.13</span> Improving the GUI
+Architecture</h2>
+<ul>
+<li>Minimize HTTP requests by combining files and using sprites</li>
+<li>Use asynchronous loading for non-critical resources</li>
+<li>Avoid heavy use of animations and dynamic effects</li>
+<li>Preload essential resources</li>
+<li>Use a content delivery network (CDN) for static resources</li>
+<li>Lazy load images and videos</li>
+<li>Use browser caching effectively</li>
+<li>Minimize the use of plugins and third-party scripts.</li>
+<li>Minimize the number of DOM manipulations</li>
+<li>Use lazy loading for images and other resources</li>
+<li>Avoid using large, blocking scripts</li>
+<li>Use a content delivery network (CDN) to distribute resources</li>
+<li>Consider using server-side rendering or progressive web apps
+(PWA)</li>
+<li>Implement caching strategies at the server and client side</li>
+<li>Monitor and optimize the page load time regularly</li>
+<li>Use performance optimization tools and browser dev-tools to identify
+bottlenecks.</li>
+</ul>
+<h2 id="improving-the-system-architecture"><span class="header-section-number">12.14</span> Improving the System
+Architecture</h2>
+<p>Use a system architecture diagram:</p>
+<ul>
+<li>Show the main components and their interactions</li>
+<li>Indicate the flow of data and processing</li>
+<li>Highlight the main functionalities and relationships between
+components</li>
+<li>Reflect the overall structure and design of the system</li>
+<li>Provide a clear and concise representation of the system
+architecture.</li>
+</ul>
+<h2 id="lessons-learned-from-naive-portal-designs"><span class="header-section-number">12.15</span> Lessons Learned from Naive
+Portal Designs</h2>
+<ul>
+<li>Request time is affected by the <strong>sum of individual
+calls</strong></li>
+<li><strong>Each delay</strong> in a call <strong>contributes</strong>
+to the runtime</li>
+<li>Back-end server problems lead to poor request time</li>
+<li><strong>Long timeout settings</strong> negatively impact response
+times</li>
+<li>Small improvements in sub-requests matter with many concurrent
+requests</li>
+<li><strong>Lack of central architecture diagram</strong> limits
+understanding of performance impact and throughput</li>
+<li><strong>JEE restrictions</strong> prevent creating custom
+threads.</li>
+</ul>
+<h2 id="fan-out-architecture"><span class="header-section-number">12.16</span> Fan-Out Architecture</h2>
+<p>Calls are parallel instead of serial.</p>
+<ul>
+<li>The overall <strong>request time is determined by the slowest
+sub-request</strong></li>
+<li>Each <strong>delay in an individual call adds to the
+runtime</strong></li>
+<li>Long timeout settings negatively impact response times</li>
+<li>Using <strong>short timeouts</strong> for back-end server calls is
+<strong>recommended</strong></li>
+<li>Running short requests in separate threads may not be productive,
+<strong>consider request bundling</strong></li>
+<li><strong>Error from one sub-call should not block the whole
+request</strong>, have a fallback</li>
+<li><strong>Avoid all threads getting stuck</strong> on a dysfunctional
+sub-call (bulkhead)</li>
+<li>Temporarily <strong>close dead connections
+(circuit-breaker)</strong>.</li>
+</ul>
+<h2 id="reliability-issues-in-dependencies"><span class="header-section-number">12.17</span> Reliability Issues in
+Dependencies</h2>
+<ul>
+<li>System load becomes worse due to <strong>hanging requests</strong>
+occupying resources and leading to heavy garbage collection</li>
+<li>Dead servers can cause a <strong>buildup of threads</strong> due to
+even short timeouts</li>
+<li>The portal was <strong>frequently impacted by failing back-end
+servers</strong></li>
+<li><strong>Avoid lengthy waiting time</strong> for sub-requests in the
+homepage action handler: Adopt the “Fail-fast” pattern today.</li>
+</ul>
+<h2 id="distribution-architcture"><span class="header-section-number">12.18</span> Distribution Architcture</h2>
+<blockquote>
+<p>Tells portal how to map/locate fragments defined in the
+information</p>
+</blockquote>
+<table>
+<colgroup>
+<col width="9%" />
+<col width="6%" />
+<col width="8%" />
+<col width="4%" />
+<col width="10%" />
+<col width="11%" />
+<col width="11%" />
+<col width="9%" />
+<col width="8%" />
+<col width="8%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data Type</th>
+<th>Source</th>
+<th>Protocol</th>
+<th>Port</th>
+<th>Avg. Resp.</th>
+<th>Worst Resp.</th>
+<th>Downtimes</th>
+<th>Max Conn.</th>
+<th>Loadbal.</th>
+<th>Security</th>
+<th>Contact/SLA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>News</td>
+<td>hostX</td>
+<td>http/xml</td>
+<td>3000</td>
+<td>100ms</td>
+<td>6 sec.</td>
+<td>17.00-17.20</td>
+<td>100</td>
+<td>client</td>
+<td>plain</td>
+<td>Mrs.X/News-SLA</td>
+</tr>
+<tr class="even">
+<td>Research</td>
+<td>hostY</td>
+<td>RMI</td>
+<td>80</td>
+<td>50ms</td>
+<td>500ms</td>
+<td>0.00-1.00</td>
+<td>50</td>
+<td>server</td>
+<td>SSL</td>
+<td>Mr.Y/res-SLA</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Additional factors</strong> to consider:</p>
+<ul>
+<li>Available bandwidth</li>
+<li>Number of planned requests</li>
+<li>Distance to the device</li>
+<li>Availability numbers</li>
+</ul>
+<p><strong>Example results</strong>:</p>
+<ul>
+<li>Back-end server performance affecting home page construction
+time</li>
+<li>Huge latencies and variations in response times causing
+instabilities in the portal application</li>
+<li>Getting to the servers for every request is nearly impossible due to
+huge latencies and variations in response times from dependencies.</li>
+</ul>
+<h2 id="service-access-layer"><span class="header-section-number">12.19</span> Service Access Layer</h2>
+<p>Is determined by the distribution architecture.</p>
+<ul>
+<li>Handle changes in the interface</li>
+<li>Monitors backend system connections</li>
+<li>Disable connections that are not functioning properly (“fail
+fast”)</li>
+<li>Add new sources to the system</li>
+<li>Poll and re-enable sources that have been temporarily disabled</li>
+<li>Keep track of statistics on all sources.</li>
+</ul>
+<p><strong>Simple Alternative</strong>: Sidecar, contains circuit
+breaker &amp; service discovery</p>
+<p><strong>Advanced Alternative</strong>: Service mesh with separate
+data and control plane</p>
+<h2 id="information-architecture-to-analyze-caching"><span class="header-section-number">12.20</span> Information Architecture (to
+analyze Caching)</h2>
+<blockquote>
+<p>Defines pieces of information to aggregate or integrate</p>
+</blockquote>
+<table>
+<colgroup>
+<col width="20%" />
+<col width="41%" />
+<col width="37%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Data/changed by</th>
+<th>Time</th>
+<th>Personalization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Country Codes</td>
+<td>No (not often, reference data)</td>
+<td>No</td>
+</tr>
+<tr class="even">
+<td>News</td>
+<td>Yes (aging only)</td>
+<td>No, but personal selections</td>
+</tr>
+<tr class="odd">
+<td>Greeting</td>
+<td>No</td>
+<td>Yes</td>
+</tr>
+<tr class="even">
+<td>Message</td>
+<td>Yes (slowly aging)</td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+<h2 id="fragments"><span class="header-section-number">12.21</span>
+Fragments</h2>
+<p><strong>Pages</strong>: Unique to customers, cannot be re-used</p>
+<p><strong>Page fragments</strong>:</p>
+<ul>
+<li>Can be shared and heavily re-used</li>
+<li>Allows huge reduction in back-end requests</li>
+<li>Downside: If fragments change, mechanism needed to invalidate
+dependent pages.</li>
+</ul>
+<h2 id="physical-and-process-architecture"><span class="header-section-number">12.22</span> Physical and Process
+Architecture</h2>
+<p><strong>Physical Architecture</strong>:</p>
+<ul>
+<li>Deals with reliability issues (replication, high-availability, etc.)
+and scalability (horizontal and/or vertical)</li>
+<li>Need to define scalability methods from the beginning due to their
+impact on overall system architecture</li>
+</ul>
+<p><strong>Horizontally scalable application</strong>:</p>
+<ul>
+<li>Replicated on multiple hosts</li>
+<li>Avoids single point of failure</li>
+</ul>
+<p><strong>Vertically scalable application</strong>:</p>
+<ul>
+<li>Can only install more CPUs or RAM on single instance of host</li>
+<li>Limited scalability and availability (HA application)</li>
+</ul>
+<h2 id="latency-reduction-tolerance-in-fan-out-architectures"><span class="header-section-number">12.23</span> Latency Reduction &amp;
+Tolerance in Fan Out Architectures</h2>
+<ul>
+<li><strong>Keep response times tight</strong> but aware of
+stragglers</li>
+<li><strong>Fight stragglers</strong> with backup requests and
+cross-server cancellation</li>
+<li><strong>Watch for overload</strong> at sender when responses come
+back</li>
+<li><strong>Do NOT distribute load evenly</strong>, synchronize
+background load across machines instead</li>
+<li>Reduce <strong>head-of-line blocking</strong> (partition large
+requests)</li>
+<li><strong>Partition</strong> data across machines</li>
+<li>Cheat by <strong>coming back with partial data</strong></li>
+<li>Cross request adaptation</li>
+<li>Increase <strong>replication</strong> count</li>
+<li>Beware of the <strong>incast</strong> problem</li>
+</ul>
+<h2 id="avoiding-getting-stuck-in-fan-out-architectures"><span class="header-section-number">12.24</span> Avoiding Getting Stuck in
+Fan-Out Architectures</h2>
+<ul>
+<li><strong>Fail Fast</strong>: Don’t wait for problematic
+resources</li>
+<li><strong>Timeouts</strong>: Use timeouts when accessing a
+service</li>
+<li><strong>Exponentially Decreasing Retries</strong>: Use if
+needed</li>
+<li><strong>Fallback</strong>: Use alternatives when service doesn’t
+work, such as serving stale data</li>
+<li><strong>Caching</strong>: Retrieve data from cache if real-time
+dependency is unavailable, even if data is stale</li>
+<li><strong>Eventual Consistency</strong>: Queue writes to be persisted
+once dependency is available</li>
+<li><strong>Stubbed Data</strong>: Revert to default values if
+personalized options can’t be retrieved</li>
+<li><strong>Empty Response (Fail Silent)</strong>: Return null or empty
+list that UIs can ignore.</li>
+</ul>
+<h2 id="circuit-breakers"><span class="header-section-number">12.25</span> Circuit Breakers</h2>
+<ul>
+<li>Purpose: <strong>Handle faults that might take a long time to
+recover from</strong></li>
+<li>Provide control mechanism to <strong>prevent application from
+continually trying</strong> to perform a failing operation</li>
+<li>Allows application to <strong>fail fast and respond to failures
+quickly</strong></li>
+<li>Acts as a switch that “trips” when system detects a failure</li>
+<li>Stops application from making further attempts to perform operation
+until reset</li>
+<li>Helps <strong>prevent application from becoming
+unresponsive</strong></li>
+<li><strong>Protects other parts of the system</strong> from being
+affected by the failure.</li>
+</ul>
+<h2 id="bulkheads"><span class="header-section-number">12.26</span>
+Bulkheads</h2>
+<ul>
+<li><strong>Bulkhead pattern</strong> is a design for fault-tolerant
+applications</li>
+<li>Elements of an application are <strong>isolated into
+pools</strong></li>
+<li>If one pool fails, <strong>others will continue to
+function</strong></li>
+<li>Named after the sectioned partitions (bulkheads) of a ship’s
+hull</li>
+<li>Example: <strong>semaphores and thread pools</strong></li>
+</ul>
+<h2 id="blast-reduction"><span class="header-section-number">12.27</span> Blast Reduction</h2>
+<ul>
+<li>Partition app into geographical regions (e.g. US, DACH etc.)</li>
+<li>Splitting regions further into specific availability zones and
+further cells</li>
+<li>Shuffle sharding: Provide a single-tenant-like isolation for shared
+workloads</li>
+<li>Splitting app itself into separate control and data planes</li>
 </ul>
 </div>
 </body>
