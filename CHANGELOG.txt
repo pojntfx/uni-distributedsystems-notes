@@ -1,3 +1,9 @@
+commit 1f59b74f22ffbf10037138f2fe52b08aea081762
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sat Feb 4 01:05:41 2023 +0100
+
+    feat: Add topics list
+
 commit 780cbc97ee196172a6db9b660a8e1b38a7c2980f
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Jan 31 21:13:30 2023 +0100

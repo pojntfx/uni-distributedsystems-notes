@@ -283,7 +283,7 @@ License
 
 [AGPL-3.0 license badge]
 
-Uni Distributed Systems Notes (c) 2022 Felicitas Pojtinger and
+Uni Distributed Systems Notes (c) 2023 Felicitas Pojtinger and
 contributors
 
 SPDX-License-Identifier: AGPL-3.0

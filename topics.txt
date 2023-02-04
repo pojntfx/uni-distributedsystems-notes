@@ -1,0 +1,45 @@
+Uni Distributed Systems Topics
+Felicitas Pojtinger
+2023-02-04
+
+-   1 Meta
+    -   1.1 Contributing
+    -   1.2 License
+-   2 Topics
+
+Meta
+
+Contributing
+
+These study materials are heavily based on professor Kriha’s “Verteilte
+Systeme” lecture at HdM Stuttgart and prior work of fellow students.
+
+Found an error or have a suggestion? Please open an issue on GitHub
+(github.com/pojntfx/uni-distributedsystems-notes):
+
+[QR code to source repository]
+
+If you like the study materials, a GitHub star is always appreciated :)
+
+License
+
+[AGPL-3.0 license badge]
+
+Uni Distributed Systems Topics (c) 2023 Felicitas Pojtinger and
+contributors
+
+SPDX-License-Identifier: AGPL-3.0
+
+Topics
+
+-   I/O Process Models
+-   Delivery Guarantees
+-   Replication, Eventual Consistency, FIFO, Reliable Broadcasting
+-   Synchronization, Shared Nothing/Shared Something
+-   Correctness, Liveness, Complexity, Failure Modes
+-   Fan-Out Architecture
+-   Two-Phase Commits (2PC)
+-   Sharding, Partitioning
+-   Information and Distribution Architecture
+-   Concrete design proposal, e.g. Twitter (Scalability, availability,
+    security)
