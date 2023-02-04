@@ -25,7 +25,7 @@ If you like the study materials, a GitHub star is always appreciated :)
 
 ![AGPL-3.0 license badge](https://www.gnu.org/graphics/agplv3-155x51.png){ width=128px }
 
-Uni Distributed Systems Notes (c) 2022 Felicitas Pojtinger and contributors
+Uni Distributed Systems Notes (c) 2023 Felicitas Pojtinger and contributors
 
 SPDX-License-Identifier: AGPL-3.0
 \newpage
