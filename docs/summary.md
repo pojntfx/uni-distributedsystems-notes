@@ -43,13 +43,8 @@ This course on distributed systems covers a range of topics related to the desig
 7. **Services**: This sections covers a distribution paradigm between hype and revolution.
 8. **Theoretical foundations of distributed systems**: This section covers key concepts and theories that are relevant to the design of distributed systems, including the FLP theorem, time, causality, consensus, eventual consistency, and optimistic replication.
 9. **Distributed services and algorithms I**: This section covers the design and implementation of various distributed services and algorithms, including load balancing, message queues, caching, and consistent hashing.
-10. **Distributed services II**: This section covers more advanced topics in distributed services, including persistence, transactions, eventual consistency, and coordination.
-11. **Distributed security**: This section covers the key considerations for securing distributed systems, including authentication, authorization, and access control (AAA), secure delegation, and backend security.
-12. **Design of distributed systems**: This section covers the methodology and principles for designing distributed systems, as well as examples of different architectures and design patterns.
-13. **System management in distributed systems**: This section covers the key considerations for managing and maintaining distributed systems, including monitoring, chaos monkeys, and patterns of resilience.
-14. **Service architectures**: This section covers different service architectures, including service-oriented architecture (SOA) and microservices.
-15. **Peer-to-peer systems and the distributed web**: This section covers the use of peer-to-peer systems and technologies, such as distributed hashtables, blockchain, onion routing, and distributed consensus, in the context of the distributed web.
-16. **Ultra-large-scale systems**: This section covers the design and implementation of ultra-large-scale systems, including considerations related to scalability, performance, network design, and datacenter design.
+10. **Distributed services and algorithms II**: This section covers more advanced topics in distributed services, including persistence, transactions, eventual consistency, and coordination.
+11. **Design of distributed systems**: This section covers the methodology and principles for designing distributed systems, as well as examples of different architectures and design patterns.
 
 ## Introduction to Distributed Systems
 
@@ -84,7 +79,7 @@ Four types of emergence: strong emergence, weak emergence, evolutionary emergenc
 - One reason is **emergence**, which refers to the complex and often unexpected behaviors that can arise when multiple components of a system interact with each other.
 - Another reason is the **single machine view**, which can make it difficult to understand and debug issues that arise in a distributed system.
 - **Errors** are also an inherent part of distributed systems, and developers must be prepared to handle and troubleshoot these errors.
-- Additionally, there is no **"free lunch"\*** in distributed systems, meaning that there is always some trade-off or cost associated with every design decision.
+- Additionally, there is no **"free lunch"** in distributed systems, meaning that there is always some trade-off or cost associated with every design decision.
 - Finally, developing a distributed system involves **total end-to-end system engineering**, which can be a complex and time-consuming process.
 - All distributed systems algorithms are also **based on the failures that are expected** and how they are handled, which can add to the complexity of developing a distributed system.
 
@@ -2855,3 +2850,312 @@ For example when an employee leaves:
 - **Performance impact**
 - Not supported by many CORBA vendors for a long time
 - EJB only supported with local objects in the same container.
+
+## Distributed Services and Algorithms II
+
+> TODO: Add overview
+
+## Design of Distributed Systems
+
+### Overview
+
+- Key principles for system design
+- Utilizing caching and replication for efficient operations
+- Importance of architecture in optimizing performance
+- Validation of architectural design
+- Techniques for improving performance in large fan-out architecture
+- Strategies for achieving fault-tolerance in high-scale systems.
+
+### Design Principles for Distributed Systems
+
+- **Consideration of Latency**: Examination of buffering and round-trip times
+- **Importance of Locality**: Proper placement of heavily interacting components
+- **Avoiding Duplication of Work**: Utilizing resources effectively
+- **Resource Pooling**: Reusing resources in communication such as connections or thread pools
+- **Parallelization**: Design for concurrent operations and minimize serialization
+- **Evaluating Consistency**: Determining the appropriate level of consistency with caching and replication
+- **Caching and Replication Strategies**: Utilizing prediction and bandwidth to reduce latency
+- **End-to-end Argument**: Minimizing heavy guarantees at lower levels of the system.
+
+> Know Your No. 1 Enemy: **Latency**!
+
+### Sharing Ressources and Data
+
+- **Pooling resources** can improve performance even in local systems
+- High-frequency requests can lead to memory allocation issues and poor performance
+- **Caching is crucial** for the effectiveness of distributed applications
+- **Minimizing backend requests** while maintaining sane application logic
+- **Breaking down information** into smaller fragments can reveal reusable parts
+
+### Connection Pooling
+
+- **Matching** server and database CPU **capabilities**
+- **Avoiding blocking** and app threads holding onto connections
+- **Careful monitoring of wait time** in the pool
+- **Checking I/O** rates with new hardware
+- **Understanding what constitutes a "connection"** to storage
+- **Monitoring core/thread ratio**, etc.
+
+### Horizonal Scaling/Parallelization
+
+- Horizontal scaling through **parallel processing**
+- Every **request can be handled by any thread on any host**
+- **Avoid synchronization points** in servlet engines or database connections.
+
+### Caching and Replication
+
+- Caching components are responsible for maintaining data validity
+- Data source is responsible for keeping replicas consistent and up-to-date
+- Focus on reducing back-end requests for improved efficiency.
+
+### End-to-End Argument
+
+- **User/Developer**: Compensation for behavior through application
+- **Application Layer**: Use of special commands, such as "Select for Update" or "Begin Transaction"
+- **Intermediate Layer**: Compiler/Languages utilizing technologies such as Software Transactional Memory and memory models
+- **Base Layer**: Considerations for CPU cache coherence, database isolation levels, and real-time streaming, etc.
+
+### Design Methodology
+
+- **Back-of-the-envelope** calculations
+- Decide on **geographical distribution and replication strategy**
+- Determine **data segregation**, including single or multi-tenancy models and partitioning
+- Divide **business requirements into REST**-like services
+- **Define SLAs for services**, including availability, latency, throughput, consistency, and durability
+- **Define security context** with IAAA (Identity, Authentication, Authorization, Audit) and perform risk analysis
+- Complete **monitoring and logging setup**
+- **Plan for deployment, release changes, testing, and maintenance** using fault-tolerant features.
+
+### Uncomfortable Real-World Questions
+
+- How many application servers are needed to support the customer base?
+- What is the optimal ratio of users to web servers?
+- What is the maximum number of users per server?
+- What is the maximum number of transactions per server?
+- Which specific hardware configurations provide the best performance?
+- What is the current production server capability?
+- What do the users do? (These are business process definitions.)
+- How fast do the users do it? What are the transaction rates of each business process?
+- When do they do it? What time of day are most users using it?
+- What major geographic locations are they doing it from?
+- How many connections can the server handle?
+- How many open file descriptors or handles is the server configured to handle?
+- How many processes or threads is the server configured to handle?
+- Does it release and renew threads and connections correctly?
+- How large is the server's listen queue?
+- What is the server's "page push" capacity?
+- What type of caching is done?
+
+### Architecture Fields
+
+- **Information** Architecture
+- **Distribution** Architecture
+- **System** Architecture
+- **Physical** Architecture
+- **Architectural** Validation
+
+### Architecture Validation
+
+In the architecture validation phase these questions are answered: How does the architecture ...
+
+- Handle security and privacy?
+- Handle data consistency and durability?
+- Handle disaster recovery and business continuity?
+- Handle performance, scalability and capacity?
+- Handle integration with other systems and data sources?
+- Handle upgrades, maintenance and support?
+- Align with the organization's goals, strategies and plans?
+
+### Problems with Naive Portal Designs
+
+The portal had no caching etc.
+
+- **GUI architecture**: Long time with empty page
+- **System architecture**: No System Architecture Diagram!
+- **Performance**: Very slow construction of home-page
+- **Reliability**: Frequent stalls and crashes of the application
+- **Throughput**: 10 users max. with top-notch hardware!
+- **Team**: Little understanding of performance or architecture
+
+### Improving the GUI Architecture
+
+- Minimize HTTP requests by combining files and using sprites
+- Use asynchronous loading for non-critical resources
+- Avoid heavy use of animations and dynamic effects
+- Preload essential resources
+- Use a content delivery network (CDN) for static resources
+- Lazy load images and videos
+- Use browser caching effectively
+- Minimize the use of plugins and third-party scripts.
+- Minimize the number of DOM manipulations
+- Use lazy loading for images and other resources
+- Avoid using large, blocking scripts
+- Use a content delivery network (CDN) to distribute resources
+- Consider using server-side rendering or progressive web apps (PWA)
+- Implement caching strategies at the server and client side
+- Monitor and optimize the page load time regularly
+- Use performance optimization tools and browser dev-tools to identify bottlenecks.
+
+### Improving the System Architecture
+
+Use a system architecture diagram:
+
+- Show the main components and their interactions
+- Indicate the flow of data and processing
+- Highlight the main functionalities and relationships between components
+- Reflect the overall structure and design of the system
+- Provide a clear and concise representation of the system architecture.
+
+### Lessons Learned from Naive Portal Designs
+
+- Request time is affected by the **sum of individual calls**
+- **Each delay** in a call **contributes** to the runtime
+- Back-end server problems lead to poor request time
+- **Long timeout settings** negatively impact response times
+- Small improvements in sub-requests matter with many concurrent requests
+- **Lack of central architecture diagram** limits understanding of performance impact and throughput
+- **JEE restrictions** prevent creating custom threads.
+
+### Fan-Out Architecture
+
+Calls are parallel instead of serial.
+
+- The overall **request time is determined by the slowest sub-request**
+- Each **delay in an individual call adds to the runtime**
+- Long timeout settings negatively impact response times
+- Using **short timeouts** for back-end server calls is **recommended**
+- Running short requests in separate threads may not be productive, **consider request bundling**
+- **Error from one sub-call should not block the whole request**, have a fallback
+- **Avoid all threads getting stuck** on a dysfunctional sub-call (bulkhead)
+- Temporarily **close dead connections (circuit-breaker)**.
+
+### Reliability Issues in Dependencies
+
+- System load becomes worse due to **hanging requests** occupying resources and leading to heavy garbage collection
+- Dead servers can cause a **buildup of threads** due to even short timeouts
+- The portal was **frequently impacted by failing back-end servers**
+- **Avoid lengthy waiting time** for sub-requests in the homepage action handler: Adopt the "Fail-fast" pattern today.
+
+### Distribution Architcture
+
+> Tells portal how to map/locate fragments defined in the information
+
+| Data Type | Source | Protocol | Port | Avg. Resp. | Worst Resp. | Downtimes   | Max Conn. | Loadbal. | Security | Contact/SLA    |
+| --------- | ------ | -------- | ---- | ---------- | ----------- | ----------- | --------- | -------- | -------- | -------------- |
+| News      | hostX  | http/xml | 3000 | 100ms      | 6 sec.      | 17.00-17.20 | 100       | client   | plain    | Mrs.X/News-SLA |
+| Research  | hostY  | RMI      | 80   | 50ms       | 500ms       | 0.00-1.00   | 50        | server   | SSL      | Mr.Y/res-SLA   |
+
+**Additional factors** to consider:
+
+- Available bandwidth
+- Number of planned requests
+- Distance to the device
+- Availability numbers
+
+**Example results**:
+
+- Back-end server performance affecting home page construction time
+- Huge latencies and variations in response times causing instabilities in the portal application
+- Getting to the servers for every request is nearly impossible due to huge latencies and variations in response times from dependencies.
+
+### Service Access Layer
+
+Is determined by the distribution architecture.
+
+- Handle changes in the interface
+- Monitors backend system connections
+- Disable connections that are not functioning properly ("fail fast")
+- Add new sources to the system
+- Poll and re-enable sources that have been temporarily disabled
+- Keep track of statistics on all sources.
+
+**Simple Alternative**: Sidecar, contains circuit breaker & service discovery
+
+**Advanced Alternative**: Service mesh with separate data and control plane
+
+### Information Architecture (to analyze Caching)
+
+> Defines pieces of information to aggregate or integrate
+
+| Data/changed by | Time                           | Personalization             |
+| --------------- | ------------------------------ | --------------------------- |
+| Country Codes   | No (not often, reference data) | No                          |
+| News            | Yes (aging only)               | No, but personal selections |
+| Greeting        | No                             | Yes                         |
+| Message         | Yes (slowly aging)             | Yes                         |
+
+### Fragments
+
+**Pages**: Unique to customers, cannot be re-used
+
+**Page fragments**:
+
+- Can be shared and heavily re-used
+- Allows huge reduction in back-end requests
+- Downside: If fragments change, mechanism needed to invalidate dependent pages.
+
+### Physical and Process Architecture
+
+**Physical Architecture**:
+
+- Deals with reliability issues (replication, high-availability, etc.) and scalability (horizontal and/or vertical)
+- Need to define scalability methods from the beginning due to their impact on overall system architecture
+
+**Horizontally scalable application**:
+
+- Replicated on multiple hosts
+- Avoids single point of failure
+
+**Vertically scalable application**:
+
+- Can only install more CPUs or RAM on single instance of host
+- Limited scalability and availability (HA application)
+
+### Latency Reduction & Tolerance in Fan Out Architectures
+
+- **Keep response times tight** but aware of stragglers
+- **Fight stragglers** with backup requests and cross-server cancellation
+- **Watch for overload** at sender when responses come back
+- **Do NOT distribute load evenly**, synchronize background load across machines instead
+- Reduce **head-of-line blocking** (partition large requests)
+- **Partition** data across machines
+- Cheat by **coming back with partial data**
+- Cross request adaptation
+- Increase **replication** count
+- Beware of the **incast** problem
+
+### Avoiding Getting Stuck in Fan-Out Architectures
+
+- **Fail Fast**: Don't wait for problematic resources
+- **Timeouts**: Use timeouts when accessing a service
+- **Exponentially Decreasing Retries**: Use if needed
+- **Fallback**: Use alternatives when service doesn't work, such as serving stale data
+- **Caching**: Retrieve data from cache if real-time dependency is unavailable, even if data is stale
+- **Eventual Consistency**: Queue writes to be persisted once dependency is available
+- **Stubbed Data**: Revert to default values if personalized options can't be retrieved
+- **Empty Response (Fail Silent)**: Return null or empty list that UIs can ignore.
+
+### Circuit Breakers
+
+- Purpose: **Handle faults that might take a long time to recover from**
+- Provide control mechanism to **prevent application from continually trying** to perform a failing operation
+- Allows application to **fail fast and respond to failures quickly**
+- Acts as a switch that "trips" when system detects a failure
+- Stops application from making further attempts to perform operation until reset
+- Helps **prevent application from becoming unresponsive**
+- **Protects other parts of the system** from being affected by the failure.
+
+### Bulkheads
+
+- **Bulkhead pattern** is a design for fault-tolerant applications
+- Elements of an application are **isolated into pools**
+- If one pool fails, **others will continue to function**
+- Named after the sectioned partitions (bulkheads) of a ship's hull
+- Example: **semaphores and thread pools**
+
+### Blast Reduction
+
+- Partition app into geographical regions (e.g. US, DACH etc.)
+- Splitting regions further into specific availability zones and further cells
+- Shuffle sharding: Provide a single-tenant-like isolation for shared workloads
+- Splitting app itself into separate control and data planes

@@ -34,7 +34,7 @@ SPDX-License-Identifier: AGPL-3.0
 
 - I/O Process Models
 - Delivery Guarantees
-- Replication, Eventual Consistency, FIFO, Reliable Broadcasting
+- Replication, Consensus, Eventual Consistency, FIFO, Reliable Broadcasting
 - Synchronization, Shared Nothing/Shared Something
 - Correctness, Liveness, Complexity, Failure Modes
 - Fan-Out Architecture
