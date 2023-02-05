@@ -1,6 +1,6 @@
 ---
 author: [Felicitas Pojtinger]
-date: "2022-12-17"
+date: "2023-02-05"
 subject: "Uni Distributed Systems Summary"
 keywords: [distributed-systems, hdm-stuttgart]
 subtitle: "Summary for the distributed systems course at HdM Stuttgart"
@@ -59,11 +59,13 @@ This course on distributed systems covers a range of topics related to the desig
 7. Concepts and architectures in DS, including scale, parallelism, and latency
 8. Resources related to DS
 
-### Definition of a Distributed System
+### Reasons for Distributing Systems
+
+#### Definition of a Distributed System
 
 A system that is made up of independent agents that interact with each other and produce a cohesive behavior. The interactions and events in this system happen concurrently and in parallel, meaning that they occur simultaneously and independently of one another. This type of system is often used to perform tasks that are too complex or large for a single agent to handle, and the concurrent and parallel nature of the interactions allows for efficient and effective processing of the tasks.
 
-### Emergence
+#### Emergence
 
 Four types of emergence: strong emergence, weak emergence, evolutionary emergence, and constructed emergence.
 
@@ -74,7 +76,7 @@ Four types of emergence: strong emergence, weak emergence, evolutionary emergenc
 
 **Emergent failure modes**: Instances of cascading failures in constructed emergence.
 
-### Why Distributed Systems hard for Devs?
+### Why are Distributed Systems complicated?
 
 - One reason is **emergence**, which refers to the complex and often unexpected behaviors that can arise when multiple components of a system interact with each other.
 - Another reason is the **single machine view**, which can make it difficult to understand and debug issues that arise in a distributed system.
@@ -83,7 +85,7 @@ Four types of emergence: strong emergence, weak emergence, evolutionary emergenc
 - Finally, developing a distributed system involves **total end-to-end system engineering**, which can be a complex and time-consuming process.
 - All distributed systems algorithms are also **based on the failures that are expected** and how they are handled, which can add to the complexity of developing a distributed system.
 
-### Why Distribute a System?
+#### Why Distribute a System?
 
 There are several reasons why an organization might choose to use a distributed system:
 
@@ -93,7 +95,7 @@ There are several reasons why an organization might choose to use a distributed 
 - **Security**: Distributed systems can be used to create different security domains, which can help to protect sensitive data and ensure that it is only accessed by authorized users.
 - **Price per request**: Distributed systems can be designed to use cheaper horizontal scaling or free resources, which can help to reduce the cost of processing each request.
 
-### Examples of Distributed Systems
+#### Examples of Distributed Systems
 
 There are many examples of distributed systems, including:
 
@@ -108,6 +110,8 @@ There are many examples of distributed systems, including:
 
 ### Characteristics of Distributed Systems
 
+#### Overview
+
 - **Influence of distribution topology and remoteness**: The physical layout of a distributed system and the distance between its components can have a significant impact on its performance and behavior.
 - **Emergent behaviors and concurrent events**: Distributed systems can exhibit complex and often unexpected behaviors as a result of the interactions between their components. Concurrent events, in which multiple parts of the system are executing at the same time, can also contribute to this complexity.
 - **Few analytic solutions and few model-based approaches**: There are often few analytic solutions or model-based approaches available for understanding and predicting the behavior of distributed systems, which can make them challenging to design and debug.
@@ -117,7 +121,7 @@ There are many examples of distributed systems, including:
 - **Concurrency, parallelism, and replication**: Distributed systems often rely on concurrency, parallelism, and replication to improve performance and resilience.
 - **Failure models define everything**: The design and behavior of distributed systems are often shaped by the failure models that are used to define how the system should respond to different types of failures.
 
-### Eight Fallacies of Distributed Computing
+#### Eight Fallacies of Distributed Computing
 
 - **The network is reliable**: This fallacy assumes that the network is always available and that communication between components will always be successful. In reality, networks can experience outages or other problems that can disrupt communication.
 - **Latency is zero**: This fallacy assumes that there is no delay in communication between components, which is not always the case. Latency, or the time it takes for a message to travel from one component to another, can vary depending on the distance between components and other factors.
@@ -128,7 +132,7 @@ There are many examples of distributed systems, including:
 - **Transport cost is zero**: This fallacy assumes that there is no cost associated with transmitting data over the network, which is not always the case. In reality, there are often costs associated with networking, including hardware and software expenses and maintenance costs.
 - **The network is homogeneous**: This fallacy assumes that all components of the network are the same, which is not always the case. In reality, distributed systems often consist of a variety of components with different hardware, software, and other characteristics.
 
-### Programming Languages and Distributed Systems
+#### Programming Languages and Distributed Systems
 
 There are two main approaches to programming languages and distributed systems: the transparency camp and the message camp.
 
@@ -136,7 +140,7 @@ The **transparency camp** focuses on hiding the complexity of a distributed syst
 
 The **message camp**, on the other hand, takes a more direct approach to programming distributed systems. This approach typically involves using a simple create, read, update, delete (CRUD) interface and using message content as the interface. Messages are often coarse-grained, meaning that they carry a large amount of data in a single message, often in the form of documents. Programmers in this camp deal with the complexity of remoteness directly, and architectures are often event-based or based on the representational state transfer (REST) model.
 
-### History of Distributed Systems
+#### History of Distributed Systems
 
 The history of distributed systems can be divided into several distinct periods:
 
@@ -145,13 +149,13 @@ The history of distributed systems can be divided into several distinct periods:
 - **2000s**: In the 2000s, distributed systems were used to power peer-to-peer software for file sharing and large social sites emerged, which posed new challenges in terms of scalability and performance. Message passing and parallel batch processing techniques such as map/reduce were developed to address these challenges. This period also saw the emergence of in-memory computing and the CAP theorem, which established that it was not possible for a distributed system to simultaneously provide all three of the following properties: consistency, availability, and partition tolerance.
 - **2010 and beyond**: In the 2010s and beyond, distributed systems have been used to power large-scale warehousing systems, fan-out architectures, and real-time stream processing. Flash memory and network performance have become key considerations, and microservices and serverless computing have emerged as popular approaches to designing and building distributed systems.
 
-### Metcalfe's Law
+#### Metcalfe's Law
 
 Metcalfe's law is a principle that states that the value or utility of a network increases as the number of users in the network increases. This is because the more people who are using the network, the more useful it becomes as a platform for communication, collaboration, and the exchange of information and resources. The adoption rate of a network also tends to increase in proportion to the utility provided by the network, which is why companies often give away software or other products for free in order to increase the size of their user base and the value of their network.
 
 Metcalfe's law is often cited as a factor that can contribute to the emergence of scale-free, or power law, distributions in networks. This type of distribution is characterized by a few nodes (or users) with many connections, and many nodes with only a few connections. The existence of network effects, in which the value of a network increases with the number of users, can help to explain why we don't see many Facebooks or Googles – it can be difficult for new networks to gain traction and achieve the same level of utility as established networks with a large user base.
 
-### Security Topics for Distributed Systems
+#### Security Topics for Distributed Systems
 
 Security is an important concern in distributed systems, as they often handle sensitive data or perform critical functions. Some key security topics that are relevant to distributed systems include:
 
@@ -170,7 +174,7 @@ Security is an important concern in distributed systems, as they often handle se
 - **PGP, SSL, etc.**: These are tools and protocols that are used to secure communication in a distributed system. PGP (Pretty Good Privacy) is a data encryption and decryption program, while SSL (Secure Sockets Layer) is a protocol for establishing secure links between networked
 - **Denial of service (DoS) attacks**: These are attacks that are designed to disrupt the availability of a network or system by flooding it with traffic or other requests, thereby preventing legitimate users from accessing the system. In a distributed system, DoS attacks can be particularly disruptive as they can affect multiple components at once.
 
-### Theoretical Foundations of Distributed Systems
+#### Theoretical Foundations of Distributed Systems
 
 The theoretical foundations of distributed systems are a set of concepts and principles that form the basis for the design and analysis of these systems. Some of the key theoretical foundations of distributed systems include:
 
@@ -182,7 +186,7 @@ The theoretical foundations of distributed systems are a set of concepts and pri
 - **End-to-end argument**: The end-to-end argument states that certain functions should be placed at the endpoints of a system, rather than in the middle, in order to maximize flexibility and modularity. This principle is often applied in distributed systems to determine where certain functions should be implemented.
 - **Consensus, leader selection, etc.**: Consensus is the process of agreeing on a single value or decision in a distributed system. This can be challenging in the presence of failures or delays, and requires mechanisms such as leader selection or voting to resolve.
 
-### Distributed Systems Design Fields
+#### Distributed Systems Design Fields
 
 The design of a distributed system involves addressing a number of common problems and considering various architectural factors in order to create a system that is scalable, reliable, and secure. Some key considerations in distributed system design include:
 
@@ -190,7 +194,9 @@ The design of a distributed system involves addressing a number of common proble
 - **Information architecture**: The information architecture of a distributed system refers to the way in which information is organized and structured within the system. This includes defining and qualifying the various information fragments and flows that make up the system.
 - **Distribution architecture**: The distribution architecture of a distributed system refers to the layout and organization of the various components of the system and how they are connected to each other. This includes creating a map of all participating systems and their quality of service, and determining how communication and resource sharing will be managed within the system.
 
-### An Introduction to Middleware
+### Middleware
+
+#### An Introduction to Middleware
 
 Middleware is software that sits between the operating system and the application layer of a distributed system, providing a layer of abstraction that enables communication and resource sharing among the various components of the system. Some key characteristics of middleware include:
 
@@ -208,7 +214,7 @@ Middleware is software that sits between the operating system and the applicatio
 
 The importance of middleware in distributed systems cannot be overstated. It is essential for enabling communication and resource sharing among the various components of the system, and for abstracting away the complexities of working with distributed systems. Without middleware, it would be much more difficult to develop distributed applications that are scalable, reliable, and secure.
 
-### Distribution Transparencies
+#### Distribution Transparencies
 
 Distribution transparencies are features that are designed to hide the complexities of working with distributed systems from the user or developer. Some key distribution transparencies include:
 
@@ -224,7 +230,7 @@ Distribution transparencies are features that are designed to hide the complexit
 - **Security**: This transparency automatically checks for the required credentials or roles in requests, ensuring that only authorized users can access resources.
 - **Monitoring**: This transparency creates central logs with correlation IDs that join request parts across nodes, enabling administrators to track and monitor the performance of the system.
 
-### Classification of Middleware
+#### Classification of Middleware
 
 Middleware can be classified into several categories based on the type of service it provides and the way it communicates with other components in a distributed system. Some common types of middleware include:
 
@@ -247,7 +253,9 @@ Middleware can be classified into several categories based on the type of servic
 2. Distributed computing topologies
 3. Client-server systems, including critical points, architectures, processing and I/O models
 
-### Synchronous vs. Asynchronous Systems
+### Basic Principles
+
+#### Synchronous vs. Asynchronous Systems
 
 Synchronous and asynchronous systems are two types of distributed systems that differ in the way that they handle communication and the passage of time.
 
@@ -257,7 +265,7 @@ In a **synchronous system**, events are assumed to be delivered in a lockstep ma
 
 In practice, most distributed systems are asynchronous, with additional mechanisms such as failure detectors and randomization used to help ensure correct operation.
 
-### Properties of Message Protocols
+#### Properties of Message Protocols
 
 Message protocol properties are characteristics that describe the desired behavior of a message passing protocol in a distributed system. These properties are used to ensure that the protocol operates correctly and achieves its intended goals.
 
@@ -269,12 +277,12 @@ Some common message protocol properties include:
 - **Agreement**: This property refers to the ability of all participants in the protocol to agree on a specific decision or output value. Ensuring agreement is important for ensuring that the protocol achieves a consistent result.
 - **Validity**: This property refers to the ability of the protocol to output a result that is consistent with the input value. A protocol that satisfies this property is said to be "valid", while a protocol that does not satisfy this property is said to be "invalid".
 
-### Complexity of Distributed Algorithms
+#### Complexity of Distributed Algorithms
 
 - **Time complexity** refers to the amount of time it takes for an algorithm to complete. This is often measured in terms of the time of the last event before all processes finish.
 - **Message complexity** refers to the number of messages that need to be sent in order for the algorithm to complete. This includes both the number of messages sent and the size of the messages. The number of rounds needed for termination is also an important factor in the message complexity of an algorithm, as it can have a significant impact on the overall scalability of the protocol.
 
-### Failure Types
+#### Failure Types
 
 In distributed systems, there are several types of failures that can occur. These failures can have different impacts on the system and can require different approaches to handling them.
 
@@ -285,7 +293,7 @@ Some common types of failures in distributed systems include:
 - **Message loss**: This type of failure occurs when individual messages are lost during transmission. This can be caused by a variety of issues, such as network problems or hardware failures.
 - **Byzantine failures**: This type of failure occurs when nodes in the system violate protocol assumptions and promises. This can include breaking promises due to disk or configuration failures, or intentionally behaving in a way that goes against the protocol. Byzantine failures are often considered to be the most difficult type of failure to handle in a distributed system, as they can be difficult to detect and can have significant impacts on the system.
 
-### Distributed Computing Topologies
+#### Distributed Computing Topologies
 
 There are several types of distributed computing topologies that can be used to design distributed systems. These topologies can have different characteristics and can be used to achieve different goals, depending on the needs of the system.
 
@@ -296,7 +304,7 @@ Some common types of distributed computing topologies include:
 - **Totally distributed systems**: In this type of topology, every node is both a client and a server. This type of topology can be useful for systems where nodes need to communicate with each other directly, rather than relying on a central server.
 - **Bus systems/pub-sub**: In this type of topology, every node listens for data and posts data in response. This can be useful for event-driven systems where nodes need to communicate with each other asynchronously.
 
-### Queuing Theory: Kendall Notation M/M/m/ß/N/Q
+#### Queuing Theory: Kendall Notation M/M/m/ß/N/Q
 
 The Kendall notation, also known as the Kendall notation for Markov chains, is a way of describing the behavior of a queuing system. It is often used in the field of operations research to analyze the performance of systems that have a finite number of servers and a finite queue size.
 
@@ -307,7 +315,9 @@ The Kendall notation, also known as the Kendall notation for Markov chains, is a
 - `M,D,G`: Probability distribution for service time
 - `m`: Number of service channels
 
-### Generalized Queuing Theory Terms (Henry Liu)
+### Queuing Theory
+
+#### Generalized Queuing Theory Terms (Henry Liu)
 
 - **Server/Node**: A combination of a wait queue and a processing element
 - **Initiator**: The entity that initiates a service request
@@ -320,13 +330,13 @@ The Kendall notation, also known as the Kendall notation for Markov chains, is a
 - **Residence time**: The total time spent by the processing element on a single transaction, if it is visited multiple times
 - **Throughput**: The rate at which requests are serviced, or how fast requests can be processed without long wait times.
 
-### Little's Law
+#### Little's Law
 
 - Little's Law states that in a stable system, the long-term average number of customers (L) is equal to the long-term average effective arrival rate (λ) multiplied by the average time a customer spends in the system (W).
 - This can be expressed algebraically as L = λW.
 - Little's Law is used to analyze and understand the behavior of systems that involve waiting, such as queues or lines. It can help to predict the average number of customers in a system, as well as the average time they will spend waiting, given a certain arrival rate.
 
-### Hejunka
+#### Hejunka
 
 Hejunka is a Japanese term that refers to the practice of leveling the production process by smoothing out fluctuations in demand and task sizes. It is often used in lean manufacturing and just-in-time (JIT) production systems to improve the efficiency and flow of work through a system.
 
@@ -339,13 +349,13 @@ The goal of Hejunka is to create a steady, predictable flow of work through the 
 
 By leveling the production process and reducing variability in task sizes, Hejunka can help to improve the efficiency and flow of work through a system, and reduce the risk of bottlenecks or delays caused by large differences in task size.
 
-### Lessons Learned from Queuing Theory
+#### Lessons Learned from Queuing Theory
 
 - **Request numbers**: Caching can be used to reduce the number of requests that need to be processed by storing frequently accessed data in memory, so that it can be quickly retrieved without the need to fetch it from a slower storage medium.
 - **Batching**: The use of a multi-get API can help to reduce the number of requests that need to be processed by allowing multiple requests to be bundled together and processed as a single unit.
 - **Task sizes and variability**: Service level agreements (SLAs) can be used to define the acceptable level of variability in task sizes and completion times, and Hejunka is a technique that involves leveling the production process by smoothing out fluctuations in demand and task sizes. This can help to reduce variability and improve the efficiency of the system.
 
-### Request Problem in Multi-Tier Networks
+#### Request Problem in Multi-Tier Networks
 
 In a multi-tier network, the request problem refers to the fact that **requests must travel through multiple layers or tiers of servers** in order to be processed, and each layer adds its own processing time and potential delays to the overall response time.
 
@@ -353,13 +363,13 @@ The average response time in a multi-tier network is therefore the sum of the tr
 
 It is important to note that in a multi-tier network, all requests are synchronous and may be in contention with each other, which means that wait times can occur due to contention for server resources. This can impact the overall efficiency of the system and may require the use of techniques such as caching or batching to reduce the number of requests that need to be processed.
 
-### Task Size Problem in Multi-Tier Networks
+#### Task Size Problem in Multi-Tier Networks
 
 In a multi-tier network, the task size problem refers to the fact that differences in task size can cause delays and inefficiencies in the processing of requests.
 
 In the case of pipeline stalls between nodes, large differences in task size can cause requests to be held up at one node while waiting for the next node to become available, leading to delays in the overall response time.
 
-### Theories & Model vs. Reality
+#### Theories & Model vs. Reality
 
 When applying queuing theory models to real-world systems, there are several factors that can impact the accuracy and usefulness of the model. These include:
 
@@ -370,7 +380,9 @@ When applying queuing theory models to real-world systems, there are several fac
 - **Backpressure**: In systems where the capacity of servers or processing elements is limited, it is possible for requests to build up and create a backlog of work. This is known as backpressure, and it can impact the accuracy of queuing theory models.
 - **Missing variables and coherence losses**: Queuing theory models may not always include all the relevant variables or may not accurately account for coherence losses, which can impact their accuracy in predicting the behavior of real-world systems.
 
-### Critical Points in Client/Server Systems
+### Client/Server Architectures
+
+#### Critical Points in Client/Server Systems
 
 On the **client side**:
 
@@ -395,7 +407,7 @@ On the **server side**:
 
 Between both: **Bandwidth/latency**; The bandwidth and latency of the network connection between the client and the server can impact the performance and efficiency of the system.
 
-### Stateful vs Stateless Systems (The Stateful Server Problem)
+#### Stateful vs Stateless Systems (The Stateful Server Problem)
 
 The stateful server problem refers to the trade-offs that must be considered when designing and implementing a server-based system that maintains state information.
 
@@ -411,7 +423,7 @@ However, stateful servers also have some **disadvantages**:
 
 Stateless design, on the other hand, stores all data in external storage such as databases or caches, which can make it easier to design and implement the system. However, in the event of failures, programming stateless systems can be more difficult, as all data must be retrieved from external storage.
 
-### Terminology for Client/Server Systems
+#### Terminology for Client/Server Systems
 
 - **Host**: A physical machine with n CPUs.
 - **Server**: A process running on a host that receives messages, performs computations, and sends messages (not necessarily responses).
@@ -425,21 +437,23 @@ Stateless design, on the other hand, stores all data in external storage such as
 - **Non-blocking calls**: A caller calls the non-blocking version of a function. If the function can perform immediately without delaying the caller, it will do so. If the function needed time to perform its job, it will allow the caller to return immediately and inform it that it would be blocked. The caller can then decide to do something else and try again later (poll again).
 - **Synchronization**: The control of access to shared data by multiple threads in order to prevent data inconsistencies.
 
-### Overarching Client/Server Architectures
+#### Overarching Client/Server Architectures
 
 - **Multi-Tier System**: This type of architecture involves splitting up the system into multiple layers or tiers, each of which performs a specific set of functions. The tiers may include a presentation layer, a business logic layer, and a data storage layer, among others.
 - **Large fan-out Architectures**: This type of architecture involves a central component that receives requests from many clients and distributes them to multiple servers or other resources. This can allow the system to scale more easily and handle a large volume of requests.
 - **Pipeline (SEDA)**: This type of architecture involves breaking up the processing of a request into multiple stages, each of which is handled by a separate component. The stages are connected in a pipeline, with each stage processing the request and passing it on to the next stage.
 - **Offline Processing**: This type of architecture involves processing requests and tasks in an offline or deferred manner, rather than in real-time. This can be useful in situations where the workload is too large to handle in real-time, or where real-time processing is not required.
 
-### Different Process Models
+### Process and I/O Models
+
+#### Different Process Models
 
 - **Single Thread/Single Core**: This type of process model involves a single thread of execution running on a single core. This can be efficient for certain types of workloads, but may not be able to take full advantage of multiple cores or processors.
 - **Multi-Thread/Single Core**: This type of process model involves multiple threads of execution running on a single core. This can allow the system to perform multiple tasks concurrently, but may not be able to fully utilize the processing power of multiple cores or processors.
 - **Multi-Thread/Multi-Core**: This type of process model involves multiple threads of execution running on multiple cores or processors. This can allow the system to fully utilize the processing power of multiple cores or processors, and can be more efficient for certain types of workloads.
 - **Single Thread/Multi-Process**: This type of process model involves a single thread of execution running within each of multiple processes. This can allow the system to take advantage of multiple cores or processors, but may be less efficient than other models for certain types of workloads.
 
-### Questions for Process Models
+#### Questions for Process Models
 
 - Can it use available cores/CPUs?
 - What is the ideal number of threads?
@@ -449,7 +463,7 @@ Stateless design, on the other hand, stores all data in external storage such as
 - Is locking/synchronization needed?
 - What is the overhead of context switches and memory?
 
-### Amdahl's Law
+#### Amdahl's Law
 
 According to Amdahl's Law, the maximum improvement in overall system performance that can be achieved by improving a particular part of the system is limited by the fraction of time that the improved part of the system is used. In other words, if only a small portion of the system's workload is affected by the improvement, the overall improvement in performance will also be small.
 
@@ -459,14 +473,14 @@ For example, if a particular part of a system is improved so that it runs twice 
 
 Amdahl's Law is often used to understand the potential benefits and limitations of optimizing or improving specific parts of a system. It can be a useful tool for determining how much resources should be invested in improving a particular part of the system, and for understanding the potential impact of those improvements on overall system performance.
 
-### Different I/O Models
+#### Different I/O Models
 
 - **Java before NIO/AIO**: Prior to the introduction of the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a different model for handling input/output (I/O) operations. This model involved using threads to block and wait for I/O operations to complete, which could be inefficient and consume a lot of system resources.
 - **Polling pattern**: The polling pattern is a way of handling I/O operations in which a central component periodically checks for the completion of I/O operations. This can be done by repeatedly calling a function that checks the status of the operation, or by using a timer to trigger the check at regular intervals.
 - **Reactor pattern**: The Reactor pattern is a way of handling I/O operations in which a central component is notified when an I/O operation is completed, rather than periodically checking for its completion. This can be more efficient than the polling pattern, as it allows the system to respond to I/O operations as soon as they are completed, rather than waiting for a periodic check.
 - **Proactor pattern**: The Proactor pattern is similar to the Reactor pattern, but it is designed to handle high-concurrency environments where many I/O operations are occurring simultaneously. It uses a combination of asynchronous I/O and event-driven design to allow for efficient handling of multiple I/O operations at once.
 
-### Questions for I/O Models
+#### Questions for I/O Models
 
 - Can it deal with all kinds of input/output?
 - How are synchronous channels integrated?
@@ -485,7 +499,9 @@ Amdahl's Law is often used to understand the potential benefits and limitations 
    3. Request ordering and causality
 2. Programming client-server systems using sockets
 
-### The Role of Delivery Guarantees
+### Delivery Guarantees
+
+#### The Role of Delivery Guarantees
 
 **Shop order**: The scenario described involves an online shop in which orders are placed and processed. The goal is to ensure that orders are delivered correctly and efficiently, regardless of any potential issues that may arise.
 
@@ -495,7 +511,7 @@ Amdahl's Law is often used to understand the potential benefits and limitations 
 - **Exactly once**: The "exactly once" delivery guarantee means that a message will be delivered exactly once, with no duplicates. This can be more difficult to achieve than the other delivery guarantees, as it requires additional complexity and overhead to ensure that duplicates are prevented.
 - **Message complexity**: The number of messages sent refers to the total number of messages that are transmitted as part of the communication process. In the scenario described, the number of messages sent may affect the efficiency and reliability of the communication process, and may need to be taken into account when determining the appropriate delivery guarantee to use.
 
-### Why is TCP not Enough?
+#### Why is TCP not Enough?
 
 While TCP (Transmission Control Protocol) is a widely used networking protocol that provides a reliable communication channel between devices, it is not always sufficient on its own to ensure proper behavior in all situations. Here are some reasons why TCP may not be enough:
 
@@ -507,13 +523,13 @@ While TCP (Transmission Control Protocol) is a widely used networking protocol t
 
 To address these and other issues, it may be necessary to use additional protocols or techniques, such as message-oriented middleware or application-level protocols, to ensure proper behavior in case of connection failures and to provide additional features and guarantees for message delivery.
 
-### Different Levels of Timeouts
+#### Different Levels of Timeouts
 
 - **Business-Process-Timeout**: This timeout is set at the business process level and is used to ensure that a business process does not get stuck or take too long to complete. This timeout may be triggered if a particular task or operation within the process takes longer than expected to complete, or if the process as a whole takes too long to finish.
 - **RPC-Timeout (order progress)**: This timeout is set at the level of remote procedure calls (RPCs) and is used to ensure that RPCs do not get stuck or take too long to complete. This timeout may be triggered if an RPC takes longer than expected to complete, or if the progress of an RPC is not being monitored properly.
 - **TCP-Timeout (reliable channel)**: This timeout is set at the TCP (Transmission Control Protocol) level and is used to ensure that the reliable communication channel provided by TCP is functioning properly. This timeout may be triggered if a connection is lost or if the channel becomes congested or otherwise unstable.
 
-### Delivery Guarantees for RPCs
+#### Delivery Guarantees for RPCs
 
 - **Best effort**: The "best effort" delivery guarantee means that no specific guarantees are made about the delivery of requests or responses. This means that requests may be lost or responses may not be received, and there is no mechanism in place to ensure that this does not happen.
 - **At least once**: The "at least once" delivery guarantee means that a request may be delivered more than once, but it will always be delivered at least once. This can be useful in situations where it is more important to ensure that a request is delivered, even if it may be duplicated, than it is to prevent duplicates from occurring.
@@ -522,13 +538,15 @@ To address these and other issues, it may be necessary to use additional protoco
 
 ### Idempotency
 
+#### Overview
+
 Idempotency is a property of operations or requests that ensures that they can be safely repeated without changing the result of the operation. In other words, if an operation is idempotent, it will have the same result whether it is performed once or multiple times.
 
 - The first request needs to be idempotent: In a sequence of requests, it is important that the first request is idempotent. This ensures that the first request can be safely repeated if it fails or is lost, without affecting the overall result of the operation.
 - The last request can be only best effort
 - Messages may be reordered
 
-### Server State and Idempotency
+#### Server State and Idempotency
 
 Idempotency is an important property to consider when designing operations or requests that may be repeated or delivered multiple times, as it can help to ensure that the operation or request is able to be safely repeated without affecting the overall result. Here are some additional considerations related to idempotency and server state:
 
@@ -536,13 +554,13 @@ Idempotency is an important property to consider when designing operations or re
 - **Server can lose its storage**: If the server's storage is lost or becomes unavailable, it should not affect the overall result of the operation or request, as long as the operation or request is idempotent. This can help to ensure that the operation or request is able to be safely repeated even if the server's storage is lost.
 - **Concurrent updates might be consistent without concurrency control**: If an operation or request is idempotent, it is possible that concurrent updates to the same data may be consistent without the need for concurrency control mechanisms such as locks or transactions. This can help to improve the efficiency and performance of the system.
 
-### Implementing Delivery Guarantees for Idempotent Requests
+#### Implementing Delivery Guarantees for Idempotent Requests
 
 - **"At least once"** implementation for idempotent requests: For idempotent requests, the "at least once" delivery guarantee can be implemented by simply sending an acknowledgement (ack) to the client after the request has been received. This approach does not require any updates to the server state, and is suitable for requests that do not have any critical side effects.
 - **"At most once"** implementation for nonidempotent requests: For nonidempotent requests, the "at most once" delivery guarantee can be implemented by storing a response on the server until the client confirms that it has been received. This approach requires the server to maintain state for each response, and may involve adding a request number to each request to help the server detect and discard duplicate requests.
 - **"Exactly once"** implementation: The "exactly once" delivery guarantee is not possible to achieve in asynchronous systems with network failures. However, it can be approximated using techniques such as two-phase commit and epoch numbers, which allow the client and server to coordinate their actions and ensure that they do not forget their decisions. This approach may involve maintaining an atomic log on both the client and server, and storing responses on the server until they are confirmed by the client
 
-### Repeating Non-Idempotent Operations
+#### Repeating Non-Idempotent Operations
 
 If an operation is not idempotent, it means that it cannot be safely repeated multiple times and is likely to have unintended side effects. In this case, there are several measures that can be taken to ensure reliable communication:
 
@@ -552,13 +570,15 @@ If an operation is not idempotent, it means that it cannot be safely repeated mu
 
 It is important to carefully manage state on the server in order to avoid overloading the system with old replies. It may be necessary to set limits on how long to store old replies and when to discard them.
 
-### Request Order in Multi-Point-Protocols
+### Order
+
+#### Request Order in Multi-Point-Protocols
 
 - **No request order from one sender**: In a multi-point protocol, there is no guaranteed order for requests sent by a single sender. This means that requests may be received and processed in a different order than they were sent, and the sender should be prepared to handle this possibility.
 - **No request order between different senders**: In a multi-point protocol, there is no guaranteed order for requests sent by different senders. This means that requests from different senders may be received and processed in a different order than they were sent, and the senders should be prepared to handle this possibility.
 - **No request order between independent requests of different senders**: In a multi-point protocol, there is no guaranteed order for independent requests sent by different senders. This means that independent requests from different senders may be received and processed in a different order than they were sent, and the senders should be prepared to handle this possibility.
 
-### Request Ordering with Multiple Nodes
+#### Request Ordering with Multiple Nodes
 
 In a multi-node system, it may be necessary to use a reliable broadcast protocol to ensure that requests are processed in the desired order. Here are some examples of protocols that can be used for request ordering with multiple nodes:
 
@@ -567,12 +587,12 @@ In a multi-node system, it may be necessary to use a reliable broadcast protocol
 - **Causal Cast**: Causal cast is a protocol that ensures that messages are delivered in a causally consistent order, based on the dependencies between the messages. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network.
 - **Absolutely Ordered Casts**: Absolutely ordered casts is a protocol that ensures that messages are delivered in a totally ordered sequence, with no uncertainty about the order in which the messages were sent. This can help to ensure that requests are processed in the correct order, even if they are sent from different nodes or if there are delays or other issues with the network.
 
-### Implementing Causal Ordered Broadcasts
+#### Implementing Causal Ordered Broadcasts
 
 - **Piggybacking previous messages**: One solution for implementing causal ordered broadcasts is to piggyback every message sent with the previous messages. This means that when a message is sent, it is accompanied by the previous messages that it depends on. This can help to ensure that processes that may have missed a message can learn about it with the next incoming message and then deliver it correctly.
 - **Sending event history with every message**: Another solution for implementing causal ordered broadcasts is to send the event history with every message. This can be done using techniques such as vector clocks, which are used to track the dependencies between events in a distributed system. With this approach, messages are not delivered until the order is correct. This can help to ensure that messages are delivered in the correct order, even if there are delays or other issues with the network.
 
-### Implementing Absolutely Ordered Casts
+#### Implementing Absolutely Ordered Casts
 
 - **All nodes send messages to every other node**: One solution for implementing atomic broadcasts is for all nodes to send their messages to every other node in the system. This ensures that all nodes have a complete set of messages, which can be used to determine the total order of the messages.
 - **All nodes receive messages, but wait with delivery**: After receiving all of the messages, all nodes can wait with delivery until the total order of the messages has been determined.
@@ -585,7 +605,9 @@ There are however disadvantages with these implementations:
 - **May have high overhead**: This solution may have high overhead, as it requires all nodes to send and receive messages from every other node in the system. This can be particularly problematic in large systems with many nodes, as it may result in many messages being transmitted and processed.
 - **May have high latency**: This solution may also have high latency, as it requires all nodes to wait for the total order to be determined before delivering their messages. This can be particularly problematic in systems where low latency is critical.
 
-### Properties of Sockets
+### Sockets
+
+#### Properties of Sockets
 
 Sockets are a programming interface that enables communication between networked computers. They are used to send and receive data over a network connection using either TCP (Transmission Control Protocol) or UDP (User Datagram Protocol) connections.
 
@@ -596,7 +618,7 @@ Socket properties include:
 - **A specification of "Host", "Port", "Connection type"**: Sockets are identified by a combination of a host, port, and connection type. The host specifies the address of the computer on which the socket is running, the port specifies a specific communication endpoint on the host, and the connection type specifies whether the socket is using TCP or UDP.
 - **A unique address of a channel endpoint**: Each socket is assigned a unique address that identifies it as a communication endpoint. This address is used to identify the socket when sending or receiving data over the network.
 
-### Berkeley Sockets
+#### Berkeley Sockets
 
 Berkeley sockets provide a set of primitives or functions that can be used to create, manage, and manipulate network connections and communication channels.
 
@@ -611,7 +633,7 @@ Here is a brief description of the meaning of each of the Berkeley Sockets primi
 - **Receive**: The receive primitive receives some data over the connection associated with a socket.
 - **Close**: The close primitive releases the connection associated with a socket, allowing it to be used for other purposes.
 
-### Server Side Processing using Processes
+#### Server Side Processing using Processes
 
 Server-side processing using processes is a model for handling incoming requests in a networked system. It involves the following steps:
 
@@ -621,7 +643,7 @@ Server-side processing using processes is a model for handling incoming requests
 
 This model allows the server to scale to some degree, as it can handle multiple requests concurrently by spawning new processes to handle each request. However, process creation can be expensive, and there may be limits on the number of processes that can be created on a given system. An example of this model is traditional CGI processing in a web server, where a new process is spawned to handle each incoming request.
 
-### Server Side Processing using Threads
+#### Server Side Processing using Threads
 
 Server-side processing using threads is a model for handling incoming requests in a networked system that is similar to the process-based model, but uses threads instead of processes to handle requests. It involves the following steps:
 
@@ -635,12 +657,12 @@ In a threaded server, it is important to ensure that the functions that are used
 
 To ensure that functions are re-entrant, it is important to avoid using unprotected global variables, as these can be modified concurrently by multiple threads, leading to potential race conditions and other problems. Instead, state should be kept on the stack, with each thread having its own copy of the state. This ensures that each thread has its own private version of the state, and can operate independently of other threads.
 
-### Design Considerations for Socket-Based Services
+#### Design Considerations for Socket-Based Services
 
 - **Message formats**: The message formats that will be exchanged between clients and servers should be carefully designed to ensure that data can be transmitted and received correctly. This includes ensuring that data is represented consistently on different hardware platforms and avoiding problems caused by different data representations.
 - **Protocol design**: The protocol that will be used by clients and servers to communicate should also be carefully designed. This includes deciding whether clients will wait for answers from the server (synchronous communication) or whether communication will be asynchronous, whether the server can call back to the client, whether the connection will be permanent or closed after each request, whether the server will hold client-related state (e.g. a session), and whether the server will allow concurrent requests.
 
-### Stateless vs. Stateful Socket-Based Services
+#### Stateless vs. Stateful Socket-Based Services
 
 A stateless service is one in which the server does not store any information about previous requests or maintain any state between requests. This can have several advantages, including:
 
@@ -658,7 +680,7 @@ However, stateful services can also have some drawbacks, including:
 - **Risk of resource exhaustion**: Because the server maintains state between requests, it is possible for the server to run out of resources, such as sockets, if it receives many requests that require it to store state.
 - **Need for reliable hardware and networks**: In order to function correctly, stateful services typically require reliable hardware and networks, as they rely on the server being able to maintain state between requests. If the server or network experiences failures, this can disrupt the stateful interaction.
 
-### TCP SYN Flooding
+#### TCP SYN Flooding
 
 TCP SYN flooding is a type of denial of service (DoS) attack that exploits a weakness in the TCP connection establishment process. In a normal TCP connection, the client sends a SYN (synchronize) packet to the server to initiate the connection, and the server responds with a SYN-ACK (synchronize-acknowledge) packet to confirm that the connection can be established. The client then **sends an ACK** (acknowledge) packet to complete the three-way handshake and establish the connection.
 
@@ -666,7 +688,7 @@ In a TCP SYN flooding attack, the attacker sends a large number of SYN packets t
 
 TCP SYN flooding attacks can be **mitigated by implementing SYN cookies**, which use cryptographic techniques to allow the server to track half-open connections without using any resources. Other measures, such as rate limiting and filtering of incoming SYN packets, can also help to prevent or mitigate the effects of TCP SYN flooding attacks.
 
-### Writing a Socket Client & Server
+#### Writing a Socket Client & Server
 
 For the server:
 
@@ -695,7 +717,7 @@ For the server:
 - One thread reads from the console and writes to the output channel
 - The other thread reads from the input channel and displays or writes the server messages
 
-### Distribution Transparency with Sockets
+#### Distribution Transparency with Sockets
 
 - **Invocation**: Server-side functions cannot be called directly from the client side, and messages must be defined and sent using socket operations
 - **Location/relocation/migration**: If the service moves, the client connection will be broken
@@ -703,7 +725,7 @@ For the server:
 - **Failure**: Not supported
 - **Persistence**: Not supported
 
-### Infrastructure of Client-Server Systems
+#### Infrastructure of Client-Server Systems
 
 1. **Directory**: Helps locate the server
 2. **Proxy**: Checks client authorization and routes requests through the firewall
@@ -725,18 +747,20 @@ For the server:
    5. Tooling: generators
 3. Cross-language call infrastructures: Thrift and gRPC
 
-### Call Versions
+### Types of RPCs
+
+#### Call Versions
 
 1. **Local calls**: made within a single process and do not require network communication
 2. **Inter-process calls**: Made between processes on the same machine and can be implemented using a variety of mechanisms, such as shared memory or pipes
 3. **Remote calls**: Made between processes on different machines and typically require network communication
 
-### Remote Calls vs. Remote Messages
+#### Remote Calls vs. Remote Messages
 
 - **Remote calls**: Hide the remote service calls behind a programming language call and are tightly coupled with synchronous processing
 - **Remote messages**: Use a message-based middleware and create a new concept of a message and its delivery semantics; a message system can simulate a call-based system, but not vice versa
 
-### In-Process (Local) Calls
+#### In-Process (Local) Calls
 
 - **No special middleware is required** for calls made within the same programming language
 - Calls into the OS are not inter-process calls
@@ -751,7 +775,7 @@ For the server:
 - Can use **value or reference parameters**, depending on the needs of the application. Value parameters are copied when passed to a function, while reference parameters are passed by address and can be modified within the called function.
 - Are **transparent programming language calls** and not explicit messages, which means that they appear to the programmer as regular function calls and do not require the creation and handling of explicit messages.
 
-### Inter-Process Calls (IPC)
+#### Inter-Process Calls (IPC)
 
 - Local inter-process calls are faster than remote calls, but **not as fast as in-process calls**
 - Do **not have "exactly once"** semantics
@@ -766,7 +790,7 @@ For the server:
 
 The good news is that inter-process communication occurs on the same hardware and uses the same language at the sender and receiver, which **can reduce security issues** and ensure that a system crash affects both sender and receiver (fail-stop semantics)
 
-### Remote Procedure Calls (RPC)
+#### Remote Procedure Calls (RPC)
 
 - Remote procedure calls (RPCs) are **much slower than local calls** and **do not have delivery guarantees** without a protocol
 - May have **version mismatches** that show up at runtime
@@ -779,7 +803,9 @@ The good news is that inter-process communication occurs on the same hardware an
 - **Are not real programming language "calls"** and require the creation of messages to simulate the missing features
 - Often stateless
 
-### Mechanics of Remote Calls
+### Implementing Remote Calls
+
+#### Overview
 
 - **Marshaling/Serialization**: Process of converting program data into a format that can be transmitted over a network
 - **External Data-Representation**: Standardized format for representing binary data
@@ -789,7 +815,7 @@ The good news is that inter-process communication occurs on the same hardware an
 - **Request/Reply Protocol**: Handles errors that may occur during the remote call process
 - **Process/I/O Layer**: Responsible for managing threads and input/output operations
 
-### Marshaling/Serialization
+#### Marshaling/Serialization
 
 Marshaling/serialization is the process of converting parameters (basic types or objects) into a common transfer format (message) that can be transmitted over a network. At the target site, the message is transformed back into the original types or objects. There are several different approaches to marshaling/serialization, each with its own trade-offs:
 
@@ -804,7 +830,7 @@ Marshaling/serialization is the process of converting parameters (basic types or
 
 **Serialization to binary** is a method of converting data into a compact, machine-readable format. It requires a schema, which defines the structure of the message and the types of data it contains. This approach is generally more efficient in terms of the size of the resulting message, but it is not as flexible as text-based serialization because it requires a shared understanding of the schema between the sender and receiver. Binary serialization can also be used for language-independent encoding.
 
-### Schema Evolution
+#### Schema Evolution
 
 When data or functions change, it is important to consider how different versions of a system will coexist and communicate with each other.
 
@@ -812,7 +838,7 @@ When data or functions change, it is important to consider how different version
 
 **Backward compatibility** means that newer receivers should be able to understand messages from older senders. This allows older versions of a system to continue functioning even after newer versions have been introduced.
 
-### Keeping Compatibility when Evolving a Schema
+#### Keeping Compatibility when Evolving a Schema
 
 > For JSON
 
@@ -838,7 +864,7 @@ When data or functions change, it is important to consider how different version
 - **Renaming** a field
 - **Changing the type** of a field (other than the numeric conversions mentioned above)
 
-### Stubs and Skeletons
+#### Stubs and Skeletons
 
 Stubs and skeletons are code that is used to facilitate communication between different systems, typically in the context of remote procedure calls (RPCs). Stubs are used by clients to initiate a remote call, while skeletons are used by servers to receive and process the remote call.
 
@@ -849,7 +875,7 @@ There are several ways to generate stubs and skeletons, including:
 - **Distributing them in advance** to all clients and servers: In this approach, the stubs and skeletons are generated in advance and distributed to all the clients and servers that will be using them. This allows the systems to be set up and configured in advance, rather than on demand.
 - **Downloading them on demand**: In this approach, the stubs and skeletons are downloaded by the clients and servers as needed, rather than being distributed in advance. This allows for more flexibility and can be more efficient in terms of bandwidth usage.
 
-### Finding an RPC Server
+#### Finding an RPC Server
 
 In a remote procedure call (RPC) system, a client needs to be able to locate the server in order to initiate a remote call.
 
@@ -866,7 +892,7 @@ In a remote procedure call (RPC) system, a client needs to be able to locate the
 
 This process is known as "binding," and there are several ways to handle it, including using inetd, DCE, or a Unix portmapper.
 
-### Factors to Consider when Choosing an IDL
+#### Factors to Consider when Choosing an IDL
 
 - **Are data types easily expressed using the IDL?** It is important to choose an IDL that can easily represent the types of data that will be used in the RPC system.
 - **Is hard or soft versioning used?** Hard versioning means that the IDL is strictly enforced, and any changes to the IDL will break compatibility. Soft versioning means that the IDL is more flexible and can be changed without breaking compatibility.
@@ -878,7 +904,7 @@ This process is known as "binding," and there are several ways to handle it, inc
 - **Does changing serialization require a recompile?** It is important to consider whether changes to the serialization will require a recompile, as this can affect the flexibility and ease of maintenance of the system.
 - **Can I extend/change the runtime system (e.g. add trace statements)?** It is important to choose an IDL that allows for changes and extensions to the runtime system, such as the ability to add trace statements.
 
-### Popular IDLs for RPCs
+#### Popular IDLs for RPCs
 
 - **CORBA (Common Object Request Broker Architecture)**: CORBA is a standard for interoperating between different programming languages and platforms. It defines an interface definition language (IDL) that can be used to describe the interfaces and data structures that are used for communication, as well as a runtime system for executing the RPCs.
 - **Microsoft CLR (Common Language Runtime)**: The CLR is a runtime environment for executing .NET programs. It includes a cross-language call infrastructure that allows programs written in different .NET languages to communicate with each other.
@@ -898,7 +924,9 @@ This process is known as "binding," and there are several ways to handle it, inc
 7. Interface Design
 8. Java RMI
 
-### Objects vs. Abstract Data Types
+### Basic Principles
+
+#### Objects vs. Abstract Data Types
 
 - Objects are data structures that combine state (data) and behavior (methods or functions) in a single entity. They are a key concept in object-oriented programming (OOP).
 - Abstract data types (ADTs) are data structures that are defined by the operations that can be performed on them, rather than by their implementation. ADTs are often used to model real-world concepts or objects.
@@ -909,17 +937,17 @@ There are some differences between the two:
 - **Objects may store state** (data) within themselves, while ADTs do not store state. Instead, they define the operations that can be performed on data stored elsewhere.
 - **Objects may be implemented** in different ways depending on the programming language or system in which they are used. ADTs, on the other hand, are defined more abstractly and can be implemented in many ways.
 
-### Properties of Objects
+#### Properties of Objects
 
 - Local objects are created with the new() operator and are **only accessible within the scope of their creator**.
-- An **\*object reference** is a unique identifier that is used to locate and access an object. It is returned when the object is created and can be used to call the object's methods.
+- An **object reference** is a unique identifier that is used to locate and access an object. It is returned when the object is created and can be used to call the object's methods.
 - Objects have a **lifecycle** that is tied to their creator. They exist as long as the virtual machine (VM) is alive and the objects are in use, and they are typically destroyed when their creator is destroyed.
 - Objects have **fine-granular interfaces and methods**, which means that they expose a large number of individual functions or operations that can be performed on them.
 - Objects can be **small and numerous**, which means that there may be many objects in a system, each with its own state and behavior.
 
 Objects in an object-oriented (OO) programming language do have many properties that can make them challenging to implement in a concurrent or distributed system.
 
-### Challenges for Remote Objects
+#### Challenges for Remote Objects
 
 Remote objects (ROs) are objects that are accessed and managed remotely, typically over a network. They are a key concept in distributed object systems, which are systems that enable objects on different machines to communicate and interact with each other.
 
@@ -934,7 +962,7 @@ Remote objects (ROs) are objects that are accessed and managed remotely, typical
 - The **cost of using ROs may be higher** than using local objects due to the overhead of communication and synchronization across the network.
 - ROs may have the same interface as local objects, or they may have a different interface that is tailored to the needs of remote clients.
 
-### What is a Remote Object?
+#### What is a Remote Object?
 
 - A remote object is an object that is accessed and managed remotely, typically over a network.
 - It is a combination of a **unique identity**, an **interface**, and an **implementation**.
@@ -945,7 +973,9 @@ Remote objects (ROs) are objects that are accessed and managed remotely, typical
 - To clients, the interface of the remote object represents the entire object.
 - Achieving complete transparency of remote calls behind object interfaces can be **challenging in practice**, especially in distributed systems.
 
-### Object Models and Type Systems
+### Components of Distributed Objects
+
+#### Object Models and Type Systems
 
 **CORBA:**
 
@@ -963,20 +993,20 @@ CORBA is designed to provide language independence, so it defines its own types 
 
 Java RMI **allows user-defined classes** to be used as value objects if they are serializable, but is specific to the Java programming language.
 
-### Accessing Remote Objects
+#### Accessing Remote Objects
 
 - A **naming service** is a service that acts like a directory and allows clients to look up the location of a remote object based on its name or other identifier. The client can then use the location information to access the object.
 - A **web server** can be used to host serialized versions of remote objects. The client can request the object from the server over the web and deserialize it to access its methods and state.
 - Remote objects can be accessed through other means, such as via mail or a piece of paper. For example, a client might send a request for a remote object to another machine via mail or other physical means, and the server could return the object or a reference to the object in the same way.
 - Another **remote object can serve as a "factory"** that creates and manages other remote objects. The client can access the factory object and use its methods to create and access other remote objects as needed.
 
-### The Broker Pattern
+#### The Broker Pattern
 
 - Is a design pattern that involves using a separate component (the broker) to mediate communication between two other components (the client and the service).
 - Serves as an **intermediary** between the client and the service and is responsible for routing requests and responses between them.
 - **Decouples the client and the service**, allowing them to evolve independently and communicate through the broker.
 
-### Remote Object Reference
+#### Remote Object Reference
 
 - **Object implementation (servant)**: The object implementation is the code that defines how the object behaves and carries out its operations. This is also known as the object's "servant," as it serves the object and carries out its requests.
 - **Object adapter**: The object adapter is a component that manages the communication between the object implementation and the object request handler (ORB). It is responsible for routing requests from the ORB to the object implementation and returning responses to the ORB.
@@ -984,7 +1014,7 @@ Java RMI **allows user-defined classes** to be used as value objects if they are
 - **Object request handler (ORB)**: The ORB is the component that handles requests to and from remote objects. It is responsible for marshalling and demarshalling requests and responses, as well as routing requests to the appropriate object adapter.
 - **Host, port, protcocol, object adapter, object ID**: The system-wide object reference
 
-### Static vs Dynamic Invocation
+#### Static vs Dynamic Invocation
 
 **Static Remote Method Invocation**
 
@@ -998,13 +1028,15 @@ Java RMI **allows user-defined classes** to be used as value objects if they are
 - The request object is sent to a dispatcher on the servant host, which handles the request as if it were a normal method invocation.
 - The dynamic invocation approach is **similar to the reflection pattern**, which involves using meta-information about an object to manipulate it at runtime.
 
-### Asynchronous Invocations
+#### Asynchronous Invocations
 
 - **One-way calls**: One-way calls are calls that do not expect a response from the server. They are called "one-way" because they involve only a single message being sent from the client to the server. One-way calls cannot have return values or out parameters, and their delivery is best-effort (meaning that there is no guarantee that the message will be delivered).
 - **Deferred synchronous**: Deferred synchronous invocations involve making a call to a remote method and continuing to execute while the method is being executed. The client can later check for the results of the method (blocking), but the delivery is at-most-once (meaning that the message will be delivered at most one time).
 - **True asynchronous with server callbacks**: True asynchronous invocations involve making a call to a remote method and continuing to execute while the method is being executed. The server can differentiate between synchronous and asynchronous calls and can send a callback message to the client when the results of the method are available. True asynchronous invocations require messaging middleware to achieve at-most-once delivery guarantees.
 
-### Main Distributed Object Services
+### Implementing Remote Objects
+
+#### Main Distributed Object Services
 
 - **Finding objects**:
   - **Naming service**: Maps names to object references
@@ -1016,17 +1048,17 @@ Java RMI **allows user-defined classes** to be used as value objects if they are
   - **Security service**: Checks the roles of principals
 - **Grouping of objects**: Collections
 
-### Portable Interceptors
+#### Portable Interceptors
 
 Interceptors can be used to **transparently add additional (context) information** to calls and transport it between object request brokers (ORBs).
 
-### Remote Interface Design
+#### Remote Interface Design
 
 - Respect the **possibility of concurrent calls** in your interface design: Avoid keeping inconsistent state across method calls.
 - Avoid the **"half-baked object" anti-pattern**: Do not perform staged initialization of an object.
 - Avoid using complicated or **unclear orders of calls**: Design the interface in a clear and straightforward manner.
 
-### Problems with Remote Objects
+#### Problems with Remote Objects
 
 - **Interfaces**: Remote object interfaces can be too granular, with many small methods that perform simple tasks. This can lead to slow performance, as each call to a remote object involves a significant amount of overhead.
 - **No direct support for state handling on servers**: Distributed object systems do not generally provide direct support for managing the state of remote objects on the server side. This can make it difficult to maintain consistent state across multiple remote objects or to persist the state of an object across different contexts.
@@ -1035,7 +1067,9 @@ Interceptors can be used to **transparently add additional (context) information
 - **No security in calls**: Distributed object systems do not generally provide built-in security for remote method calls, which can make it difficult to enforce security policies or protect sensitive data.
 - **No transaction support**: Distributed object systems do not generally provide built-in support for transactions, which can make it difficult to ensure the consistency of data across multiple objects in a distributed system
 
-### Java RMI Request/Reply Protocols
+### Java RMI
+
+#### Java RMI Request/Reply Protocols
 
 **JRMP (Java Remote Method Protocol)** is the first protocol for RMI. It has the following characteristics:
 
@@ -1049,7 +1083,7 @@ Interceptors can be used to **transparently add additional (context) information
 - **Requires the generation/definition of code** and IDL files for CORBA systems.
 - Allows for the movement of IDL files for Java Remote Object Interfaces to CORBA systems, and the generation of CORBA stubs with IDL compilers. This **allows CORBA systems to call Java remote objects**, or for Java systems to call into CORBA systems.
 
-### Java RMI Classes & Tools
+#### Java RMI Classes & Tools
 
 - **Remote**: Tag interface that Remote Object Interfaces extend.
 - **RemoteException**: Class that is thrown by all Remote Object methods.
@@ -1058,11 +1092,11 @@ Interceptors can be used to **transparently add additional (context) information
 - **rmic**: Tool that generates stub/skeleton/IDL files.
 - **registry**: Simple name server for Java objects.
 
-### Activation in Java RMI
+#### Activation in Java RMI
 
 Activation is an important feature in Java RMI (Remote Method Invocation) because it allows servers to transparently store servant state on persistent storage and recreate servants on demand. This helps the server **control its resources** against memory exhaustion and performance degradation.
 
-### Security in Java RMI
+#### Security in Java RMI
 
 - Specify the quality of service (QOS) of sockets used by RMI, such as **using an SSL channel**.
 - Use an **RMISecurityManager** to prevent or control local access from downloaded implementations.
@@ -1082,13 +1116,15 @@ Activation is an important feature in Java RMI (Remote Method Invocation) becaus
   - Separation of context in EJBs, including the environment.
   - Evolution and lessons learned from EJBs.
 
-### Problems With Object Interfaces
+### Basic Principles
+
+#### Problems With Object Interfaces
 
 - **Object interfaces** are tightly intertwined networks of references that share state and promises, and changes to these interfaces can have **ripple effects**.
 - A **component framework** can simplify the interface for calling objects by **encapsulating** them.
 - A **messaging system** can be stateless, or it can include all necessary state in the message itself, which is known as **context-complete communication**. This approach is used in webservices and REST architectures and is known as Service Oriented Architecture (SOA).
 
-### Component Based Processing
+#### Component Based Processing
 
 - Components are **self-contained software packages** with runtime interfaces and automatic deployment capabilities that are designed to fit into a component framework.
 - A **component framework** allows components to be plugged in and supports the **composition and collaboration** between them.
@@ -1101,7 +1137,7 @@ Activation is an important feature in Java RMI (Remote Method Invocation) becaus
 - **Medium to large granularity**, potentially representing 10-20 tables or more
 - Representation of a business concept in an **isomorphic** manner
 
-### From Objects to Components
+#### From Objects to Components
 
 1. **Object-oriented design** involves isolated, monolithic applications that are not distributed.
 2. **Distributed objects** involve calls between applications, but can have management and performance issues with large numbers of small remote objects.
@@ -1110,18 +1146,18 @@ Activation is an important feature in Java RMI (Remote Method Invocation) becaus
 
 Components **go beyond distributed systems** and were designed to address some of the same issues as object-oriented development.
 
-### Business Components
+#### Business Components
 
 - Business concepts, such as entities and processes, can be translated into software artifacts like EC1 and PC1.
 - **Business components** are designed to **directly represent concepts** from the business and may be represented using the UML "package" construct.
 
-### Alternatives to Isomorphic Mapping
+#### Alternatives to Isomorphic Mapping
 
 - Isomorphic mapping, or the idea that software artifacts directly correspond to business concepts, **may not always be the best approach**.
 - Alternatives to isomorphic mapping include **domain analysis, generative computing, and aspect-oriented development**.
 - In generative computing, different models are used to capture the transformation process, including computation-independent models, platform-independent models, and platform-dependent models.
 
-### Generative Computing
+#### Generative Computing
 
 - Involves the use of **domain-specific languages and code generators** to automate software development
 - Reduces the need for manual coding and allows developers to **focus on design and functionality**
@@ -1130,18 +1166,18 @@ Components **go beyond distributed systems** and were designed to address some o
 - Often **used in domains with repetitive or boilerplate code** or where the complexity of the code makes manual coding impractical
 - Can be used to **create customizable software** for different users or environments
 
-### Monolithic Software vs Components
+#### Monolithic Software vs. Components
 
 - Components are **clusters of software, configuration, and other elements** that form a unit for deployment and maintenance within a component framework.
 - Components are made up of collaborating elements and can be **adjusted without requiring source code changes**. This is an alternative to traditional applications, which are monolithic and cannot be easily modified.
 
-### Objects vs. Components
+#### Objects vs. Components
 
 - A regular object **combines business logic** with specific mechanisms such as persistence and hides the internal interfaces behind the external interface.
 - Objects **may make assumptions about the environment**, such as which database to use, and these are hidden in the code.
 - **Customizing objects requires code changes**, which can be time-consuming and risky.
 
-### Separation of Concerns and Context
+#### Separation of Concerns and Context
 
 - The internal interface of a component is described in **meta-information**, which allows deployers to connect the component to the appropriate framework services.
 - Concerns such as persistence and transactions are separated from the business logic of the component and are typically **implemented by the framework**.
@@ -1150,13 +1186,15 @@ Components **go beyond distributed systems** and were designed to address some o
 
 ### Enterprise Java Beans
 
+#### Overview
+
 - Enterprise Java Beans (EJBs) allow the construction of distributed applications by combining components from different vendors.
 - Developers do **not need to understand low-level** distributed mechanisms such as transactions when using EJBs.
 - Can run in **EJB containers** from different vendors without modification.
 - Provide enterprise **lifecycle support**, including development, deployment, and runtime support.
 - Provide **enterprise data** support.
 
-### EJB Component Model
+#### EJB Component Model
 
 The EJB component model includes four types of EJBs: stateless session beans, stateful session beans, entity beans, and stateless message-driven beans.
 
@@ -1167,7 +1205,7 @@ The EJB component model includes four types of EJBs: stateless session beans, st
 
 These different EJB types allow for scalability, client code on the server side, asynchronous processing, and the representation of business data. Entity beans are permanent, while stateful session beans do not survive a server crash.
 
-### Session Beans (Stateful and Stateless)
+#### Session Beans (Stateful and Stateless)
 
 - Session beans are **per-client objects**, except for stateful session beans which represent client code on the server side.
 - Both stateful and stateless session beans can **participate in transactions** if the session-synchronization interface is used.
@@ -1175,7 +1213,7 @@ These different EJB types allow for scalability, client code on the server side,
 - **Short-lived** and are removed when the container crashes.
 - Stateless session beans are the most scalable and EJB servers should be able to support large numbers of them.
 
-### Entity Beans (Deprecated Since 3.0)
+#### Entity Beans (Deprecated Since 3.0)
 
 - Entity beans are **shared objects** that are protected through transactions.
 - They have a **longer lifetime than session beans** and represent important business data.
@@ -1183,7 +1221,7 @@ These different EJB types allow for scalability, client code on the server side,
 - Entity beans have a **unique identity**, which is visible to clients through a primary key, and clients can request a "handle" which is a persistent pointer to the entity object.
 - In EJB 3.0, persistence is no longer a concern for EJBs and is **instead covered by the Java Persistence API**.
 
-### Message-Driven Beans
+#### Message-Driven Beans
 
 - Message-driven beans are **invoked asynchronously** and do not have client context available during processing.
 - They can be transaction aware, meaning that message receipt and processing can be enclosed in a single transaction.
@@ -1192,20 +1230,20 @@ These different EJB types allow for scalability, client code on the server side,
 - Message-driven beans have been integrated into the general EJB framework to **reuse EJB container services** such as transactions, security, concurrency, and deployment description.
 - If a message-driven bean crashes during processing, the message is marked as "unread" and **can be processed after the container is restarted**.
 
-### Client View of EJBs
+#### Client View of EJBs
 
 - Clients **never access the bean class** directly.
 - EJBs can offer a **remote or local interface** to clients (clients of the local interface must be in the same Java virtual machine as the bean container).
 - The business logic is contained in the bean class.
 
-### Local vs. Remote Interfaces
+#### Local vs. Remote Interfaces
 
 - The remote interface of an EJB uses remote object calling conventions, while the local interface uses local Java calling conventions.
 - When calling the **local interface** of an EJB, value objects are **passed by reference**, meaning the client and EJB will share the same objects.
 - The **remote interface**, on the other hand, requires that **value objects be copied**.
 - EJB implementers who want to provide both a local and a remote interface must be aware of these different calling conventions and design their beans accordingly.
 
-### Separation of Concerns and Context in EJB
+#### Separation of Concerns and Context in EJB
 
 Separation of concerns is done through the EJB framework, separation of context is done through deployment:
 
@@ -1214,7 +1252,7 @@ Separation of concerns is done through the EJB framework, separation of context 
 - Automatic, method-level **security** maps to system management definitions of role/user binding.
 - The roles involved in component development, application assembly, and deployment map to the deployment descriptor and JNDI interface.
 
-### The EJB Container
+#### The EJB Container
 
 1. A client invokes an **entity bean interface.**
 2. The container delegates the request to the **entity bean business logic.**
@@ -1226,14 +1264,14 @@ At the point of interception, the container provides resource management, lifecy
 - In the J2EE environment, class loaders are used for this purpose.
 - However, it is believed that **a better concept is needed** that does not mix loading with isolation.
 
-### Containers and Threads
+#### Containers and Threads
 
 - Containers manage resources across applications and store context and session information in threadlocal storage.
 - As a result, **container-managed applications are not allowed to create their own threads**, as these threads would not have the necessary metadata and context information.
 - EJB 3.0 offers a managed service for connectors to create threads, allowing applications to use threads without having to manage resources themselves.
 - Applications should not assume responsibility for resource management, as the **container is responsible for choosing the appropriate resource management policy**.
 
-### Entity Bean Container Contract
+#### Entity Bean Container Contract
 
 The Entity Bean-Container Contract defines a set of methods that the container can call on an entity bean in order to manage its lifecycle and access resources.
 
@@ -1252,7 +1290,7 @@ These methods include:
 
 The actions that can be performed in these framework methods depend on the availability of a transactional context, object identity, local or remote view, and client security context.
 
-### Bean Managed vs. Container Managed Persistence
+#### Bean Managed vs. Container Managed Persistence
 
 There are two main approaches to persistence in EJBs: bean-managed and container-managed.
 
@@ -1261,17 +1299,17 @@ There are two main approaches to persistence in EJBs: bean-managed and container
 
 It is generally believed that **container-managed persistence is the preferred approach in the future**, as it is more portable and does not require adjustments to different datastores. Bean-managed persistence, on the other hand, is less portable and requires more effort to adapt to different datastores.
 
-### JNDI Naming Context
+#### JNDI Naming Context
 
 - EJBs locate all their resources through JNDI (Java Naming and Directory Interface) calls, which allows deployers to **specify the proper services** for each EJB **through the deployment descriptor**.
 - This allows the **deployer to manipulate all JNDI lookups** and customize the resources that each EJB has access to.
 
-### Deployment Descriptor
+#### Deployment Descriptor
 
 - The deployment descriptor is a **file that contains meta-information** about an EJB in XML format.
 - This meta-information is **used by different components**, including the bean itself (to declare the names and interfaces used), the deployer (to adjust values for specific environments), and generators (to generate queries from the meta-information).
 
-### Security Support
+#### Security Support
 
 **Principal delegation:**
 
@@ -1284,7 +1322,7 @@ It is generally believed that **container-managed persistence is the preferred a
 - This allows the EJB to operate under a specific identity that is different from the client's identity, and allows the EJB to access resources and perform actions based on the permissions of the assigned identity.
 - This can be useful in situations where the EJB needs to **perform actions on behalf of a specific user or group**, regardless of the identity of the client.
 
-### Transaction Modes
+#### Transaction Modes
 
 EJBs support several transaction modes, which allow developers to specify the level of transaction support required by the EJB.
 
@@ -1297,7 +1335,7 @@ The available transaction modes are:
 - **Mandatory**: The EJB requires that a transaction be active when it is called, and will throw an exception if no transaction is active.
 - **Never**: The EJB does not support transactions and will throw an exception if a transaction is active when it is called.
 
-### Best Practices for EJBs
+#### Best Practices for EJBs
 
 - **Use local interfaces if possible** to reduce network overhead
 - **Use transfer objects** to reduce network traffic
@@ -1310,7 +1348,7 @@ The available transaction modes are:
 - **Use performance monitoring tools** to identify and fix bottlenecks in your application
 - **Properly size and configure your EJB server** to meet the needs of your application.
 
-### Shortcomings of EJBs
+#### Shortcomings of EJBs
 
 - **Large number of artifacts** for the programmer to control
 - **Meta-data separated** in deployment descriptor instead of code
@@ -1319,12 +1357,12 @@ The available transaction modes are:
 - **No rapid prototyping** possible
 - Entity beans **overloaded with security, transactions and persistence**
 
-### New Ways for Object-Relational Mapping
+#### New Ways for Object-Relational Mapping
 
 - The trend towards using generic, abstract schema mappings for O/R mapping appears to be over, and **SQL is becoming more prevalent**.
 - Developers have historically had difficulties with the highly abstract entity beans used in Enterprise Java Beans (EJBs) for persistence. The use of **plain old Java objects (POJO)** for persistence has been seen as a more straightforward and effective solution.
 
-### Lessons Learned from EJBs
+#### Lessons Learned from EJBs
 
 - It **takes a long time to develop** and scale a complex framework for components like EJBs.
 - It is important to get the interfaces right in order to achieve good performance.
@@ -1354,14 +1392,16 @@ The available transaction modes are:
 - In 2010, the **Microservices** design pattern became popular as a way to build large, complex applications by composing small, independent services that communicate with each other through APIs.
 - In 2016, the concept of **Serverless Computing**, emerged as a way to build and run applications and services without the need to manage underlying infrastructure.
 
-### CORBA Security Model
+### CORBA
+
+#### CORBA Security Model
 
 - In the CORBA security model, the concept of **secure delegation** is used to ensure that communication between systems is secure.
 - When **systems** communicate with each other, they **authenticate themselves** to ensure that they are authorized to exchange information.
 - Tokens are used to flow client information between systems, but **no secrets are shared**.
 - **Defined routes** are used to prevent token abuse and ensure that later tiers can verify the original requestor and route of the request.
 
-### CORBA Core Properties
+#### CORBA Core Properties
 
 - CORBA was primarily designed as an **intranet technology** for use within private networks.
 - CORBA is **language-independent**, with a focus on defining interfaces between systems.
@@ -1371,14 +1411,16 @@ The available transaction modes are:
 - The **standardization** process for CORBA was **difficult and tedious**.
 - The use of "boilerplate code" in CORBA often led to **extensive code generation and model-driven development**.
 
-### Web Services Definition
+### Web Services
+
+#### Overview
 
 - A Web Service is a software component that **represents a business function or service**, and can be accessed by other applications over **public networks using standard protocols** and transports (such as SOAP over HTTP).
 - Web Services **use XML** to create requests and responses and send them using HTTP, allowing machines to communicate with each other for various purposes, such as supply chain management or business-to-business processing.
 - **XML-RPC**, proposed by David Winer, was one of the earliest standards for Web Services.
 - Web Services **have been used internally** by companies for some time.
 
-### Web Services Core Properties
+#### Web Services Core Properties
 
 - Web Services use **"simple" requests** that can be sent over public networks/the internet using HTTP transport for firewall reasons.
 - XML is used as the message format for Web Services, making them **language-independent**.
@@ -1387,7 +1429,7 @@ The available transaction modes are:
 - Web Services were heavily promoted as a solution for automatic interoperability based on self-describing services and ontologies, but this was largely overhyped.
 - The technical foundation for Web Services was provided by forms of **XML-RPC**, although the acronym "SOAP" (Simple Object Access Protocol) did not actually have anything to do with distributed objects.
 
-### UDDI Functionality
+#### UDDI Functionality
 
 UDDI (Universal Description, Discovery, and Integration) is a registry that provides a "find and publish" API for distributed services. It works like this:
 
@@ -1399,7 +1441,7 @@ UDDI (Universal Description, Discovery, and Integration) is a registry that prov
 
 This type of architecture is called **"service-oriented"** because it uses a broker for service advertisement and lookup, and requester and provider bind dynamically with respect to the transport protocol used.
 
-### UDDI Content and Categories
+#### UDDI Content and Categories
 
 - All content in UDDI is expressed in XML.
 - The UDDI registry includes information about companies and services, as well as meta-information elements such as tModel.
@@ -1411,14 +1453,14 @@ The UDDI registry has three main categories of information:
 - **Yellow pages**: business categorization and classification by type and industry.
 - **Green pages**: meta information about services and their qualities.
 
-### WSDL Overview
+#### WSDL Overview
 
 - WSDL (Web Service Description Language) is the **metadata language** used by Web Services.
 - WSDL defines how service providers and requesters understand Web Services.
 - When exposing back-end systems as Web Services, WSDL **defines and exposes the components and lists all the data types, operations, and parameters** used by the service.
 - WSDL **provides all the information that a client application needs** to construct a valid SOAP invocation, which is then mapped onto back-end enterprise logic by the Web Services platform.
 
-### WSDL Elements
+#### WSDL Elements
 
 - WSDL documents **define services as collections of network endpoints** or ports.
 - The abstract definitions of endpoints and messages in WSDL are **separated from their concrete network deployment** or data format bindings.
@@ -1434,7 +1476,7 @@ It includes the following elements:
 - **Port**: A single endpoint defined as a combination of a binding and a network address.
 - **Service**: A collection of related endpoints.
 
-### SOAP
+#### SOAP
 
 - SOAP is an RPC (Remote Procedure Call) protocol that **uses XML**. It includes elements for type marshalling and RPC semantics.
 - The header element in SOAP **can contain meta-information**, but it is optional.
@@ -1448,7 +1490,7 @@ There are several aspects that define it's performance:
 
 It has been found that internet **transport time**, especially in the absence of Quality of Service (QoS) measures, **has a greater impact on overall request time** than the size and interpretation effort of a textual format.
 
-### Security and Web Services
+#### Security and Web Services
 
 - **SOAP, WSDL, and UDDI**: Message Envelope, Interfaces Definition, and Registry.
 - **WS-Security**: Secure Messaging Definitions.
@@ -1460,7 +1502,7 @@ It has been found that internet **transport time**, especially in the absence of
 - **WS-Util**: Helper Elements.
 - **WS-Authorization**: Expression of Access Rights.
 
-### Reliable Messaging
+#### Reliable Messaging
 
 Reliable B2B (Business-to-Business) messages require the following qualities:
 
@@ -1475,7 +1517,7 @@ SOAP and HTTP partially achieve this like so:
 3. The receiver must send an acknowledgement.
 4. The receiver exchanges persistent messages with the second application layer.
 
-### Secure Messages
+#### Secure Messages
 
 - Digital **signatures** with XMLDsig
 - Digital **encryption** with XMLEnc
@@ -1488,13 +1530,13 @@ SOAP and HTTP partially achieve this like so:
 - No encryption of the envelope, header, or body tag is allowed.
 - Signatures must respect the right of **intermediaries to change the envelope** or some header information.
 
-### SAML
+#### SAML
 
 - SAML allows **externalization of policies and mechanisms** related to authentication, authorization, and attribute assertion.
 - The access control point **only needs to check assertions** and does not have to implement these mechanisms.
 - SAML allows **interchangeability of statements between different services** because the format of the assertions is fixed.
 
-### Transaction Models
+#### Transaction Models
 
 **Atomic transactions:**
 
@@ -1512,14 +1554,14 @@ SOAP and HTTP partially achieve this like so:
 - Include **compensating tasks and activities** to address errors
 - Can be disrupted by errors such as order cancellations
 
-### Stateful Web Services
+#### Stateful Web Services
 
 - Stateful architectures, such as computational grids, require the concept of a **resource**.
 - WS-Resource is a protocol that adds resource information to web services through **metadata descriptions** in the WSDL and WS-Addressing schemas.
 - An **identifier** is used to communicate state information between requestors and endpoints.
 - Advanced **notification requests** can be built on top of WS-Resource.
 
-### Scaling Web Services
+#### Scaling Web Services
 
 - **Avoid** using XML messaging for **fine-grained RPC**, such as requesting the square root of a number or a stock quote.
 - **Use course-grained RPC** instead, with web services that "do a lot of work, and return a lot of information".
@@ -1528,7 +1570,7 @@ SOAP and HTTP partially achieve this like so:
 - **Consider the frequency of messaging** when designing your web service. A high rate of requests may suggest that you load (replicate) some data and processing back to the client.
 - For web services that aggregate data from other web services, **consider performing the aggregation on demand** or during off-hours in one large, course-grained transaction.
 
-### Why UUID Failed
+#### Why UDDI Failed
 
 UDDI relied on the following assumptions:
 
@@ -1552,14 +1594,16 @@ To summarize, UDDI lacks technology to address the following issues:
 - Understanding **flows and goals**
 - Understanding and matching of **constraints**
 
-### Lessons Learned from Web Services and CORBA
+#### Lessons Learned from Web Services and CORBA
 
 - Web services and CORBA are low-level concepts that **lack semantics**.
 - Workflow has not been effectively addressed by web services and CORBA.
 - Service-Oriented Architecture (SOA) is not only about interfaces and interface design, but **also about hosting services**.
 - The **availability of a service on the web** is more valuable than many specifications and interfaces.
 
-### SOA Core Properties
+### SOA
+
+#### SOA Core Properties
 
 - Services offer **high-level interfaces** that relate to business functions.
 - Service choreography (i.e. the coordination of services to achieve a larger business process) is performed outside the individual services.
@@ -1567,13 +1611,13 @@ To summarize, UDDI lacks technology to address the following issues:
 - Legacy applications can be made available to other companies through the use of a service interface.
 - SOA **relies on Web Service technology** as its foundation.
 
-### SOA Interface Design
+#### SOA Interface Design
 
 - **Object interfaces** can be conversational, accept transactions, and are fast. They use object references.
 - **Component interfaces** use value objects, have a transaction border, and are generally stateless. They are relatively fast.
 - **Service interfaces** are used for long-running transactions with state stored in a database. They include compensation functions and have short process times but long business task execution times. Service interfaces are isolated, independent, and can be composed with larger services (choreography) or made up of smaller services (orchestration). They are stateless.
 
-### SOA Blueprint Service Types
+#### SOA Blueprint Service Types
 
 - **Component Services**: These are atomic operations on simple objects, such as database access.
 - **Composite Services**: These are atomic operations that use multiple simple services (orchestration) and are stateless for the caller.
@@ -1583,7 +1627,7 @@ To summarize, UDDI lacks technology to address the following issues:
 - **Service Broker**: These are intermediate services that manipulate and forward messages based on rules.
 - **Compensation Services**: These revert actions, but do not roll back like traditional transactions.
 
-### SOA vs. Microservices
+#### SOA vs. Microservices
 
 **SOA:**
 
@@ -1603,13 +1647,15 @@ To summarize, UDDI lacks technology to address the following issues:
 - Do **not use contract decoupling**.
 - Follow a **"share as little as possible"** approach.
 
-### RPC vs. REST
+### REST
+
+#### RPC vs. REST
 
 - The web is based on **representing resources using URIs**, while web services create private, non-standard ways of accessing information.
 - The envelope paradigm used in **RPC does not offer any benefits over the generic HTTP methods** (GET, PUT, POST).
 - **RPC** mechanisms are **not suitable for the web**. Some extensions to the HTTP methods might be necessary to support certain features, such as tuple-space systems.
 
-### The Web's Architecture
+#### The Web's Architecture
 
 - Follows a **client-server model**, where clients request resources from servers.
 - Has a **uniform interface**, with resources identified using URIs and manipulated through representations.
@@ -1620,14 +1666,14 @@ To summarize, UDDI lacks technology to address the following issues:
 - Is **stateless**, meaning that clients need to provide context and state information with each request.
 - **Allows for code-on-demand**, where servers can send scripts, applets, and other code to clients as needed.
 
-### REST Maturity Model
+#### REST Maturity Model
 
 - **REST Level 0 (RPC)**: This level resembles regular RPC, with function calls being made to a single endpoint. Resources are not accessible and do not have an identity.
 - **REST Level 1 (Resources)**: Function names and parameters are turned into resources, and appointments now have an identity that can be accessed through GET and POST requests.
 - **REST Level 2 (HTTP verbs)**: It is important to use the correct HTTP verb (GET, POST, etc.) to indicate the intended action. GET is idempotent and creates cachable resources. Response codes are used to indicate the status of the request, such as the creation of a new resource or a conflict.
 - **REST Level 3 (HATEOAS)**: Responses include encoded actions that can be invoked by the client. Services can change their URIs without breaking clients, and the "rel" attribute is used to describe the semantics behind the URI link.
 
-### REST Resource Archetypes
+#### REST Resource Archetypes
 
 - **Document**: Fields and links representing a base resource. Created using POST.
 - **Collections**: Containers maintained by the server with URI generation. Created using POST.
@@ -1635,7 +1681,7 @@ To summarize, UDDI lacks technology to address the following issues:
 - **Controllers**: Procedures accessed using POST.
 - **URI path design**: Reflects the resource model, with variable path segments and query terms.
 
-### CRUD with REST
+#### CRUD with REST
 
 In RESTful web services, requests are made by a **requestor to a representation of a resource**. The HTTP methods (GET, POST, PUT, DELETE) are used to perform different actions on the resource:
 
@@ -1646,7 +1692,7 @@ In RESTful web services, requests are made by a **requestor to a representation 
 
 The separation of updates and reads is a principle of good software design that has been around for a long time. It is known as the "command-query separation principle" and was made a requirement in the Eiffel programming language.
 
-### RESTful Web Features
+#### RESTful Web Features
 
 RESTful web services have four key characteristics:
 
@@ -1655,14 +1701,14 @@ RESTful web services have four key characteristics:
 - **Use meaningful URIs** to represent objects and their relationships in the form of directory entries, with relationships typically being parent/child or general/specific entity relations.
 - **Use XML or JSON** as a transfer format and content negotiation with mime types.
 
-### Critical Points with REST
+#### Critical Points with REST
 
 - **Delivery of requests**: How to handle at-least-once or at-most-once delivery and transactions.
 - **Security**: How to secure requests and delegate security to backend systems (e.g. bearer tokens).
 - **Performance**: How to optimize performance over HTTP, especially with large amounts of data or many round-trips.
 - **Single responsibility**: How to avoid the service becoming heavy, kludgy, and serve more than a single responsibility over time.
 
-### GraphQL as a REST Alternative
+#### GraphQL as a REST Alternative
 
 - **Avoids over- and under-fetching** of data by allowing the client to specify exactly what data it needs in a single request.
 - **Reduces the number of requests** needed by allowing the client to request all the necessary data in a single request.
@@ -1672,28 +1718,30 @@ RESTful web services have four key characteristics:
 - **Supports federated servers**, allowing multiple servers to be combined and accessed through a single endpoint.
 - **Has the potential for huge queries**, which can be a danger if not carefully managed.
 
-### The Reasons for Microservice Adoption
+### Microservices
+
+#### The Reasons for Microservice Adoption
 
 - Ultra large-scale sites require **efficient horizontal scaling**.
 - Unicorn companies (successful startups) **need to develop new features quickly** with independent teams.
 - Unicorn companies need to **deploy new features quickly** due to competition and the need for experimentation.
 - Unicorn companies **need to offer an API for network effects**.
 
-### Scalability Problems of Monolithic Applications
+#### Scalability Problems of Monolithic Applications
 
 - Monolithic applications **can only be deployed as a whole**, making it difficult to scale specific components.
 - The **central database** of a monolithic application can be hard to scale.
 - The **API** of a monolithic application can be **hard to scale**.
 - Developers are **dependent on the general release plan** for the entire application, which can be inflexible and slow.
 
-### Scalability Benefits of Microservices
+#### Scalability Benefits of Microservices
 
 - Individual functions can be **deployed independently**, making it easy to perform A/B testing.
 - **Independent teams and releases are possible**, allowing for more flexibility and faster development.
 - **Databases are often independent** due to sharding, making it easy to scale them.
 - The **API** can be **quickly scaled** to meet demand.
 
-### The Microservice Ecosystem
+#### The Microservice Ecosystem
 
 - **Continuous integration/deployment** allows for rapid experimentation.
 - **Fully automated build and deploy processes** ensure efficient development and deployment.
@@ -1707,7 +1755,7 @@ RESTful web services have four key characteristics:
 - **Federated security** ensures the security of data and communication across multiple microservices.
 - **Fault-tolerance patterns** ensure that the system can continue to operate even if individual microservices fail.
 
-### Microservice Design Patterns
+#### Microservice Design Patterns
 
 - **API gateway**: Facade to fine-granular services
 - **Client-side discovery**: Provided by MS chassis (e.g. spring boot)
@@ -1732,7 +1780,9 @@ RESTful web services have four key characteristics:
 - **REST may not always be the best** API model and transport for microservices.
 - **Distributed commits** must be eventually consistent to ensure that they do not get lost.
 
-### Serverless Definition
+### Serverless
+
+#### Serverless Definition
 
 - Cloud-native platform for **short-running, stateless computation and event-driven** applications
 - **Scales** up and down instantly and automatically
@@ -1741,7 +1791,7 @@ RESTful web services have four key characteristics:
 - **Pays for code execution** instead of allocated resources
 - Allows developers to **focus on writing code**, not infrastructure management
 
-### Stateless Applications
+#### Stateless Applications
 
 - Stateless system or component **does not maintain state or context between requests**
 - Each request is treated as an **independent action**, not influenced by previous requests
@@ -1750,7 +1800,7 @@ RESTful web services have four key characteristics:
 - **Change management may be a challenge** in stateless systems
 - **Hypercomposition** (breaking a system down into smaller, independent components) **may be difficult** in stateless systems
 
-### Issues with Serverless
+#### Issues with Serverless
 
 - Countless small **IAM rules**
 - Coupling with less scaleable components
@@ -1766,7 +1816,7 @@ RESTful web services have four key characteristics:
 - **Difficulty debugging**, tracing, and monitoring functions
 - **Inefficient storage systems** for small objects or frequent access
 
-### Serverless Design Patterns
+#### Serverless Design Patterns
 
 - **Scalable Webhook**: Triggers based on external events
 - **Gatekeeper**: Controls access to internal resources
@@ -1796,7 +1846,9 @@ RESTful web services have four key characteristics:
 - Algorithms for Consensus in DS
 - Optimistic Replication and Eventual Consistency
 
-### The Eight Fallacies of Distributed Computing
+### Foundational Concepts
+
+#### The Eight Fallacies of Distributed Computing
 
 - **The network is reliable**: This fallacy assumes that the network will always be available and free of errors or failures, which is not always the case.
 - **Latency is zero**: This fallacy assumes that communication between nodes in a distributed system will be instantaneous, but in reality, there is always some latency due to the time it takes for a request to be processed and a response to be received.
@@ -1807,7 +1859,7 @@ RESTful web services have four key characteristics:
 - **Transport cost is zero**: This fallacy assumes that there are no costs associated with communication between nodes, but in reality, there may be costs such as network fees or hardware expenses.
 - **The network is homogeneous**: This fallacy assumes that all nodes in the network are identical and operate in the same way, but in reality, nodes can have different hardware, software, and configurations.
 
-### Analyzing Latency
+#### Analyzing Latency
 
 - **Know the long-term trends in hardware**: Latency can be influenced by the performance of the hardware being used, so it's important to be aware of trends in hardware development and how they may impact latency.
 - **Understand the problem of deep queuing networks and the solutions**: Deep queuing occurs when there are many requests waiting to be processed, leading to longer latency. Understanding this problem and implementing solutions such as load balancing can help reduce latency.
@@ -1815,13 +1867,15 @@ RESTful web services have four key characteristics:
 - **Understand buffering effects on latency**: Buffering, or the temporary storage of data, can impact latency by adding additional processing time. Understanding the effects of buffering on latency can help you optimize your system to minimize this impact.
 - **Include the client side in your calculations**: Latency is often impacted by factors on the client side, such as the client's hardware and network connection. It's important to consider these factors when calculating latency and optimizing your system to minimize it.
 
-### Characteristics of Distributed Systems
+#### Characteristics of Distributed Systems
 
 - **High complexity**: Distributed systems involve a large number of interacting agents, such as servers, clients, and network devices, which can make them complex to design, build, and maintain.
 - **Partial knowledge**: In distributed systems, each node or agent typically has only partial knowledge about the state of the system, the actions of other nodes, and the current time. This can make it difficult to coordinate actions and ensure consistency across the system.
 - **Uncertainty**: Distributed systems are prone to uncertainty due to factors such as node failures, network delays, and changes in the system's environment. This uncertainty can make it challenging to predict the behavior of the system and ensure its reliability.
 
-### Liveness vs. Correctness
+### Consistency
+
+#### Liveness vs. Correctness
 
 Correctness and liveness are two important properties of distributed systems that ensure they function as intended and make progress.
 
@@ -1831,7 +1885,7 @@ Correctness and liveness are two important properties of distributed systems tha
 
 Both correctness and liveness are **based on assumptions** about failures and other conditions in the system, such as fairness and the presence of Byzantine errors. Ensuring that a distributed system has both correctness and liveness is critical for its success.
 
-### Liveness and Correctness in Practice
+#### Liveness and Correctness in Practice
 
 Here is an example of how correctness and liveness can be defined for an event-based system:
 
@@ -1849,7 +1903,7 @@ Here is an example of how correctness and liveness can be defined for an event-b
 
 In this example, the system is designed to ensure correctness by limiting the notifications a node receives to those it is subscribed to and ensuring that notifications are received only once. It is designed to ensure liveness by ensuring that a node will eventually start receiving notifications after subscribing. The system also makes assumptions about failures, such as the fail-stop model with fairness, which are used to ensure the correctness and liveness of the system.
 
-### Timing Models
+#### Timing Models
 
 In distributed systems, timing models refer to the way that events and communication between nodes are synchronized. There are three main types of timing models: synchronous, asynchronous, and partial synchronous.
 
@@ -1857,7 +1911,7 @@ In distributed systems, timing models refer to the way that events and communica
 - **Asynchronous timing models**: In asynchronous timing models, there is no exact time between sending and receiving messages. Messages will "eventually" arrive, but there is no guarantee about when. Because there are no strict timing constraints, a node in an asynchronous system cannot tell whether another node has crashed or is simply very slow to respond. There are no timeouts in asynchronous systems because they would require a clock.
 - **Partial synchronous timing models**: Partial synchronous timing models are a combination of synchronous and asynchronous models. These systems are asynchronous, but they are enhanced with local clocks that provide some level of synchronization. This is the model that is typically used for real-world distributed systems, as it allows for the flexibility of asynchronous communication while still providing some guarantees about timing.
 
-### The Fischer, Lynch and Patterson Result
+#### The Fischer, Lynch and Patterson Result
 
 - The FLP (Fischer, Lynch, and Patterson) result is a theoretical result that shows it is **impossible to reach consensus in asynchronous distributed systems** in certain circumstances.
 - The result has **significant implications** for distributed algorithms that rely on consensus, such as leader election, agreement, replication, locking, and atomic broadcast.
@@ -1866,24 +1920,26 @@ In distributed systems, timing models refer to the way that events and communica
 
 ### The CAP Theorem
 
+#### Overview
+
 States that in the presence of network partitions, a client must choose either consistency or availability, but not both.
 
 - **Choosing consistency**: If the client chooses consistency, they may not get an answer at all.
 - **Choosing availability**: If the client chooses availability, they may receive a potentially incorrect answer.
 
-### Preconditions for the CAP Theorem
+#### Preconditions for the CAP Theorem
 
 - To be considered consistent, the system must ensure that **all operations are atomic and linearizable**, meaning that they can be thought of as occurring at a single instant in time and have a total order.
 - For a system to be considered available, it must **ensure that every request received** by a non-failing node **is met with a response**, and that every request terminates.
 - Partition tolerance: The network will be **allowed to lose arbitrarily many messages** sent from one node to another.
 
-### Common Misconceptions of the CAP Theorem
+#### Common Misconceptions of the CAP Theorem
 
 - **Consistency**: Many systems do not achieve a total order of requests due to the costs (latency, partial results) involved.
 - **Availability**: Even an isolated node with a working quorum on the other side must answer requests, breaking consistency. The node does not know that a quorum exists.
 - **Partition Tolerance**: You cannot un-choose partition tolerance, as it is always present. CA systems are therefore not possible.
 
-### The Modern View of the CAP Theorem
+#### The Modern View of the CAP Theorem
 
 - There are **more failure types than just partition tolerance**, such as host-crash and client-server disconnect. These failures cannot be completely avoided.
 - Many systems **do not need linearizability**, and it is important to carefully consider the type of consistency that is needed.
@@ -1891,14 +1947,16 @@ States that in the presence of network partitions, a client must choose either c
 - A **fully consistent system** in an asynchronous network **is impossible** (in the sense of FLP). FLP is much stronger than CAP.
 - The **architecture of the system** (replication, sharding) and the **abilities of the client** (failover) also have an impact on the system's behavior.
 
-### PACELC
+#### PACELC
 
 PACELC: A **more complete portrayal** of the space of potential consistency tradeoffs for distributed database systems.
 
 - In the presence of a partition (P), the system must trade off availability and consistency (A and C).
 - In the absence of a partition (E), the system can trade off latency (L) and consistency (C) when running normally.
 
-### Technical Failures
+### Failure
+
+#### Technical Failures
 
 - **Network failures**, such as partitioning, which can occur when a network is divided into smaller, separate networks that are unable to communicate with each other.
 - **CPU/Hardware failures**, such as instruction failures or RAM failures, which can occur when the hardware components of a system malfunction or fail.
@@ -1907,7 +1965,7 @@ PACELC: A **more complete portrayal** of the space of potential consistency trad
 
 Unfortunately, in most cases there is no failure detection service that can identify when these failures occur and allow others to take appropriate action. However, it is possible to develop a **failure detection service** that could detect even partitioning and other types of failures through the use of MIBs (Management Information Bases) and triangulation. Applications could also be designed to track themselves and restart if necessary.
 
-### Failure Types
+#### Failure Types
 
 - **Bohr-Bug:**
   - **Shows up consistently** and can be reproduced.
@@ -1920,7 +1978,7 @@ Unfortunately, in most cases there is no failure detection service that can iden
   - Changes to software may make them disappear temporarily, but more changes can cause them to reappear.
   - Example: Deadlock "solving" through delays instead of resource order management.
 
-### Failure Models
+#### Failure Models
 
 - **Crash-stop**: A process crashes atomically and stays down.
 - **Crash-stop with recovery**: A process crashes and is down until it begins recovery, and is up again until the next crash occurs. For consensus, at least `2f+1` machines are needed (quorum).
@@ -1931,7 +1989,7 @@ Unfortunately, in most cases there is no failure detection service that can iden
 
 Many protocols for achieving consistency and availability **make assumptions about failure models**. For example, transaction protocols may assume recovery behavior by its participants if the protocol terminates.
 
-### Failures and Timeouts
+#### Failures and Timeouts
 
 - **Timeouts are not a reliable way to detect failures** in distributed systems because they can be caused by various factors, such as short interruptions on the network, overload conditions, and routing changes.
 - Timeouts **cannot distinguish between different types** and locations of failures.
@@ -1939,7 +1997,7 @@ Many protocols for achieving consistency and availability **make assumptions abo
 - Most distributed systems only offer timeouts for applications to notice problems, so they do not provide detailed information about the state of participants or membership.
 - Using timeouts **can result in "split-brain" conditions**, where a system behaves as if it is functioning properly but is actually experiencing a failure or malfunction.
 
-### Failure Detectors
+#### Failure Detectors
 
 A failure detector (FD) is a mechanism used in distributed systems to detect failures of processes or machines. It is not required to be correct all the time, but it should provide the following **quality of service (QoS)**:
 
@@ -1948,7 +2006,9 @@ A failure detector (FD) is a mechanism used in distributed systems to detect fai
 - **Accuracy**: Eventually, some process x should not be falsely suspected of being faulty. When x becomes the coordinator, every process should receive x's estimate and make a decision based on it.
 - **Low overhead**: The FD should not cause a lot of overhead, meaning it should not consume too many resources or slow down the system.
 
-### Time in Distributed Systems
+### Clocks
+
+#### Time in Distributed Systems
 
 In distributed systems, there is **no global time** that is shared across all processes. Instead, different approaches are used to model time in these systems. These approaches include:
 
@@ -1961,48 +2021,50 @@ Logical time is modeled as partially ordered events within a process or between 
 
 Causal meta-data in the system can also order the events properly.
 
-### Consistent vs. Inconsistent Cuts
+#### Consistent vs. Inconsistent Cuts
 
 - **Consistent cuts**: These cuts produce causally possible events, meaning that events occur in a **logical and possible order**.
 - **Inconsistent cuts**: These cuts produce events that arrive before they have been sent, resulting in an **illogical or impossible order**.
 
-### Event Clocks (Logical Clocks)
+#### Event Clocks (Logical Clocks)
 
 - Event clocks, also known as logical clocks, are **systems for ordering events** within processes according to a chosen causal model and granularity.
 - Events are partially **ordered based on the order in which they occur**. The time between events is a logical unit of time that has no physical extension.
 - Events delivered through messages can be used to relate the processes and their times to the events. The external order of these events is also a partial order of events between processes (for example, the event "send(p1,m)" occurs before the event "recv(p2,m)").
 - The value of the logical clock is **updated to the maximum of the current value plus one or the received value**.
 
-### Lamport Logical Clock
+#### Lamport Logical Clock
 
 - The Lamport logical clock **counts events and creates an ordering relation between them**. These counters can be used as timestamps on events.
 - The ordering relation captures all causally related events, but it also includes many unrelated (concurrent) events, which **can create false dependencies**.
 
-### Vector Clocks
+#### Vector Clocks
 
 - Vector clocks are **transmitted with messages** and compared at the receiving end.
 - If, for all positions in two vector clocks A and B, the values in A are larger than or the same as the values from B, we say that **Vector Clock A dominates B**.
 - This **can be interpreted** as potential causality to detect conflicts, as missed messages to order propagation, etc.
 
-### Physical Interval Time (TrueTime)
+#### Physical Interval Time (TrueTime)
 
 - TrueTime works by **using time servers** to check for rogue clocks, which are clocks that are not synchronized with the correct time.
 - The error in TrueTime is **typically in the range of 6 milliseconds**.
 
-### Hybrid Clocks
+#### Hybrid Clocks
 
 Hybrid clocks are systems that **combine elements of both logical and physical models** of time in order to address the limitations of each approach. There are several reasons why hybrid clocks may be used in distributed systems:
 
 - In large distributed systems, such as those spanning multiple data centers across the world, **vector clocks can become too large** to maintain efficiently. Hybrid clocks can be used to reduce the size of the clocks while still maintaining an accurate ordering of events.
 - Physical interval time, such as **TrueTime**, requires that reads and writes **wait until the interval time is over on all machines**. This can be inefficient in some cases, and hybrid clocks can be used to allow for more flexibility in terms of when reads and writes can occur.
 
-### Ordering in Distributed Event Systems
+#### Ordering in Distributed Event Systems
 
 - **FIFO (first-in, first-out) ordering**: This refers to the requirement that a component must receive notifications in the order in which they were published by the publisher.
 - **Causal ordering**: This refers to the requirement that events must be ordered based on their causal relationships, as defined by the system.
 - **Total ordering**: This refers to the requirement that events must be ordered in a specific way, such that no other component in the system is allowed to receive an event before a preceding event has been received. One component may be responsible for deciding the global order of events in this case.
 
 ### Consensus
+
+#### Overview
 
 Consensus is a **process used by a group** of processes to **reach agreement on a specific value**, based on their individual inputs. The objective of consensus is for all processes to decide on a value v that is present in the input set.
 
@@ -2011,7 +2073,7 @@ Consensus is a **process used by a group** of processes to **reach agreement on 
 - **Integrity**: No process decides on a value more than once.
 - **Agreement**: No two correct processes decide on different values.
 
-### Algorithms for Consensus
+#### Algorithms for Consensus
 
 These protocols offer **trade-offs** in terms of correctness, liveness (availability and progress), and performance:
 
@@ -2022,7 +2084,7 @@ These protocols offer **trade-offs** in terms of correctness, liveness (availabi
 - **Dynamic Group Membership**: This class of algorithms is used to achieve consensus in systems with a dynamic membership. These algorithms include virtual synchrony and multicast-based approaches.
 - **Gossip Protocols**: These algorithms are used to disseminate information between processes in a distributed system. They can be used to achieve consensus by allowing processes to exchange information and reach agreement on a decision.
 
-### Two-Phase Commit (2PC)
+#### Two-Phase Commit (2PC)
 
 **Steps**:
 
@@ -2049,7 +2111,7 @@ These protocols offer **trade-offs** in terms of correctness, liveness (availabi
 - A **crash failure** of the coordinator or a participant **can halt or disrupt** the execution of 2PC.
 - If everything goes as planned, 2PC has a **clear and easy-to-understand** semantic for application developers.
 
-### Quorum-Based Consensus
+#### Quorum-Based Consensus
 
 **Steps**:
 
@@ -2077,7 +2139,7 @@ These protocols offer **trade-offs** in terms of correctness, liveness (availabi
 - Network partitions may cause the system to **either** respond with all non-failing nodes (which may **sacrifice consistency**) or to stop responding to requests from minority nodes (which may **sacrifice availability**).
 - QP offer a **reliable and efficient** method for achieving consensus in distributed systems, but they also come with some trade-offs in terms of performance and fault tolerance.
 
-### Paxos
+#### Paxos
 
 **Steps**:
 
@@ -2126,7 +2188,7 @@ These protocols offer **trade-offs** in terms of correctness, liveness (availabi
 
 - If an Acceptor receives an Accept! message for a proposal it has promised, it accepts the value and sends an Accepted
 
-### Raft
+#### Raft
 
 RAFT is a distributed consensus protocol that allows a group of processes (called "replicas") to agree on a value ("decide") in the presence of failures. RAFT is divided into three distinct roles: **Leader, Follower, and Candidate**.
 
@@ -2150,7 +2212,9 @@ The protocol consists of the following **steps**:
 - If a **replica receives a Commit message**, it applies the committed entry to its state machine and **responds with an Apply message** to the Leader.
 - If the **Leader receives an Apply message** from a quorum of replicas, it updates its commit index and **sends an Apply message to all other replicas**.
 
-### Atomic Broadcast Conditions
+### Broadcasting
+
+#### Atomic Broadcast Conditions
 
 A distributed algorithm that **guarantees correct transmission** of a message from a primary process to all other processes in a network or broadcast domain, including the primary.
 
@@ -2163,7 +2227,7 @@ It satisfies the following conditions:
 
 It is widely used in distributed computing for group communication and defined as a reliable broadcast that **satisfies total order**.
 
-### Atomic Broadcast Protocol
+#### Atomic Broadcast Protocol
 
 **Data**:
 
@@ -2180,7 +2244,7 @@ It is widely used in distributed computing for group communication and defined a
 - **Frequent leader changes can cause overhead** and may be a potential denial of service. It is important to consider latency on the leader node when implementing an atomic broadcast protocol.
 - **Paxos, Raft etc. are Atomic Broadcast Protocols!**
 
-### Gossip Protocols
+#### Gossip Protocols
 
 Gossip protocols are a class of distributed algorithms that **rely on randomly chosen pairs of nodes** in a network to exchange information about the state of the system. They are typically used for group membership, failure detection, and dissemination of information.
 
@@ -2191,11 +2255,11 @@ There are several key characteristics of gossip protocols:
 - **Fault tolerance**: Gossip protocols are designed to tolerate failures and can continue to operate even if some nodes go down.
 - **Asynchronous**: Gossip protocols do not rely on a central authority or global clock, so they can operate asynchronously in a distributed system.
 
-### DWAL
+#### DWAL
 
 A DWAL (Distributed Write-Ahead-Log) is a data structure that is used to ensure that updates to a distributed system are stored in a way that allows them to be recovered in case of system failure. It is a type of write-ahead log, which means that updates are written to the log before they are applied to the system's state. This allows the updates to be replayed in the correct order after a system failure.
 
-### Design Components of DWALs
+#### Design Components of DWALs
 
 - **Global visibility**: Replicated **state should be visible to all processes in the system**. This can be achieved through the use of atomic broadcast or other consensus protocols to ensure that all processes have a consistent view of the system state.
 - **Consensus protocol**: A consensus protocol such as Paxos or Raft is used to ensure that all processes agree on the order of updates to the replicated state. This ensures that all processes have a consistent view of the system state and reduces the risk of conflicts or data loss.
@@ -2203,7 +2267,9 @@ A DWAL (Distributed Write-Ahead-Log) is a data structure that is used to ensure 
 - **Group membership**: In order to ensure that the DWAL can function properly, it is important to have a mechanism in place for maintaining an up-to-date view of the membership of the group of processes.
 - **Message order and latency hiding**: To ensure that the DWAL can function effectively, it is important to ensure that updates are delivered to all processes in a consistent order.
 
-### Properties of Replication Models
+### Replication
+
+#### Properties of Replication Models
 
 - **Who is responsible for updates**: Single master or multiple masters?
 - **What is being updated**: State transfer or operation transfer?
@@ -2212,7 +2278,7 @@ A DWAL (Distributed Write-Ahead-Log) is a data structure that is used to ensure 
 - **Method for updating** replica nodes
 - **Guarantees for divergence**
 
-### Single-Leader Replication
+#### Single-Leader Replication
 
 **Steps**:
 
@@ -2233,7 +2299,7 @@ A DWAL (Distributed Write-Ahead-Log) is a data structure that is used to ensure 
 - **Followers may take a while to take over** in case of leader failure
 - **Not suitable for critical resources** such as primary keys
 
-### Eventually Consistent Reads
+#### Eventually Consistent Reads
 
 Eventual consistency model: **Allows for a certain level of lag** between updates to be propagated to all replicas
 
@@ -2243,7 +2309,7 @@ Eventual consistency model: **Allows for a certain level of lag** between update
 2. Master-Replica eventually propagates update to Slave replica
 3. Client performs a stale read from client node, potentially returning outdated value
 
-### Multi-Master Replication
+#### Multi-Master Replication
 
 Multi-Master Replication (MMR) is a type of replication in which **multiple servers can accept write requests**, allowing any server to act as a master. This means that updates can be made to any server, and the changes will be replicated to all other servers in the network. MMR can be used to **improve the availability and scalability** of asystem, as it allows updates to be made to any server and allows multiple servers to handle write requests.
 
@@ -2261,7 +2327,7 @@ It also introduces the **possibility of conflicts**, as multiple servers may rec
 - **Uniqueness conflict**: Two identical primary (uniqe) keys added in same table on two servers
 - **Delete conflict**: During delete of a row the same row is changed on a different server.
 
-### Leaderless Quorum Replication
+#### Leaderless Quorum Replication
 
 **Write**:
 
@@ -2275,7 +2341,7 @@ It also introduces the **possibility of conflicts**, as multiple servers may rec
 - Some **systems may detect inconsistencies** during a read operation.
 - These systems can **either automatically perform a cleanup** (e.g. using version numbers to return the correct value) or **offer both values for the client** to choose from.
 
-### Session Modes of Asynchronous Replication
+#### Session Modes of Asynchronous Replication
 
 The following guarantees seem to enable **"sequential consistency"** for a specific client, meaning that the program order of updates from this client is respected by the system. Clients can track these guarantees using vector clocks:
 
@@ -2291,7 +2357,7 @@ We can also derive **session anomalies** from this:
 - **Non-monotonic transactions**: Transactions that do not preserve the order in which they were made by the same user.
 - **Not-reading-my-writes**: Reads that do not include previous writes by the same user.
 
-### Global Modes of Replication
+#### Global Modes of Replication
 
 There are multiple different modes to choose from:
 
@@ -2361,14 +2427,16 @@ Each of them have their own trade-offs:
    4. Distributed DB with sharding/partitioning functions
    5. Distributed Messaging with event notification and gossip
 
-### What is a Distributed Service?
+### Types of Distributed Services
+
+#### What is a Distributed Service?
 
 Function provided by a **distributed middleware** with:
 
 - High scalability
 - High availabilit
 
-### Services and Instances
+#### Services and Instances
 
 - Distributed systems:
   - Comprised of **services**, such as applications, databases, caches, etc.
@@ -2378,7 +2446,7 @@ Function provided by a **distributed middleware** with:
   - Concerned with **logical groups of nodes, not specific instances**
   - Example: Interacting with a database server, rather than a specific database instance.
 
-### Core Distributed Services
+#### Core Distributed Services
 
 - **Finding** Things
   - Name Service
@@ -2406,7 +2474,7 @@ $Availability = \frac{Uptime_{agreed\ upon} - Downtime_{planned\ and\ unplanned}
 
 Continuous availability **does not allow for planned downtime**.
 
-### Typical Hardware Causes for Downtime
+#### Typical Hardware Causes for Downtime
 
 - Overheating
 - PDU failure
@@ -2420,7 +2488,7 @@ Continuous availability **does not allow for planned downtime**.
 - Individual machine failures
 - Hard drive failures
 
-### Availability through Redundancy
+#### Availability through Redundancy
 
 **Across groups of resources:**
 
@@ -2453,13 +2521,15 @@ Continuous availability **does not allow for planned downtime**.
 - Simple reliability
 - Limited vertical scalability
 
-### 3 Copy Disaster Recover Solution
+#### 3 Copy Disaster Recover Solution
 
 - Maintains 3 copies of data/resources with at least 2 in different locations
 - Enables quick switchover in case of disaster for business continuity
 - Provides high availability and protects against data loss.
 
-### Serial vs. Redundant Availability
+### Load Balancing
+
+#### Serial vs. Redundant Availability
 
 - **Serial chain** of components:
   - **Availability decreases with more members** in the chain
@@ -2468,7 +2538,7 @@ Continuous availability **does not allow for planned downtime**.
   - Unavailability of each component is multiplied and subtracted from 1 to determine overall availability
   - **Only one component needs to be up** to maintain availability.
 
-### Global Server Load Balancing
+#### Global Server Load Balancing
 
 - **DNS Round Robin**:
   - Simple load balancing technique that distributes traffic to multiple servers based on the client's DNS query
@@ -2487,7 +2557,7 @@ Continuous availability **does not allow for planned downtime**.
 - **Real User Measurements (RUM)**:
   - Uses real-time data from end-user devices to dynamically adjust traffic distribution for optimal performance.
 
-### Failover with Virtual IPs
+#### Failover with Virtual IPs
 
 **Failover with one virtual IP**:
 
@@ -2501,7 +2571,7 @@ Continuous availability **does not allow for planned downtime**.
 - **Requests can be re-routed** to different locations in case of a server failure
 - May still have the limitations and **issues associated with geo-aware DNS**.
 
-### Failover, Load Balancing and Session State
+#### Failover, Load Balancing and Session State
 
 - **Sticky Sessions**: Keeps session state on a single server, offers advantages with a non-replicated system of records but limited in terms of fail-over and load-balancing options.
 - Session Storage **in DB**: Session state is stored in a database, offers better scalability and fail-over options compared to sticky sessions.
@@ -2511,13 +2581,15 @@ Continuous availability **does not allow for planned downtime**.
 
 **Compromise**: Replicate sessions between pairs of servers, then enable switching between them as failovers
 
-### P2P Load Balancing
+#### P2P Load Balancing
 
 - **Evaluator Functions**: Access server stats in shared memory and determine the outcome of a request, whether it is handled by its own server, redirected, or proxied.
 - **Server Stats**: Various metrics such as CPU usage, number of requests, memory usage, etc., are replicated in shared memory and used by evaluator functions to make load-balancing decisions.
 - **Server Stat Replication**: The replication of server stats is done through multicast.
 
-### Requirements of Distributed Name/Directory Systems
+### Service Organization
+
+#### Requirements of Distributed Name/Directory Systems
 
 **Functional Requirements**:
 
@@ -2538,7 +2610,7 @@ Continuous availability **does not allow for planned downtime**.
 - **Fault tolerance** through replication for availability
 - **Fast lookup** through clustering, with slower writes and client-side caching support to reduce communication costs
 
-### Design of Distributed Name/Directory Systems
+#### Design of Distributed Name/Directory Systems
 
 **Name Space**:
 
@@ -2551,7 +2623,7 @@ Continuous availability **does not allow for planned downtime**.
 - **Interfaces** (naming service, factoryfinder, factory, account) allow administrators to **hide versions/implementations** from clients.
 - Finders in a remote environment support **object migration and copying**.
 
-### Examples of Naming Services
+#### Examples of Naming Services
 
 - Domain Name System (DNS)
 - X.500 Directory
@@ -2560,7 +2632,7 @@ Continuous availability **does not allow for planned downtime**.
 - Java Registry
 - J2EE JNDI (mapped to CORBA Naming Service)
 
-### Google vs. Amazon
+#### Google vs. Amazon
 
 **Amazon**:
 
@@ -2598,7 +2670,7 @@ Continuous availability **does not allow for planned downtime**.
 - Dapper (distributed locking)
 - Google Compute Platform
 
-### Best Practices for Designing Services
+#### Best Practices for Designing Services
 
 - Keep services **independent**
 - **Measure** services
@@ -2610,7 +2682,561 @@ Continuous availability **does not allow for planned downtime**.
 - Manage **dependencies carefully**
 - **Create APIs** for customer access to services
 
-### Grid Storage vs. NAS/SAN
+### Caching
+
+#### CQRS (Command Query Responsibility Segregation)
+
+- **Separates the responsibilities of reading data** (queries) **and modifying data** (commands) into separate objects or services.
+- **Improves scalability and performance** by allowing reads and writes to be **optimized separately**.
+- **Promotes event-driven architecture** by allowing commands to trigger domain events.
+- Simplifies domain modeling by **reducing the complexity of aggregates**.
+- **Increases consistency** by using separate models for reads and writes.
+- **Reduces the coupling** between the read and write sides of the system.
+
+#### Requirements of Caching Services
+
+- **Scalable** with ability to add machines
+- **Avoid "thundering herds"** due to placement changes
+- **Supports replication** of cache entries
+- **High performance** required
+- Optional **disk backup** support
+- Supports **various storage mediums**, from RAM to SSD
+- Supports **different cache replacement policies** with caution.
+
+#### Handling Changing Machine Counts in Caching Services
+
+- Problem: Changing Machine Count
+- Solution: **Consistent Hashing (Ring)**
+- **Machines are mapped into a ring** and their **position determines the key-space they are responsible for**.
+- Machines can be assigned multiple virtual positions.
+
+#### Consistent Hashing Algorithms
+
+**Simple Consistent Hashing Algorithm:**
+
+- URLs and caches are **mapped to points on a circle** using a standard hash function.
+- URL assigned to **closest cache in clockwise direction**.
+- Adding a new cache only reassigns the closest URLs to it, **items don't move between existing caches**.
+
+**Dynamo Consistent Hashing Algorithm:**
+
+- **Separates placement and partitioning.**
+- Uses **virtual nodes** assigned to real machines for more flexibility.
+- Virtual node is responsible for multiple real nodes.
+- Improved load balancing due to **additional indirection**.
+
+#### Cache Patterns
+
+**Pull**:
+
+- Occurs **during request time**
+- Concurrent misses and client crashes **can result in outdated caches**
+- **Complicated handling** of concurrent misses and updates
+- Can be **slow and dangerous for backends**
+
+**Push**:
+
+- Automated **push updates cached values**
+- Should **only** be used **for values that are always needed**
+
+**Pre-warmed:**
+
+- The system **loads the cache before the application starts** serving clients
+- Used **for big applications with pull caches** to avoid boot issues
+
+**General consideration**: Be aware of LRU or clocked invalidations as cache is mission critical.
+
+#### Cache Design Considerations
+
+- **Kinds** of information fragments
+- **Lifecycle** of fragments
+- **Validity** of fragments
+- **Effects** of fragment invalidation
+- **Dependencies** between fragments, pages, etc.
+
+### Events
+
+#### Local vs. Distributed Events
+
+**Local**:
+
+- Observer updates sent on one thread
+- If observer doesn't return, mechanism stops
+- If observer calls back to observed during update call, deadlock can occur
+- Solution doesn't scale and is not reliable (e.g. observer crashes result in lost registrations)
+- Does not work for remote communication
+
+**Distributed**:
+
+- Various combinations of **push and pull models** possible
+- Receivers can install **filters** using a constraint language to filter content (reduces unwanted notifications)
+
+#### Asynchronous Event-Processing
+
+- Publisher and subscriber communicate through **interaction middleware**
+- Used to **decouple components** and asynchronous sub-requests from synchronous main requests (so that multiple fast tasks can run parallel to a slow main task)
+- Implemented as **Message-Oriented-Middleware (MOM)** or socket-based communication library
+- Can be implemented in **broker-less or brokered mode**.
+
+#### Features of Event-Driven Interaction
+
+- **Basic Event**: Any entity can send and receive events without restrictions or filtering.
+- **Subscription**: A receiver can subscribe to specific events, making event delivery more efficient.
+- **Advertisement**: The sender informs receivers about possible events, reducing the need for broadcasting.
+- **Content-Based Filtering**: The sender, middleware, or receiver can apply filtering based on event content.
+- **Scoping**: Administrative components can manipulate event routes, enabling invisible communication between components.
+
+#### Types of Message Oriented Middleware (MOMs)
+
+**Centralized Message-Oriented-Middleware:**
+
+- Collects all notifications and subscriptions in one central place, enabling **easy event matching and filtering**
+- Has a **high degree of control** and no security/reliability issues on clients
+- Can create **scalability and single-point-of-failure problems**
+
+**Clustered Message-Oriented-Middleware:**
+
+- Provides **scalability** at **higher communication costs**
+- Has lots of routing/filter-tables at cluster nodes, making **filtering and routing of notifications expensive**
+
+**Simple P2P Event Libraries:**
+
+- Local libraries are aware of each other, but **components are de-coupled**
+- Broker-less architecture is **faster** than brokered ones
+- **Does not provide** at-most-once semantics or **protection against message loss**
+- Guarantees **atomicity** and **possibly FIFO**
+- Examples include ZeroMQ, Aaron, and Nanomsg
+
+**Flooding Protocols:**
+
+- Notifications travel towards **subscriptions**, which are only kept at **leaf brokers**
+- Advantages include that **subscriptions become effective quickly**, and notifications are guaranteed to arrive everywhere
+- Price is **many unnecessary notifications** to leaf nodes without subscribers
+
+#### ZeroMQ
+
+- **Brokerless** socket library for messaging, with message filtering
+- Connection patterns include **pipeline, pub/sub, and multi-worker**
+- **Various transports**, including in process, across local process, across machines, and multicast groups
+- **Message-passing process model** without the need for synchronization
+- **Multi-platform and multi-language** support
+- "Suicidal snail" fail-fast mechanism to **kill slow subscribers**
+
+### Sharding
+
+#### Horizontal vs. Vertical Sharding
+
+**Horizontal**: Per (database) row, e.g. first 100 users are in shard 1, 200 in shard 2 etc.
+
+**Vertical**: Per (database) column, e.g. profile and email is in shard 1, photos and messages in shard 2 etc.
+
+#### Sharding Strategies
+
+- Allow adding heterogenous hardware in the future
+- Sharding should not make app code unstable
+- Sharding should be transparent to the app
+- Sharding and placement strategies should be separate
+
+#### Horizontal Sharding Functions
+
+Algorithms applied to the key (often: user ID) to create different groups (shards):
+
+- **Numerical range**: users 0-100000, 100001-200000, etc.
+- **Time range**: 1970-80, 81-90, 91-2000, etc.
+- **Hash and modulo** calculation
+- **Directory-based mapping** using a meta-data table for arbitrary mapping from key to shard
+
+#### Consequences of Sharding
+
+- **No more SQL `JOIN`s**, leading to lots of copied data
+- Increased need for **partial requests** for data aggregation
+- **Expensive distributed transactions** required for consistency (if needed)
+- Vertical sharding distributes related data types from one user, while horizontal sharding distributes related users from each other (**bad for social graph processing**)
+- **SQL limitations** due to mostly key/value queries and problems with automatic DB-Sequences
+- Every change **requires corresponding application changes**
+
+### Relationships
+
+#### Overview
+
+- Within the database, **referential integrity** rules protect containment relationships
+- **No equivalent in object space**
+- No protection in distributed systems
+
+For example when an employee leaves:
+
+- All rights are cancelled
+- Disc-space is archived and erased
+- Databases for authentication and application-specific DBs are updated
+- Badge no longer works
+- All equipment has been returned
+
+#### Functional Requirements of Relationship Services
+
+- **Definition of relations between objects** without modifying those objects
+- Support for **different types of relations**
+- Ability to **create graphs of relations**
+- Ability to **traverse relationship graphs**
+- Support for **reference and containment relations**
+
+#### Why Relationship Services Failed
+
+**The good**:
+
+- Powerful **modeling tool**
+- Helps with creation, migration, copy, and deletion of composite objects
+- Maintains referential integrity
+
+**The bad**:
+
+- Tends to create **many small server objects**
+- **Performance impact**
+- Not supported by many CORBA vendors for a long time
+- EJB only supported with local objects in the same container.
+
+## Distributed Services and Algorithms II
+
+### Overview
+
+- Classic (ACID) distributed consistency includes:
+  - Distributed 2P locking
+  - Distributed 2PC consensus
+- ACID 2.0 eventual (coordination-free) consistency includes:
+  - CAP and its children, CALM, CRDTs, etc.
+  - Distributed replication (e.g. Cassandra)
+  - CALM (Bloom) consistency
+  - CRDTs (Conflict-free Replicated Data Types)
+- Distributed Coordination (e.g. Chubby, ZooKeeper) includes:
+  - Distributed consensus protocols
+  - Cluster scheduler (e.g. Borg)
+
+### Problems with Classic Concurrency
+
+#### Why Truth is Expensive
+
+- Strong consistency is discouraged.
+- Coordination and distributed transactions slow down the process and affect availability.
+- The cost of knowing the truth is high for many applications.
+- The truth might only be a partial or outdated version.
+- Availability is prioritized over consistency by making local decisions with available information.
+- Improves the user experience by making this trade-off, most of the time.
+
+#### Aspects of Classic Distributed Consistency
+
+- **Distributed Objects and Persistence**: Objects that span across multiple systems and persist data in multiple locations.
+- **ACID**: Atomicity, Consistency, Isolation, Durability - a set of properties that guarantee that database transactions are processed reliably.
+- **Transactions**: A sequence of database operations that are executed as a single unit of work.
+- **Isolation Levels**: The level of isolation between concurrent transactions, specifying how one transaction affects another.
+- **Two-Phase Locking**: A protocol for enforcing serializable access to shared resources in a distributed system.
+- **Distributed Transactions**: Transactions that span multiple systems and persist data in multiple locations.
+- **Two-Phase Commit (2PC)**: A protocol for ensuring that a transaction is committed in a consistent state in a distributed system.
+- **Failure Models for 2PC**: Models for how 2PC protocol handles system failures and ensures the consistency of transactions.
+
+#### Persistent Object Representations
+
+- **Real storage object lives in a data store** and uses data store concepts for storage (e.g. a row in a table).
+- Service works with object representations ("**Incarnations**") and provides the illusion of a persistent object to clients.
+- Java Connector Architecture provides an adapter interface for resource managers.
+
+#### Mechanisms for Persistence
+
+**SQL Driver**:
+
+- Used to store object state.
+- Suffers from "impedance mismatch".
+- Needs to control locking etc. in the service.
+
+**Object Relational Mapper (EJB/Hibernate)**:
+
+- Used to store object state transparently for the programmer.
+- Inheritance creates difficult problems for table mapping: Either performance or flexibility suffer.
+
+> Just storing an object is simple - doing this in a way that protects from concurrent access, system failures, and across different data stores is much harder.
+
+#### Persistent Object Mapping
+
+- Enterprise integration software specializes in this kind of mapping
+- Key to persistent mapping is **meta-information**:
+  - **Generates object representations** for a service.
+  - **Generates code** necessary for the data store to store the objects with its own mechanisms and objects.
+
+#### Data Store Session Pooling
+
+- **Number of channels** to a data store **is limited**
+- If an object directly allocates a session (channel) and does not return it quickly, system throughput would become marginal
+- **Session creation is expensive** (security!)
+- Clients can either ask a pool for a session or the container framework can automatically allocate and return sessions
+- Problems:
+  - **Timeouts**
+  - **Connection recycling**
+
+### Locking
+
+#### Locking Against Concurrent Access
+
+**Binary locks**:
+
+- Used to synchronize an object, causing all clients except one to be blocked.
+- Limitations: Binary locks are simple to use, but their performance suffers as they cannot distinguish between reads and writes.
+
+**Modal locks (read/write locks)**:
+
+- Used to allow clients who only want to read to obtain read locks. Many concurrent read locks are possible.
+- Advantages: Modal locks allow for a more nuanced approach to concurrent access, improving performance by allowing multiple read operations to occur simultaneously.
+
+**Lock Granularity**: The granularity of locks (the scope of the resources being protected by the lock) affects the overall throughput of a system. **The smaller the lock granularity, the better the performance** will be.
+
+#### Optimistic Locking
+
+**Process**:
+
+1. Lock a row, read it along with its timestamp, and then release the lock.
+2. Start a transaction
+3. Write the data to the database.
+4. Acquire locks for all data read and compare the data timestamps.
+5. If one of them is newer, the transaction operation is rolled back, otherwise it is commited.
+
+**Advantages**:
+
+- Better overall throughput as locks are held for only a short period of time
+- Timestamp comparison logic is implemented as a framework mechanism in the client session objects, simplifying the process
+
+#### Serializability with Two-Phase Locking
+
+**Process**:
+
+1. Allocate all locks
+2. Manipulate the data
+3. Release all locks
+
+**Advantages**: Requires that all locks be allocated before any data manipulation and released only after the manipulation is complete. **Guarantees serializability**.
+
+#### Deadlocks
+
+- State where two or more processes are blocked because each **one is waiting for resources held by the other**
+- Results in a situation where the processes cannot continue to run and are **stuck in a permanent waiting state**
+- **Can occur in concurrent systems** where multiple processes access shared resources
+
+#### Distributed Deadlock Detection
+
+**Local wait-for-graphs**:
+
+- **Correctness**: Based on the definition of a wait-for-graph, this method correctly detects deadlocks by identifying cycles in the graph.
+- **Liveness**: This method can only detect deadlocks that exist within a single process or machine, so it may miss deadlocks in a distributed system.
+- **Cost/complexity**: The cost of implementing this method is relatively low, as it only requires tracking locks and resource requests within a single process.
+- **Failure model**: This method is susceptible to false negatives (missed deadlocks) in a distributed system.
+- **Architecture type**: This method is suitable for systems with a centralized architecture, where all locks and resource requests can be monitored by a single process.
+
+**Detection servers**:
+
+- **Correctness**: Detection servers are designed to detect deadlocks in a distributed system, so this method should provide correct results if implemented correctly.
+- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
+- **Cost/complexity**: The cost of implementing this method is higher than local wait-for-graphs, as it requires communication and coordination between multiple processes.
+- **Failure model**: This method is susceptible to false negatives if one or more detection servers fail, or if there are errors in the communication between the servers.
+- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
+
+**Distributed edge chasing algorithms**:
+
+- **Correctness**: This method is designed to detect deadlocks in a distributed system, so it should provide correct results if implemented correctly.
+- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
+- **Cost/complexity**: The cost of implementing this method is higher than local wait-for-graphs, as it requires communication and coordination between multiple processes.
+- **Failure model**: This method is susceptible to false negatives if there are errors in the communication between the processes.
+- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
+
+**Stochastic detection**:
+
+- **Correctness**: The accuracy of this method depends on the parameters used, so it may provide incorrect results in some cases.
+- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
+- **Cost/complexity**: The cost of implementing this method is relatively low, as it only requires monitoring resource requests and using randomization to make decisions.
+- **Failure model**: This method may miss deadlocks if the randomization parameters are not set correctly.
+- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
+
+### Transactions
+
+#### Classic ACID Definitions
+
+- **Durability**: Ensures that once a transaction is committed, its effects **persist even in the case of system failures** (e.g. a crash that causes you to lose changes made to a word file)
+- **Atomicity**: Ensures that a transaction is treated as a single, indivisible unit of **work that either happens in its entirety or doesn't happen at all** (e.g. in the case of a birthday party re-schedule where not all participants were caught in time)
+- **Isolation**: Ensures that the concurrent execution of transactions results in a system state that would be obtained **as if transactions were executed serially** (e.g. if two people work on a shared file, their changes should not interfere with each other)
+- **Consistency**: Ensures that the **system remains in a valid state after a transaction is executed** (e.g. after you complete a friend's work for the day, the tasks remain consistent, and the system remains in a valid state)
+
+#### Transaction Properties and Mechanisms
+
+- **Atomic Changes over Distributed Resources**: This is achieved through the use of consensus or voting algorithms such as two-phase commit.
+- **Consistency**: This is maintained by observing consistency constraints between objects, such that the system remains in a valid state before and after a transaction is executed.
+- **Isolation from Concurrent Access**: This is accomplished through the use of locking mechanisms, such as two-phase locking or hierarchical locking.
+- **Durability of Changes**: This is ensured by transferring changes made to memory objects to persistent storage, to prevent loss in case of a system failure.
+
+#### Serializability and Isolation
+
+**Definition**: States that the outcome of executing a set of transactions should be equivalent to some serial execution of those transactions.
+
+**Purpose**: The purpose of serializability is to ensure that each transaction operates on the database as if it were running by itself, which maintains the consistency and correctness of the database.
+
+**Importance**: Without serializability, ACID consistency is generally not guaranteed, making it a crucial component in maintaining the integrity of the database.
+
+#### Transaction API
+
+1. System starts in a consistent state
+2. Begins transaction
+3. Modifies objects
+
+**Commit transaction**:
+
+- System has a new, consistent state
+- Local objects are now invalid
+- Changes are visible to others
+
+**On error: Rollback**:
+
+- Either from system or from client
+- Only successful commit operations become the new state durable and visible to others
+- Means going back to the beginning completely
+- Client does not even know that they tried an operation
+- Log files would have to be cleaned.
+
+#### Components of Distributed Transactions
+
+**Process**
+
+- Begin()
+- Commit()
+- Rollback()
+
+**RPCs**:
+
+- Register (transactional servers)
+- Vote (objects)
+- Commit/rollback (objects, resource managers)
+- Read/write/prepare (resource managers)
+
+**Components**:
+
+- Transaction
+- Transactional client
+- Transactional servers (objects)
+- TACoordinator
+- XA resource managers
+
+#### Service Context
+
+- Some **services require context** information to flow **with a call**
+- **Security**: Needs to flow user information, access rights, etc.
+- **Transactions**: Needs to flow information about ongoing transactions to participants
+- The additional information **needs to be standardized** to allow different vendor implementations of services to interoperate.
+
+#### Distributed Two-Phase Commit
+
+**Vote**:
+
+- To achieve atomic operations in a distributed setting, the **TA-Coordinator asks all participants for their vote** on committing or rolling back.
+- Upon receiving a `commit()` call from a client, objects part of the TA **vote by asking resource managers (e.g. databases) to prepare for the commit**.
+- A successful return of "prepare" from resource managers means that **both the object and the resource manager have promised to commit** the changes if the coordinator sends a commit.
+
+**Completion**:
+
+- The **coordinator is the only entity that can commit or abort** a TA after the prepare phase.
+- If the vote phase was successful and all participants have prepared for a commit, the **coordinator calls for a commit**.
+- In case of an error (e.g. unreachable participant), the **coordinator calls for a rollback**.
+
+#### Failure Models of Distributed Transactions
+
+**Work Phase**:
+
+- **If a participant crashes** or becomes unavailable, the **coordinator calls for a rollback**.
+- **If the client crashes** before calling commit, the **coordinator will timeout** the TA and call for a rollback.
+
+**Voting Phase**:
+
+- **If a resource becomes unavailable** or has other issues, the **coordinator calls for a rollback**.
+
+**Commit Phase (Server Uncertainty)**:
+
+- **In case of a crashed server**, it will consult the coordinator after restart and **ask for the decision** (commit or rollback).
+
+#### Special Problems of Distributed Transactions
+
+**Resources**:
+
+- Participants in distributed TA's **consume many system resources** due to logging all actions to temporary persistent storage.
+- **Large parts of the system may become locked** during a TA.
+
+**Coordinator as a Single Point of Failure**:
+
+- The coordinator must also prepare for a crash and log all actions to temporary persistent storage.
+
+**Heuristic Outcomes for Transactions**:
+
+- In certain circumstances, the outcome of a transaction may only be determined heuristically if the real outcome cannot be determined.
+
+#### Transaction Types
+
+**Flat Transactions**:
+
+- Characterized by all-or-nothing behavior.
+- Any failure causes complete rollback to original state.
+- Can result in loss of significant amount of work if many objects have been handled.
+
+**Nested Transactions**:
+
+- Allow partial rollbacks with a parent transaction.
+- Child TA rollback doesn't affect parent TA, but parent TA rollback returns all participants to initial state.
+- Example: Allocation of a travel plan (hotel, flight, rental-car, trips, etc.).
+
+**Long-running Transactions**:
+
+- Challenge is resource allocation and increasing amount of work lost in case of rollback.
+- Syncpoints move the fallback position closer to the commit point.
+
+**Compensating Transactions**:
+
+- Improves transaction throughput by making objects visible sooner, at the cost of sacrificing the ISOLATION property.
+- Require compensation for previous TA which can no longer be rolled back.
+- Depend on the application whether compensating transactions are possible.
+- Can be hand-coded if no transaction monitor/manager is available.
+
+#### ANSI Transaction Levels
+
+**Problems**:
+
+- **Dirty reads**: Occurs when a transaction reads data written by another concurrent transaction that has not yet been committed.
+- **Non-repeatable reads**: Occurs when a transaction re-reads data it has previously read and finds that the data has been modified by another transaction that has since committed.
+- **Phantom reads**: Occurs when a transaction re-executes a query returning a set of rows that satisfies a search condition and finds that the set of rows satisfying the condition has changed due to another recently-committed transaction.
+
+**Transaction Levels**:
+
+- **Read Uncommitted**:
+  - Prevents: Nothing
+- **Read Committed**:
+  - Prevents:
+    - Dirty reads.
+- **Repeatable Read**:
+  - Prevents:
+    - Dirty reads
+    - Non-repeatable reads
+- **Serializable**:
+  - Prevents:
+    - Dirty reads
+    - Non-repeatable reads
+    - Phantom reads
+
+The higher the level, the more overhead is required.
+
+### Distributed Filesystems
+
+#### Filesystem Block Order Guarantees
+
+- BOB (Block Order Breaker) is a **tool used to evaluate the behavior of modern file systems** in regards to building crash consistent applications.
+- It tests the **order guarantees of blocks** in file systems.
+
+#### Eventually Consistent Storage Systems
+
+- **Consistency without Coordination**: The design of modern data management systems has been impacted by the rise of Internet-scale geo-replicated services.
+- **Weak Alternatives**: To reduce the cost of expensive coordination, many systems have sought weaker alternatives that still ensure application integrity.
+- **Cost of Coordination**: Classic mechanisms like serializable transactions come with associated availability, latency, and throughput penalties.
+- **When to Forego Coordination**: The question of when it's safe to forego the cost of expensive coordination versus when it's necessary to pay the price is an important one.
+
+#### Grid Storage vs. NAS/SAN
 
 **Grid Storage**:
 
@@ -2647,545 +3273,9 @@ To summarize:
 - **NAS/SAN is a proven and faster** technology
 - **NAS/SAN won't be replaced** by grid storage (which is specialized)
 
-### CQRS (Command Query Responsibility Segregation)
+### NoSQL
 
-- **Separates the responsibilities of reading data** (queries) **and modifying data** (commands) into separate objects or services.
-- **Improves scalability and performance** by allowing reads and writes to be **optimized separately**.
-- **Promotes event-driven architecture** by allowing commands to trigger domain events.
-- Simplifies domain modeling by **reducing the complexity of aggregates**.
-- **Increases consistency** by using separate models for reads and writes.
-- **Reduces the coupling** between the read and write sides of the system.
-
-### Requirements of Caching Services
-
-- **Scalable** with ability to add machines
-- **Avoid "thundering herds"** due to placement changes
-- **Supports replication** of cache entries
-- **High performance** required
-- Optional **disk backup** support
-- Supports **various storage mediums**, from RAM to SSD
-- Supports **different cache replacement policies** with caution.
-
-### Handling Changing Machine Counts in Caching Services
-
-- Problem: Changing Machine Count
-- Solution: **Consistent Hashing (Ring)**
-- **Machines are mapped into a ring** and their **position determines the key-space they are responsible for**.
-- Machines can be assigned multiple virtual positions.
-
-### Consistent Hashing Algorithms
-
-**Simple Consistent Hashing Algorithm:**
-
-- URLs and caches are **mapped to points on a circle** using a standard hash function.
-- URL assigned to **closest cache in clockwise direction**.
-- Adding a new cache only reassigns the closest URLs to it, **items don't move between existing caches**.
-
-**Dynamo Consistent Hashing Algorithm:**
-
-- **Separates placement and partitioning.**
-- Uses **virtual nodes** assigned to real machines for more flexibility.
-- Virtual node is responsible for multiple real nodes.
-- Improved load balancing due to **additional indirection**.
-
-### Cache Patterns
-
-**Pull**:
-
-- Occurs **during request time**
-- Concurrent misses and client crashes **can result in outdated caches**
-- **Complicated handling** of concurrent misses and updates
-- Can be **slow and dangerous for backends**
-
-**Push**:
-
-- Automated **push updates cached values**
-- Should **only** be used **for values that are always needed**
-
-**Pre-warmed:**
-
-- The system **loads the cache before the application starts** serving clients
-- Used **for big applications with pull caches** to avoid boot issues
-
-**General consideration**: Be aware of LRU or clocked invalidations as cache is mission critical.
-
-### Cache Design Considerations
-
-- **Kinds** of information fragments
-- **Lifecycle** of fragments
-- **Validity** of fragments
-- **Effects** of fragment invalidation
-- **Dependencies** between fragments, pages, etc.
-
-### Local vs. Distributed Events
-
-**Local**:
-
-- Observer updates sent on one thread
-- If observer doesn't return, mechanism stops
-- If observer calls back to observed during update call, deadlock can occur
-- Solution doesn't scale and is not reliable (e.g. observer crashes result in lost registrations)
-- Does not work for remote communication
-
-**Distributed**:
-
-- Various combinations of **push and pull models** possible
-- Receivers can install **filters** using a constraint language to filter content (reduces unwanted notifications)
-
-### Asynchronous Event-Processing
-
-- Publisher and subscriber communicate through **interaction middleware**
-- Used to **decouple components** and asynchronous sub-requests from synchronous main requests (so that multiple fast tasks can run parallel to a slow main task)
-- Implemented as **Message-Oriented-Middleware (MOM)** or socket-based communication library
-- Can be implemented in **broker-less or brokered mode**.
-
-### Features of Event-Driven Interaction
-
-- **Basic Event**: Any entity can send and receive events without restrictions or filtering.
-- **Subscription**: A receiver can subscribe to specific events, making event delivery more efficient.
-- **Advertisement**: The sender informs receivers about possible events, reducing the need for broadcasting.
-- **Content-Based Filtering**: The sender, middleware, or receiver can apply filtering based on event content.
-- **Scoping**: Administrative components can manipulate event routes, enabling invisible communication between components.
-
-### Types of Message Oriented Middleware (MOMs)
-
-**Centralized Message-Oriented-Middleware:**
-
-- Collects all notifications and subscriptions in one central place, enabling **easy event matching and filtering**
-- Has a **high degree of control** and no security/reliability issues on clients
-- Can create **scalability and single-point-of-failure problems**
-
-**Clustered Message-Oriented-Middleware:**
-
-- Provides **scalability** at **higher communication costs**
-- Has lots of routing/filter-tables at cluster nodes, making **filtering and routing of notifications expensive**
-
-**Simple P2P Event Libraries:**
-
-- Local libraries are aware of each other, but **components are de-coupled**
-- Broker-less architecture is **faster** than brokered ones
-- **Does not provide** at-most-once semantics or **protection against message loss**
-- Guarantees **atomicity** and **possibly FIFO**
-- Examples include ZeroMQ, Aaron, and Nanomsg
-
-**Flooding Protocols:**
-
-- Notifications travel towards **subscriptions**, which are only kept at **leaf brokers**
-- Advantages include that **subscriptions become effective quickly**, and notifications are guaranteed to arrive everywhere
-- Price is **many unnecessary notifications** to leaf nodes without subscribers
-
-### ZeroMQ
-
-- **Brokerless** socket library for messaging, with message filtering
-- Connection patterns include **pipeline, pub/sub, and multi-worker**
-- **Various transports**, including in process, across local process, across machines, and multicast groups
-- **Message-passing process model** without the need for synchronization
-- **Multi-platform and multi-language** support
-- "Suicidal snail" fail-fast mechanism to **kill slow subscribers**
-
-### Horizontal vs. Vertical Sharding
-
-**Horizontal**: Per (database) row, e.g. first 100 users are in shard 1, 200 in shard 2 etc.
-
-**Vertical**: Per (database) column, e.g. profile and email is in shard 1, photos and messages in shard 2 etc.
-
-### Sharding Strategies
-
-- Allow adding heterogenous hardware in the future
-- Sharding should not make app code unstable
-- Sharding should be transparent to the app
-- Sharding and placement strategies should be separate
-
-### Horizontal Sharding Functions
-
-Algorithms applied to the key (often: user ID) to create different groups (shards):
-
-- **Numerical range**: users 0-100000, 100001-200000, etc.
-- **Time range**: 1970-80, 81-90, 91-2000, etc.
-- **Hash and modulo** calculation
-- **Directory-based mapping** using a meta-data table for arbitrary mapping from key to shard
-
-### Consequences of Sharding
-
-- **No more SQL `JOIN`s**, leading to lots of copied data
-- Increased need for **partial requests** for data aggregation
-- **Expensive distributed transactions** required for consistency (if needed)
-- Vertical sharding distributes related data types from one user, while horizontal sharding distributes related users from each other (**bad for social graph processing**)
-- **SQL limitations** due to mostly key/value queries and problems with automatic DB-Sequences
-- Every change **requires corresponding application changes**
-
-### Relationships
-
-- Within the database, **referential integrity** rules protect containment relationships
-- **No equivalent in object space**
-- No protection in distributed systems
-
-For example when an employee leaves:
-
-- All rights are cancelled
-- Disc-space is archived and erased
-- Databases for authentication and application-specific DBs are updated
-- Badge no longer works
-- All equipment has been returned
-
-### Functional Requirements of Relationship Services
-
-- **Definition of relations between objects** without modifying those objects
-- Support for **different types of relations**
-- Ability to **create graphs of relations**
-- Ability to **traverse relationship graphs**
-- Support for **reference and containment relations**
-
-### Why Relationship Services Failed
-
-**The good**:
-
-- Powerful **modeling tool**
-- Helps with creation, migration, copy, and deletion of composite objects
-- Maintains referential integrity
-
-**The bad**:
-
-- Tends to create **many small server objects**
-- **Performance impact**
-- Not supported by many CORBA vendors for a long time
-- EJB only supported with local objects in the same container.
-
-## Distributed Services and Algorithms II
-
-### Overview
-
-- Classic (ACID) distributed consistency includes:
-  - Distributed 2P locking
-  - Distributed 2PC consensus
-- ACID 2.0 eventual (coordination-free) consistency includes:
-  - CAP and its children, CALM, CRDTs, etc.
-  - Distributed replication (e.g. Cassandra)
-  - CALM (Bloom) consistency
-  - CRDTs (Conflict-free Replicated Data Types)
-- Distributed Coordination (e.g. Chubby, ZooKeeper) includes:
-  - Distributed consensus protocols
-  - Cluster scheduler (e.g. Borg)
-
-### Why Truth is Expensive
-
-- Strong consistency is discouraged.
-- Coordination and distributed transactions slow down the process and affect availability.
-- The cost of knowing the truth is high for many applications.
-- The truth might only be a partial or outdated version.
-- Availability is prioritized over consistency by making local decisions with available information.
-- Improves the user experience by making this trade-off, most of the time.
-
-### Aspects of Classic Distributed Consistency
-
-- **Distributed Objects and Persistence**: Objects that span across multiple systems and persist data in multiple locations.
-- **ACID**: Atomicity, Consistency, Isolation, Durability - a set of properties that guarantee that database transactions are processed reliably.
-- **Transactions**: A sequence of database operations that are executed as a single unit of work.
-- **Isolation Levels**: The level of isolation between concurrent transactions, specifying how one transaction affects another.
-- **Two-Phase Locking**: A protocol for enforcing serializable access to shared resources in a distributed system.
-- **Distributed Transactions**: Transactions that span multiple systems and persist data in multiple locations.
-- **Two-Phase Commit (2PC)**: A protocol for ensuring that a transaction is committed in a consistent state in a distributed system.
-- **Failure Models for 2PC**: Models for how 2PC protocol handles system failures and ensures the consistency of transactions.
-
-### Persistent Object Representations
-
-- **Real storage object lives in a data store** and uses data store concepts for storage (e.g. a row in a table).
-- Service works with object representations ("**Incarnations**") and provides the illusion of a persistent object to clients.
-- Java Connector Architecture provides an adapter interface for resource managers.
-
-### Mechanisms for Persistence
-
-**SQL Driver**:
-
-- Used to store object state.
-- Suffers from "impedance mismatch".
-- Needs to control locking etc. in the service.
-
-**Object Relational Mapper (EJB/Hibernate)**:
-
-- Used to store object state transparently for the programmer.
-- Inheritance creates difficult problems for table mapping: Either performance or flexibility suffer.
-
-> Just storing an object is simple - doing this in a way that protects from concurrent access, system failures, and across different data stores is much harder.
-
-### Persistent Object Mapping
-
-- Enterprise integration software specializes in this kind of mapping
-- Key to persistent mapping is **meta-information**:
-  - **Generates object representations** for a service.
-  - **Generates code** necessary for the data store to store the objects with its own mechanisms and objects.
-
-### Data Store Session Pooling
-
-- **Number of channels** to a data store **is limited**
-- If an object directly allocates a session (channel) and does not return it quickly, system throughput would become marginal
-- **Session creation is expensive** (security!)
-- Clients can either ask a pool for a session or the container framework can automatically allocate and return sessions
-- Problems:
-  - **Timeouts**
-  - **Connection recycling**
-
-### Classic ACID Definitions
-
-- **Durability**: Ensures that once a transaction is committed, its effects **persist even in the case of system failures** (e.g. a crash that causes you to lose changes made to a word file)
-- **Atomicity**: Ensures that a transaction is treated as a single, indivisible unit of **work that either happens in its entirety or doesn't happen at all** (e.g. in the case of a birthday party re-schedule where not all participants were caught in time)
-- **Isolation**: Ensures that the concurrent execution of transactions results in a system state that would be obtained **as if transactions were executed serially** (e.g. if two people work on a shared file, their changes should not interfere with each other)
-- **Consistency**: Ensures that the **system remains in a valid state after a transaction is executed** (e.g. after you complete a friend's work for the day, the tasks remain consistent, and the system remains in a valid state)
-
-### Transaction Properties and Mechanisms
-
-- **Atomic Changes over Distributed Resources**: This is achieved through the use of consensus or voting algorithms such as two-phase commit.
-- **Consistency**: This is maintained by observing consistency constraints between objects, such that the system remains in a valid state before and after a transaction is executed.
-- **Isolation from Concurrent Access**: This is accomplished through the use of locking mechanisms, such as two-phase locking or hierarchical locking.
-- **Durability of Changes**: This is ensured by transferring changes made to memory objects to persistent storage, to prevent loss in case of a system failure.
-
-### Serializability and Isolation
-
-**Definition**: States that the outcome of executing a set of transactions should be equivalent to some serial execution of those transactions.
-
-**Purpose**: The purpose of serializability is to ensure that each transaction operates on the database as if it were running by itself, which maintains the consistency and correctness of the database.
-
-**Importance**: Without serializability, ACID consistency is generally not guaranteed, making it a crucial component in maintaining the integrity of the database.
-
-### Locking Against Concurrent Access
-
-**Binary locks**:
-
-- Used to synchronize an object, causing all clients except one to be blocked.
-- Limitations: Binary locks are simple to use, but their performance suffers as they cannot distinguish between reads and writes.
-
-**Modal locks (read/write locks)**:
-
-- Used to allow clients who only want to read to obtain read locks. Many concurrent read locks are possible.
-- Advantages: Modal locks allow for a more nuanced approach to concurrent access, improving performance by allowing multiple read operations to occur simultaneously.
-
-**Lock Granularity**: The granularity of locks (the scope of the resources being protected by the lock) affects the overall throughput of a system. **The smaller the lock granularity, the better the performance** will be.
-
-### Optimistic Locking
-
-**Process**:
-
-1. Lock a row, read it along with its timestamp, and then release the lock.
-2. Start a transaction
-3. Write the data to the database.
-4. Acquire locks for all data read and compare the data timestamps.
-5. If one of them is newer, the transaction operation is rolled back, otherwise it is commited.
-
-**Advantages**:
-
-- Better overall throughput as locks are held for only a short period of time
-- Timestamp comparison logic is implemented as a framework mechanism in the client session objects, simplifying the process
-
-### Serializability with Two-Phase Locking
-
-**Process**:
-
-1. Allocate all locks
-2. Manipulate the data
-3. Release all locks
-
-**Advantages**: Requires that all locks be allocated before any data manipulation and released only after the manipulation is complete. **Guarantees serializability**.
-
-### Deadlocks
-
-- State where two or more processes are blocked because each **one is waiting for resources held by the other**
-- Results in a situation where the processes cannot continue to run and are **stuck in a permanent waiting state**
-- **Can occur in concurrent systems** where multiple processes access shared resources
-
-### Distributed Deadlock Detection
-
-**Local wait-for-graphs**:
-
-- **Correctness**: Based on the definition of a wait-for-graph, this method correctly detects deadlocks by identifying cycles in the graph.
-- **Liveness**: This method can only detect deadlocks that exist within a single process or machine, so it may miss deadlocks in a distributed system.
-- **Cost/complexity**: The cost of implementing this method is relatively low, as it only requires tracking locks and resource requests within a single process.
-- **Failure model**: This method is susceptible to false negatives (missed deadlocks) in a distributed system.
-- **Architecture type**: This method is suitable for systems with a centralized architecture, where all locks and resource requests can be monitored by a single process.
-
-**Detection servers**:
-
-- **Correctness**: Detection servers are designed to detect deadlocks in a distributed system, so this method should provide correct results if implemented correctly.
-- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
-- **Cost/complexity**: The cost of implementing this method is higher than local wait-for-graphs, as it requires communication and coordination between multiple processes.
-- **Failure model**: This method is susceptible to false negatives if one or more detection servers fail, or if there are errors in the communication between the servers.
-- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
-
-**Distributed edge chasing algorithms**:
-
-- **Correctness**: This method is designed to detect deadlocks in a distributed system, so it should provide correct results if implemented correctly.
-- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
-- **Cost/complexity**: The cost of implementing this method is higher than local wait-for-graphs, as it requires communication and coordination between multiple processes.
-- **Failure model**: This method is susceptible to false negatives if there are errors in the communication between the processes.
-- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
-
-**Stochastic detection**:
-
-- **Correctness**: The accuracy of this method depends on the parameters used, so it may provide incorrect results in some cases.
-- **Liveness**: This method is designed to detect deadlocks in a distributed system, so it should have better liveness compared to local wait-for-graphs.
-- **Cost/complexity**: The cost of implementing this method is relatively low, as it only requires monitoring resource requests and using randomization to make decisions.
-- **Failure model**: This method may miss deadlocks if the randomization parameters are not set correctly.
-- **Architecture type**: This method is suitable for systems with a decentralized architecture, where multiple processes are involved in the detection of deadlocks.
-
-### Transaction API
-
-1. System starts in a consistent state
-2. Begins transaction
-3. Modifies objects
-
-**Commit transaction**:
-
-- System has a new, consistent state
-- Local objects are now invalid
-- Changes are visible to others
-
-**On error: Rollback**:
-
-- Either from system or from client
-- Only successful commit operations become the new state durable and visible to others
-- Means going back to the beginning completely
-- Client does not even know that they tried an operation
-- Log files would have to be cleaned.
-
-### Components of Distributed Transactions
-
-**Process**
-
-- Begin()
-- Commit()
-- Rollback()
-
-**RPCs**:
-
-- Register (transactional servers)
-- Vote (objects)
-- Commit/rollback (objects, resource managers)
-- Read/write/prepare (resource managers)
-
-**Components**:
-
-- Transaction
-- Transactional client
-- Transactional servers (objects)
-- TACoordinator
-- XA resource managers
-
-### Service Context
-
-- Some **services require context** information to flow **with a call**
-- **Security**: Needs to flow user information, access rights, etc.
-- **Transactions**: Needs to flow information about ongoing transactions to participants
-- The additional information **needs to be standardized** to allow different vendor implementations of services to interoperate.
-
-### Distributed Two-Phase Commit
-
-**Vote**:
-
-- To achieve atomic operations in a distributed setting, the **TA-Coordinator asks all participants for their vote** on committing or rolling back.
-- Upon receiving a `commit()` call from a client, objects part of the TA **vote by asking resource managers (e.g. databases) to prepare for the commit**.
-- A successful return of "prepare" from resource managers means that **both the object and the resource manager have promised to commit** the changes if the coordinator sends a commit.
-
-**Completion**:
-
-- The **coordinator is the only entity that can commit or abort** a TA after the prepare phase.
-- If the vote phase was successful and all participants have prepared for a commit, the **coordinator calls for a commit**.
-- In case of an error (e.g. unreachable participant), the **coordinator calls for a rollback**.
-
-### Failure Models of Distributed Transactions
-
-**Work Phase**:
-
-- **If a participant crashes** or becomes unavailable, the **coordinator calls for a rollback**.
-- **If the client crashes** before calling commit, the **coordinator will timeout** the TA and call for a rollback.
-
-**Voting Phase**:
-
-- **If a resource becomes unavailable** or has other issues, the **coordinator calls for a rollback**.
-
-**Commit Phase (Server Uncertainty)**:
-
-- **In case of a crashed server**, it will consult the coordinator after restart and **ask for the decision** (commit or rollback).
-
-### Special Problems of Distributed Transactions
-
-**Resources**:
-
-- Participants in distributed TA's **consume many system resources** due to logging all actions to temporary persistent storage.
-- **Large parts of the system may become locked** during a TA.
-
-**Coordinator as a Single Point of Failure**:
-
-- The coordinator must also prepare for a crash and log all actions to temporary persistent storage.
-
-**Heuristic Outcomes for Transactions**:
-
-- In certain circumstances, the outcome of a transaction may only be determined heuristically if the real outcome cannot be determined.
-
-### Transaction Types
-
-**Flat Transactions**:
-
-- Characterized by all-or-nothing behavior.
-- Any failure causes complete rollback to original state.
-- Can result in loss of significant amount of work if many objects have been handled.
-
-**Nested Transactions**:
-
-- Allow partial rollbacks with a parent transaction.
-- Child TA rollback doesn't affect parent TA, but parent TA rollback returns all participants to initial state.
-- Example: Allocation of a travel plan (hotel, flight, rental-car, trips, etc.).
-
-**Long-running Transactions**:
-
-- Challenge is resource allocation and increasing amount of work lost in case of rollback.
-- Syncpoints move the fallback position closer to the commit point.
-
-**Compensating Transactions**:
-
-- Improves transaction throughput by making objects visible sooner, at the cost of sacrificing the ISOLATION property.
-- Require compensation for previous TA which can no longer be rolled back.
-- Depend on the application whether compensating transactions are possible.
-- Can be hand-coded if no transaction monitor/manager is available.
-
-### ANSI Transaction Levels
-
-**Problems**:
-
-- **Dirty reads**: Occurs when a transaction reads data written by another concurrent transaction that has not yet been committed.
-- **Non-repeatable reads**: Occurs when a transaction re-reads data it has previously read and finds that the data has been modified by another transaction that has since committed.
-- **Phantom reads**: Occurs when a transaction re-executes a query returning a set of rows that satisfies a search condition and finds that the set of rows satisfying the condition has changed due to another recently-committed transaction.
-
-**Transaction Levels**:
-
-- **Read Uncommitted**:
-  - Prevents: Nothing
-- **Read Committed**:
-  - Prevents:
-    - Dirty reads.
-- **Repeatable Read**:
-  - Prevents:
-    - Dirty reads
-    - Non-repeatable reads
-- **Serializable**:
-  - Prevents:
-    - Dirty reads
-    - Non-repeatable reads
-    - Phantom reads
-
-The higher the level, the more overhead is required.
-
-### Filesystem Block Order Guarantees
-
-- BOB (Block Order Breaker) is a **tool used to evaluate the behavior of modern file systems** in regards to building crash consistent applications.
-- It tests the **order guarantees of blocks** in file systems.
-
-### Eventually Consistent Storage Systems
-
-- **Consistency without Coordination**: The design of modern data management systems has been impacted by the rise of Internet-scale geo-replicated services.
-- **Weak Alternatives**: To reduce the cost of expensive coordination, many systems have sought weaker alternatives that still ensure application integrity.
-- **Cost of Coordination**: Classic mechanisms like serializable transactions come with associated availability, latency, and throughput penalties.
-- **When to Forego Coordination**: The question of when it's safe to forego the cost of expensive coordination versus when it's necessary to pay the price is an important one.
-
-### Forces behind NoSQL
+#### Forces behind NoSQL
 
 - Need for low-latency and high-throughput access to data
 - Difficulty in managing and maintaining consistency in a distributed system
@@ -3198,14 +3288,14 @@ The higher the level, the more overhead is required.
 - The need for automatic scaling in storage to keep up with rapidly growing data
 - Relaxed data consistency requirements in some applications.
 
-### Scaling Problems of RDBMs
+#### Scaling Problems of RDBMs
 
 - **Poor time complexity of SQL joins**: $O(m+n)$ or worse
 - **Difficulty in horizontally scaling**, resulting in loss of joins or jumping between nodes
 - **Unbounded nature of queries**, which can lead to a single query overloading a database
 - **Optimized for storage efficiency** (no duplicates), integrity, and flexibility of access through arbitrary joins.
 
-### NoSQL Design Patterns
+#### NoSQL Design Patterns
 
 - Use **partition keys** with many distinct values for better scalability and data distribution.
 - Opt for a **single table design with hierarchical modeling** and de-normalization to simplify the data structure.
@@ -3217,7 +3307,7 @@ The higher the level, the more overhead is required.
 - **Data integrity** is an application concern and **should be handled by the application logic**.
 - Data storage efficiency is not a primary concern.
 
-### DynamoDB Design Principles
+#### DynamoDB Design Principles
 
 - Decentralized design with no single point of failure (no master node)
 - Supports heterogeneous hardware
@@ -3230,19 +3320,21 @@ The higher the level, the more overhead is required.
 
 ### Beyond Relaxed Consistency
 
+#### Overview
+
 - **Order-insensitive processing** using CALM (Consistency as Logical Monotonicity) principles in EC (Eventual Consistency) programs
 - Converging replicated data types (**CRDTs**) divided into two types:
   - State-based CRDTs
   - Operation-based CRDTs
 
-### CALM Principle
+#### CALM Principle
 
 - "Consistency as Logical Monotonicity"
 - **Links consistency with logical monotonicity**, where monotonic programs ensure eventual consistency regardless of the order of delivery and computation.
 - **Monotonic programs do not require coordination**, unlike non-monotonic programs where adding an element to the input set can revoke a previously valid output.
 - **Non-monotonic programs require coordination** schemes that wait until inputs are complete before proceeding.
 
-### CALM Operations
+#### CALM Operations
 
 **Logically Monotonic**:
 
@@ -3257,7 +3349,7 @@ The higher the level, the more overhead is required.
 - Resetting counter
 - Negation
 
-### CRDTs
+#### CRDTs
 
 **State-based CRDTs**:
 
@@ -3270,14 +3362,14 @@ The higher the level, the more overhead is required.
 - The operations must be commutative with "exactly once" semantics (idempotent) and in FIFO order.
 - These delivery guarantees are difficult to achieve, making state-based CRDTs more popular currently.
 
-### Bending the Problem
+#### Bending the Problem
 
 - **Separates data store and application-level consistency** concerns.
 - CALM, ACID 2.0, and CRDT appeal to higher-level consistency criteria in the form of application-level invariants.
 - Instead of requiring strong consistency for every read and write, the **application only needs to ensure semantic guarantees** (e.g., "the counter is strictly increasing").
 - This grants more flexibility in how reads and writes are processed.
 
-### Examples of CRDTs
+#### Examples of CRDTs
 
 **Counters**:
 
@@ -3298,7 +3390,7 @@ The higher the level, the more overhead is required.
 - Positive-negative set: Consists of one PN-counter per set item
 - Observed-remove set
 
-### Distributed Coordination
+#### Distributed Coordination
 
 **Features**:
 
@@ -3321,7 +3413,9 @@ The higher the level, the more overhead is required.
 - **Reliability**: Once an update has been applied, it will persist from that time forward until a client overwrites the update.
 - **Timeliness**: The client's view of the system is guaranteed to be up-to-date within a certain time bound.
 
-### Zookeeper API
+### Distributed Coordination Services
+
+#### Zookeeper API
 
 - **create**: Creates a node at a specified location in the tree
 - **delete**: Deletes a node from the tree
@@ -3331,7 +3425,7 @@ The higher the level, the more overhead is required.
 - **get children**: Retrieves a list of children of a node
 - **sync**: Waits for data changes to be propagated to all nodes in the cluster.
 
-### Primary-Order Atomic Broadcast with Zab
+#### Primary-Order Atomic Broadcast with Zab
 
 - Primary sends **non-commutative, incremental state changes** to backup units
 - **Order** of incremental changes **maintained even in case of primary crash**
@@ -3339,20 +3433,20 @@ The higher the level, the more overhead is required.
 - Identification scheme to **prevent re-ordering of updates**
 - Synchronization phase to **ensure old updates delivered before new ones stored**.
 
-### Consistency Requirements for ABCast (Reliable Ordered Atomic Broadcast)
+#### Consistency Requirements for ABCast (Reliable Ordered Atomic Broadcast)
 
 - **Validity**: If a correct process broadcasts a message, all correct processes will eventually deliver it.
 - **Uniform Agreement**: If a process delivers a message, all correct processes will eventually deliver it.
 - **Uniform Integrity**: Every process delivers a message at most once, only if it was previously broadcast by sender.
 - **Uniform Total Order**: If processes p and q both deliver messages m and m0, their order must be the same.
 
-### Primary Order
+#### Primary Order
 
 - **Local primary order**: If primary broadcasts (v, z) before (v', z'), process that delivers (v, z) must have delivered (v', z') before (v, z).
 - **Global primary order**: If Pi broadcasts (v, z) and Pj > Pi broadcasts (v', z'), process delivering both (v, z) and (v', z') must deliver (v, z) first.
 - **Primary integrity**: If Pe broadcasts (v, z) and some process delivers (v', z') broadcast by Pe' < Pe, Pe must have delivered (v', z') before broadcasting (v, z).
 
-### HA Transactions
+#### HA Transactions
 
 - **Provide transactional guarantees without unavailability** during system partitions or high network latency (Non-failing replica must respond)
 - **Not CAP**: Can't provide linearizability as reading the most recent write from a replica
@@ -3374,6 +3468,8 @@ The higher the level, the more overhead is required.
 
 ### Design Principles for Distributed Systems
 
+#### Overview
+
 - **Consideration of Latency**: Examination of buffering and round-trip times
 - **Importance of Locality**: Proper placement of heavily interacting components
 - **Avoiding Duplication of Work**: Utilizing resources effectively
@@ -3385,7 +3481,7 @@ The higher the level, the more overhead is required.
 
 > Know Your No. 1 Enemy: **Latency**!
 
-### Sharing Ressources and Data
+#### Sharing Ressources and Data
 
 - **Pooling resources** can improve performance even in local systems
 - High-frequency requests can lead to memory allocation issues and poor performance
@@ -3393,7 +3489,7 @@ The higher the level, the more overhead is required.
 - **Minimizing backend requests** while maintaining sane application logic
 - **Breaking down information** into smaller fragments can reveal reusable parts
 
-### Connection Pooling
+#### Connection Pooling
 
 - **Matching** server and database CPU **capabilities**
 - **Avoiding blocking** and app threads holding onto connections
@@ -3402,26 +3498,26 @@ The higher the level, the more overhead is required.
 - **Understanding what constitutes a "connection"** to storage
 - **Monitoring core/thread ratio**, etc.
 
-### Horizonal Scaling/Parallelization
+#### Horizonal Scaling/Parallelization
 
 - Horizontal scaling through **parallel processing**
 - Every **request can be handled by any thread on any host**
 - **Avoid synchronization points** in servlet engines or database connections.
 
-### Caching and Replication
+#### Caching and Replication
 
 - Caching components are responsible for maintaining data validity
 - Data source is responsible for keeping replicas consistent and up-to-date
 - Focus on reducing back-end requests for improved efficiency.
 
-### End-to-End Argument
+#### End-to-End Argument
 
 - **User/Developer**: Compensation for behavior through application
 - **Application Layer**: Use of special commands, such as "Select for Update" or "Begin Transaction"
 - **Intermediate Layer**: Compiler/Languages utilizing technologies such as Software Transactional Memory and memory models
 - **Base Layer**: Considerations for CPU cache coherence, database isolation levels, and real-time streaming, etc.
 
-### Design Methodology
+#### Design Methodology
 
 - **Back-of-the-envelope** calculations
 - Decide on **geographical distribution and replication strategy**
@@ -3432,7 +3528,7 @@ The higher the level, the more overhead is required.
 - Complete **monitoring and logging setup**
 - **Plan for deployment, release changes, testing, and maintenance** using fault-tolerant features.
 
-### Uncomfortable Real-World Questions
+#### Uncomfortable Real-World Questions
 
 - How many application servers are needed to support the customer base?
 - What is the optimal ratio of users to web servers?
@@ -3454,95 +3550,26 @@ The higher the level, the more overhead is required.
 
 ### Architecture Fields
 
+#### Overview
+
 - **Information** Architecture
 - **Distribution** Architecture
 - **System** Architecture
 - **Physical** Architecture
 - **Architectural** Validation
 
-### Architecture Validation
+#### Information Architecture (to analyze Caching)
 
-In the architecture validation phase these questions are answered: How does the architecture ...
+> Defines pieces of information to aggregate or integrate
 
-- Handle security and privacy?
-- Handle data consistency and durability?
-- Handle disaster recovery and business continuity?
-- Handle performance, scalability and capacity?
-- Handle integration with other systems and data sources?
-- Handle upgrades, maintenance and support?
-- Align with the organization's goals, strategies and plans?
+| Data/changed by | Time                           | Personalization             |
+| --------------- | ------------------------------ | --------------------------- |
+| Country Codes   | No (not often, reference data) | No                          |
+| News            | Yes (aging only)               | No, but personal selections |
+| Greeting        | No                             | Yes                         |
+| Message         | Yes (slowly aging)             | Yes                         |
 
-### Problems with Naive Portal Designs
-
-The portal had no caching etc.
-
-- **GUI architecture**: Long time with empty page
-- **System architecture**: No System Architecture Diagram!
-- **Performance**: Very slow construction of home-page
-- **Reliability**: Frequent stalls and crashes of the application
-- **Throughput**: 10 users max. with top-notch hardware!
-- **Team**: Little understanding of performance or architecture
-
-### Improving the GUI Architecture
-
-- Minimize HTTP requests by combining files and using sprites
-- Use asynchronous loading for non-critical resources
-- Avoid heavy use of animations and dynamic effects
-- Preload essential resources
-- Use a content delivery network (CDN) for static resources
-- Lazy load images and videos
-- Use browser caching effectively
-- Minimize the use of plugins and third-party scripts.
-- Minimize the number of DOM manipulations
-- Use lazy loading for images and other resources
-- Avoid using large, blocking scripts
-- Use a content delivery network (CDN) to distribute resources
-- Consider using server-side rendering or progressive web apps (PWA)
-- Implement caching strategies at the server and client side
-- Monitor and optimize the page load time regularly
-- Use performance optimization tools and browser dev-tools to identify bottlenecks.
-
-### Improving the System Architecture
-
-Use a system architecture diagram:
-
-- Show the main components and their interactions
-- Indicate the flow of data and processing
-- Highlight the main functionalities and relationships between components
-- Reflect the overall structure and design of the system
-- Provide a clear and concise representation of the system architecture.
-
-### Lessons Learned from Naive Portal Designs
-
-- Request time is affected by the **sum of individual calls**
-- **Each delay** in a call **contributes** to the runtime
-- Back-end server problems lead to poor request time
-- **Long timeout settings** negatively impact response times
-- Small improvements in sub-requests matter with many concurrent requests
-- **Lack of central architecture diagram** limits understanding of performance impact and throughput
-- **JEE restrictions** prevent creating custom threads.
-
-### Fan-Out Architecture
-
-Calls are parallel instead of serial.
-
-- The overall **request time is determined by the slowest sub-request**
-- Each **delay in an individual call adds to the runtime**
-- Long timeout settings negatively impact response times
-- Using **short timeouts** for back-end server calls is **recommended**
-- Running short requests in separate threads may not be productive, **consider request bundling**
-- **Error from one sub-call should not block the whole request**, have a fallback
-- **Avoid all threads getting stuck** on a dysfunctional sub-call (bulkhead)
-- Temporarily **close dead connections (circuit-breaker)**.
-
-### Reliability Issues in Dependencies
-
-- System load becomes worse due to **hanging requests** occupying resources and leading to heavy garbage collection
-- Dead servers can cause a **buildup of threads** due to even short timeouts
-- The portal was **frequently impacted by failing back-end servers**
-- **Avoid lengthy waiting time** for sub-requests in the homepage action handler: Adopt the "Fail-fast" pattern today.
-
-### Distribution Architcture
+#### Distribution Architcture
 
 > Tells portal how to map/locate fragments defined in the information
 
@@ -3564,7 +3591,7 @@ Calls are parallel instead of serial.
 - Huge latencies and variations in response times causing instabilities in the portal application
 - Getting to the servers for every request is nearly impossible due to huge latencies and variations in response times from dependencies.
 
-### Service Access Layer
+#### Service Access Layer
 
 Is determined by the distribution architecture.
 
@@ -3579,28 +3606,7 @@ Is determined by the distribution architecture.
 
 **Advanced Alternative**: Service mesh with separate data and control plane
 
-### Information Architecture (to analyze Caching)
-
-> Defines pieces of information to aggregate or integrate
-
-| Data/changed by | Time                           | Personalization             |
-| --------------- | ------------------------------ | --------------------------- |
-| Country Codes   | No (not often, reference data) | No                          |
-| News            | Yes (aging only)               | No, but personal selections |
-| Greeting        | No                             | Yes                         |
-| Message         | Yes (slowly aging)             | Yes                         |
-
-### Fragments
-
-**Pages**: Unique to customers, cannot be re-used
-
-**Page fragments**:
-
-- Can be shared and heavily re-used
-- Allows huge reduction in back-end requests
-- Downside: If fragments change, mechanism needed to invalidate dependent pages.
-
-### Physical and Process Architecture
+#### Physical and Process Architecture
 
 **Physical Architecture**:
 
@@ -3617,7 +3623,103 @@ Is determined by the distribution architecture.
 - Can only install more CPUs or RAM on single instance of host
 - Limited scalability and availability (HA application)
 
-### Latency Reduction & Tolerance in Fan Out Architectures
+#### Architecture Validation
+
+In the architecture validation phase these questions are answered: How does the architecture ...
+
+- Handle security and privacy?
+- Handle data consistency and durability?
+- Handle disaster recovery and business continuity?
+- Handle performance, scalability and capacity?
+- Handle integration with other systems and data sources?
+- Handle upgrades, maintenance and support?
+- Align with the organization's goals, strategies and plans?
+
+### Improving an Existing Design
+
+#### Problems with Naive Application Designs
+
+The portal had no caching etc.
+
+- **GUI architecture**: Long time with empty page
+- **System architecture**: No System Architecture Diagram!
+- **Performance**: Very slow construction of home-page
+- **Reliability**: Frequent stalls and crashes of the application
+- **Throughput**: 10 users max. with top-notch hardware!
+- **Team**: Little understanding of performance or architecture
+
+#### Improving the GUI Architecture
+
+- Minimize HTTP requests by combining files and using sprites
+- Use asynchronous loading for non-critical resources
+- Avoid heavy use of animations and dynamic effects
+- Preload essential resources
+- Use a content delivery network (CDN) for static resources
+- Lazy load images and videos
+- Use browser caching effectively
+- Minimize the use of plugins and third-party scripts.
+- Minimize the number of DOM manipulations
+- Use lazy loading for images and other resources
+- Avoid using large, blocking scripts
+- Use a content delivery network (CDN) to distribute resources
+- Consider using server-side rendering or progressive web apps (PWA)
+- Implement caching strategies at the server and client side
+- Monitor and optimize the page load time regularly
+- Use performance optimization tools and browser dev-tools to identify bottlenecks.
+
+#### Improving the System Architecture
+
+Use a system architecture diagram:
+
+- Show the main components and their interactions
+- Indicate the flow of data and processing
+- Highlight the main functionalities and relationships between components
+- Reflect the overall structure and design of the system
+- Provide a clear and concise representation of the system architecture.
+
+#### Lessons Learned from Naive Portal Designs
+
+- Request time is affected by the **sum of individual calls**
+- **Each delay** in a call **contributes** to the runtime
+- Back-end server problems lead to poor request time
+- **Long timeout settings** negatively impact response times
+- Small improvements in sub-requests matter with many concurrent requests
+- **Lack of central architecture diagram** limits understanding of performance impact and throughput
+- **JEE restrictions** prevent creating custom threads.
+
+### Fan-Out Architecture
+
+#### Overview
+
+Calls are parallel instead of serial.
+
+- The overall **request time is determined by the slowest sub-request**
+- Each **delay in an individual call adds to the runtime**
+- Long timeout settings negatively impact response times
+- Using **short timeouts** for back-end server calls is **recommended**
+- Running short requests in separate threads may not be productive, **consider request bundling**
+- **Error from one sub-call should not block the whole request**, have a fallback
+- **Avoid all threads getting stuck** on a dysfunctional sub-call (bulkhead)
+- Temporarily **close dead connections (circuit-breaker)**.
+
+#### Reliability Issues in Dependencies
+
+- System load becomes worse due to **hanging requests** occupying resources and leading to heavy garbage collection
+- Dead servers can cause a **buildup of threads** due to even short timeouts
+- The portal was **frequently impacted by failing back-end servers**
+- **Avoid lengthy waiting time** for sub-requests in the homepage action handler: Adopt the "Fail-fast" pattern today.
+
+#### Fragments
+
+**Pages**: Unique to customers, cannot be re-used
+
+**Page fragments**:
+
+- Can be shared and heavily re-used
+- Allows huge reduction in back-end requests
+- Downside: If fragments change, mechanism needed to invalidate dependent pages.
+
+#### Latency Reduction & Tolerance
 
 - **Keep response times tight** but aware of stragglers
 - **Fight stragglers** with backup requests and cross-server cancellation
@@ -3630,7 +3732,7 @@ Is determined by the distribution architecture.
 - Increase **replication** count
 - Beware of the **incast** problem
 
-### Avoiding Getting Stuck in Fan-Out Architectures
+#### Avoiding Getting Stuck
 
 - **Fail Fast**: Don't wait for problematic resources
 - **Timeouts**: Use timeouts when accessing a service
@@ -3641,7 +3743,9 @@ Is determined by the distribution architecture.
 - **Stubbed Data**: Revert to default values if personalized options can't be retrieved
 - **Empty Response (Fail Silent)**: Return null or empty list that UIs can ignore.
 
-### Circuit Breakers
+### Containing Failures
+
+#### Circuit Breakers
 
 - Purpose: **Handle faults that might take a long time to recover from**
 - Provide control mechanism to **prevent application from continually trying** to perform a failing operation
@@ -3651,7 +3755,7 @@ Is determined by the distribution architecture.
 - Helps **prevent application from becoming unresponsive**
 - **Protects other parts of the system** from being affected by the failure.
 
-### Bulkheads
+#### Bulkheads
 
 - **Bulkhead pattern** is a design for fault-tolerant applications
 - Elements of an application are **isolated into pools**
@@ -3659,7 +3763,7 @@ Is determined by the distribution architecture.
 - Named after the sectioned partitions (bulkheads) of a ship's hull
 - Example: **semaphores and thread pools**
 
-### Blast Reduction
+#### Blast Reduction
 
 - Partition app into geographical regions (e.g. US, DACH etc.)
 - Splitting regions further into specific availability zones and further cells
