@@ -265,6 +265,48 @@ Felicitas Pojtinger
     -   10.36 Functional Requirements of Relationship Services
     -   10.37 Why Relationship Services Failed
 -   11 Distributed Services and Algorithms II
+    -   11.1 Overview
+    -   11.2 Why Truth is Expensive
+    -   11.3 Aspects of Classic Distributed Consistency
+    -   11.4 Persistent Object Representations
+    -   11.5 Mechanisms for Persistence
+    -   11.6 Persistent Object Mapping
+    -   11.7 Data Store Session Pooling
+    -   11.8 Classic ACID Definitions
+    -   11.9 Transaction Properties and Mechanisms
+    -   11.10 Serializability and Isolation
+    -   11.11 Locking Against Concurrent Access
+    -   11.12 Optimistic Locking
+    -   11.13 Serializability with Two-Phase Locking
+    -   11.14 Deadlocks
+    -   11.15 Distributed Deadlock Detection
+    -   11.16 Transaction API
+    -   11.17 Components of Distributed Transactions
+    -   11.18 Service Context
+    -   11.19 Distributed Two-Phase Commit
+    -   11.20 Failure Models of Distributed Transactions
+    -   11.21 Special Problems of Distributed Transactions
+    -   11.22 Transaction Types
+    -   11.23 ANSI Transaction Levels
+    -   11.24 Filesystem Block Order Guarantees
+    -   11.25 Eventually Consistent Storage Systems
+    -   11.26 Forces behind NoSQL
+    -   11.27 Scaling Problems of RDBMs
+    -   11.28 NoSQL Design Patterns
+    -   11.29 DynamoDB Design Principles
+    -   11.30 Beyond Relaxed Consistency
+    -   11.31 CALM Principle
+    -   11.32 CALM Operations
+    -   11.33 CRDTs
+    -   11.34 Bending the Problem
+    -   11.35 Examples of CRDTs
+    -   11.36 Distributed Coordination
+    -   11.37 Zookeeper API
+    -   11.38 Primary-Order Atomic Broadcast with Zab
+    -   11.39 Consistency Requirements for ABCast (Reliable Ordered
+        Atomic Broadcast)
+    -   11.40 Primary Order
+    -   11.41 HA Transactions
 -   12 Design of Distributed Systems
     -   12.1 Overview
     -   12.2 Design Principles for Distributed Systems
@@ -5375,7 +5417,711 @@ The bad:
 
 Distributed Services and Algorithms II
 
-  TODO: Add overview
+Overview
+
+-   Classic (ACID) distributed consistency includes:
+    -   Distributed 2P locking
+    -   Distributed 2PC consensus
+-   ACID 2.0 eventual (coordination-free) consistency includes:
+    -   CAP and its children, CALM, CRDTs, etc.
+    -   Distributed replication (e.g. Cassandra)
+    -   CALM (Bloom) consistency
+    -   CRDTs (Conflict-free Replicated Data Types)
+-   Distributed Coordination (e.g. Chubby, ZooKeeper) includes:
+    -   Distributed consensus protocols
+    -   Cluster scheduler (e.g. Borg)
+
+Why Truth is Expensive
+
+-   Strong consistency is discouraged.
+-   Coordination and distributed transactions slow down the process and
+    affect availability.
+-   The cost of knowing the truth is high for many applications.
+-   The truth might only be a partial or outdated version.
+-   Availability is prioritized over consistency by making local
+    decisions with available information.
+-   Improves the user experience by making this trade-off, most of the
+    time.
+
+Aspects of Classic Distributed Consistency
+
+-   Distributed Objects and Persistence: Objects that span across
+    multiple systems and persist data in multiple locations.
+-   ACID: Atomicity, Consistency, Isolation, Durability - a set of
+    properties that guarantee that database transactions are processed
+    reliably.
+-   Transactions: A sequence of database operations that are executed as
+    a single unit of work.
+-   Isolation Levels: The level of isolation between concurrent
+    transactions, specifying how one transaction affects another.
+-   Two-Phase Locking: A protocol for enforcing serializable access to
+    shared resources in a distributed system.
+-   Distributed Transactions: Transactions that span multiple systems
+    and persist data in multiple locations.
+-   Two-Phase Commit (2PC): A protocol for ensuring that a transaction
+    is committed in a consistent state in a distributed system.
+-   Failure Models for 2PC: Models for how 2PC protocol handles system
+    failures and ensures the consistency of transactions.
+
+Persistent Object Representations
+
+-   Real storage object lives in a data store and uses data store
+    concepts for storage (e.g. a row in a table).
+-   Service works with object representations (“Incarnations”) and
+    provides the illusion of a persistent object to clients.
+-   Java Connector Architecture provides an adapter interface for
+    resource managers.
+
+Mechanisms for Persistence
+
+SQL Driver:
+
+-   Used to store object state.
+-   Suffers from “impedance mismatch”.
+-   Needs to control locking etc. in the service.
+
+Object Relational Mapper (EJB/Hibernate):
+
+-   Used to store object state transparently for the programmer.
+-   Inheritance creates difficult problems for table mapping: Either
+    performance or flexibility suffer.
+
+  Just storing an object is simple - doing this in a way that protects
+  from concurrent access, system failures, and across different data
+  stores is much harder.
+
+Persistent Object Mapping
+
+-   Enterprise integration software specializes in this kind of mapping
+-   Key to persistent mapping is meta-information:
+    -   Generates object representations for a service.
+    -   Generates code necessary for the data store to store the objects
+        with its own mechanisms and objects.
+
+Data Store Session Pooling
+
+-   Number of channels to a data store is limited
+-   If an object directly allocates a session (channel) and does not
+    return it quickly, system throughput would become marginal
+-   Session creation is expensive (security!)
+-   Clients can either ask a pool for a session or the container
+    framework can automatically allocate and return sessions
+-   Problems:
+    -   Timeouts
+    -   Connection recycling
+
+Classic ACID Definitions
+
+-   Durability: Ensures that once a transaction is committed, its
+    effects persist even in the case of system failures (e.g. a crash
+    that causes you to lose changes made to a word file)
+-   Atomicity: Ensures that a transaction is treated as a single,
+    indivisible unit of work that either happens in its entirety or
+    doesn’t happen at all (e.g. in the case of a birthday party
+    re-schedule where not all participants were caught in time)
+-   Isolation: Ensures that the concurrent execution of transactions
+    results in a system state that would be obtained as if transactions
+    were executed serially (e.g. if two people work on a shared file,
+    their changes should not interfere with each other)
+-   Consistency: Ensures that the system remains in a valid state after
+    a transaction is executed (e.g. after you complete a friend’s work
+    for the day, the tasks remain consistent, and the system remains in
+    a valid state)
+
+Transaction Properties and Mechanisms
+
+-   Atomic Changes over Distributed Resources: This is achieved through
+    the use of consensus or voting algorithms such as two-phase commit.
+-   Consistency: This is maintained by observing consistency constraints
+    between objects, such that the system remains in a valid state
+    before and after a transaction is executed.
+-   Isolation from Concurrent Access: This is accomplished through the
+    use of locking mechanisms, such as two-phase locking or hierarchical
+    locking.
+-   Durability of Changes: This is ensured by transferring changes made
+    to memory objects to persistent storage, to prevent loss in case of
+    a system failure.
+
+Serializability and Isolation
+
+Definition: States that the outcome of executing a set of transactions
+should be equivalent to some serial execution of those transactions.
+
+Purpose: The purpose of serializability is to ensure that each
+transaction operates on the database as if it were running by itself,
+which maintains the consistency and correctness of the database.
+
+Importance: Without serializability, ACID consistency is generally not
+guaranteed, making it a crucial component in maintaining the integrity
+of the database.
+
+Locking Against Concurrent Access
+
+Binary locks:
+
+-   Used to synchronize an object, causing all clients except one to be
+    blocked.
+-   Limitations: Binary locks are simple to use, but their performance
+    suffers as they cannot distinguish between reads and writes.
+
+Modal locks (read/write locks):
+
+-   Used to allow clients who only want to read to obtain read locks.
+    Many concurrent read locks are possible.
+-   Advantages: Modal locks allow for a more nuanced approach to
+    concurrent access, improving performance by allowing multiple read
+    operations to occur simultaneously.
+
+Lock Granularity: The granularity of locks (the scope of the resources
+being protected by the lock) affects the overall throughput of a system.
+The smaller the lock granularity, the better the performance will be.
+
+Optimistic Locking
+
+Process:
+
+1.  Lock a row, read it along with its timestamp, and then release the
+    lock.
+2.  Start a transaction
+3.  Write the data to the database.
+4.  Acquire locks for all data read and compare the data timestamps.
+5.  If one of them is newer, the transaction operation is rolled back,
+    otherwise it is commited.
+
+Advantages:
+
+-   Better overall throughput as locks are held for only a short period
+    of time
+-   Timestamp comparison logic is implemented as a framework mechanism
+    in the client session objects, simplifying the process
+
+Serializability with Two-Phase Locking
+
+Process:
+
+1.  Allocate all locks
+2.  Manipulate the data
+3.  Release all locks
+
+Advantages: Requires that all locks be allocated before any data
+manipulation and released only after the manipulation is complete.
+Guarantees serializability.
+
+Deadlocks
+
+-   State where two or more processes are blocked because each one is
+    waiting for resources held by the other
+-   Results in a situation where the processes cannot continue to run
+    and are stuck in a permanent waiting state
+-   Can occur in concurrent systems where multiple processes access
+    shared resources
+
+Distributed Deadlock Detection
+
+Local wait-for-graphs:
+
+-   Correctness: Based on the definition of a wait-for-graph, this
+    method correctly detects deadlocks by identifying cycles in the
+    graph.
+-   Liveness: This method can only detect deadlocks that exist within a
+    single process or machine, so it may miss deadlocks in a distributed
+    system.
+-   Cost/complexity: The cost of implementing this method is relatively
+    low, as it only requires tracking locks and resource requests within
+    a single process.
+-   Failure model: This method is susceptible to false negatives (missed
+    deadlocks) in a distributed system.
+-   Architecture type: This method is suitable for systems with a
+    centralized architecture, where all locks and resource requests can
+    be monitored by a single process.
+
+Detection servers:
+
+-   Correctness: Detection servers are designed to detect deadlocks in a
+    distributed system, so this method should provide correct results if
+    implemented correctly.
+-   Liveness: This method is designed to detect deadlocks in a
+    distributed system, so it should have better liveness compared to
+    local wait-for-graphs.
+-   Cost/complexity: The cost of implementing this method is higher than
+    local wait-for-graphs, as it requires communication and coordination
+    between multiple processes.
+-   Failure model: This method is susceptible to false negatives if one
+    or more detection servers fail, or if there are errors in the
+    communication between the servers.
+-   Architecture type: This method is suitable for systems with a
+    decentralized architecture, where multiple processes are involved in
+    the detection of deadlocks.
+
+Distributed edge chasing algorithms:
+
+-   Correctness: This method is designed to detect deadlocks in a
+    distributed system, so it should provide correct results if
+    implemented correctly.
+-   Liveness: This method is designed to detect deadlocks in a
+    distributed system, so it should have better liveness compared to
+    local wait-for-graphs.
+-   Cost/complexity: The cost of implementing this method is higher than
+    local wait-for-graphs, as it requires communication and coordination
+    between multiple processes.
+-   Failure model: This method is susceptible to false negatives if
+    there are errors in the communication between the processes.
+-   Architecture type: This method is suitable for systems with a
+    decentralized architecture, where multiple processes are involved in
+    the detection of deadlocks.
+
+Stochastic detection:
+
+-   Correctness: The accuracy of this method depends on the parameters
+    used, so it may provide incorrect results in some cases.
+-   Liveness: This method is designed to detect deadlocks in a
+    distributed system, so it should have better liveness compared to
+    local wait-for-graphs.
+-   Cost/complexity: The cost of implementing this method is relatively
+    low, as it only requires monitoring resource requests and using
+    randomization to make decisions.
+-   Failure model: This method may miss deadlocks if the randomization
+    parameters are not set correctly.
+-   Architecture type: This method is suitable for systems with a
+    decentralized architecture, where multiple processes are involved in
+    the detection of deadlocks.
+
+Transaction API
+
+1.  System starts in a consistent state
+2.  Begins transaction
+3.  Modifies objects
+
+Commit transaction:
+
+-   System has a new, consistent state
+-   Local objects are now invalid
+-   Changes are visible to others
+
+On error: Rollback:
+
+-   Either from system or from client
+-   Only successful commit operations become the new state durable and
+    visible to others
+-   Means going back to the beginning completely
+-   Client does not even know that they tried an operation
+-   Log files would have to be cleaned.
+
+Components of Distributed Transactions
+
+Process
+
+-   Begin()
+-   Commit()
+-   Rollback()
+
+RPCs:
+
+-   Register (transactional servers)
+-   Vote (objects)
+-   Commit/rollback (objects, resource managers)
+-   Read/write/prepare (resource managers)
+
+Components:
+
+-   Transaction
+-   Transactional client
+-   Transactional servers (objects)
+-   TACoordinator
+-   XA resource managers
+
+Service Context
+
+-   Some services require context information to flow with a call
+-   Security: Needs to flow user information, access rights, etc.
+-   Transactions: Needs to flow information about ongoing transactions
+    to participants
+-   The additional information needs to be standardized to allow
+    different vendor implementations of services to interoperate.
+
+Distributed Two-Phase Commit
+
+Vote:
+
+-   To achieve atomic operations in a distributed setting, the
+    TA-Coordinator asks all participants for their vote on committing or
+    rolling back.
+-   Upon receiving a commit() call from a client, objects part of the TA
+    vote by asking resource managers (e.g. databases) to prepare for the
+    commit.
+-   A successful return of “prepare” from resource managers means that
+    both the object and the resource manager have promised to commit the
+    changes if the coordinator sends a commit.
+
+Completion:
+
+-   The coordinator is the only entity that can commit or abort a TA
+    after the prepare phase.
+-   If the vote phase was successful and all participants have prepared
+    for a commit, the coordinator calls for a commit.
+-   In case of an error (e.g. unreachable participant), the coordinator
+    calls for a rollback.
+
+Failure Models of Distributed Transactions
+
+Work Phase:
+
+-   If a participant crashes or becomes unavailable, the coordinator
+    calls for a rollback.
+-   If the client crashes before calling commit, the coordinator will
+    timeout the TA and call for a rollback.
+
+Voting Phase:
+
+-   If a resource becomes unavailable or has other issues, the
+    coordinator calls for a rollback.
+
+Commit Phase (Server Uncertainty):
+
+-   In case of a crashed server, it will consult the coordinator after
+    restart and ask for the decision (commit or rollback).
+
+Special Problems of Distributed Transactions
+
+Resources:
+
+-   Participants in distributed TA’s consume many system resources due
+    to logging all actions to temporary persistent storage.
+-   Large parts of the system may become locked during a TA.
+
+Coordinator as a Single Point of Failure:
+
+-   The coordinator must also prepare for a crash and log all actions to
+    temporary persistent storage.
+
+Heuristic Outcomes for Transactions:
+
+-   In certain circumstances, the outcome of a transaction may only be
+    determined heuristically if the real outcome cannot be determined.
+
+Transaction Types
+
+Flat Transactions:
+
+-   Characterized by all-or-nothing behavior.
+-   Any failure causes complete rollback to original state.
+-   Can result in loss of significant amount of work if many objects
+    have been handled.
+
+Nested Transactions:
+
+-   Allow partial rollbacks with a parent transaction.
+-   Child TA rollback doesn’t affect parent TA, but parent TA rollback
+    returns all participants to initial state.
+-   Example: Allocation of a travel plan (hotel, flight, rental-car,
+    trips, etc.).
+
+Long-running Transactions:
+
+-   Challenge is resource allocation and increasing amount of work lost
+    in case of rollback.
+-   Syncpoints move the fallback position closer to the commit point.
+
+Compensating Transactions:
+
+-   Improves transaction throughput by making objects visible sooner, at
+    the cost of sacrificing the ISOLATION property.
+-   Require compensation for previous TA which can no longer be rolled
+    back.
+-   Depend on the application whether compensating transactions are
+    possible.
+-   Can be hand-coded if no transaction monitor/manager is available.
+
+ANSI Transaction Levels
+
+Problems:
+
+-   Dirty reads: Occurs when a transaction reads data written by another
+    concurrent transaction that has not yet been committed.
+-   Non-repeatable reads: Occurs when a transaction re-reads data it has
+    previously read and finds that the data has been modified by another
+    transaction that has since committed.
+-   Phantom reads: Occurs when a transaction re-executes a query
+    returning a set of rows that satisfies a search condition and finds
+    that the set of rows satisfying the condition has changed due to
+    another recently-committed transaction.
+
+Transaction Levels:
+
+-   Read Uncommitted:
+    -   Prevents: Nothing
+-   Read Committed:
+    -   Prevents:
+        -   Dirty reads.
+-   Repeatable Read:
+    -   Prevents:
+        -   Dirty reads
+        -   Non-repeatable reads
+-   Serializable:
+    -   Prevents:
+        -   Dirty reads
+        -   Non-repeatable reads
+        -   Phantom reads
+
+The higher the level, the more overhead is required.
+
+Filesystem Block Order Guarantees
+
+-   BOB (Block Order Breaker) is a tool used to evaluate the behavior of
+    modern file systems in regards to building crash consistent
+    applications.
+-   It tests the order guarantees of blocks in file systems.
+
+Eventually Consistent Storage Systems
+
+-   Consistency without Coordination: The design of modern data
+    management systems has been impacted by the rise of Internet-scale
+    geo-replicated services.
+-   Weak Alternatives: To reduce the cost of expensive coordination,
+    many systems have sought weaker alternatives that still ensure
+    application integrity.
+-   Cost of Coordination: Classic mechanisms like serializable
+    transactions come with associated availability, latency, and
+    throughput penalties.
+-   When to Forego Coordination: The question of when it’s safe to
+    forego the cost of expensive coordination versus when it’s necessary
+    to pay the price is an important one.
+
+Forces behind NoSQL
+
+-   Need for low-latency and high-throughput access to data
+-   Difficulty in managing and maintaining consistency in a distributed
+    system
+-   Increased focus on scalability and flexibility
+-   Changing data requirements and needs for real-time processing
+-   Cost and complexity of traditional RDBMs in large-scale systems
+-   Inability of RDBMs to handle large amounts of unstructured data
+-   The need for horizontal scaling in storage
+-   Lack of support for real-time, complex data processing using RDBMs
+-   The need for automatic scaling in storage to keep up with rapidly
+    growing data
+-   Relaxed data consistency requirements in some applications.
+
+Scaling Problems of RDBMs
+
+-   Poor time complexity of SQL joins: O(m+n) or worse
+-   Difficulty in horizontally scaling, resulting in loss of joins or
+    jumping between nodes
+-   Unbounded nature of queries, which can lead to a single query
+    overloading a database
+-   Optimized for storage efficiency (no duplicates), integrity, and
+    flexibility of access through arbitrary joins.
+
+NoSQL Design Patterns
+
+-   Use partition keys with many distinct values for better scalability
+    and data distribution.
+-   Opt for a single table design with hierarchical modeling and
+    de-normalization to simplify the data structure.
+-   Ensure that values are evenly requested to avoid hot spots.
+-   Utilize composite secondary keys for 1:n and n:n queries.
+-   Limit query responses with paging token for better performance.
+-   Consider the use case and access patterns before finalizing the data
+    layout.
+-   Avoid relational modeling and instead focus on simplifying the data
+    structure.
+-   Data integrity is an application concern and should be handled by
+    the application logic.
+-   Data storage efficiency is not a primary concern.
+
+DynamoDB Design Principles
+
+-   Decentralized design with no single point of failure (no master
+    node)
+-   Supports heterogeneous hardware
+-   Symmetric peers for better scalability
+-   Incrementally scalable to handle increasing load
+-   Eventually consistent data replication
+-   Requires a trusted environment for data security
+-   Replication support for higher data availability. Always-write
+    enabled with conflict resolution during read
+-   Multi-version store with conflict resolution policies for better
+    data management
+
+Beyond Relaxed Consistency
+
+-   Order-insensitive processing using CALM (Consistency as Logical
+    Monotonicity) principles in EC (Eventual Consistency) programs
+-   Converging replicated data types (CRDTs) divided into two types:
+    -   State-based CRDTs
+    -   Operation-based CRDTs
+
+CALM Principle
+
+-   “Consistency as Logical Monotonicity”
+-   Links consistency with logical monotonicity, where monotonic
+    programs ensure eventual consistency regardless of the order of
+    delivery and computation.
+-   Monotonic programs do not require coordination, unlike non-monotonic
+    programs where adding an element to the input set can revoke a
+    previously valid output.
+-   Non-monotonic programs require coordination schemes that wait until
+    inputs are complete before proceeding.
+
+CALM Operations
+
+Logically Monotonic:
+
+-   Initializing variables
+-   Accumulating set members
+-   Testing a threshold condition
+
+Non-monotonic:
+
+-   Overwriting variables
+-   Set deletion
+-   Resetting counter
+-   Negation
+
+CRDTs
+
+State-based CRDTs:
+
+-   Calculate the new result at one node and then propagate it to
+    replicas.
+-   The data structure must be commutative, associative, and idempotent,
+    e.g., sets.
+
+Operation-based CRDTs:
+
+-   Send the requested operation to each replica and calculate the
+    results locally.
+-   The operations must be commutative with “exactly once” semantics
+    (idempotent) and in FIFO order.
+-   These delivery guarantees are difficult to achieve, making
+    state-based CRDTs more popular currently.
+
+Bending the Problem
+
+-   Separates data store and application-level consistency concerns.
+-   CALM, ACID 2.0, and CRDT appeal to higher-level consistency criteria
+    in the form of application-level invariants.
+-   Instead of requiring strong consistency for every read and write,
+    the application only needs to ensure semantic guarantees (e.g., “the
+    counter is strictly increasing”).
+-   This grants more flexibility in how reads and writes are processed.
+
+Examples of CRDTs
+
+Counters:
+
+-   Grow-only counter: Merge operation is max(values), payload is a
+    single integer
+-   Positive-negative counter: Consists of two grow counters, one for
+    increments and another for decrements
+
+Registers:
+
+-   Last Write Wins register: Uses timestamps or version numbers, merge
+    operation is max(ts), payload is a blob
+-   Multi-valued register: Uses vector clocks, merge operation takes
+    both values
+
+Sets:
+
+-   Grow-only set: Merge operation is union(items), payload is a set, no
+    removal is allowed
+-   Two-phase set: Consists of two sets, one for adding and another for
+    removing, elements can be added once and removed once
+-   Unique set: Optimized version of the two-phase set
+-   Last write wins set: Merge operation is max(ts), payload is a set
+-   Positive-negative set: Consists of one PN-counter per set item
+-   Observed-remove set
+
+Distributed Coordination
+
+Features:
+
+-   Configuration changes and notifications
+-   Updates for failed machines
+-   Dynamic integration and deconfiguration of new machines
+-   Elastic configuration with partial failures
+-   API for watches, callbacks, automatic file removal, and triggers
+-   Simple data model (directory tree model)
+-   High performance and highly available in-memory cluster solution
+-   No locks for updates, but total ordering of requests for all cluster
+    replicas
+-   All replicas answer reads
+-   Wait-free implementation of coordination service with client API
+    performing locks, leader selection, etc
+
+Liveness and Correctness:
+
+-   Sequential Consistency: Updates from a client will be applied in the
+    order they were sent.
+-   Atomicity: Updates either succeed or fail. No partial results.
+-   Single System Image: A client will see the same view of the service
+    regardless of the server it connects to.
+-   Reliability: Once an update has been applied, it will persist from
+    that time forward until a client overwrites the update.
+-   Timeliness: The client’s view of the system is guaranteed to be
+    up-to-date within a certain time bound.
+
+Zookeeper API
+
+-   create: Creates a node at a specified location in the tree
+-   delete: Deletes a node from the tree
+-   exists: Tests if a node exists at a specified location in the tree
+-   get data: Retrieves the data stored at a node
+-   set data: Writes data to a node
+-   get children: Retrieves a list of children of a node
+-   sync: Waits for data changes to be propagated to all nodes in the
+    cluster.
+
+Primary-Order Atomic Broadcast with Zab
+
+-   Primary sends non-commutative, incremental state changes to backup
+    units
+-   Order of incremental changes maintained even in case of primary
+    crash
+-   Multiple outstanding requests possible
+-   Identification scheme to prevent re-ordering of updates
+-   Synchronization phase to ensure old updates delivered before new
+    ones stored.
+
+Consistency Requirements for ABCast (Reliable Ordered Atomic Broadcast)
+
+-   Validity: If a correct process broadcasts a message, all correct
+    processes will eventually deliver it.
+-   Uniform Agreement: If a process delivers a message, all correct
+    processes will eventually deliver it.
+-   Uniform Integrity: Every process delivers a message at most once,
+    only if it was previously broadcast by sender.
+-   Uniform Total Order: If processes p and q both deliver messages m
+    and m0, their order must be the same.
+
+Primary Order
+
+-   Local primary order: If primary broadcasts (v, z) before (v’, z’),
+    process that delivers (v, z) must have delivered (v’, z’) before (v,
+    z).
+-   Global primary order: If Pi broadcasts (v, z) and Pj > Pi broadcasts
+    (v’, z’), process delivering both (v, z) and (v’, z’) must deliver
+    (v, z) first.
+-   Primary integrity: If Pe broadcasts (v, z) and some process delivers
+    (v’, z’) broadcast by Pe’ < Pe, Pe must have delivered (v’, z’)
+    before broadcasting (v, z).
+
+HA Transactions
+
+-   Provide transactional guarantees without unavailability during
+    system partitions or high network latency (Non-failing replica must
+    respond)
+-   Not CAP: Can’t provide linearizability as reading the most recent
+    write from a replica
+-   Not HAT-compliant: Serializability, Snapshot Isolation, Repeatable
+    Read Isolation
+-   Possible with algorithms relying on multi-versioning and client-side
+    caching: Read Committed Isolation, transactional atomicity, etc.
+-   Causal consistency with phantom prevention and ANSI Repeatable Read
+    need affinity with at least one server (sticky sessions)
+-   Unable to prevent concurrent updates to shared data items, cannot
+    provide recency guarantees for reads.
 
 Design of Distributed Systems
 

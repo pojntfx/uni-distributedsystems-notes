@@ -645,11 +645,80 @@ Relationship Services</a></li>
 Failed</a></li>
 </ul></li>
 <li><a href="#distributed-services-and-algorithms-ii"><span class="toc-section-number">1.11</span> Distributed Services and
-Algorithms II</a></li>
+Algorithms II</a>
+<ul>
+<li><a href="#overview-9"><span class="toc-section-number">1.11.1</span>
+Overview</a></li>
+<li><a href="#why-truth-is-expensive"><span class="toc-section-number">1.11.2</span> Why Truth is Expensive</a></li>
+<li><a href="#aspects-of-classic-distributed-consistency"><span class="toc-section-number">1.11.3</span> Aspects of Classic Distributed
+Consistency</a></li>
+<li><a href="#persistent-object-representations"><span class="toc-section-number">1.11.4</span> Persistent Object
+Representations</a></li>
+<li><a href="#mechanisms-for-persistence"><span class="toc-section-number">1.11.5</span> Mechanisms for
+Persistence</a></li>
+<li><a href="#persistent-object-mapping"><span class="toc-section-number">1.11.6</span> Persistent Object
+Mapping</a></li>
+<li><a href="#data-store-session-pooling"><span class="toc-section-number">1.11.7</span> Data Store Session
+Pooling</a></li>
+<li><a href="#classic-acid-definitions"><span class="toc-section-number">1.11.8</span> Classic ACID
+Definitions</a></li>
+<li><a href="#transaction-properties-and-mechanisms"><span class="toc-section-number">1.11.9</span> Transaction Properties and
+Mechanisms</a></li>
+<li><a href="#serializability-and-isolation"><span class="toc-section-number">1.11.10</span> Serializability and
+Isolation</a></li>
+<li><a href="#locking-against-concurrent-access"><span class="toc-section-number">1.11.11</span> Locking Against Concurrent
+Access</a></li>
+<li><a href="#optimistic-locking"><span class="toc-section-number">1.11.12</span> Optimistic Locking</a></li>
+<li><a href="#serializability-with-two-phase-locking"><span class="toc-section-number">1.11.13</span> Serializability with Two-Phase
+Locking</a></li>
+<li><a href="#deadlocks"><span class="toc-section-number">1.11.14</span>
+Deadlocks</a></li>
+<li><a href="#distributed-deadlock-detection"><span class="toc-section-number">1.11.15</span> Distributed Deadlock
+Detection</a></li>
+<li><a href="#transaction-api"><span class="toc-section-number">1.11.16</span> Transaction API</a></li>
+<li><a href="#components-of-distributed-transactions"><span class="toc-section-number">1.11.17</span> Components of Distributed
+Transactions</a></li>
+<li><a href="#service-context"><span class="toc-section-number">1.11.18</span> Service Context</a></li>
+<li><a href="#distributed-two-phase-commit"><span class="toc-section-number">1.11.19</span> Distributed Two-Phase
+Commit</a></li>
+<li><a href="#failure-models-of-distributed-transactions"><span class="toc-section-number">1.11.20</span> Failure Models of Distributed
+Transactions</a></li>
+<li><a href="#special-problems-of-distributed-transactions"><span class="toc-section-number">1.11.21</span> Special Problems of
+Distributed Transactions</a></li>
+<li><a href="#transaction-types"><span class="toc-section-number">1.11.22</span> Transaction Types</a></li>
+<li><a href="#ansi-transaction-levels"><span class="toc-section-number">1.11.23</span> ANSI Transaction
+Levels</a></li>
+<li><a href="#filesystem-block-order-guarantees"><span class="toc-section-number">1.11.24</span> Filesystem Block Order
+Guarantees</a></li>
+<li><a href="#eventually-consistent-storage-systems"><span class="toc-section-number">1.11.25</span> Eventually Consistent Storage
+Systems</a></li>
+<li><a href="#forces-behind-nosql"><span class="toc-section-number">1.11.26</span> Forces behind NoSQL</a></li>
+<li><a href="#scaling-problems-of-rdbms"><span class="toc-section-number">1.11.27</span> Scaling Problems of
+RDBMs</a></li>
+<li><a href="#nosql-design-patterns"><span class="toc-section-number">1.11.28</span> NoSQL Design Patterns</a></li>
+<li><a href="#dynamodb-design-principles"><span class="toc-section-number">1.11.29</span> DynamoDB Design
+Principles</a></li>
+<li><a href="#beyond-relaxed-consistency"><span class="toc-section-number">1.11.30</span> Beyond Relaxed
+Consistency</a></li>
+<li><a href="#calm-principle"><span class="toc-section-number">1.11.31</span> CALM Principle</a></li>
+<li><a href="#calm-operations"><span class="toc-section-number">1.11.32</span> CALM Operations</a></li>
+<li><a href="#crdts"><span class="toc-section-number">1.11.33</span>
+CRDTs</a></li>
+<li><a href="#bending-the-problem"><span class="toc-section-number">1.11.34</span> Bending the Problem</a></li>
+<li><a href="#examples-of-crdts"><span class="toc-section-number">1.11.35</span> Examples of CRDTs</a></li>
+<li><a href="#distributed-coordination"><span class="toc-section-number">1.11.36</span> Distributed
+Coordination</a></li>
+<li><a href="#zookeeper-api"><span class="toc-section-number">1.11.37</span> Zookeeper API</a></li>
+<li><a href="#primary-order-atomic-broadcast-with-zab"><span class="toc-section-number">1.11.38</span> Primary-Order Atomic Broadcast
+with Zab</a></li>
+<li><a href="#consistency-requirements-for-abcast-reliable-ordered-atomic-broadcast"><span class="toc-section-number">1.11.39</span> Consistency Requirements for
+ABCast (Reliable Ordered Atomic Broadcast)</a></li>
+<li><a href="#primary-order"><span class="toc-section-number">1.11.40</span> Primary Order</a></li>
+<li><a href="#ha-transactions"><span class="toc-section-number">1.11.41</span> HA Transactions</a></li>
+</ul></li>
 <li><a href="#design-of-distributed-systems"><span class="toc-section-number">1.12</span> Design of Distributed Systems</a>
 <ul>
-<li><a href="#overview-9"><span class="toc-section-number">1.12.1</span>
-Overview</a></li>
+<li><a href="#overview-10"><span class="toc-section-number">1.12.1</span> Overview</a></li>
 <li><a href="#design-principles-for-distributed-systems"><span class="toc-section-number">1.12.2</span> Design Principles for
 Distributed Systems</a></li>
 <li><a href="#sharing-ressources-and-data"><span class="toc-section-number">1.12.3</span> Sharing Ressources and
@@ -6742,14 +6811,875 @@ objects</li>
 <section id="distributed-services-and-algorithms-ii" data-number="0.11">
 <h2 data-number="1.11"><span class="header-section-number">1.11</span>
 Distributed Services and Algorithms II</h2>
+<section id="overview-9" data-number="0.11.1">
+<h3 data-number="1.11.1"><span class="header-section-number">1.11.1</span> Overview</h3>
+<ul>
+<li>Classic (ACID) distributed consistency includes:
+<ul>
+<li>Distributed 2P locking</li>
+<li>Distributed 2PC consensus</li>
+</ul></li>
+<li>ACID 2.0 eventual (coordination-free) consistency includes:
+<ul>
+<li>CAP and its children, CALM, CRDTs, etc.</li>
+<li>Distributed replication (e.g. Cassandra)</li>
+<li>CALM (Bloom) consistency</li>
+<li>CRDTs (Conflict-free Replicated Data Types)</li>
+</ul></li>
+<li>Distributed Coordination (e.g. Chubby, ZooKeeper) includes:
+<ul>
+<li>Distributed consensus protocols</li>
+<li>Cluster scheduler (e.g. Borg)</li>
+</ul></li>
+</ul>
+</section>
+<section id="why-truth-is-expensive" data-number="0.11.2">
+<h3 data-number="1.11.2"><span class="header-section-number">1.11.2</span> Why Truth is Expensive</h3>
+<ul>
+<li>Strong consistency is discouraged.</li>
+<li>Coordination and distributed transactions slow down the process and
+affect availability.</li>
+<li>The cost of knowing the truth is high for many applications.</li>
+<li>The truth might only be a partial or outdated version.</li>
+<li>Availability is prioritized over consistency by making local
+decisions with available information.</li>
+<li>Improves the user experience by making this trade-off, most of the
+time.</li>
+</ul>
+</section>
+<section id="aspects-of-classic-distributed-consistency" data-number="0.11.3">
+<h3 data-number="1.11.3"><span class="header-section-number">1.11.3</span> Aspects of Classic
+Distributed Consistency</h3>
+<ul>
+<li><strong>Distributed Objects and Persistence</strong>: Objects that
+span across multiple systems and persist data in multiple
+locations.</li>
+<li><strong>ACID</strong>: Atomicity, Consistency, Isolation, Durability
+- a set of properties that guarantee that database transactions are
+processed reliably.</li>
+<li><strong>Transactions</strong>: A sequence of database operations
+that are executed as a single unit of work.</li>
+<li><strong>Isolation Levels</strong>: The level of isolation between
+concurrent transactions, specifying how one transaction affects
+another.</li>
+<li><strong>Two-Phase Locking</strong>: A protocol for enforcing
+serializable access to shared resources in a distributed system.</li>
+<li><strong>Distributed Transactions</strong>: Transactions that span
+multiple systems and persist data in multiple locations.</li>
+<li><strong>Two-Phase Commit (2PC)</strong>: A protocol for ensuring
+that a transaction is committed in a consistent state in a distributed
+system.</li>
+<li><strong>Failure Models for 2PC</strong>: Models for how 2PC protocol
+handles system failures and ensures the consistency of
+transactions.</li>
+</ul>
+</section>
+<section id="persistent-object-representations" data-number="0.11.4">
+<h3 data-number="1.11.4"><span class="header-section-number">1.11.4</span> Persistent Object
+Representations</h3>
+<ul>
+<li><strong>Real storage object lives in a data store</strong> and uses
+data store concepts for storage (e.g. a row in a table).</li>
+<li>Service works with object representations
+(“<strong>Incarnations</strong>”) and provides the illusion of a
+persistent object to clients.</li>
+<li>Java Connector Architecture provides an adapter interface for
+resource managers.</li>
+</ul>
+</section>
+<section id="mechanisms-for-persistence" data-number="0.11.5">
+<h3 data-number="1.11.5"><span class="header-section-number">1.11.5</span> Mechanisms for
+Persistence</h3>
+<p><strong>SQL Driver</strong>:</p>
+<ul>
+<li>Used to store object state.</li>
+<li>Suffers from “impedance mismatch”.</li>
+<li>Needs to control locking etc. in the service.</li>
+</ul>
+<p><strong>Object Relational Mapper (EJB/Hibernate)</strong>:</p>
+<ul>
+<li>Used to store object state transparently for the programmer.</li>
+<li>Inheritance creates difficult problems for table mapping: Either
+performance or flexibility suffer.</li>
+</ul>
 <blockquote>
-<p>TODO: Add overview</p>
+<p>Just storing an object is simple - doing this in a way that protects
+from concurrent access, system failures, and across different data
+stores is much harder.</p>
 </blockquote>
+</section>
+<section id="persistent-object-mapping" data-number="0.11.6">
+<h3 data-number="1.11.6"><span class="header-section-number">1.11.6</span> Persistent Object
+Mapping</h3>
+<ul>
+<li>Enterprise integration software specializes in this kind of
+mapping</li>
+<li>Key to persistent mapping is <strong>meta-information</strong>:
+<ul>
+<li><strong>Generates object representations</strong> for a
+service.</li>
+<li><strong>Generates code</strong> necessary for the data store to
+store the objects with its own mechanisms and objects.</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-store-session-pooling" data-number="0.11.7">
+<h3 data-number="1.11.7"><span class="header-section-number">1.11.7</span> Data Store Session
+Pooling</h3>
+<ul>
+<li><strong>Number of channels</strong> to a data store <strong>is
+limited</strong></li>
+<li>If an object directly allocates a session (channel) and does not
+return it quickly, system throughput would become marginal</li>
+<li><strong>Session creation is expensive</strong> (security!)</li>
+<li>Clients can either ask a pool for a session or the container
+framework can automatically allocate and return sessions</li>
+<li>Problems:
+<ul>
+<li><strong>Timeouts</strong></li>
+<li><strong>Connection recycling</strong></li>
+</ul></li>
+</ul>
+</section>
+<section id="classic-acid-definitions" data-number="0.11.8">
+<h3 data-number="1.11.8"><span class="header-section-number">1.11.8</span> Classic ACID
+Definitions</h3>
+<ul>
+<li><strong>Durability</strong>: Ensures that once a transaction is
+committed, its effects <strong>persist even in the case of system
+failures</strong> (e.g. a crash that causes you to lose changes made to
+a word file)</li>
+<li><strong>Atomicity</strong>: Ensures that a transaction is treated as
+a single, indivisible unit of <strong>work that either happens in its
+entirety or doesn’t happen at all</strong> (e.g. in the case of a
+birthday party re-schedule where not all participants were caught in
+time)</li>
+<li><strong>Isolation</strong>: Ensures that the concurrent execution of
+transactions results in a system state that would be obtained <strong>as
+if transactions were executed serially</strong> (e.g. if two people work
+on a shared file, their changes should not interfere with each
+other)</li>
+<li><strong>Consistency</strong>: Ensures that the <strong>system
+remains in a valid state after a transaction is executed</strong>
+(e.g. after you complete a friend’s work for the day, the tasks remain
+consistent, and the system remains in a valid state)</li>
+</ul>
+</section>
+<section id="transaction-properties-and-mechanisms" data-number="0.11.9">
+<h3 data-number="1.11.9"><span class="header-section-number">1.11.9</span> Transaction Properties and
+Mechanisms</h3>
+<ul>
+<li><strong>Atomic Changes over Distributed Resources</strong>: This is
+achieved through the use of consensus or voting algorithms such as
+two-phase commit.</li>
+<li><strong>Consistency</strong>: This is maintained by observing
+consistency constraints between objects, such that the system remains in
+a valid state before and after a transaction is executed.</li>
+<li><strong>Isolation from Concurrent Access</strong>: This is
+accomplished through the use of locking mechanisms, such as two-phase
+locking or hierarchical locking.</li>
+<li><strong>Durability of Changes</strong>: This is ensured by
+transferring changes made to memory objects to persistent storage, to
+prevent loss in case of a system failure.</li>
+</ul>
+</section>
+<section id="serializability-and-isolation" data-number="0.11.10">
+<h3 data-number="1.11.10"><span class="header-section-number">1.11.10</span> Serializability and
+Isolation</h3>
+<p><strong>Definition</strong>: States that the outcome of executing a
+set of transactions should be equivalent to some serial execution of
+those transactions.</p>
+<p><strong>Purpose</strong>: The purpose of serializability is to ensure
+that each transaction operates on the database as if it were running by
+itself, which maintains the consistency and correctness of the
+database.</p>
+<p><strong>Importance</strong>: Without serializability, ACID
+consistency is generally not guaranteed, making it a crucial component
+in maintaining the integrity of the database.</p>
+</section>
+<section id="locking-against-concurrent-access" data-number="0.11.11">
+<h3 data-number="1.11.11"><span class="header-section-number">1.11.11</span> Locking Against Concurrent
+Access</h3>
+<p><strong>Binary locks</strong>:</p>
+<ul>
+<li>Used to synchronize an object, causing all clients except one to be
+blocked.</li>
+<li>Limitations: Binary locks are simple to use, but their performance
+suffers as they cannot distinguish between reads and writes.</li>
+</ul>
+<p><strong>Modal locks (read/write locks)</strong>:</p>
+<ul>
+<li>Used to allow clients who only want to read to obtain read locks.
+Many concurrent read locks are possible.</li>
+<li>Advantages: Modal locks allow for a more nuanced approach to
+concurrent access, improving performance by allowing multiple read
+operations to occur simultaneously.</li>
+</ul>
+<p><strong>Lock Granularity</strong>: The granularity of locks (the
+scope of the resources being protected by the lock) affects the overall
+throughput of a system. <strong>The smaller the lock granularity, the
+better the performance</strong> will be.</p>
+</section>
+<section id="optimistic-locking" data-number="0.11.12">
+<h3 data-number="1.11.12"><span class="header-section-number">1.11.12</span> Optimistic Locking</h3>
+<p><strong>Process</strong>:</p>
+<ol type="1">
+<li>Lock a row, read it along with its timestamp, and then release the
+lock.</li>
+<li>Start a transaction</li>
+<li>Write the data to the database.</li>
+<li>Acquire locks for all data read and compare the data
+timestamps.</li>
+<li>If one of them is newer, the transaction operation is rolled back,
+otherwise it is commited.</li>
+</ol>
+<p><strong>Advantages</strong>:</p>
+<ul>
+<li>Better overall throughput as locks are held for only a short period
+of time</li>
+<li>Timestamp comparison logic is implemented as a framework mechanism
+in the client session objects, simplifying the process</li>
+</ul>
+</section>
+<section id="serializability-with-two-phase-locking" data-number="0.11.13">
+<h3 data-number="1.11.13"><span class="header-section-number">1.11.13</span> Serializability with
+Two-Phase Locking</h3>
+<p><strong>Process</strong>:</p>
+<ol type="1">
+<li>Allocate all locks</li>
+<li>Manipulate the data</li>
+<li>Release all locks</li>
+</ol>
+<p><strong>Advantages</strong>: Requires that all locks be allocated
+before any data manipulation and released only after the manipulation is
+complete. <strong>Guarantees serializability</strong>.</p>
+</section>
+<section id="deadlocks" data-number="0.11.14">
+<h3 data-number="1.11.14"><span class="header-section-number">1.11.14</span> Deadlocks</h3>
+<ul>
+<li>State where two or more processes are blocked because each
+<strong>one is waiting for resources held by the other</strong></li>
+<li>Results in a situation where the processes cannot continue to run
+and are <strong>stuck in a permanent waiting state</strong></li>
+<li><strong>Can occur in concurrent systems</strong> where multiple
+processes access shared resources</li>
+</ul>
+</section>
+<section id="distributed-deadlock-detection" data-number="0.11.15">
+<h3 data-number="1.11.15"><span class="header-section-number">1.11.15</span> Distributed Deadlock
+Detection</h3>
+<p><strong>Local wait-for-graphs</strong>:</p>
+<ul>
+<li><strong>Correctness</strong>: Based on the definition of a
+wait-for-graph, this method correctly detects deadlocks by identifying
+cycles in the graph.</li>
+<li><strong>Liveness</strong>: This method can only detect deadlocks
+that exist within a single process or machine, so it may miss deadlocks
+in a distributed system.</li>
+<li><strong>Cost/complexity</strong>: The cost of implementing this
+method is relatively low, as it only requires tracking locks and
+resource requests within a single process.</li>
+<li><strong>Failure model</strong>: This method is susceptible to false
+negatives (missed deadlocks) in a distributed system.</li>
+<li><strong>Architecture type</strong>: This method is suitable for
+systems with a centralized architecture, where all locks and resource
+requests can be monitored by a single process.</li>
+</ul>
+<p><strong>Detection servers</strong>:</p>
+<ul>
+<li><strong>Correctness</strong>: Detection servers are designed to
+detect deadlocks in a distributed system, so this method should provide
+correct results if implemented correctly.</li>
+<li><strong>Liveness</strong>: This method is designed to detect
+deadlocks in a distributed system, so it should have better liveness
+compared to local wait-for-graphs.</li>
+<li><strong>Cost/complexity</strong>: The cost of implementing this
+method is higher than local wait-for-graphs, as it requires
+communication and coordination between multiple processes.</li>
+<li><strong>Failure model</strong>: This method is susceptible to false
+negatives if one or more detection servers fail, or if there are errors
+in the communication between the servers.</li>
+<li><strong>Architecture type</strong>: This method is suitable for
+systems with a decentralized architecture, where multiple processes are
+involved in the detection of deadlocks.</li>
+</ul>
+<p><strong>Distributed edge chasing algorithms</strong>:</p>
+<ul>
+<li><strong>Correctness</strong>: This method is designed to detect
+deadlocks in a distributed system, so it should provide correct results
+if implemented correctly.</li>
+<li><strong>Liveness</strong>: This method is designed to detect
+deadlocks in a distributed system, so it should have better liveness
+compared to local wait-for-graphs.</li>
+<li><strong>Cost/complexity</strong>: The cost of implementing this
+method is higher than local wait-for-graphs, as it requires
+communication and coordination between multiple processes.</li>
+<li><strong>Failure model</strong>: This method is susceptible to false
+negatives if there are errors in the communication between the
+processes.</li>
+<li><strong>Architecture type</strong>: This method is suitable for
+systems with a decentralized architecture, where multiple processes are
+involved in the detection of deadlocks.</li>
+</ul>
+<p><strong>Stochastic detection</strong>:</p>
+<ul>
+<li><strong>Correctness</strong>: The accuracy of this method depends on
+the parameters used, so it may provide incorrect results in some
+cases.</li>
+<li><strong>Liveness</strong>: This method is designed to detect
+deadlocks in a distributed system, so it should have better liveness
+compared to local wait-for-graphs.</li>
+<li><strong>Cost/complexity</strong>: The cost of implementing this
+method is relatively low, as it only requires monitoring resource
+requests and using randomization to make decisions.</li>
+<li><strong>Failure model</strong>: This method may miss deadlocks if
+the randomization parameters are not set correctly.</li>
+<li><strong>Architecture type</strong>: This method is suitable for
+systems with a decentralized architecture, where multiple processes are
+involved in the detection of deadlocks.</li>
+</ul>
+</section>
+<section id="transaction-api" data-number="0.11.16">
+<h3 data-number="1.11.16"><span class="header-section-number">1.11.16</span> Transaction API</h3>
+<ol type="1">
+<li>System starts in a consistent state</li>
+<li>Begins transaction</li>
+<li>Modifies objects</li>
+</ol>
+<p><strong>Commit transaction</strong>:</p>
+<ul>
+<li>System has a new, consistent state</li>
+<li>Local objects are now invalid</li>
+<li>Changes are visible to others</li>
+</ul>
+<p><strong>On error: Rollback</strong>:</p>
+<ul>
+<li>Either from system or from client</li>
+<li>Only successful commit operations become the new state durable and
+visible to others</li>
+<li>Means going back to the beginning completely</li>
+<li>Client does not even know that they tried an operation</li>
+<li>Log files would have to be cleaned.</li>
+</ul>
+</section>
+<section id="components-of-distributed-transactions" data-number="0.11.17">
+<h3 data-number="1.11.17"><span class="header-section-number">1.11.17</span> Components of Distributed
+Transactions</h3>
+<p><strong>Process</strong></p>
+<ul>
+<li>Begin()</li>
+<li>Commit()</li>
+<li>Rollback()</li>
+</ul>
+<p><strong>RPCs</strong>:</p>
+<ul>
+<li>Register (transactional servers)</li>
+<li>Vote (objects)</li>
+<li>Commit/rollback (objects, resource managers)</li>
+<li>Read/write/prepare (resource managers)</li>
+</ul>
+<p><strong>Components</strong>:</p>
+<ul>
+<li>Transaction</li>
+<li>Transactional client</li>
+<li>Transactional servers (objects)</li>
+<li>TACoordinator</li>
+<li>XA resource managers</li>
+</ul>
+</section>
+<section id="service-context" data-number="0.11.18">
+<h3 data-number="1.11.18"><span class="header-section-number">1.11.18</span> Service Context</h3>
+<ul>
+<li>Some <strong>services require context</strong> information to flow
+<strong>with a call</strong></li>
+<li><strong>Security</strong>: Needs to flow user information, access
+rights, etc.</li>
+<li><strong>Transactions</strong>: Needs to flow information about
+ongoing transactions to participants</li>
+<li>The additional information <strong>needs to be standardized</strong>
+to allow different vendor implementations of services to
+interoperate.</li>
+</ul>
+</section>
+<section id="distributed-two-phase-commit" data-number="0.11.19">
+<h3 data-number="1.11.19"><span class="header-section-number">1.11.19</span> Distributed Two-Phase
+Commit</h3>
+<p><strong>Vote</strong>:</p>
+<ul>
+<li>To achieve atomic operations in a distributed setting, the
+<strong>TA-Coordinator asks all participants for their vote</strong> on
+committing or rolling back.</li>
+<li>Upon receiving a <code>commit()</code> call from a client, objects
+part of the TA <strong>vote by asking resource managers (e.g. databases)
+to prepare for the commit</strong>.</li>
+<li>A successful return of “prepare” from resource managers means that
+<strong>both the object and the resource manager have promised to
+commit</strong> the changes if the coordinator sends a commit.</li>
+</ul>
+<p><strong>Completion</strong>:</p>
+<ul>
+<li>The <strong>coordinator is the only entity that can commit or
+abort</strong> a TA after the prepare phase.</li>
+<li>If the vote phase was successful and all participants have prepared
+for a commit, the <strong>coordinator calls for a commit</strong>.</li>
+<li>In case of an error (e.g. unreachable participant), the
+<strong>coordinator calls for a rollback</strong>.</li>
+</ul>
+</section>
+<section id="failure-models-of-distributed-transactions" data-number="0.11.20">
+<h3 data-number="1.11.20"><span class="header-section-number">1.11.20</span> Failure Models of
+Distributed Transactions</h3>
+<p><strong>Work Phase</strong>:</p>
+<ul>
+<li><strong>If a participant crashes</strong> or becomes unavailable,
+the <strong>coordinator calls for a rollback</strong>.</li>
+<li><strong>If the client crashes</strong> before calling commit, the
+<strong>coordinator will timeout</strong> the TA and call for a
+rollback.</li>
+</ul>
+<p><strong>Voting Phase</strong>:</p>
+<ul>
+<li><strong>If a resource becomes unavailable</strong> or has other
+issues, the <strong>coordinator calls for a rollback</strong>.</li>
+</ul>
+<p><strong>Commit Phase (Server Uncertainty)</strong>:</p>
+<ul>
+<li><strong>In case of a crashed server</strong>, it will consult the
+coordinator after restart and <strong>ask for the decision</strong>
+(commit or rollback).</li>
+</ul>
+</section>
+<section id="special-problems-of-distributed-transactions" data-number="0.11.21">
+<h3 data-number="1.11.21"><span class="header-section-number">1.11.21</span> Special Problems of
+Distributed Transactions</h3>
+<p><strong>Resources</strong>:</p>
+<ul>
+<li>Participants in distributed TA’s <strong>consume many system
+resources</strong> due to logging all actions to temporary persistent
+storage.</li>
+<li><strong>Large parts of the system may become locked</strong> during
+a TA.</li>
+</ul>
+<p><strong>Coordinator as a Single Point of Failure</strong>:</p>
+<ul>
+<li>The coordinator must also prepare for a crash and log all actions to
+temporary persistent storage.</li>
+</ul>
+<p><strong>Heuristic Outcomes for Transactions</strong>:</p>
+<ul>
+<li>In certain circumstances, the outcome of a transaction may only be
+determined heuristically if the real outcome cannot be determined.</li>
+</ul>
+</section>
+<section id="transaction-types" data-number="0.11.22">
+<h3 data-number="1.11.22"><span class="header-section-number">1.11.22</span> Transaction Types</h3>
+<p><strong>Flat Transactions</strong>:</p>
+<ul>
+<li>Characterized by all-or-nothing behavior.</li>
+<li>Any failure causes complete rollback to original state.</li>
+<li>Can result in loss of significant amount of work if many objects
+have been handled.</li>
+</ul>
+<p><strong>Nested Transactions</strong>:</p>
+<ul>
+<li>Allow partial rollbacks with a parent transaction.</li>
+<li>Child TA rollback doesn’t affect parent TA, but parent TA rollback
+returns all participants to initial state.</li>
+<li>Example: Allocation of a travel plan (hotel, flight, rental-car,
+trips, etc.).</li>
+</ul>
+<p><strong>Long-running Transactions</strong>:</p>
+<ul>
+<li>Challenge is resource allocation and increasing amount of work lost
+in case of rollback.</li>
+<li>Syncpoints move the fallback position closer to the commit
+point.</li>
+</ul>
+<p><strong>Compensating Transactions</strong>:</p>
+<ul>
+<li>Improves transaction throughput by making objects visible sooner, at
+the cost of sacrificing the ISOLATION property.</li>
+<li>Require compensation for previous TA which can no longer be rolled
+back.</li>
+<li>Depend on the application whether compensating transactions are
+possible.</li>
+<li>Can be hand-coded if no transaction monitor/manager is
+available.</li>
+</ul>
+</section>
+<section id="ansi-transaction-levels" data-number="0.11.23">
+<h3 data-number="1.11.23"><span class="header-section-number">1.11.23</span> ANSI Transaction
+Levels</h3>
+<p><strong>Problems</strong>:</p>
+<ul>
+<li><strong>Dirty reads</strong>: Occurs when a transaction reads data
+written by another concurrent transaction that has not yet been
+committed.</li>
+<li><strong>Non-repeatable reads</strong>: Occurs when a transaction
+re-reads data it has previously read and finds that the data has been
+modified by another transaction that has since committed.</li>
+<li><strong>Phantom reads</strong>: Occurs when a transaction
+re-executes a query returning a set of rows that satisfies a search
+condition and finds that the set of rows satisfying the condition has
+changed due to another recently-committed transaction.</li>
+</ul>
+<p><strong>Transaction Levels</strong>:</p>
+<ul>
+<li><strong>Read Uncommitted</strong>:
+<ul>
+<li>Prevents: Nothing</li>
+</ul></li>
+<li><strong>Read Committed</strong>:
+<ul>
+<li>Prevents:
+<ul>
+<li>Dirty reads.</li>
+</ul></li>
+</ul></li>
+<li><strong>Repeatable Read</strong>:
+<ul>
+<li>Prevents:
+<ul>
+<li>Dirty reads</li>
+<li>Non-repeatable reads</li>
+</ul></li>
+</ul></li>
+<li><strong>Serializable</strong>:
+<ul>
+<li>Prevents:
+<ul>
+<li>Dirty reads</li>
+<li>Non-repeatable reads</li>
+<li>Phantom reads</li>
+</ul></li>
+</ul></li>
+</ul>
+<p>The higher the level, the more overhead is required.</p>
+</section>
+<section id="filesystem-block-order-guarantees" data-number="0.11.24">
+<h3 data-number="1.11.24"><span class="header-section-number">1.11.24</span> Filesystem Block Order
+Guarantees</h3>
+<ul>
+<li>BOB (Block Order Breaker) is a <strong>tool used to evaluate the
+behavior of modern file systems</strong> in regards to building crash
+consistent applications.</li>
+<li>It tests the <strong>order guarantees of blocks</strong> in file
+systems.</li>
+</ul>
+</section>
+<section id="eventually-consistent-storage-systems" data-number="0.11.25">
+<h3 data-number="1.11.25"><span class="header-section-number">1.11.25</span> Eventually Consistent
+Storage Systems</h3>
+<ul>
+<li><strong>Consistency without Coordination</strong>: The design of
+modern data management systems has been impacted by the rise of
+Internet-scale geo-replicated services.</li>
+<li><strong>Weak Alternatives</strong>: To reduce the cost of expensive
+coordination, many systems have sought weaker alternatives that still
+ensure application integrity.</li>
+<li><strong>Cost of Coordination</strong>: Classic mechanisms like
+serializable transactions come with associated availability, latency,
+and throughput penalties.</li>
+<li><strong>When to Forego Coordination</strong>: The question of when
+it’s safe to forego the cost of expensive coordination versus when it’s
+necessary to pay the price is an important one.</li>
+</ul>
+</section>
+<section id="forces-behind-nosql" data-number="0.11.26">
+<h3 data-number="1.11.26"><span class="header-section-number">1.11.26</span> Forces behind NoSQL</h3>
+<ul>
+<li>Need for low-latency and high-throughput access to data</li>
+<li>Difficulty in managing and maintaining consistency in a distributed
+system</li>
+<li>Increased focus on scalability and flexibility</li>
+<li>Changing data requirements and needs for real-time processing</li>
+<li>Cost and complexity of traditional RDBMs in large-scale systems</li>
+<li>Inability of RDBMs to handle large amounts of unstructured data</li>
+<li>The need for horizontal scaling in storage</li>
+<li>Lack of support for real-time, complex data processing using
+RDBMs</li>
+<li>The need for automatic scaling in storage to keep up with rapidly
+growing data</li>
+<li>Relaxed data consistency requirements in some applications.</li>
+</ul>
+</section>
+<section id="scaling-problems-of-rdbms" data-number="0.11.27">
+<h3 data-number="1.11.27"><span class="header-section-number">1.11.27</span> Scaling Problems of
+RDBMs</h3>
+<ul>
+<li><strong>Poor time complexity of SQL joins</strong>: <span class="math inline">O(m+n)</span> or worse</li>
+<li><strong>Difficulty in horizontally scaling</strong>, resulting in
+loss of joins or jumping between nodes</li>
+<li><strong>Unbounded nature of queries</strong>, which can lead to a
+single query overloading a database</li>
+<li><strong>Optimized for storage efficiency</strong> (no duplicates),
+integrity, and flexibility of access through arbitrary joins.</li>
+</ul>
+</section>
+<section id="nosql-design-patterns" data-number="0.11.28">
+<h3 data-number="1.11.28"><span class="header-section-number">1.11.28</span> NoSQL Design Patterns</h3>
+<ul>
+<li>Use <strong>partition keys</strong> with many distinct values for
+better scalability and data distribution.</li>
+<li>Opt for a <strong>single table design with hierarchical
+modeling</strong> and de-normalization to simplify the data
+structure.</li>
+<li>Ensure that values are evenly requested to avoid hot spots.</li>
+<li>Utilize <strong>composite secondary keys</strong> for 1:n and n:n
+queries.</li>
+<li>Limit query responses with paging token for better performance.</li>
+<li>Consider the use case and access patterns before finalizing the data
+layout.</li>
+<li><strong>Avoid relational modeling</strong> and instead focus on
+simplifying the data structure.</li>
+<li><strong>Data integrity</strong> is an application concern and
+<strong>should be handled by the application logic</strong>.</li>
+<li>Data storage efficiency is not a primary concern.</li>
+</ul>
+</section>
+<section id="dynamodb-design-principles" data-number="0.11.29">
+<h3 data-number="1.11.29"><span class="header-section-number">1.11.29</span> DynamoDB Design
+Principles</h3>
+<ul>
+<li>Decentralized design with no single point of failure (no master
+node)</li>
+<li>Supports heterogeneous hardware</li>
+<li>Symmetric peers for better scalability</li>
+<li>Incrementally scalable to handle increasing load</li>
+<li>Eventually consistent data replication</li>
+<li>Requires a trusted environment for data security</li>
+<li>Replication support for higher data availability. Always-write
+enabled with conflict resolution during read</li>
+<li>Multi-version store with conflict resolution policies for better
+data management</li>
+</ul>
+</section>
+<section id="beyond-relaxed-consistency" data-number="0.11.30">
+<h3 data-number="1.11.30"><span class="header-section-number">1.11.30</span> Beyond Relaxed
+Consistency</h3>
+<ul>
+<li><strong>Order-insensitive processing</strong> using CALM
+(Consistency as Logical Monotonicity) principles in EC (Eventual
+Consistency) programs</li>
+<li>Converging replicated data types (<strong>CRDTs</strong>) divided
+into two types:
+<ul>
+<li>State-based CRDTs</li>
+<li>Operation-based CRDTs</li>
+</ul></li>
+</ul>
+</section>
+<section id="calm-principle" data-number="0.11.31">
+<h3 data-number="1.11.31"><span class="header-section-number">1.11.31</span> CALM Principle</h3>
+<ul>
+<li>“Consistency as Logical Monotonicity”</li>
+<li><strong>Links consistency with logical monotonicity</strong>, where
+monotonic programs ensure eventual consistency regardless of the order
+of delivery and computation.</li>
+<li><strong>Monotonic programs do not require coordination</strong>,
+unlike non-monotonic programs where adding an element to the input set
+can revoke a previously valid output.</li>
+<li><strong>Non-monotonic programs require coordination</strong> schemes
+that wait until inputs are complete before proceeding.</li>
+</ul>
+</section>
+<section id="calm-operations" data-number="0.11.32">
+<h3 data-number="1.11.32"><span class="header-section-number">1.11.32</span> CALM Operations</h3>
+<p><strong>Logically Monotonic</strong>:</p>
+<ul>
+<li>Initializing variables</li>
+<li>Accumulating set members</li>
+<li>Testing a threshold condition</li>
+</ul>
+<p><strong>Non-monotonic</strong>:</p>
+<ul>
+<li>Overwriting variables</li>
+<li>Set deletion</li>
+<li>Resetting counter</li>
+<li>Negation</li>
+</ul>
+</section>
+<section id="crdts" data-number="0.11.33">
+<h3 data-number="1.11.33"><span class="header-section-number">1.11.33</span> CRDTs</h3>
+<p><strong>State-based CRDTs</strong>:</p>
+<ul>
+<li>Calculate the new result at one node and then propagate it to
+replicas.</li>
+<li>The data structure must be commutative, associative, and idempotent,
+e.g., sets.</li>
+</ul>
+<p><strong>Operation-based CRDTs</strong>:</p>
+<ul>
+<li>Send the requested operation to each replica and calculate the
+results locally.</li>
+<li>The operations must be commutative with “exactly once” semantics
+(idempotent) and in FIFO order.</li>
+<li>These delivery guarantees are difficult to achieve, making
+state-based CRDTs more popular currently.</li>
+</ul>
+</section>
+<section id="bending-the-problem" data-number="0.11.34">
+<h3 data-number="1.11.34"><span class="header-section-number">1.11.34</span> Bending the Problem</h3>
+<ul>
+<li><strong>Separates data store and application-level
+consistency</strong> concerns.</li>
+<li>CALM, ACID 2.0, and CRDT appeal to higher-level consistency criteria
+in the form of application-level invariants.</li>
+<li>Instead of requiring strong consistency for every read and write,
+the <strong>application only needs to ensure semantic
+guarantees</strong> (e.g., “the counter is strictly increasing”).</li>
+<li>This grants more flexibility in how reads and writes are
+processed.</li>
+</ul>
+</section>
+<section id="examples-of-crdts" data-number="0.11.35">
+<h3 data-number="1.11.35"><span class="header-section-number">1.11.35</span> Examples of CRDTs</h3>
+<p><strong>Counters</strong>:</p>
+<ul>
+<li>Grow-only counter: Merge operation is max(values), payload is a
+single integer</li>
+<li>Positive-negative counter: Consists of two grow counters, one for
+increments and another for decrements</li>
+</ul>
+<p><strong>Registers</strong>:</p>
+<ul>
+<li>Last Write Wins register: Uses timestamps or version numbers, merge
+operation is max(ts), payload is a blob</li>
+<li>Multi-valued register: Uses vector clocks, merge operation takes
+both values</li>
+</ul>
+<p><strong>Sets</strong>:</p>
+<ul>
+<li>Grow-only set: Merge operation is union(items), payload is a set, no
+removal is allowed</li>
+<li>Two-phase set: Consists of two sets, one for adding and another for
+removing, elements can be added once and removed once</li>
+<li>Unique set: Optimized version of the two-phase set</li>
+<li>Last write wins set: Merge operation is max(ts), payload is a
+set</li>
+<li>Positive-negative set: Consists of one PN-counter per set item</li>
+<li>Observed-remove set</li>
+</ul>
+</section>
+<section id="distributed-coordination" data-number="0.11.36">
+<h3 data-number="1.11.36"><span class="header-section-number">1.11.36</span> Distributed
+Coordination</h3>
+<p><strong>Features</strong>:</p>
+<ul>
+<li>Configuration changes and notifications</li>
+<li>Updates for failed machines</li>
+<li>Dynamic integration and deconfiguration of new machines</li>
+<li>Elastic configuration with partial failures</li>
+<li>API for watches, callbacks, automatic file removal, and
+triggers</li>
+<li>Simple data model (directory tree model)</li>
+<li>High performance and highly available in-memory cluster
+solution</li>
+<li>No locks for updates, but total ordering of requests for all cluster
+replicas</li>
+<li>All replicas answer reads</li>
+<li>Wait-free implementation of coordination service with client API
+performing locks, leader selection, etc</li>
+</ul>
+<p><strong>Liveness and Correctness</strong>:</p>
+<ul>
+<li><strong>Sequential Consistency</strong>: Updates from a client will
+be applied in the order they were sent.</li>
+<li><strong>Atomicity</strong>: Updates either succeed or fail. No
+partial results.</li>
+<li><strong>Single System Image</strong>: A client will see the same
+view of the service regardless of the server it connects to.</li>
+<li><strong>Reliability</strong>: Once an update has been applied, it
+will persist from that time forward until a client overwrites the
+update.</li>
+<li><strong>Timeliness</strong>: The client’s view of the system is
+guaranteed to be up-to-date within a certain time bound.</li>
+</ul>
+</section>
+<section id="zookeeper-api" data-number="0.11.37">
+<h3 data-number="1.11.37"><span class="header-section-number">1.11.37</span> Zookeeper API</h3>
+<ul>
+<li><strong>create</strong>: Creates a node at a specified location in
+the tree</li>
+<li><strong>delete</strong>: Deletes a node from the tree</li>
+<li><strong>exists</strong>: Tests if a node exists at a specified
+location in the tree</li>
+<li><strong>get data</strong>: Retrieves the data stored at a node</li>
+<li><strong>set data</strong>: Writes data to a node</li>
+<li><strong>get children</strong>: Retrieves a list of children of a
+node</li>
+<li><strong>sync</strong>: Waits for data changes to be propagated to
+all nodes in the cluster.</li>
+</ul>
+</section>
+<section id="primary-order-atomic-broadcast-with-zab" data-number="0.11.38">
+<h3 data-number="1.11.38"><span class="header-section-number">1.11.38</span> Primary-Order Atomic
+Broadcast with Zab</h3>
+<ul>
+<li>Primary sends <strong>non-commutative, incremental state
+changes</strong> to backup units</li>
+<li><strong>Order</strong> of incremental changes <strong>maintained
+even in case of primary crash</strong></li>
+<li>Multiple outstanding requests possible</li>
+<li>Identification scheme to <strong>prevent re-ordering of
+updates</strong></li>
+<li>Synchronization phase to <strong>ensure old updates delivered before
+new ones stored</strong>.</li>
+</ul>
+</section>
+<section id="consistency-requirements-for-abcast-reliable-ordered-atomic-broadcast" data-number="0.11.39">
+<h3 data-number="1.11.39"><span class="header-section-number">1.11.39</span> Consistency Requirements
+for ABCast (Reliable Ordered Atomic Broadcast)</h3>
+<ul>
+<li><strong>Validity</strong>: If a correct process broadcasts a
+message, all correct processes will eventually deliver it.</li>
+<li><strong>Uniform Agreement</strong>: If a process delivers a message,
+all correct processes will eventually deliver it.</li>
+<li><strong>Uniform Integrity</strong>: Every process delivers a message
+at most once, only if it was previously broadcast by sender.</li>
+<li><strong>Uniform Total Order</strong>: If processes p and q both
+deliver messages m and m0, their order must be the same.</li>
+</ul>
+</section>
+<section id="primary-order" data-number="0.11.40">
+<h3 data-number="1.11.40"><span class="header-section-number">1.11.40</span> Primary Order</h3>
+<ul>
+<li><strong>Local primary order</strong>: If primary broadcasts (v, z)
+before (v’, z’), process that delivers (v, z) must have delivered (v’,
+z’) before (v, z).</li>
+<li><strong>Global primary order</strong>: If Pi broadcasts (v, z) and
+Pj &gt; Pi broadcasts (v’, z’), process delivering both (v, z) and (v’,
+z’) must deliver (v, z) first.</li>
+<li><strong>Primary integrity</strong>: If Pe broadcasts (v, z) and some
+process delivers (v’, z’) broadcast by Pe’ &lt; Pe, Pe must have
+delivered (v’, z’) before broadcasting (v, z).</li>
+</ul>
+</section>
+<section id="ha-transactions" data-number="0.11.41">
+<h3 data-number="1.11.41"><span class="header-section-number">1.11.41</span> HA Transactions</h3>
+<ul>
+<li><strong>Provide transactional guarantees without
+unavailability</strong> during system partitions or high network latency
+(Non-failing replica must respond)</li>
+<li><strong>Not CAP</strong>: Can’t provide linearizability as reading
+the most recent write from a replica</li>
+<li><strong>Not HAT-compliant</strong>: Serializability, Snapshot
+Isolation, Repeatable Read Isolation</li>
+<li><strong>Possible with algorithms relying on multi-versioning and
+client-side caching</strong>: Read Committed Isolation, transactional
+atomicity, etc.</li>
+<li><strong>Causal consistency with phantom prevention</strong> and ANSI
+Repeatable Read need affinity with at least one server (sticky
+sessions)</li>
+<li><strong>Unable to prevent concurrent updates to shared data
+items</strong>, cannot provide recency guarantees for reads.</li>
+</ul>
+</section>
 </section>
 <section id="design-of-distributed-systems" data-number="0.12">
 <h2 data-number="1.12"><span class="header-section-number">1.12</span>
 Design of Distributed Systems</h2>
-<section id="overview-9" data-number="0.12.1">
+<section id="overview-10" data-number="0.12.1">
 <h3 data-number="1.12.1"><span class="header-section-number">1.12.1</span> Overview</h3>
 <ul>
 <li>Key principles for system design</li>

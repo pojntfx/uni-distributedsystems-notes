@@ -1,3 +1,9 @@
+commit 06e18c2dac265213e4475180bd9be6d736adcaaf
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Feb 5 17:17:34 2023 +0100
+
+    feat: Add section on Distributed Services and Algorithms II
+
 commit 4d2adf1d402d75178bb8fcd1406d2de961a05194
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sat Feb 4 21:10:32 2023 +0100
