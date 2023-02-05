@@ -1,6 +1,6 @@
 Uni Distributed Systems Summary
 Felicitas Pojtinger
-2022-12-17
+2023-02-05
 
 -   1 Meta
     -   1.1 Contributing
@@ -8,333 +8,387 @@ Felicitas Pojtinger
     -   1.3 Course Timeline
 -   2 Introduction to Distributed Systems
     -   2.1 Overview
-    -   2.2 Definition of a Distributed System
-    -   2.3 Emergence
-    -   2.4 Why Distributed Systems hard for Devs?
-    -   2.5 Why Distribute a System?
-    -   2.6 Examples of Distributed Systems
-    -   2.7 Characteristics of Distributed Systems
-    -   2.8 Eight Fallacies of Distributed Computing
-    -   2.9 Programming Languages and Distributed Systems
-    -   2.10 History of Distributed Systems
-    -   2.11 Metcalfe’s Law
-    -   2.12 Security Topics for Distributed Systems
-    -   2.13 Theoretical Foundations of Distributed Systems
-    -   2.14 Distributed Systems Design Fields
-    -   2.15 An Introduction to Middleware
-    -   2.16 Distribution Transparencies
-    -   2.17 Classification of Middleware
+    -   2.2 Reasons for Distributing Systems
+        -   2.2.1 Definition of a Distributed System
+        -   2.2.2 Emergence
+    -   2.3 Why are Distributed Systems complicated?
+        -   2.3.1 Why Distribute a System?
+        -   2.3.2 Examples of Distributed Systems
+    -   2.4 Characteristics of Distributed Systems
+        -   2.4.1 Overview
+        -   2.4.2 Eight Fallacies of Distributed Computing
+        -   2.4.3 Programming Languages and Distributed Systems
+        -   2.4.4 History of Distributed Systems
+        -   2.4.5 Metcalfe’s Law
+        -   2.4.6 Security Topics for Distributed Systems
+        -   2.4.7 Theoretical Foundations of Distributed Systems
+        -   2.4.8 Distributed Systems Design Fields
+    -   2.5 Middleware
+        -   2.5.1 An Introduction to Middleware
+        -   2.5.2 Distribution Transparencies
+        -   2.5.3 Classification of Middleware
 -   3 Theoretical Models of Distributed Systems
     -   3.1 Overview
-    -   3.2 Synchronous vs. Asynchronous Systems
-    -   3.3 Properties of Message Protocols
-    -   3.4 Complexity of Distributed Algorithms
-    -   3.5 Failure Types
-    -   3.6 Distributed Computing Topologies
-    -   3.7 Queuing Theory: Kendall Notation M/M/m/ß/N/Q
-    -   3.8 Generalized Queuing Theory Terms (Henry Liu)
-    -   3.9 Little’s Law
-    -   3.10 Hejunka
-    -   3.11 Lessons Learned from Queuing Theory
-    -   3.12 Request Problem in Multi-Tier Networks
-    -   3.13 Task Size Problem in Multi-Tier Networks
-    -   3.14 Theories & Model vs. Reality
-    -   3.15 Critical Points in Client/Server Systems
-    -   3.16 Stateful vs Stateless Systems (The Stateful Server Problem)
-    -   3.17 Terminology for Client/Server Systems
-    -   3.18 Overarching Client/Server Architectures
-    -   3.19 Different Process Models
-    -   3.20 Questions for Process Models
-    -   3.21 Amdahl’s Law
-    -   3.22 Different I/O Models
-    -   3.23 Questions for I/O Models
+    -   3.2 Basic Principles
+        -   3.2.1 Synchronous vs. Asynchronous Systems
+        -   3.2.2 Properties of Message Protocols
+        -   3.2.3 Complexity of Distributed Algorithms
+        -   3.2.4 Failure Types
+        -   3.2.5 Distributed Computing Topologies
+        -   3.2.6 Queuing Theory: Kendall Notation M/M/m/ß/N/Q
+    -   3.3 Queuing Theory
+        -   3.3.1 Generalized Queuing Theory Terms (Henry Liu)
+        -   3.3.2 Little’s Law
+        -   3.3.3 Hejunka
+        -   3.3.4 Lessons Learned from Queuing Theory
+        -   3.3.5 Request Problem in Multi-Tier Networks
+        -   3.3.6 Task Size Problem in Multi-Tier Networks
+        -   3.3.7 Theories & Model vs. Reality
+    -   3.4 Client/Server Architectures
+        -   3.4.1 Critical Points in Client/Server Systems
+        -   3.4.2 Stateful vs Stateless Systems (The Stateful Server
+            Problem)
+        -   3.4.3 Terminology for Client/Server Systems
+        -   3.4.4 Overarching Client/Server Architectures
+    -   3.5 Process and I/O Models
+        -   3.5.1 Different Process Models
+        -   3.5.2 Questions for Process Models
+        -   3.5.3 Amdahl’s Law
+        -   3.5.4 Different I/O Models
+        -   3.5.5 Questions for I/O Models
 -   4 Message Protocols
     -   4.1 Overview
-    -   4.2 The Role of Delivery Guarantees
-    -   4.3 Why is TCP not Enough?
-    -   4.4 Different Levels of Timeouts
-    -   4.5 Delivery Guarantees for RPCs
-    -   4.6 Idempotency
-    -   4.7 Server State and Idempotency
-    -   4.8 Implementing Delivery Guarantees for Idempotent Requests
-    -   4.9 Repeating Non-Idempotent Operations
-    -   4.10 Request Order in Multi-Point-Protocols
-    -   4.11 Request Ordering with Multiple Nodes
-    -   4.12 Implementing Causal Ordered Broadcasts
-    -   4.13 Implementing Absolutely Ordered Casts
-    -   4.14 Properties of Sockets
-    -   4.15 Berkeley Sockets
-    -   4.16 Server Side Processing using Processes
-    -   4.17 Server Side Processing using Threads
-    -   4.18 Design Considerations for Socket-Based Services
-    -   4.19 Stateless vs. Stateful Socket-Based Services
-    -   4.20 TCP SYN Flooding
-    -   4.21 Writing a Socket Client & Server
-    -   4.22 Distribution Transparency with Sockets
-    -   4.23 Infrastructure of Client-Server Systems
+    -   4.2 Delivery Guarantees
+        -   4.2.1 The Role of Delivery Guarantees
+        -   4.2.2 Why is TCP not Enough?
+        -   4.2.3 Different Levels of Timeouts
+        -   4.2.4 Delivery Guarantees for RPCs
+    -   4.3 Idempotency
+        -   4.3.1 Overview
+        -   4.3.2 Server State and Idempotency
+        -   4.3.3 Implementing Delivery Guarantees for Idempotent
+            Requests
+        -   4.3.4 Repeating Non-Idempotent Operations
+    -   4.4 Order
+        -   4.4.1 Request Order in Multi-Point-Protocols
+        -   4.4.2 Request Ordering with Multiple Nodes
+        -   4.4.3 Implementing Causal Ordered Broadcasts
+        -   4.4.4 Implementing Absolutely Ordered Casts
+    -   4.5 Sockets
+        -   4.5.1 Properties of Sockets
+        -   4.5.2 Berkeley Sockets
+        -   4.5.3 Server Side Processing using Processes
+        -   4.5.4 Server Side Processing using Threads
+        -   4.5.5 Design Considerations for Socket-Based Services
+        -   4.5.6 Stateless vs. Stateful Socket-Based Services
+        -   4.5.7 TCP SYN Flooding
+        -   4.5.8 Writing a Socket Client & Server
+        -   4.5.9 Distribution Transparency with Sockets
+        -   4.5.10 Infrastructure of Client-Server Systems
 -   5 Remote Procedure Calls
     -   5.1 Overview
-    -   5.2 Call Versions
-    -   5.3 Remote Calls vs. Remote Messages
-    -   5.4 In-Process (Local) Calls
-    -   5.5 Inter-Process Calls (IPC)
-    -   5.6 Remote Procedure Calls (RPC)
-    -   5.7 Mechanics of Remote Calls
-    -   5.8 Marshaling/Serialization
-    -   5.9 Schema Evolution
-    -   5.10 Keeping Compatibility when Evolving a Schema
-    -   5.11 Stubs and Skeletons
-    -   5.12 Finding an RPC Server
-    -   5.13 Factors to Consider when Choosing an IDL
-    -   5.14 Popular IDLs for RPCs
+    -   5.2 Types of RPCs
+        -   5.2.1 Call Versions
+        -   5.2.2 Remote Calls vs. Remote Messages
+        -   5.2.3 In-Process (Local) Calls
+        -   5.2.4 Inter-Process Calls (IPC)
+        -   5.2.5 Remote Procedure Calls (RPC)
+    -   5.3 Implementing Remote Calls
+        -   5.3.1 Overview
+        -   5.3.2 Marshaling/Serialization
+        -   5.3.3 Schema Evolution
+        -   5.3.4 Keeping Compatibility when Evolving a Schema
+        -   5.3.5 Stubs and Skeletons
+        -   5.3.6 Finding an RPC Server
+        -   5.3.7 Factors to Consider when Choosing an IDL
+        -   5.3.8 Popular IDLs for RPCs
 -   6 Distributed Objects
     -   6.1 Overview
-    -   6.2 Objects vs. Abstract Data Types
-    -   6.3 Properties of Objects
-    -   6.4 Challenges for Remote Objects
-    -   6.5 What is a Remote Object?
-    -   6.6 Object Models and Type Systems
-    -   6.7 Accessing Remote Objects
-    -   6.8 The Broker Pattern
-    -   6.9 Remote Object Reference
-    -   6.10 Static vs Dynamic Invocation
-    -   6.11 Asynchronous Invocations
-    -   6.12 Main Distributed Object Services
-    -   6.13 Portable Interceptors
-    -   6.14 Remote Interface Design
-    -   6.15 Problems with Remote Objects
-    -   6.16 Java RMI Request/Reply Protocols
-    -   6.17 Java RMI Classes & Tools
-    -   6.18 Activation in Java RMI
-    -   6.19 Security in Java RMI
+    -   6.2 Basic Principles
+        -   6.2.1 Objects vs. Abstract Data Types
+        -   6.2.2 Properties of Objects
+        -   6.2.3 Challenges for Remote Objects
+        -   6.2.4 What is a Remote Object?
+    -   6.3 Components of Distributed Objects
+        -   6.3.1 Object Models and Type Systems
+        -   6.3.2 Accessing Remote Objects
+        -   6.3.3 The Broker Pattern
+        -   6.3.4 Remote Object Reference
+        -   6.3.5 Static vs Dynamic Invocation
+        -   6.3.6 Asynchronous Invocations
+    -   6.4 Implementing Remote Objects
+        -   6.4.1 Main Distributed Object Services
+        -   6.4.2 Portable Interceptors
+        -   6.4.3 Remote Interface Design
+        -   6.4.4 Problems with Remote Objects
+    -   6.5 Java RMI
+        -   6.5.1 Java RMI Request/Reply Protocols
+        -   6.5.2 Java RMI Classes & Tools
+        -   6.5.3 Activation in Java RMI
+        -   6.5.4 Security in Java RMI
 -   7 Distributed Business Components
     -   7.1 Overview
-    -   7.2 Problems With Object Interfaces
-    -   7.3 Component Based Processing
-    -   7.4 From Objects to Components
-    -   7.5 Business Components
-    -   7.6 Alternatives to Isomorphic Mapping
-    -   7.7 Generative Computing
-    -   7.8 Monolithic Software vs Components
-    -   7.9 Objects vs. Components
-    -   7.10 Separation of Concerns and Context
-    -   7.11 Enterprise Java Beans
-    -   7.12 EJB Component Model
-    -   7.13 Session Beans (Stateful and Stateless)
-    -   7.14 Entity Beans (Deprecated Since 3.0)
-    -   7.15 Message-Driven Beans
-    -   7.16 Client View of EJBs
-    -   7.17 Local vs. Remote Interfaces
-    -   7.18 Separation of Concerns and Context in EJB
-    -   7.19 The EJB Container
-    -   7.20 Containers and Threads
-    -   7.21 Entity Bean Container Contract
-    -   7.22 Bean Managed vs. Container Managed Persistence
-    -   7.23 JNDI Naming Context
-    -   7.24 Deployment Descriptor
-    -   7.25 Security Support
-    -   7.26 Transaction Modes
-    -   7.27 Best Practices for EJBs
-    -   7.28 Shortcomings of EJBs
-    -   7.29 New Ways for Object-Relational Mapping
-    -   7.30 Lessons Learned from EJBs
+    -   7.2 Basic Principles
+        -   7.2.1 Problems With Object Interfaces
+        -   7.2.2 Component Based Processing
+        -   7.2.3 From Objects to Components
+        -   7.2.4 Business Components
+        -   7.2.5 Alternatives to Isomorphic Mapping
+        -   7.2.6 Generative Computing
+        -   7.2.7 Monolithic Software vs. Components
+        -   7.2.8 Objects vs. Components
+        -   7.2.9 Separation of Concerns and Context
+    -   7.3 Enterprise Java Beans
+        -   7.3.1 Overview
+        -   7.3.2 EJB Component Model
+        -   7.3.3 Session Beans (Stateful and Stateless)
+        -   7.3.4 Entity Beans (Deprecated Since 3.0)
+        -   7.3.5 Message-Driven Beans
+        -   7.3.6 Client View of EJBs
+        -   7.3.7 Local vs. Remote Interfaces
+        -   7.3.8 Separation of Concerns and Context in EJB
+        -   7.3.9 The EJB Container
+        -   7.3.10 Containers and Threads
+        -   7.3.11 Entity Bean Container Contract
+        -   7.3.12 Bean Managed vs. Container Managed Persistence
+        -   7.3.13 JNDI Naming Context
+        -   7.3.14 Deployment Descriptor
+        -   7.3.15 Security Support
+        -   7.3.16 Transaction Modes
+        -   7.3.17 Best Practices for EJBs
+        -   7.3.18 Shortcomings of EJBs
+        -   7.3.19 New Ways for Object-Relational Mapping
+        -   7.3.20 Lessons Learned from EJBs
 -   8 Services
     -   8.1 Overview
     -   8.2 Timeline of Distributed Service Architectures
-    -   8.3 CORBA Security Model
-    -   8.4 CORBA Core Properties
-    -   8.5 Web Services Definition
-    -   8.6 Web Services Core Properties
-    -   8.7 UDDI Functionality
-    -   8.8 UDDI Content and Categories
-    -   8.9 WSDL Overview
-    -   8.10 WSDL Elements
-    -   8.11 SOAP
-    -   8.12 Security and Web Services
-    -   8.13 Reliable Messaging
-    -   8.14 Secure Messages
-    -   8.15 SAML
-    -   8.16 Transaction Models
-    -   8.17 Stateful Web Services
-    -   8.18 Scaling Web Services
-    -   8.19 Why UUID Failed
-    -   8.20 Lessons Learned from Web Services and CORBA
-    -   8.21 SOA Core Properties
-    -   8.22 SOA Interface Design
-    -   8.23 SOA Blueprint Service Types
-    -   8.24 SOA vs. Microservices
-    -   8.25 RPC vs. REST
-    -   8.26 The Web’s Architecture
-    -   8.27 REST Maturity Model
-    -   8.28 REST Resource Archetypes
-    -   8.29 CRUD with REST
-    -   8.30 RESTful Web Features
-    -   8.31 Critical Points with REST
-    -   8.32 GraphQL as a REST Alternative
-    -   8.33 The Reasons for Microservice Adoption
-    -   8.34 Scalability Problems of Monolithic Applications
-    -   8.35 Scalability Benefits of Microservices
-    -   8.36 The Microservice Ecosystem
-    -   8.37 Microservice Design Patterns
-    -   8.38 Critical Points with Microservices
-    -   8.39 Serverless Definition
-    -   8.40 Stateless Applications
-    -   8.41 Issues with Serverless
-    -   8.42 Serverless Design Patterns
+    -   8.3 CORBA
+        -   8.3.1 CORBA Security Model
+        -   8.3.2 CORBA Core Properties
+    -   8.4 Web Services
+        -   8.4.1 Overview
+        -   8.4.2 Web Services Core Properties
+        -   8.4.3 UDDI Functionality
+        -   8.4.4 UDDI Content and Categories
+        -   8.4.5 WSDL Overview
+        -   8.4.6 WSDL Elements
+        -   8.4.7 SOAP
+        -   8.4.8 Security and Web Services
+        -   8.4.9 Reliable Messaging
+        -   8.4.10 Secure Messages
+        -   8.4.11 SAML
+        -   8.4.12 Transaction Models
+        -   8.4.13 Stateful Web Services
+        -   8.4.14 Scaling Web Services
+        -   8.4.15 Why UDDI Failed
+        -   8.4.16 Lessons Learned from Web Services and CORBA
+    -   8.5 SOA
+        -   8.5.1 SOA Core Properties
+        -   8.5.2 SOA Interface Design
+        -   8.5.3 SOA Blueprint Service Types
+        -   8.5.4 SOA vs. Microservices
+    -   8.6 REST
+        -   8.6.1 RPC vs. REST
+        -   8.6.2 The Web’s Architecture
+        -   8.6.3 REST Maturity Model
+        -   8.6.4 REST Resource Archetypes
+        -   8.6.5 CRUD with REST
+        -   8.6.6 RESTful Web Features
+        -   8.6.7 Critical Points with REST
+        -   8.6.8 GraphQL as a REST Alternative
+    -   8.7 Microservices
+        -   8.7.1 The Reasons for Microservice Adoption
+        -   8.7.2 Scalability Problems of Monolithic Applications
+        -   8.7.3 Scalability Benefits of Microservices
+        -   8.7.4 The Microservice Ecosystem
+        -   8.7.5 Microservice Design Patterns
+    -   8.8 Critical Points with Microservices
+    -   8.9 Serverless
+        -   8.9.1 Serverless Definition
+        -   8.9.2 Stateless Applications
+        -   8.9.3 Issues with Serverless
+        -   8.9.4 Serverless Design Patterns
 -   9 Theoretical Foundations of Distributed Systems
     -   9.1 Overview
-    -   9.2 The Eight Fallacies of Distributed Computing
-    -   9.3 Analyzing Latency
-    -   9.4 Characteristics of Distributed Systems
-    -   9.5 Liveness vs. Correctness
-    -   9.6 Liveness and Correctness in Practice
-    -   9.7 Timing Models
-    -   9.8 The Fischer, Lynch and Patterson Result
-    -   9.9 The CAP Theorem
-    -   9.10 Preconditions for the CAP Theorem
-    -   9.11 Common Misconceptions of the CAP Theorem
-    -   9.12 The Modern View of the CAP Theorem
-    -   9.13 PACELC
-    -   9.14 Technical Failures
-    -   9.15 Failure Types
-    -   9.16 Failure Models
-    -   9.17 Failures and Timeouts
-    -   9.18 Failure Detectors
-    -   9.19 Time in Distributed Systems
-    -   9.20 Consistent vs. Inconsistent Cuts
-    -   9.21 Event Clocks (Logical Clocks)
-    -   9.22 Lamport Logical Clock
-    -   9.23 Vector Clocks
-    -   9.24 Physical Interval Time (TrueTime)
-    -   9.25 Hybrid Clocks
-    -   9.26 Ordering in Distributed Event Systems
-    -   9.27 Consensus
-    -   9.28 Algorithms for Consensus
-    -   9.29 Two-Phase Commit (2PC)
-    -   9.30 Quorum-Based Consensus
-    -   9.31 Paxos
-    -   9.32 Raft
-    -   9.33 Atomic Broadcast Conditions
-    -   9.34 Atomic Broadcast Protocol
-    -   9.35 Gossip Protocols
-    -   9.36 DWAL
-    -   9.37 Design Components of DWALs
-    -   9.38 Properties of Replication Models
-    -   9.39 Single-Leader Replication
-    -   9.40 Eventually Consistent Reads
-    -   9.41 Multi-Master Replication
-    -   9.42 Leaderless Quorum Replication
-    -   9.43 Session Modes of Asynchronous Replication
-    -   9.44 Global Modes of Replication
+    -   9.2 Foundational Concepts
+        -   9.2.1 The Eight Fallacies of Distributed Computing
+        -   9.2.2 Analyzing Latency
+        -   9.2.3 Characteristics of Distributed Systems
+    -   9.3 Consistency
+        -   9.3.1 Liveness vs. Correctness
+        -   9.3.2 Liveness and Correctness in Practice
+        -   9.3.3 Timing Models
+        -   9.3.4 The Fischer, Lynch and Patterson Result
+    -   9.4 The CAP Theorem
+        -   9.4.1 Overview
+        -   9.4.2 Preconditions for the CAP Theorem
+        -   9.4.3 Common Misconceptions of the CAP Theorem
+        -   9.4.4 The Modern View of the CAP Theorem
+        -   9.4.5 PACELC
+    -   9.5 Failure
+        -   9.5.1 Technical Failures
+        -   9.5.2 Failure Types
+        -   9.5.3 Failure Models
+        -   9.5.4 Failures and Timeouts
+        -   9.5.5 Failure Detectors
+    -   9.6 Clocks
+        -   9.6.1 Time in Distributed Systems
+        -   9.6.2 Consistent vs. Inconsistent Cuts
+        -   9.6.3 Event Clocks (Logical Clocks)
+        -   9.6.4 Lamport Logical Clock
+        -   9.6.5 Vector Clocks
+        -   9.6.6 Physical Interval Time (TrueTime)
+        -   9.6.7 Hybrid Clocks
+        -   9.6.8 Ordering in Distributed Event Systems
+    -   9.7 Consensus
+        -   9.7.1 Overview
+        -   9.7.2 Algorithms for Consensus
+        -   9.7.3 Two-Phase Commit (2PC)
+        -   9.7.4 Quorum-Based Consensus
+        -   9.7.5 Paxos
+        -   9.7.6 Raft
+    -   9.8 Broadcasting
+        -   9.8.1 Atomic Broadcast Conditions
+        -   9.8.2 Atomic Broadcast Protocol
+        -   9.8.3 Gossip Protocols
+        -   9.8.4 DWAL
+        -   9.8.5 Design Components of DWALs
+    -   9.9 Replication
+        -   9.9.1 Properties of Replication Models
+        -   9.9.2 Single-Leader Replication
+        -   9.9.3 Eventually Consistent Reads
+        -   9.9.4 Multi-Master Replication
+        -   9.9.5 Leaderless Quorum Replication
+        -   9.9.6 Session Modes of Asynchronous Replication
+        -   9.9.7 Global Modes of Replication
 -   10 Distributed Services and Algorithms I
     -   10.1 Overview
-    -   10.2 What is a Distributed Service?
-    -   10.3 Services and Instances
-    -   10.4 Core Distributed Services
-    -   10.5 Availability
-    -   10.6 Typical Hardware Causes for Downtime
-    -   10.7 Availability through Redundancy
-    -   10.8 3 Copy Disaster Recover Solution
-    -   10.9 Serial vs. Redundant Availability
-    -   10.10 Global Server Load Balancing
-    -   10.11 Failover with Virtual IPs
-    -   10.12 Failover, Load Balancing and Session State
-    -   10.13 P2P Load Balancing
-    -   10.14 Requirements of Distributed Name/Directory Systems
-    -   10.15 Design of Distributed Name/Directory Systems
-    -   10.16 Examples of Naming Services
-    -   10.17 Google vs. Amazon
-    -   10.18 Best Practices for Designing Services
-    -   10.19 Grid Storage vs. NAS/SAN
-    -   10.20 CQRS (Command Query Responsibility Segregation)
-    -   10.21 Requirements of Caching Services
-    -   10.22 Handling Changing Machine Counts in Caching Services
-    -   10.23 Consistent Hashing Algorithms
-    -   10.24 Cache Patterns
-    -   10.25 Cache Design Considerations
-    -   10.26 Local vs. Distributed Events
-    -   10.27 Asynchronous Event-Processing
-    -   10.28 Features of Event-Driven Interaction
-    -   10.29 Types of Message Oriented Middleware (MOMs)
-    -   10.30 ZeroMQ
-    -   10.31 Horizontal vs. Vertical Sharding
-    -   10.32 Sharding Strategies
-    -   10.33 Horizontal Sharding Functions
-    -   10.34 Consequences of Sharding
-    -   10.35 Relationships
-    -   10.36 Functional Requirements of Relationship Services
-    -   10.37 Why Relationship Services Failed
+    -   10.2 Types of Distributed Services
+        -   10.2.1 What is a Distributed Service?
+        -   10.2.2 Services and Instances
+        -   10.2.3 Core Distributed Services
+    -   10.3 Availability
+        -   10.3.1 Typical Hardware Causes for Downtime
+        -   10.3.2 Availability through Redundancy
+        -   10.3.3 3 Copy Disaster Recover Solution
+    -   10.4 Load Balancing
+        -   10.4.1 Serial vs. Redundant Availability
+        -   10.4.2 Global Server Load Balancing
+        -   10.4.3 Failover with Virtual IPs
+        -   10.4.4 Failover, Load Balancing and Session State
+        -   10.4.5 P2P Load Balancing
+    -   10.5 Service Organization
+        -   10.5.1 Requirements of Distributed Name/Directory Systems
+        -   10.5.2 Design of Distributed Name/Directory Systems
+        -   10.5.3 Examples of Naming Services
+        -   10.5.4 Google vs. Amazon
+        -   10.5.5 Best Practices for Designing Services
+    -   10.6 Caching
+        -   10.6.1 CQRS (Command Query Responsibility Segregation)
+        -   10.6.2 Requirements of Caching Services
+        -   10.6.3 Handling Changing Machine Counts in Caching Services
+        -   10.6.4 Consistent Hashing Algorithms
+        -   10.6.5 Cache Patterns
+        -   10.6.6 Cache Design Considerations
+    -   10.7 Events
+        -   10.7.1 Local vs. Distributed Events
+        -   10.7.2 Asynchronous Event-Processing
+        -   10.7.3 Features of Event-Driven Interaction
+        -   10.7.4 Types of Message Oriented Middleware (MOMs)
+        -   10.7.5 ZeroMQ
+    -   10.8 Sharding
+        -   10.8.1 Horizontal vs. Vertical Sharding
+        -   10.8.2 Sharding Strategies
+        -   10.8.3 Horizontal Sharding Functions
+        -   10.8.4 Consequences of Sharding
+    -   10.9 Relationships
+        -   10.9.1 Overview
+        -   10.9.2 Functional Requirements of Relationship Services
+        -   10.9.3 Why Relationship Services Failed
 -   11 Distributed Services and Algorithms II
     -   11.1 Overview
-    -   11.2 Why Truth is Expensive
-    -   11.3 Aspects of Classic Distributed Consistency
-    -   11.4 Persistent Object Representations
-    -   11.5 Mechanisms for Persistence
-    -   11.6 Persistent Object Mapping
-    -   11.7 Data Store Session Pooling
-    -   11.8 Classic ACID Definitions
-    -   11.9 Transaction Properties and Mechanisms
-    -   11.10 Serializability and Isolation
-    -   11.11 Locking Against Concurrent Access
-    -   11.12 Optimistic Locking
-    -   11.13 Serializability with Two-Phase Locking
-    -   11.14 Deadlocks
-    -   11.15 Distributed Deadlock Detection
-    -   11.16 Transaction API
-    -   11.17 Components of Distributed Transactions
-    -   11.18 Service Context
-    -   11.19 Distributed Two-Phase Commit
-    -   11.20 Failure Models of Distributed Transactions
-    -   11.21 Special Problems of Distributed Transactions
-    -   11.22 Transaction Types
-    -   11.23 ANSI Transaction Levels
-    -   11.24 Filesystem Block Order Guarantees
-    -   11.25 Eventually Consistent Storage Systems
-    -   11.26 Forces behind NoSQL
-    -   11.27 Scaling Problems of RDBMs
-    -   11.28 NoSQL Design Patterns
-    -   11.29 DynamoDB Design Principles
-    -   11.30 Beyond Relaxed Consistency
-    -   11.31 CALM Principle
-    -   11.32 CALM Operations
-    -   11.33 CRDTs
-    -   11.34 Bending the Problem
-    -   11.35 Examples of CRDTs
-    -   11.36 Distributed Coordination
-    -   11.37 Zookeeper API
-    -   11.38 Primary-Order Atomic Broadcast with Zab
-    -   11.39 Consistency Requirements for ABCast (Reliable Ordered
-        Atomic Broadcast)
-    -   11.40 Primary Order
-    -   11.41 HA Transactions
+    -   11.2 Problems with Classic Concurrency
+        -   11.2.1 Why Truth is Expensive
+        -   11.2.2 Aspects of Classic Distributed Consistency
+        -   11.2.3 Persistent Object Representations
+        -   11.2.4 Mechanisms for Persistence
+        -   11.2.5 Persistent Object Mapping
+        -   11.2.6 Data Store Session Pooling
+    -   11.3 Locking
+        -   11.3.1 Locking Against Concurrent Access
+        -   11.3.2 Optimistic Locking
+        -   11.3.3 Serializability with Two-Phase Locking
+        -   11.3.4 Deadlocks
+        -   11.3.5 Distributed Deadlock Detection
+    -   11.4 Transactions
+        -   11.4.1 Classic ACID Definitions
+        -   11.4.2 Transaction Properties and Mechanisms
+        -   11.4.3 Serializability and Isolation
+        -   11.4.4 Transaction API
+        -   11.4.5 Components of Distributed Transactions
+        -   11.4.6 Service Context
+        -   11.4.7 Distributed Two-Phase Commit
+        -   11.4.8 Failure Models of Distributed Transactions
+        -   11.4.9 Special Problems of Distributed Transactions
+        -   11.4.10 Transaction Types
+        -   11.4.11 ANSI Transaction Levels
+    -   11.5 Distributed Filesystems
+        -   11.5.1 Filesystem Block Order Guarantees
+        -   11.5.2 Eventually Consistent Storage Systems
+        -   11.5.3 Grid Storage vs. NAS/SAN
+    -   11.6 NoSQL
+        -   11.6.1 Forces behind NoSQL
+        -   11.6.2 Scaling Problems of RDBMs
+        -   11.6.3 NoSQL Design Patterns
+        -   11.6.4 DynamoDB Design Principles
+    -   11.7 Beyond Relaxed Consistency
+        -   11.7.1 Overview
+        -   11.7.2 CALM Principle
+        -   11.7.3 CALM Operations
+        -   11.7.4 CRDTs
+        -   11.7.5 Bending the Problem
+        -   11.7.6 Examples of CRDTs
+        -   11.7.7 Distributed Coordination
+    -   11.8 Distributed Coordination Services
+        -   11.8.1 Zookeeper API
+        -   11.8.2 Primary-Order Atomic Broadcast with Zab
+        -   11.8.3 Consistency Requirements for ABCast (Reliable Ordered
+            Atomic Broadcast)
+        -   11.8.4 Primary Order
+        -   11.8.5 HA Transactions
 -   12 Design of Distributed Systems
     -   12.1 Overview
     -   12.2 Design Principles for Distributed Systems
-    -   12.3 Sharing Ressources and Data
-    -   12.4 Connection Pooling
-    -   12.5 Horizonal Scaling/Parallelization
-    -   12.6 Caching and Replication
-    -   12.7 End-to-End Argument
-    -   12.8 Design Methodology
-    -   12.9 Uncomfortable Real-World Questions
-    -   12.10 Architecture Fields
-    -   12.11 Architecture Validation
-    -   12.12 Problems with Naive Portal Designs
-    -   12.13 Improving the GUI Architecture
-    -   12.14 Improving the System Architecture
-    -   12.15 Lessons Learned from Naive Portal Designs
-    -   12.16 Fan-Out Architecture
-    -   12.17 Reliability Issues in Dependencies
-    -   12.18 Distribution Architcture
-    -   12.19 Service Access Layer
-    -   12.20 Information Architecture (to analyze Caching)
-    -   12.21 Fragments
-    -   12.22 Physical and Process Architecture
-    -   12.23 Latency Reduction & Tolerance in Fan Out Architectures
-    -   12.24 Avoiding Getting Stuck in Fan-Out Architectures
-    -   12.25 Circuit Breakers
-    -   12.26 Bulkheads
-    -   12.27 Blast Reduction
+        -   12.2.1 Overview
+        -   12.2.2 Sharing Ressources and Data
+        -   12.2.3 Connection Pooling
+        -   12.2.4 Horizonal Scaling/Parallelization
+        -   12.2.5 Caching and Replication
+        -   12.2.6 End-to-End Argument
+        -   12.2.7 Design Methodology
+        -   12.2.8 Uncomfortable Real-World Questions
+    -   12.3 Architecture Fields
+        -   12.3.1 Overview
+        -   12.3.2 Information Architecture (to analyze Caching)
+        -   12.3.3 Distribution Architcture
+        -   12.3.4 Service Access Layer
+        -   12.3.5 Physical and Process Architecture
+        -   12.3.6 Architecture Validation
+    -   12.4 Improving an Existing Design
+        -   12.4.1 Problems with Naive Application Designs
+        -   12.4.2 Improving the GUI Architecture
+        -   12.4.3 Improving the System Architecture
+        -   12.4.4 Lessons Learned from Naive Portal Designs
+    -   12.5 Fan-Out Architecture
+        -   12.5.1 Overview
+        -   12.5.2 Reliability Issues in Dependencies
+        -   12.5.3 Fragments
+        -   12.5.4 Latency Reduction & Tolerance
+        -   12.5.5 Avoiding Getting Stuck
+    -   12.6 Containing Failures
+        -   12.6.1 Circuit Breakers
+        -   12.6.2 Bulkheads
+        -   12.6.3 Blast Reduction
 
 Meta
 
@@ -412,6 +466,8 @@ Overview
     latency
 8.  Resources related to DS
 
+Reasons for Distributing Systems
+
 Definition of a Distributed System
 
 A system that is made up of independent agents that interact with each
@@ -441,7 +497,7 @@ emergence, and constructed emergence.
 Emergent failure modes: Instances of cascading failures in constructed
 emergence.
 
-Why Distributed Systems hard for Devs?
+Why are Distributed Systems complicated?
 
 -   One reason is emergence, which refers to the complex and often
     unexpected behaviors that can arise when multiple components of a
@@ -517,6 +573,8 @@ There are many examples of distributed systems, including:
     the others to achieve a common goal.
 
 Characteristics of Distributed Systems
+
+Overview
 
 -   Influence of distribution topology and remoteness: The physical
     layout of a distributed system and the distance between its
@@ -807,6 +865,8 @@ considerations in distributed system design include:
     their quality of service, and determining how communication and
     resource sharing will be managed within the system.
 
+Middleware
+
 An Introduction to Middleware
 
 Middleware is software that sits between the operating system and the
@@ -937,6 +997,8 @@ Overview
 2.  Distributed computing topologies
 3.  Client-server systems, including critical points, architectures,
     processing and I/O models
+
+Basic Principles
 
 Synchronous vs. Asynchronous Systems
 
@@ -1074,6 +1136,8 @@ queue size.
 -   Q: Service policy type (Fifo, shortest remaining time first etc)
 -   M,D,G: Probability distribution for service time
 -   m: Number of service channels
+
+Queuing Theory
 
 Generalized Queuing Theory Terms (Henry Liu)
 
@@ -1215,6 +1279,8 @@ model. These include:
     account for coherence losses, which can impact their accuracy in
     predicting the behavior of real-world systems.
 
+Client/Server Architectures
+
 Critical Points in Client/Server Systems
 
 On the client side:
@@ -1350,6 +1416,8 @@ Overarching Client/Server Architectures
     too large to handle in real-time, or where real-time processing is
     not required.
 
+Process and I/O Models
+
 Different Process Models
 
 -   Single Thread/Single Core: This type of process model involves a
@@ -1449,6 +1517,8 @@ Overview
     2.  Reliable broadcast
     3.  Request ordering and causality
 2.  Programming client-server systems using sockets
+
+Delivery Guarantees
 
 The Role of Delivery Guarantees
 
@@ -1567,6 +1637,8 @@ Delivery Guarantees for RPCs
 
 Idempotency
 
+Overview
+
 Idempotency is a property of operations or requests that ensures that
 they can be safely repeated without changing the result of the
 operation. In other words, if an operation is idempotent, it will have
@@ -1652,6 +1724,8 @@ reliable communication:
 It is important to carefully manage state on the server in order to
 avoid overloading the system with old replies. It may be necessary to
 set limits on how long to store old replies and when to discard them.
+
+Order
 
 Request Order in Multi-Point-Protocols
 
@@ -1756,6 +1830,8 @@ There are however disadvantages with these implementations:
     it requires all nodes to wait for the total order to be determined
     before delivering their messages. This can be particularly
     problematic in systems where low latency is critical.
+
+Sockets
 
 Properties of Sockets
 
@@ -2046,6 +2122,8 @@ Overview
     5.  Tooling: generators
 3.  Cross-language call infrastructures: Thrift and gRPC
 
+Types of RPCs
+
 Call Versions
 
 1.  Local calls: made within a single process and do not require network
@@ -2144,7 +2222,9 @@ Remote Procedure Calls (RPC)
     of messages to simulate the missing features
 -   Often stateless
 
-Mechanics of Remote Calls
+Implementing Remote Calls
+
+Overview
 
 -   Marshaling/Serialization: Process of converting program data into a
     format that can be transmitted over a network
@@ -2409,6 +2489,8 @@ Overview
 7.  Interface Design
 8.  Java RMI
 
+Basic Principles
+
 Objects vs. Abstract Data Types
 
 -   Objects are data structures that combine state (data) and behavior
@@ -2436,7 +2518,7 @@ Properties of Objects
 
 -   Local objects are created with the new() operator and are only
     accessible within the scope of their creator.
--   An *object reference is a unique identifier that is used to locate
+-   An object reference is a unique identifier that is used to locate
     and access an object. It is returned when the object is created and
     can be used to call the object’s methods.
 -   Objects have a lifecycle that is tied to their creator. They exist
@@ -2506,6 +2588,8 @@ What is a Remote Object?
 -   Achieving complete transparency of remote calls behind object
     interfaces can be challenging in practice, especially in distributed
     systems.
+
+Components of Distributed Objects
 
 Object Models and Type Systems
 
@@ -2627,6 +2711,8 @@ Asynchronous Invocations
     are available. True asynchronous invocations require messaging
     middleware to achieve at-most-once delivery guarantees.
 
+Implementing Remote Objects
+
 Main Distributed Object Services
 
 -   Finding objects:
@@ -2687,6 +2773,8 @@ Problems with Remote Objects
     provide built-in support for transactions, which can make it
     difficult to ensure the consistency of data across multiple objects
     in a distributed system
+
+Java RMI
 
 Java RMI Request/Reply Protocols
 
@@ -2751,6 +2839,8 @@ Overview
         transactions, and security.
     -   Separation of context in EJBs, including the environment.
     -   Evolution and lessons learned from EJBs.
+
+Basic Principles
 
 Problems With Object Interfaces
 
@@ -2834,7 +2924,7 @@ Generative Computing
 -   Can be used to create customizable software for different users or
     environments
 
-Monolithic Software vs Components
+Monolithic Software vs. Components
 
 -   Components are clusters of software, configuration, and other
     elements that form a unit for deployment and maintenance within a
@@ -2868,6 +2958,8 @@ Separation of Concerns and Context
     customized after development.
 
 Enterprise Java Beans
+
+Overview
 
 -   Enterprise Java Beans (EJBs) allow the construction of distributed
     applications by combining components from different vendors.
@@ -3209,6 +3301,8 @@ Timeline of Distributed Service Architectures
     build and run applications and services without the need to manage
     underlying infrastructure.
 
+CORBA
+
 CORBA Security Model
 
 -   In the CORBA security model, the concept of secure delegation is
@@ -3237,7 +3331,9 @@ CORBA Core Properties
 -   The use of “boilerplate code” in CORBA often led to extensive code
     generation and model-driven development.
 
-Web Services Definition
+Web Services
+
+Overview
 
 -   A Web Service is a software component that represents a business
     function or service, and can be accessed by other applications over
@@ -3470,7 +3566,7 @@ Scaling Web Services
     consider performing the aggregation on demand or during off-hours in
     one large, course-grained transaction.
 
-Why UUID Failed
+Why UDDI Failed
 
 UDDI relied on the following assumptions:
 
@@ -3506,6 +3602,8 @@ Lessons Learned from Web Services and CORBA
     interface design, but also about hosting services.
 -   The availability of a service on the web is more valuable than many
     specifications and interfaces.
+
+SOA
 
 SOA Core Properties
 
@@ -3573,6 +3671,8 @@ Microservices:
     business services.
 -   Do not use contract decoupling.
 -   Follow a “share as little as possible” approach.
+
+REST
 
 RPC vs. REST
 
@@ -3694,6 +3794,8 @@ GraphQL as a REST Alternative
 -   Has the potential for huge queries, which can be a danger if not
     carefully managed.
 
+Microservices
+
 The Reasons for Microservice Adoption
 
 -   Ultra large-scale sites require efficient horizontal scaling.
@@ -3784,6 +3886,8 @@ Critical Points with Microservices
 -   Distributed commits must be eventually consistent to ensure that
     they do not get lost.
 
+Serverless
+
 Serverless Definition
 
 -   Cloud-native platform for short-running, stateless computation and
@@ -3855,6 +3959,8 @@ Overview
 -   Ordering and Causality
 -   Algorithms for Consensus in DS
 -   Optimistic Replication and Eventual Consistency
+
+Foundational Concepts
 
 The Eight Fallacies of Distributed Computing
 
@@ -3929,6 +4035,8 @@ Characteristics of Distributed Systems
     factors such as node failures, network delays, and changes in the
     system’s environment. This uncertainty can make it challenging to
     predict the behavior of the system and ensure its reliability.
+
+Consistency
 
 Liveness vs. Correctness
 
@@ -4026,6 +4134,8 @@ The Fischer, Lynch and Patterson Result
 
 The CAP Theorem
 
+Overview
+
 States that in the presence of network partitions, a client must choose
 either consistency or availability, but not both.
 
@@ -4080,6 +4190,8 @@ tradeoffs for distributed database systems.
     availability and consistency (A and C).
 -   In the absence of a partition (E), the system can trade off
     latency (L) and consistency (C) when running normally.
+
+Failure
 
 Technical Failures
 
@@ -4175,6 +4287,8 @@ service (QoS):
     should receive x’s estimate and make a decision based on it.
 -   Low overhead: The FD should not cause a lot of overhead, meaning it
     should not consume too many resources or slow down the system.
+
+Clocks
 
 Time in Distributed Systems
 
@@ -4280,6 +4394,8 @@ Ordering in Distributed Event Systems
     global order of events in this case.
 
 Consensus
+
+Overview
 
 Consensus is a process used by a group of processes to reach agreement
 on a specific value, based on their individual inputs. The objective of
@@ -4532,6 +4648,8 @@ The protocol consists of the following steps:
     it updates its commit index and sends an Apply message to all other
     replicas.
 
+Broadcasting
+
 Atomic Broadcast Conditions
 
 A distributed algorithm that guarantees correct transmission of a
@@ -4631,6 +4749,8 @@ Design Components of DWALs
 -   Message order and latency hiding: To ensure that the DWAL can
     function effectively, it is important to ensure that updates are
     delivered to all processes in a consistent order.
+
+Replication
 
 Properties of Replication Models
 
@@ -4838,6 +4958,8 @@ Overview
     4.  Distributed DB with sharding/partitioning functions
     5.  Distributed Messaging with event notification and gossip
 
+Types of Distributed Services
+
 What is a Distributed Service?
 
 Function provided by a distributed middleware with:
@@ -4942,6 +5064,8 @@ For an individual resource:
 -   Enables quick switchover in case of disaster for business continuity
 -   Provides high availability and protects against data loss.
 
+Load Balancing
+
 Serial vs. Redundant Availability
 
 -   Serial chain of components:
@@ -5028,6 +5152,8 @@ P2P Load Balancing
     evaluator functions to make load-balancing decisions.
 -   Server Stat Replication: The replication of server stats is done
     through multicast.
+
+Service Organization
 
 Requirements of Distributed Name/Directory Systems
 
@@ -5132,44 +5258,7 @@ Best Practices for Designing Services
 -   Manage dependencies carefully
 -   Create APIs for customer access to services
 
-Grid Storage vs. NAS/SAN
-
-Grid Storage:
-
--   Requires POSIX-Grid gateway
--   Special caching may be needed for video (readahead)
--   Offers huge bandwidth and scalability
--   May require special maintenance
--   May be proprietary
--   Supports parallel processing
--   Requires special applications
--   Compatibility with existing apps is questionable
--   Disaster recovery across sites is unclear
--   Requires more electric power and space
-
-NAS/SAN:
-
--   POSIX-compatible
--   Special caching is difficult to implement
--   Has a hard limit in SPxx storage interface
--   Offers simple upgrades
--   Supports standard file system
--   Allows dynamic growth of file systems via LUN organization
--   Requires maintenance effort to balance space/use
--   Proven and fast technology
--   Expensive disaster recovery through smaller replicas
--   Several different file system configurations are possible
--   Without virtual SAN, hot-spots can occur on a single drive
--   Longer drive-rebuild times
-
-To summarize:
-
--   Watch out for proprietary lock-in and compatibility issues with grid
-    storage
--   Grid storage requires programming skills for solutions (map/reduce
-    with Hadoop)
--   NAS/SAN is a proven and faster technology
--   NAS/SAN won’t be replaced by grid storage (which is specialized)
+Caching
 
 CQRS (Command Query Responsibility Segregation)
 
@@ -5248,6 +5337,8 @@ Cache Design Considerations
 -   Validity of fragments
 -   Effects of fragment invalidation
 -   Dependencies between fragments, pages, etc.
+
+Events
 
 Local vs. Distributed Events
 
@@ -5335,6 +5426,8 @@ ZeroMQ
 -   Multi-platform and multi-language support
 -   “Suicidal snail” fail-fast mechanism to kill slow subscribers
 
+Sharding
+
 Horizontal vs. Vertical Sharding
 
 Horizontal: Per (database) row, e.g. first 100 users are in shard 1, 200
@@ -5375,6 +5468,8 @@ Consequences of Sharding
 -   Every change requires corresponding application changes
 
 Relationships
+
+Overview
 
 -   Within the database, referential integrity rules protect containment
     relationships
@@ -5430,6 +5525,8 @@ Overview
 -   Distributed Coordination (e.g. Chubby, ZooKeeper) includes:
     -   Distributed consensus protocols
     -   Cluster scheduler (e.g. Borg)
+
+Problems with Classic Concurrency
 
 Why Truth is Expensive
 
@@ -5510,50 +5607,7 @@ Data Store Session Pooling
     -   Timeouts
     -   Connection recycling
 
-Classic ACID Definitions
-
--   Durability: Ensures that once a transaction is committed, its
-    effects persist even in the case of system failures (e.g. a crash
-    that causes you to lose changes made to a word file)
--   Atomicity: Ensures that a transaction is treated as a single,
-    indivisible unit of work that either happens in its entirety or
-    doesn’t happen at all (e.g. in the case of a birthday party
-    re-schedule where not all participants were caught in time)
--   Isolation: Ensures that the concurrent execution of transactions
-    results in a system state that would be obtained as if transactions
-    were executed serially (e.g. if two people work on a shared file,
-    their changes should not interfere with each other)
--   Consistency: Ensures that the system remains in a valid state after
-    a transaction is executed (e.g. after you complete a friend’s work
-    for the day, the tasks remain consistent, and the system remains in
-    a valid state)
-
-Transaction Properties and Mechanisms
-
--   Atomic Changes over Distributed Resources: This is achieved through
-    the use of consensus or voting algorithms such as two-phase commit.
--   Consistency: This is maintained by observing consistency constraints
-    between objects, such that the system remains in a valid state
-    before and after a transaction is executed.
--   Isolation from Concurrent Access: This is accomplished through the
-    use of locking mechanisms, such as two-phase locking or hierarchical
-    locking.
--   Durability of Changes: This is ensured by transferring changes made
-    to memory objects to persistent storage, to prevent loss in case of
-    a system failure.
-
-Serializability and Isolation
-
-Definition: States that the outcome of executing a set of transactions
-should be equivalent to some serial execution of those transactions.
-
-Purpose: The purpose of serializability is to ensure that each
-transaction operates on the database as if it were running by itself,
-which maintains the consistency and correctness of the database.
-
-Importance: Without serializability, ACID consistency is generally not
-guaranteed, making it a crucial component in maintaining the integrity
-of the database.
+Locking
 
 Locking Against Concurrent Access
 
@@ -5685,6 +5739,53 @@ Stochastic detection:
 -   Architecture type: This method is suitable for systems with a
     decentralized architecture, where multiple processes are involved in
     the detection of deadlocks.
+
+Transactions
+
+Classic ACID Definitions
+
+-   Durability: Ensures that once a transaction is committed, its
+    effects persist even in the case of system failures (e.g. a crash
+    that causes you to lose changes made to a word file)
+-   Atomicity: Ensures that a transaction is treated as a single,
+    indivisible unit of work that either happens in its entirety or
+    doesn’t happen at all (e.g. in the case of a birthday party
+    re-schedule where not all participants were caught in time)
+-   Isolation: Ensures that the concurrent execution of transactions
+    results in a system state that would be obtained as if transactions
+    were executed serially (e.g. if two people work on a shared file,
+    their changes should not interfere with each other)
+-   Consistency: Ensures that the system remains in a valid state after
+    a transaction is executed (e.g. after you complete a friend’s work
+    for the day, the tasks remain consistent, and the system remains in
+    a valid state)
+
+Transaction Properties and Mechanisms
+
+-   Atomic Changes over Distributed Resources: This is achieved through
+    the use of consensus or voting algorithms such as two-phase commit.
+-   Consistency: This is maintained by observing consistency constraints
+    between objects, such that the system remains in a valid state
+    before and after a transaction is executed.
+-   Isolation from Concurrent Access: This is accomplished through the
+    use of locking mechanisms, such as two-phase locking or hierarchical
+    locking.
+-   Durability of Changes: This is ensured by transferring changes made
+    to memory objects to persistent storage, to prevent loss in case of
+    a system failure.
+
+Serializability and Isolation
+
+Definition: States that the outcome of executing a set of transactions
+should be equivalent to some serial execution of those transactions.
+
+Purpose: The purpose of serializability is to ensure that each
+transaction operates on the database as if it were running by itself,
+which maintains the consistency and correctness of the database.
+
+Importance: Without serializability, ACID consistency is generally not
+guaranteed, making it a crucial component in maintaining the integrity
+of the database.
 
 Transaction API
 
@@ -5865,6 +5966,8 @@ Transaction Levels:
 
 The higher the level, the more overhead is required.
 
+Distributed Filesystems
+
 Filesystem Block Order Guarantees
 
 -   BOB (Block Order Breaker) is a tool used to evaluate the behavior of
@@ -5886,6 +5989,47 @@ Eventually Consistent Storage Systems
 -   When to Forego Coordination: The question of when it’s safe to
     forego the cost of expensive coordination versus when it’s necessary
     to pay the price is an important one.
+
+Grid Storage vs. NAS/SAN
+
+Grid Storage:
+
+-   Requires POSIX-Grid gateway
+-   Special caching may be needed for video (readahead)
+-   Offers huge bandwidth and scalability
+-   May require special maintenance
+-   May be proprietary
+-   Supports parallel processing
+-   Requires special applications
+-   Compatibility with existing apps is questionable
+-   Disaster recovery across sites is unclear
+-   Requires more electric power and space
+
+NAS/SAN:
+
+-   POSIX-compatible
+-   Special caching is difficult to implement
+-   Has a hard limit in SPxx storage interface
+-   Offers simple upgrades
+-   Supports standard file system
+-   Allows dynamic growth of file systems via LUN organization
+-   Requires maintenance effort to balance space/use
+-   Proven and fast technology
+-   Expensive disaster recovery through smaller replicas
+-   Several different file system configurations are possible
+-   Without virtual SAN, hot-spots can occur on a single drive
+-   Longer drive-rebuild times
+
+To summarize:
+
+-   Watch out for proprietary lock-in and compatibility issues with grid
+    storage
+-   Grid storage requires programming skills for solutions (map/reduce
+    with Hadoop)
+-   NAS/SAN is a proven and faster technology
+-   NAS/SAN won’t be replaced by grid storage (which is specialized)
+
+NoSQL
 
 Forces behind NoSQL
 
@@ -5944,6 +6088,8 @@ DynamoDB Design Principles
     data management
 
 Beyond Relaxed Consistency
+
+Overview
 
 -   Order-insensitive processing using CALM (Consistency as Logical
     Monotonicity) principles in EC (Eventual Consistency) programs
@@ -6062,6 +6208,8 @@ Liveness and Correctness:
 -   Timeliness: The client’s view of the system is guaranteed to be
     up-to-date within a certain time bound.
 
+Distributed Coordination Services
+
 Zookeeper API
 
 -   create: Creates a node at a specified location in the tree
@@ -6135,6 +6283,8 @@ Overview
 -   Strategies for achieving fault-tolerance in high-scale systems.
 
 Design Principles for Distributed Systems
+
+Overview
 
 -   Consideration of Latency: Examination of buffering and round-trip
     times
@@ -6237,11 +6387,95 @@ Uncomfortable Real-World Questions
 
 Architecture Fields
 
+Overview
+
 -   Information Architecture
 -   Distribution Architecture
 -   System Architecture
 -   Physical Architecture
 -   Architectural Validation
+
+Information Architecture (to analyze Caching)
+
+  Defines pieces of information to aggregate or integrate
+
+  -----------------------------------------------------------------------
+  Data/changed   Time                          Personalization
+  by                                           
+  -------------- ----------------------------- --------------------------
+  Country Codes  No (not often, reference      No
+                 data)                         
+
+  News           Yes (aging only)              No, but personal
+                                               selections
+
+  Greeting       No                            Yes
+
+  Message        Yes (slowly aging)            Yes
+  -----------------------------------------------------------------------
+
+Distribution Architcture
+
+  Tells portal how to map/locate fragments defined in the information
+
+  ------------------------------------------------------------------------------------------------------------------
+  Data Type  Source   Protocol   Port   Avg.    Worst   Downtimes     Max     Loadbal.   Security   Contact/SLA
+                                        Resp.   Resp.                 Conn.                         
+  ---------- -------- ---------- ------ ------- ------- ------------- ------- ---------- ---------- ----------------
+  News       hostX    http/xml   3000   100ms   6 sec.  17.00-17.20   100     client     plain      Mrs.X/News-SLA
+
+  Research   hostY    RMI        80     50ms    500ms   0.00-1.00     50      server     SSL        Mr.Y/res-SLA
+  ------------------------------------------------------------------------------------------------------------------
+
+Additional factors to consider:
+
+-   Available bandwidth
+-   Number of planned requests
+-   Distance to the device
+-   Availability numbers
+
+Example results:
+
+-   Back-end server performance affecting home page construction time
+-   Huge latencies and variations in response times causing
+    instabilities in the portal application
+-   Getting to the servers for every request is nearly impossible due to
+    huge latencies and variations in response times from dependencies.
+
+Service Access Layer
+
+Is determined by the distribution architecture.
+
+-   Handle changes in the interface
+-   Monitors backend system connections
+-   Disable connections that are not functioning properly (“fail fast”)
+-   Add new sources to the system
+-   Poll and re-enable sources that have been temporarily disabled
+-   Keep track of statistics on all sources.
+
+Simple Alternative: Sidecar, contains circuit breaker & service
+discovery
+
+Advanced Alternative: Service mesh with separate data and control plane
+
+Physical and Process Architecture
+
+Physical Architecture:
+
+-   Deals with reliability issues (replication, high-availability, etc.)
+    and scalability (horizontal and/or vertical)
+-   Need to define scalability methods from the beginning due to their
+    impact on overall system architecture
+
+Horizontally scalable application:
+
+-   Replicated on multiple hosts
+-   Avoids single point of failure
+
+Vertically scalable application:
+
+-   Can only install more CPUs or RAM on single instance of host
+-   Limited scalability and availability (HA application)
 
 Architecture Validation
 
@@ -6256,7 +6490,9 @@ does the architecture …
 -   Handle upgrades, maintenance and support?
 -   Align with the organization’s goals, strategies and plans?
 
-Problems with Naive Portal Designs
+Improving an Existing Design
+
+Problems with Naive Application Designs
 
 The portal had no caching etc.
 
@@ -6313,6 +6549,8 @@ Lessons Learned from Naive Portal Designs
 
 Fan-Out Architecture
 
+Overview
+
 Calls are parallel instead of serial.
 
 -   The overall request time is determined by the slowest sub-request
@@ -6337,69 +6575,6 @@ Reliability Issues in Dependencies
 -   Avoid lengthy waiting time for sub-requests in the homepage action
     handler: Adopt the “Fail-fast” pattern today.
 
-Distribution Architcture
-
-  Tells portal how to map/locate fragments defined in the information
-
-  ------------------------------------------------------------------------------------------------------------------
-  Data Type  Source   Protocol   Port   Avg.    Worst   Downtimes     Max     Loadbal.   Security   Contact/SLA
-                                        Resp.   Resp.                 Conn.                         
-  ---------- -------- ---------- ------ ------- ------- ------------- ------- ---------- ---------- ----------------
-  News       hostX    http/xml   3000   100ms   6 sec.  17.00-17.20   100     client     plain      Mrs.X/News-SLA
-
-  Research   hostY    RMI        80     50ms    500ms   0.00-1.00     50      server     SSL        Mr.Y/res-SLA
-  ------------------------------------------------------------------------------------------------------------------
-
-Additional factors to consider:
-
--   Available bandwidth
--   Number of planned requests
--   Distance to the device
--   Availability numbers
-
-Example results:
-
--   Back-end server performance affecting home page construction time
--   Huge latencies and variations in response times causing
-    instabilities in the portal application
--   Getting to the servers for every request is nearly impossible due to
-    huge latencies and variations in response times from dependencies.
-
-Service Access Layer
-
-Is determined by the distribution architecture.
-
--   Handle changes in the interface
--   Monitors backend system connections
--   Disable connections that are not functioning properly (“fail fast”)
--   Add new sources to the system
--   Poll and re-enable sources that have been temporarily disabled
--   Keep track of statistics on all sources.
-
-Simple Alternative: Sidecar, contains circuit breaker & service
-discovery
-
-Advanced Alternative: Service mesh with separate data and control plane
-
-Information Architecture (to analyze Caching)
-
-  Defines pieces of information to aggregate or integrate
-
-  -----------------------------------------------------------------------
-  Data/changed   Time                          Personalization
-  by                                           
-  -------------- ----------------------------- --------------------------
-  Country Codes  No (not often, reference      No
-                 data)                         
-
-  News           Yes (aging only)              No, but personal
-                                               selections
-
-  Greeting       No                            Yes
-
-  Message        Yes (slowly aging)            Yes
-  -----------------------------------------------------------------------
-
 Fragments
 
 Pages: Unique to customers, cannot be re-used
@@ -6411,26 +6586,7 @@ Page fragments:
 -   Downside: If fragments change, mechanism needed to invalidate
     dependent pages.
 
-Physical and Process Architecture
-
-Physical Architecture:
-
--   Deals with reliability issues (replication, high-availability, etc.)
-    and scalability (horizontal and/or vertical)
--   Need to define scalability methods from the beginning due to their
-    impact on overall system architecture
-
-Horizontally scalable application:
-
--   Replicated on multiple hosts
--   Avoids single point of failure
-
-Vertically scalable application:
-
--   Can only install more CPUs or RAM on single instance of host
--   Limited scalability and availability (HA application)
-
-Latency Reduction & Tolerance in Fan Out Architectures
+Latency Reduction & Tolerance
 
 -   Keep response times tight but aware of stragglers
 -   Fight stragglers with backup requests and cross-server cancellation
@@ -6444,7 +6600,7 @@ Latency Reduction & Tolerance in Fan Out Architectures
 -   Increase replication count
 -   Beware of the incast problem
 
-Avoiding Getting Stuck in Fan-Out Architectures
+Avoiding Getting Stuck
 
 -   Fail Fast: Don’t wait for problematic resources
 -   Timeouts: Use timeouts when accessing a service
@@ -6459,6 +6615,8 @@ Avoiding Getting Stuck in Fan-Out Architectures
     be retrieved
 -   Empty Response (Fail Silent): Return null or empty list that UIs can
     ignore.
+
+Containing Failures
 
 Circuit Breakers
 
