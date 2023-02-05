@@ -35,7 +35,7 @@ SPDX-License-Identifier: AGPL-3.0
 - I/O Process Models
 - Delivery Guarantees
 - Replication, Consensus, Eventual Consistency, FIFO, Reliable Broadcasting
-- Synchronization, Shared Nothing/Shared Something
+- Synchronization
 - Correctness, Liveness, Complexity, Failure Modes
 - Fan-Out Architecture
 - Two-Phase Commits (2PC)
