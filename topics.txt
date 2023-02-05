@@ -32,7 +32,7 @@ SPDX-License-Identifier: AGPL-3.0
 
 Topics
 
--   I/O Process Models
+-   I/O & Process Models
 -   Delivery Guarantees
 -   Replication, Consensus, Eventual Consistency, FIFO, Reliable
     Broadcasting

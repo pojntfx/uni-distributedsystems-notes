@@ -1,3 +1,9 @@
+commit 53a5a8d74ea16b5b2a8696ae775521b51097dad5
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Sun Feb 5 22:43:40 2023 +0100
+
+    feat: Add condensed version of the summary
+
 commit f14adb50ec68e6577d8d792fcfece94ee8b93bc1
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Feb 5 21:45:02 2023 +0100
