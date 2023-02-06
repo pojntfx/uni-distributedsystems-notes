@@ -252,6 +252,11 @@ Solution</a></li>
 Availability</a></li>
 <li><a href="#global-server-load-balancing"><span class="toc-section-number">5.3.2</span> Global Server Load
 Balancing</a></li>
+<li><a href="#failover-with-virtual-ips"><span class="toc-section-number">5.3.3</span> Failover with Virtual
+IPs</a></li>
+<li><a href="#failover-load-balancing-and-session-state"><span class="toc-section-number">5.3.4</span> Failover, Load Balancing and
+Session State</a></li>
+<li><a href="#p2p-load-balancing"><span class="toc-section-number">5.3.5</span> P2P Load Balancing</a></li>
 </ul></li>
 <li><a href="#caching"><span class="toc-section-number">5.4</span>
 Caching</a>
@@ -2210,6 +2215,55 @@ information.</li>
 <li>Uses real-time data from end-user devices to dynamically adjust
 traffic distribution for optimal performance.</li>
 </ul></li>
+</ul>
+<h3 id="failover-with-virtual-ips"><span class="header-section-number">5.3.3</span> Failover with Virtual
+IPs</h3>
+<p><strong>Failover with one virtual IP</strong>:</p>
+<ul>
+<li>DNS points only to <strong>one Virtual IP (VIP)</strong></li>
+<li>In case of a server failure, <strong>client sessions are
+lost</strong> but they can establish a new session on reconnect</li>
+<li><strong>No changes in DNS are required</strong>, avoiding the
+potential issues of flushes and timeouts</li>
+</ul>
+<p><strong>Multi-site failover</strong>:</p>
+<ul>
+<li>A <strong>combination</strong> of geo-aware DNS and a Load
+Balancer/Fail-over front-server</li>
+<li><strong>Requests can be re-routed</strong> to different locations in
+case of a server failure</li>
+<li>May still have the limitations and <strong>issues associated with
+geo-aware DNS</strong>.</li>
+</ul>
+<h3 id="failover-load-balancing-and-session-state"><span class="header-section-number">5.3.4</span> Failover, Load Balancing and
+Session State</h3>
+<ul>
+<li><strong>Sticky Sessions</strong>: Keeps session state on a single
+server, offers advantages with a non-replicated system of records but
+limited in terms of fail-over and load-balancing options.</li>
+<li>Session Storage <strong>in DB</strong>: Session state is stored in a
+database, offers better scalability and fail-over options compared to
+sticky sessions.</li>
+<li>Session Storage <strong>in Distributed Cache</strong>: Session state
+is stored in a distributed cache, provides better performance and
+scalability compared to database storage, but still with fail-over
+options.</li>
+</ul>
+<p><strong>Today: Stateless servers with state in DB are the
+norm</strong>, but sticky sessions are still useful because records need
+to be replicated.</p>
+<p><strong>Compromise</strong>: Replicate sessions between pairs of
+servers, then enable switching between them as failovers</p>
+<h3 id="p2p-load-balancing"><span class="header-section-number">5.3.5</span> P2P Load Balancing</h3>
+<ul>
+<li><strong>Evaluator Functions</strong>: Access server stats in shared
+memory and determine the outcome of a request, whether it is handled by
+its own server, redirected, or proxied.</li>
+<li><strong>Server Stats</strong>: Various metrics such as CPU usage,
+number of requests, memory usage, etc., are replicated in shared memory
+and used by evaluator functions to make load-balancing decisions.</li>
+<li><strong>Server Stat Replication</strong>: The replication of server
+stats is done through multicast.</li>
 </ul>
 </div>
 <div id="caching" class="slide section level2" number="5.4">

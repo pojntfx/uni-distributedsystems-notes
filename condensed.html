@@ -2175,6 +2175,61 @@ traffic distribution for optimal performance.</li>
 </ul></li>
 </ul>
 </section>
+<section id="failover-with-virtual-ips" data-number="0.5.3.3">
+<h4 data-number="1.5.3.3"><span class="header-section-number">1.5.3.3</span> Failover with Virtual
+IPs</h4>
+<p><strong>Failover with one virtual IP</strong>:</p>
+<ul>
+<li>DNS points only to <strong>one Virtual IP (VIP)</strong></li>
+<li>In case of a server failure, <strong>client sessions are
+lost</strong> but they can establish a new session on reconnect</li>
+<li><strong>No changes in DNS are required</strong>, avoiding the
+potential issues of flushes and timeouts</li>
+</ul>
+<p><strong>Multi-site failover</strong>:</p>
+<ul>
+<li>A <strong>combination</strong> of geo-aware DNS and a Load
+Balancer/Fail-over front-server</li>
+<li><strong>Requests can be re-routed</strong> to different locations in
+case of a server failure</li>
+<li>May still have the limitations and <strong>issues associated with
+geo-aware DNS</strong>.</li>
+</ul>
+</section>
+<section id="failover-load-balancing-and-session-state" data-number="0.5.3.4">
+<h4 data-number="1.5.3.4"><span class="header-section-number">1.5.3.4</span> Failover, Load Balancing
+and Session State</h4>
+<ul>
+<li><strong>Sticky Sessions</strong>: Keeps session state on a single
+server, offers advantages with a non-replicated system of records but
+limited in terms of fail-over and load-balancing options.</li>
+<li>Session Storage <strong>in DB</strong>: Session state is stored in a
+database, offers better scalability and fail-over options compared to
+sticky sessions.</li>
+<li>Session Storage <strong>in Distributed Cache</strong>: Session state
+is stored in a distributed cache, provides better performance and
+scalability compared to database storage, but still with fail-over
+options.</li>
+</ul>
+<p><strong>Today: Stateless servers with state in DB are the
+norm</strong>, but sticky sessions are still useful because records need
+to be replicated.</p>
+<p><strong>Compromise</strong>: Replicate sessions between pairs of
+servers, then enable switching between them as failovers</p>
+</section>
+<section id="p2p-load-balancing" data-number="0.5.3.5">
+<h4 data-number="1.5.3.5"><span class="header-section-number">1.5.3.5</span> P2P Load Balancing</h4>
+<ul>
+<li><strong>Evaluator Functions</strong>: Access server stats in shared
+memory and determine the outcome of a request, whether it is handled by
+its own server, redirected, or proxied.</li>
+<li><strong>Server Stats</strong>: Various metrics such as CPU usage,
+number of requests, memory usage, etc., are replicated in shared memory
+and used by evaluator functions to make load-balancing decisions.</li>
+<li><strong>Server Stat Replication</strong>: The replication of server
+stats is done through multicast.</li>
+</ul>
+</section>
 </section>
 <section id="caching" data-number="0.5.4">
 <h3 data-number="1.5.4"><span class="header-section-number">1.5.4</span>
