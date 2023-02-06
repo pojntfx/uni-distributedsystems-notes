@@ -905,6 +905,36 @@ Continuous availability **does not allow for planned downtime**.
 - **Real User Measurements (RUM)**:
   - Uses real-time data from end-user devices to dynamically adjust traffic distribution for optimal performance.
 
+#### Failover with Virtual IPs
+
+**Failover with one virtual IP**:
+
+- DNS points only to **one Virtual IP (VIP)**
+- In case of a server failure, **client sessions are lost** but they can establish a new session on reconnect
+- **No changes in DNS are required**, avoiding the potential issues of flushes and timeouts
+
+**Multi-site failover**:
+
+- A **combination** of geo-aware DNS and a Load Balancer/Fail-over front-server
+- **Requests can be re-routed** to different locations in case of a server failure
+- May still have the limitations and **issues associated with geo-aware DNS**.
+
+#### Failover, Load Balancing and Session State
+
+- **Sticky Sessions**: Keeps session state on a single server, offers advantages with a non-replicated system of records but limited in terms of fail-over and load-balancing options.
+- Session Storage **in DB**: Session state is stored in a database, offers better scalability and fail-over options compared to sticky sessions.
+- Session Storage **in Distributed Cache**: Session state is stored in a distributed cache, provides better performance and scalability compared to database storage, but still with fail-over options.
+
+**Today: Stateless servers with state in DB are the norm**, but sticky sessions are still useful because records need to be replicated.
+
+**Compromise**: Replicate sessions between pairs of servers, then enable switching between them as failovers
+
+#### P2P Load Balancing
+
+- **Evaluator Functions**: Access server stats in shared memory and determine the outcome of a request, whether it is handled by its own server, redirected, or proxied.
+- **Server Stats**: Various metrics such as CPU usage, number of requests, memory usage, etc., are replicated in shared memory and used by evaluator functions to make load-balancing decisions.
+- **Server Stat Replication**: The replication of server stats is done through multicast.
+
 ### Caching
 
 #### CQRS (Command Query Responsibility Segregation)
