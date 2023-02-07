@@ -103,10 +103,10 @@ Amdahl's Law is often used to understand the potential benefits and limitations 
 
 #### Different I/O Models
 
-- **Java before NIO/AIO**: Prior to the introduction of the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a different model for handling input/output (I/O) operations. This model involved using threads to block and wait for I/O operations to complete, which could be inefficient and consume a lot of system resources.
-- **Polling pattern**: The polling pattern is a way of handling I/O operations in which a central component periodically checks for the completion of I/O operations. This can be done by repeatedly calling a function that checks the status of the operation, or by using a timer to trigger the check at regular intervals.
-- **Reactor pattern**: The Reactor pattern is a way of handling I/O operations in which a central component is notified when an I/O operation is completed, rather than periodically checking for its completion. This can be more efficient than the polling pattern, as it allows the system to respond to I/O operations as soon as they are completed, rather than waiting for a periodic check.
-- **Proactor pattern**: The Proactor pattern is similar to the Reactor pattern, but it is designed to handle high-concurrency environments where many I/O operations are occurring simultaneously. It uses a combination of asynchronous I/O and event-driven design to allow for efficient handling of multiple I/O operations at once.
+- **Synchronous Blocking (Java before NIO/AIO)**: Prior to the introduction of the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a different model for handling input/output (I/O) operations. This model involved using threads to block and wait for I/O operations to complete, which could be inefficient and consume a lot of system resources.
+- **Synchronous Non-Blocking (Polling pattern)**: The polling pattern is a way of handling I/O operations in which a central component periodically checks for the completion of I/O operations. This can be done by repeatedly calling a function that checks the status of the operation, or by using a timer to trigger the check at regular intervals.
+- **Asynchronous Blocking (Reactor pattern)**: The Reactor pattern is a way of handling I/O operations in which a central component is notified when an I/O operation is completed, rather than periodically checking for its completion. This can be more efficient than the polling pattern, as it allows the system to respond to I/O operations as soon as they are completed, rather than waiting for a periodic check.
+- **Asynchronous Non-Blocking (Proactor pattern)**: The Proactor pattern is similar to the Reactor pattern, but it is designed to handle high-concurrency environments where many I/O operations are occurring simultaneously. It uses a combination of asynchronous I/O and event-driven design to allow for efficient handling of multiple I/O operations at once.
 
 #### Questions for I/O Models
 
@@ -572,7 +572,7 @@ The protocol consists of the following **steps**:
 - If the Follower's log is up-to-date and the Leader's entry is valid, the **Follower appends the entry** and **responds with a success message**.
 - If the **Leader receives a success message** from a quorum of replicas, it updates its commit index and **sends a Commit message** to all other replicas to apply the committed entry to their state machines.
 
-3. **State Machine Update:**:
+3. **State Machine Update**:
 
 - If a **replica receives a Commit message**, it applies the committed entry to its state machine and **responds with an Apply message** to the Leader.
 - If the **Leader receives an Apply message** from a quorum of replicas, it updates its commit index and **sends an Apply message to all other replicas**.
@@ -1606,15 +1606,6 @@ The higher the level, the more overhead is required.
 - **Unable to prevent concurrent updates to shared data items**, cannot provide recency guarantees for reads.
 
 ## Design of Distributed Systems
-
-### Overview
-
-- Key principles for system design
-- Utilizing caching and replication for efficient operations
-- Importance of architecture in optimizing performance
-- Validation of architectural design
-- Techniques for improving performance in large fan-out architecture
-- Strategies for achieving fault-tolerance in high-scale systems.
 
 ### Design Principles for Distributed Systems
 
