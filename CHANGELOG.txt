@@ -1,3 +1,9 @@
+commit d2b5e22dfe07517f93fa1eb770d8b1d5f3e9d49e
+Author: Felicitas Pojtinger <felicitas@pojtinger.com>
+Date:   Tue Feb 7 14:26:20 2023 +0100
+
+    fix: Use terminology that more closely matches that used in the lecture
+
 commit 7f8a579a94766aba46b8e943de9d98812ff2cdab
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Feb 6 20:17:38 2023 +0100

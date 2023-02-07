@@ -252,13 +252,11 @@ Services</a></li>
 </ul></li>
 <li><a href="#design-of-distributed-systems"><span class="toc-section-number">1.7</span> Design of Distributed Systems</a>
 <ul>
-<li><a href="#overview-5"><span class="toc-section-number">1.7.1</span>
-Overview</a></li>
-<li><a href="#design-principles-for-distributed-systems"><span class="toc-section-number">1.7.2</span> Design Principles for
+<li><a href="#design-principles-for-distributed-systems"><span class="toc-section-number">1.7.1</span> Design Principles for
 Distributed Systems</a></li>
-<li><a href="#architecture-fields"><span class="toc-section-number">1.7.3</span> Architecture Fields</a></li>
-<li><a href="#fan-out-architecture"><span class="toc-section-number">1.7.4</span> Fan-Out Architecture</a></li>
-<li><a href="#containing-failures"><span class="toc-section-number">1.7.5</span> Containing Failures</a></li>
+<li><a href="#architecture-fields"><span class="toc-section-number">1.7.2</span> Architecture Fields</a></li>
+<li><a href="#fan-out-architecture"><span class="toc-section-number">1.7.3</span> Fan-Out Architecture</a></li>
+<li><a href="#containing-failures"><span class="toc-section-number">1.7.4</span> Containing Failures</a></li>
 </ul></li>
 </ul>
 </nav>
@@ -454,27 +452,31 @@ Models</h4>
 <section id="different-io-models" data-number="0.2.2.3">
 <h4 data-number="1.2.2.3"><span class="header-section-number">1.2.2.3</span> Different I/O Models</h4>
 <ul>
-<li><strong>Java before NIO/AIO</strong>: Prior to the introduction of
-the Java New I/O (NIO) and Asynchronous I/O (AIO) APIs, Java had a
-different model for handling input/output (I/O) operations. This model
-involved using threads to block and wait for I/O operations to complete,
-which could be inefficient and consume a lot of system resources.</li>
-<li><strong>Polling pattern</strong>: The polling pattern is a way of
-handling I/O operations in which a central component periodically checks
-for the completion of I/O operations. This can be done by repeatedly
-calling a function that checks the status of the operation, or by using
-a timer to trigger the check at regular intervals.</li>
-<li><strong>Reactor pattern</strong>: The Reactor pattern is a way of
-handling I/O operations in which a central component is notified when an
-I/O operation is completed, rather than periodically checking for its
-completion. This can be more efficient than the polling pattern, as it
-allows the system to respond to I/O operations as soon as they are
-completed, rather than waiting for a periodic check.</li>
-<li><strong>Proactor pattern</strong>: The Proactor pattern is similar
-to the Reactor pattern, but it is designed to handle high-concurrency
-environments where many I/O operations are occurring simultaneously. It
-uses a combination of asynchronous I/O and event-driven design to allow
-for efficient handling of multiple I/O operations at once.</li>
+<li><strong>Synchronous Blocking (Java before NIO/AIO)</strong>: Prior
+to the introduction of the Java New I/O (NIO) and Asynchronous I/O (AIO)
+APIs, Java had a different model for handling input/output (I/O)
+operations. This model involved using threads to block and wait for I/O
+operations to complete, which could be inefficient and consume a lot of
+system resources.</li>
+<li><strong>Synchronous Non-Blocking (Polling pattern)</strong>: The
+polling pattern is a way of handling I/O operations in which a central
+component periodically checks for the completion of I/O operations. This
+can be done by repeatedly calling a function that checks the status of
+the operation, or by using a timer to trigger the check at regular
+intervals.</li>
+<li><strong>Asynchronous Blocking (Reactor pattern)</strong>: The
+Reactor pattern is a way of handling I/O operations in which a central
+component is notified when an I/O operation is completed, rather than
+periodically checking for its completion. This can be more efficient
+than the polling pattern, as it allows the system to respond to I/O
+operations as soon as they are completed, rather than waiting for a
+periodic check.</li>
+<li><strong>Asynchronous Non-Blocking (Proactor pattern)</strong>: The
+Proactor pattern is similar to the Reactor pattern, but it is designed
+to handle high-concurrency environments where many I/O operations are
+occurring simultaneously. It uses a combination of asynchronous I/O and
+event-driven design to allow for efficient handling of multiple I/O
+operations at once.</li>
 </ul>
 </section>
 <section id="questions-for-io-models" data-number="0.2.2.4">
@@ -1602,7 +1604,7 @@ Commit message</strong> to all other replicas to apply the committed
 entry to their state machines.</li>
 </ul>
 <ol start="3" type="1">
-<li><strong>State Machine Update:</strong>:</li>
+<li><strong>State Machine Update</strong>:</li>
 </ol>
 <ul>
 <li>If a <strong>replica receives a Commit message</strong>, it applies
@@ -3340,24 +3342,11 @@ items</strong>, cannot provide recency guarantees for reads.</li>
 <section id="design-of-distributed-systems" data-number="0.7">
 <h2 data-number="1.7"><span class="header-section-number">1.7</span>
 Design of Distributed Systems</h2>
-<section id="overview-5" data-number="0.7.1">
+<section id="design-principles-for-distributed-systems" data-number="0.7.1">
 <h3 data-number="1.7.1"><span class="header-section-number">1.7.1</span>
-Overview</h3>
-<ul>
-<li>Key principles for system design</li>
-<li>Utilizing caching and replication for efficient operations</li>
-<li>Importance of architecture in optimizing performance</li>
-<li>Validation of architectural design</li>
-<li>Techniques for improving performance in large fan-out
-architecture</li>
-<li>Strategies for achieving fault-tolerance in high-scale systems.</li>
-</ul>
-</section>
-<section id="design-principles-for-distributed-systems" data-number="0.7.2">
-<h3 data-number="1.7.2"><span class="header-section-number">1.7.2</span>
 Design Principles for Distributed Systems</h3>
-<section id="overview-6" data-number="0.7.2.1">
-<h4 data-number="1.7.2.1"><span class="header-section-number">1.7.2.1</span> Overview</h4>
+<section id="overview-5" data-number="0.7.1.1">
+<h4 data-number="1.7.1.1"><span class="header-section-number">1.7.1.1</span> Overview</h4>
 <ul>
 <li><strong>Consideration of Latency</strong>: Examination of buffering
 and round-trip times</li>
@@ -3380,8 +3369,8 @@ lower levels of the system.</li>
 <p>Know Your No. 1 Enemy: <strong>Latency</strong>!</p>
 </blockquote>
 </section>
-<section id="sharing-ressources-and-data" data-number="0.7.2.2">
-<h4 data-number="1.7.2.2"><span class="header-section-number">1.7.2.2</span> Sharing Ressources and
+<section id="sharing-ressources-and-data" data-number="0.7.1.2">
+<h4 data-number="1.7.1.2"><span class="header-section-number">1.7.1.2</span> Sharing Ressources and
 Data</h4>
 <ul>
 <li><strong>Pooling resources</strong> can improve performance even in
@@ -3396,8 +3385,8 @@ application logic</li>
 can reveal reusable parts</li>
 </ul>
 </section>
-<section id="connection-pooling" data-number="0.7.2.3">
-<h4 data-number="1.7.2.3"><span class="header-section-number">1.7.2.3</span> Connection Pooling</h4>
+<section id="connection-pooling" data-number="0.7.1.3">
+<h4 data-number="1.7.1.3"><span class="header-section-number">1.7.1.3</span> Connection Pooling</h4>
 <ul>
 <li><strong>Matching</strong> server and database CPU
 <strong>capabilities</strong></li>
@@ -3410,8 +3399,8 @@ storage</li>
 <li><strong>Monitoring core/thread ratio</strong>, etc.</li>
 </ul>
 </section>
-<section id="horizonal-scalingparallelization" data-number="0.7.2.4">
-<h4 data-number="1.7.2.4"><span class="header-section-number">1.7.2.4</span> Horizonal
+<section id="horizonal-scalingparallelization" data-number="0.7.1.4">
+<h4 data-number="1.7.1.4"><span class="header-section-number">1.7.1.4</span> Horizonal
 Scaling/Parallelization</h4>
 <ul>
 <li>Horizontal scaling through <strong>parallel processing</strong></li>
@@ -3421,8 +3410,8 @@ host</strong></li>
 database connections.</li>
 </ul>
 </section>
-<section id="caching-and-replication" data-number="0.7.2.5">
-<h4 data-number="1.7.2.5"><span class="header-section-number">1.7.2.5</span> Caching and
+<section id="caching-and-replication" data-number="0.7.1.5">
+<h4 data-number="1.7.1.5"><span class="header-section-number">1.7.1.5</span> Caching and
 Replication</h4>
 <ul>
 <li>Caching components are responsible for maintaining data
@@ -3432,8 +3421,8 @@ up-to-date</li>
 <li>Focus on reducing back-end requests for improved efficiency.</li>
 </ul>
 </section>
-<section id="end-to-end-argument" data-number="0.7.2.6">
-<h4 data-number="1.7.2.6"><span class="header-section-number">1.7.2.6</span> End-to-End Argument</h4>
+<section id="end-to-end-argument" data-number="0.7.1.6">
+<h4 data-number="1.7.1.6"><span class="header-section-number">1.7.1.6</span> End-to-End Argument</h4>
 <ul>
 <li><strong>User/Developer</strong>: Compensation for behavior through
 application</li>
@@ -3446,8 +3435,8 @@ models</li>
 database isolation levels, and real-time streaming, etc.</li>
 </ul>
 </section>
-<section id="design-methodology" data-number="0.7.2.7">
-<h4 data-number="1.7.2.7"><span class="header-section-number">1.7.2.7</span> Design Methodology</h4>
+<section id="design-methodology" data-number="0.7.1.7">
+<h4 data-number="1.7.1.7"><span class="header-section-number">1.7.1.7</span> Design Methodology</h4>
 <ul>
 <li><strong>Back-of-the-envelope</strong> calculations</li>
 <li>Decide on <strong>geographical distribution and replication
@@ -3465,8 +3454,8 @@ Authentication, Authorization, Audit) and perform risk analysis</li>
 maintenance</strong> using fault-tolerant features.</li>
 </ul>
 </section>
-<section id="uncomfortable-real-world-questions" data-number="0.7.2.8">
-<h4 data-number="1.7.2.8"><span class="header-section-number">1.7.2.8</span> Uncomfortable Real-World
+<section id="uncomfortable-real-world-questions" data-number="0.7.1.8">
+<h4 data-number="1.7.1.8"><span class="header-section-number">1.7.1.8</span> Uncomfortable Real-World
 Questions</h4>
 <ul>
 <li>How many application servers are needed to support the customer
@@ -3493,8 +3482,8 @@ handle?</li>
 <li>What type of caching is done?</li>
 </ul>
 </section>
-<section id="best-practices-for-designing-services" data-number="0.7.2.9">
-<h4 data-number="1.7.2.9"><span class="header-section-number">1.7.2.9</span> Best Practices for
+<section id="best-practices-for-designing-services" data-number="0.7.1.9">
+<h4 data-number="1.7.1.9"><span class="header-section-number">1.7.1.9</span> Best Practices for
 Designing Services</h4>
 <ul>
 <li>Keep services <strong>independent</strong></li>
@@ -3511,11 +3500,11 @@ patterns</li>
 </ul>
 </section>
 </section>
-<section id="architecture-fields" data-number="0.7.3">
-<h3 data-number="1.7.3"><span class="header-section-number">1.7.3</span>
+<section id="architecture-fields" data-number="0.7.2">
+<h3 data-number="1.7.2"><span class="header-section-number">1.7.2</span>
 Architecture Fields</h3>
-<section id="overview-7" data-number="0.7.3.1">
-<h4 data-number="1.7.3.1"><span class="header-section-number">1.7.3.1</span> Overview</h4>
+<section id="overview-6" data-number="0.7.2.1">
+<h4 data-number="1.7.2.1"><span class="header-section-number">1.7.2.1</span> Overview</h4>
 <ul>
 <li><strong>Information</strong> Architecture</li>
 <li><strong>Distribution</strong> Architecture</li>
@@ -3524,8 +3513,8 @@ Architecture Fields</h3>
 <li><strong>Architectural</strong> Validation</li>
 </ul>
 </section>
-<section id="information-architecture-to-analyze-caching" data-number="0.7.3.2">
-<h4 data-number="1.7.3.2"><span class="header-section-number">1.7.3.2</span> Information Architecture
+<section id="information-architecture-to-analyze-caching" data-number="0.7.2.2">
+<h4 data-number="1.7.2.2"><span class="header-section-number">1.7.2.2</span> Information Architecture
 (to analyze Caching)</h4>
 <blockquote>
 <p>Defines pieces of information to aggregate or integrate</p>
@@ -3567,8 +3556,8 @@ Architecture Fields</h3>
 </tbody>
 </table>
 </section>
-<section id="distribution-architcture" data-number="0.7.3.3">
-<h4 data-number="1.7.3.3"><span class="header-section-number">1.7.3.3</span> Distribution
+<section id="distribution-architcture" data-number="0.7.2.3">
+<h4 data-number="1.7.2.3"><span class="header-section-number">1.7.2.3</span> Distribution
 Architcture</h4>
 <blockquote>
 <p>Tells portal how to map/locate fragments defined in the
@@ -3649,8 +3638,8 @@ instabilities in the portal application</li>
 huge latencies and variations in response times from dependencies.</li>
 </ul>
 </section>
-<section id="service-access-layer" data-number="0.7.3.4">
-<h4 data-number="1.7.3.4"><span class="header-section-number">1.7.3.4</span> Service Access Layer</h4>
+<section id="service-access-layer" data-number="0.7.2.4">
+<h4 data-number="1.7.2.4"><span class="header-section-number">1.7.2.4</span> Service Access Layer</h4>
 <p>Is determined by the distribution architecture.</p>
 <ul>
 <li>Handle changes in the interface</li>
@@ -3666,8 +3655,8 @@ breaker &amp; service discovery</p>
 <p><strong>Advanced Alternative</strong>: Service mesh with separate
 data and control plane</p>
 </section>
-<section id="physical-and-process-architecture" data-number="0.7.3.5">
-<h4 data-number="1.7.3.5"><span class="header-section-number">1.7.3.5</span> Physical and Process
+<section id="physical-and-process-architecture" data-number="0.7.2.5">
+<h4 data-number="1.7.2.5"><span class="header-section-number">1.7.2.5</span> Physical and Process
 Architecture</h4>
 <p><strong>Physical Architecture</strong>:</p>
 <ul>
@@ -3687,8 +3676,8 @@ impact on overall system architecture</li>
 <li>Limited scalability and availability (HA application)</li>
 </ul>
 </section>
-<section id="architecture-validation" data-number="0.7.3.6">
-<h4 data-number="1.7.3.6"><span class="header-section-number">1.7.3.6</span> Architecture
+<section id="architecture-validation" data-number="0.7.2.6">
+<h4 data-number="1.7.2.6"><span class="header-section-number">1.7.2.6</span> Architecture
 Validation</h4>
 <p>In the architecture validation phase these questions are answered:
 How does the architecture …</p>
@@ -3703,11 +3692,11 @@ How does the architecture …</p>
 </ul>
 </section>
 </section>
-<section id="fan-out-architecture" data-number="0.7.4">
-<h3 data-number="1.7.4"><span class="header-section-number">1.7.4</span>
+<section id="fan-out-architecture" data-number="0.7.3">
+<h3 data-number="1.7.3"><span class="header-section-number">1.7.3</span>
 Fan-Out Architecture</h3>
-<section id="overview-8" data-number="0.7.4.1">
-<h4 data-number="1.7.4.1"><span class="header-section-number">1.7.4.1</span> Overview</h4>
+<section id="overview-7" data-number="0.7.3.1">
+<h4 data-number="1.7.3.1"><span class="header-section-number">1.7.3.1</span> Overview</h4>
 <p>Calls are parallel instead of serial.</p>
 <ul>
 <li>The overall <strong>request time is determined by the slowest
@@ -3727,8 +3716,8 @@ sub-call (bulkhead)</li>
 (circuit-breaker)</strong>.</li>
 </ul>
 </section>
-<section id="reliability-issues-in-dependencies" data-number="0.7.4.2">
-<h4 data-number="1.7.4.2"><span class="header-section-number">1.7.4.2</span> Reliability Issues in
+<section id="reliability-issues-in-dependencies" data-number="0.7.3.2">
+<h4 data-number="1.7.3.2"><span class="header-section-number">1.7.3.2</span> Reliability Issues in
 Dependencies</h4>
 <ul>
 <li>System load becomes worse due to <strong>hanging requests</strong>
@@ -3741,8 +3730,8 @@ servers</strong></li>
 homepage action handler: Adopt the “Fail-fast” pattern today.</li>
 </ul>
 </section>
-<section id="fragments" data-number="0.7.4.3">
-<h4 data-number="1.7.4.3"><span class="header-section-number">1.7.4.3</span> Fragments</h4>
+<section id="fragments" data-number="0.7.3.3">
+<h4 data-number="1.7.3.3"><span class="header-section-number">1.7.3.3</span> Fragments</h4>
 <p><strong>Pages</strong>: Unique to customers, cannot be re-used</p>
 <p><strong>Page fragments</strong>:</p>
 <ul>
@@ -3752,8 +3741,8 @@ homepage action handler: Adopt the “Fail-fast” pattern today.</li>
 dependent pages.</li>
 </ul>
 </section>
-<section id="latency-reduction-tolerance" data-number="0.7.4.4">
-<h4 data-number="1.7.4.4"><span class="header-section-number">1.7.4.4</span> Latency Reduction &amp;
+<section id="latency-reduction-tolerance" data-number="0.7.3.4">
+<h4 data-number="1.7.3.4"><span class="header-section-number">1.7.3.4</span> Latency Reduction &amp;
 Tolerance</h4>
 <ul>
 <li><strong>Keep response times tight</strong> but aware of
@@ -3773,8 +3762,8 @@ requests)</li>
 <li>Beware of the <strong>incast</strong> problem</li>
 </ul>
 </section>
-<section id="avoiding-getting-stuck" data-number="0.7.4.5">
-<h4 data-number="1.7.4.5"><span class="header-section-number">1.7.4.5</span> Avoiding Getting Stuck</h4>
+<section id="avoiding-getting-stuck" data-number="0.7.3.5">
+<h4 data-number="1.7.3.5"><span class="header-section-number">1.7.3.5</span> Avoiding Getting Stuck</h4>
 <ul>
 <li><strong>Fail Fast</strong>: Don’t wait for problematic
 resources</li>
@@ -3795,11 +3784,11 @@ list that UIs can ignore.</li>
 </ul>
 </section>
 </section>
-<section id="containing-failures" data-number="0.7.5">
-<h3 data-number="1.7.5"><span class="header-section-number">1.7.5</span>
+<section id="containing-failures" data-number="0.7.4">
+<h3 data-number="1.7.4"><span class="header-section-number">1.7.4</span>
 Containing Failures</h3>
-<section id="circuit-breakers" data-number="0.7.5.1">
-<h4 data-number="1.7.5.1"><span class="header-section-number">1.7.5.1</span> Circuit Breakers</h4>
+<section id="circuit-breakers" data-number="0.7.4.1">
+<h4 data-number="1.7.4.1"><span class="header-section-number">1.7.4.1</span> Circuit Breakers</h4>
 <ul>
 <li>Purpose: <strong>Handle faults that might take a long time to
 recover from</strong></li>
@@ -3816,8 +3805,8 @@ unresponsive</strong></li>
 affected by the failure.</li>
 </ul>
 </section>
-<section id="bulkheads" data-number="0.7.5.2">
-<h4 data-number="1.7.5.2"><span class="header-section-number">1.7.5.2</span> Bulkheads</h4>
+<section id="bulkheads" data-number="0.7.4.2">
+<h4 data-number="1.7.4.2"><span class="header-section-number">1.7.4.2</span> Bulkheads</h4>
 <ul>
 <li><strong>Bulkhead pattern</strong> is a design for fault-tolerant
 applications</li>
@@ -3830,8 +3819,8 @@ hull</li>
 <li>Example: <strong>semaphores and thread pools</strong></li>
 </ul>
 </section>
-<section id="blast-reduction" data-number="0.7.5.3">
-<h4 data-number="1.7.5.3"><span class="header-section-number">1.7.5.3</span> Blast Reduction</h4>
+<section id="blast-reduction" data-number="0.7.4.3">
+<h4 data-number="1.7.4.3"><span class="header-section-number">1.7.4.3</span> Blast Reduction</h4>
 <ul>
 <li>Partition app into geographical regions (e.g. US, DACH etc.)</li>
 <li>Splitting regions further into specific availability zones and
