@@ -1,100 +1,100 @@
-commit d2b5e22dfe07517f93fa1eb770d8b1d5f3e9d49e
+commit 6683b2d310954593e5c480d109e60552a65276af
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Feb 7 14:26:20 2023 +0100
 
     fix: Use terminology that more closely matches that used in the lecture
 
-commit 7f8a579a94766aba46b8e943de9d98812ff2cdab
+commit fbf86ecf6b57097606fcd45db78eb73da0d0d16e
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Feb 6 20:17:38 2023 +0100
 
     fix: Add section on load balancing to condensed summary
 
-commit 53a5a8d74ea16b5b2a8696ae775521b51097dad5
+commit 040900e9fd29332a6eb0058d96675f303385530b
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Feb 5 22:43:40 2023 +0100
 
     feat: Add condensed version of the summary
 
-commit f14adb50ec68e6577d8d792fcfece94ee8b93bc1
+commit 47d84fa29010d9f83f62ec47345ea4cef485079c
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Feb 5 21:45:02 2023 +0100
 
     refactor: Add proper nested hierarchy, reorder semantically
 
-commit 06e18c2dac265213e4475180bd9be6d736adcaaf
+commit b5362dbcc2a137854cdf1986ff4cc729a2284c17
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Feb 5 17:17:34 2023 +0100
 
     feat: Add section on Distributed Services and Algorithms II
 
-commit 4d2adf1d402d75178bb8fcd1406d2de961a05194
+commit c51a6a64aade5b0be99f69d302701d20a5b99ff9
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sat Feb 4 21:10:32 2023 +0100
 
     feat: Add distributed systems design section
 
-commit 1f59b74f22ffbf10037138f2fe52b08aea081762
+commit 912197b056936aa8d44c6c08a2895340a666760d
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sat Feb 4 01:05:41 2023 +0100
 
     feat: Add topics list
 
-commit 780cbc97ee196172a6db9b660a8e1b38a7c2980f
+commit 2973f768ff7fb24c52fe864dba4c0a27465030ce
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Jan 31 21:13:30 2023 +0100
 
     feat: Add summary on Distributed Systems and Algorithms
 
-commit 9bec7018cb24cf92eb5efa58a5a0579da76e0674
+commit 2982c0e1d25e4611d474c07c525dea2b696ff65c
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Wed Dec 21 05:35:41 2022 +0100
 
     feat: Add summary of eight section (theoretical  functions of distributed systems)
 
-commit f96f9a707b187b818f851f7daf02f0bb871fc10e
+commit a3848e4e6f5da050a4eb6411ff0a34f90d763189
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Tue Dec 20 03:55:37 2022 +0100
 
     feat: Add summary of seventh section (services)
 
-commit 58debe0b5931f7a70200a32004a4cce7bb19aa2a
+commit 9f89a137f62967165c38f26ba8781bf601cd341a
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Mon Dec 19 03:08:28 2022 +0100
 
     feat: Add summary of sixth section (distributed business components)
 
-commit 35a0bdde52167fd6284d3002b1abd6db97810b33
+commit 8b1fdcb82cd2e73575ddcb7f94dacba4144f7ab0
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Dec 18 22:46:50 2022 +0100
 
     feat: Add summary of fith section (distributed objects)
 
-commit 30498a88c91c72074e53d592bfd50494c4d0c44e
+commit c38c4b90ddfc63c1a08255448088b8b46d2db5f3
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Dec 18 04:53:17 2022 +0100
 
     feat: Add summary of fourth section (RPCs)
 
-commit a20e35148d9b03302f7d76984b8e2615a6351d5f
+commit e34bb5b3f18a5ca85aec108469d171eab555c11b
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Dec 18 03:50:16 2022 +0100
 
     feat: Add summary of third section (message protocols)
 
-commit 9462cdea461abd1029d9a184bbf45c4c996125f3
+commit 84ce9d4eab0d5e7982993693593cdb42fdaa9669
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Dec 18 02:01:50 2022 +0100
 
     feat: Add summary of second section (theoretical models of distributed systems)
 
-commit e4a6a20422df55d9b7968ed16326825693604314
+commit 8c50b5d1434693730d01f130e3620f1075ca10b5
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Sun Dec 18 00:26:04 2022 +0100
 
     feat: Add summary of first section (introduction to distributed systems)
 
-commit df202ce3147c8d031dde73cfb815aef785702ab2
+commit 109a92f7ff499fc862ddfe4a5b993e7a6bcaee50
 Author: Felicitas Pojtinger <felicitas@pojtinger.com>
 Date:   Fri Oct 7 11:33:58 2022 +0200
 
